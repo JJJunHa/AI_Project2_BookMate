@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.human.springboot.SigninController.signinDAO">
+	<select id="confirmId" resultType="com.human.springboot.SigninController.signinDTO">
+		select * from member
+	</select>
+	<insert  id="doInsert">
+		insert into member values(#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9})
+	</insert>
+</mapper>

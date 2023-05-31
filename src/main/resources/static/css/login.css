@@ -1,0 +1,184 @@
+@charset "UTF-8";
+.main {
+    width:100%;
+    height:100%;
+    /* border: 1px solid black; */
+}
+.logo {
+    width:100%;
+    height:100px;
+    text-align: center;
+}
+.logoImg {
+    width:20%;
+    margin-top:20px;
+    /* border: 1px solid black; */
+    display: inline-block;
+}
+/* 로그인, 장바구니, 마이페이지, 고객센터 연결 */
+.menu {
+    width:100%;
+    height:40px;
+    background-color: white;
+    text-align : right;
+}
+a {
+    text-decoration-line: none;
+}
+a:link {
+    color : gray;
+}
+/* 색상상자 */
+.name{
+    width:100%;
+    height:20px;
+    background-color: #97d4f7;
+    color:white;
+    text-align : center;
+    padding : 20px 0;
+}
+/* 카테고리 */
+
+.category {
+    width:100%;
+    height:60px;
+    background-color: white;
+}
+.category_ul {
+    list-style:none;
+    float:right;
+}
+.category_li {
+    float: left;
+    margin-right: 20px;
+}
+a:hover {
+        color: #97d4f7;
+}
+/* 검색창 */
+.search {
+    position: relative;
+    width: 100%;
+}
+.searchBox {
+    width: 250px;
+    border: 1px solid #bbb;
+    border-radius: 15px;
+    padding: 5px 5px;
+    font-size: 14px;
+}
+.search_img {
+    position : sticky;
+    
+    width: 17px;
+    top: 5px;
+    right: 10px;
+}
+/* 로그인 부분 */
+.container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+/*       border: 1px solid #ddd; */
+      border-radius: 5px;
+/*       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+/* 	  display: flex; */
+/* 	  align-items: center; */
+/* 	  flex-direction: column; */
+
+    }
+    
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .form-group {
+/*     background-color:blue; */
+/*       margin-bottom: 15px; */
+ 		display: flex;
+ 		align-items: center;
+		position: relative;
+
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      margin-left: 35px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+
+    }
+    
+    .form-group button {
+      transition: all 0.3s;
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
+      background-color: rgb(138, 142, 145);
+      color: #fff;
+      font-weight: bold;
+      font-size: large;
+      cursor: pointer;
+      margin-top: 30px;
+      margin-left: 35px;
+      
+    }
+    
+    .form-group button:hover {
+      background-color: rgb(116, 119, 121);
+    }
+    
+    .form-group1{
+      margin-top:20px;
+  	  margin-bottom:100px;
+  	  margin-left: 35px;
+    }
+     .form-group input[type="id"] {
+/* 		margin-right: 2px; */
+		padding-right: 60px;
+		width: 100%;
+/* 				POSITION: RELATive; */
+	}
+    .form-group input[type="password"] {
+/* 		margin-right: 2px; */
+		padding-right: 60px;
+		width: 100%;
+				
+	}
+
+	.form-group input[type="button"] {
+/* 		margin-right: 23px; */
+		position: absolute;
+		right: 0;
+		width: 55px;
+/* 		width: 100px; */
+	}
+    
+    a {
+ 	 text-decoration-line: none;
+ 	 text-align: center;
+  	 color: inherit; /* 링크의 색상 제거 */
+	}
+	
+	.abc{
+        width:90%;
+    }
+    
+    #showPwd {
+    position: absolute;
+	border: none;
+	background-color: white;
+	padding-right: 10px;
+	width: 22px;
+	right: 1px;
+}
