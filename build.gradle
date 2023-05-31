@@ -33,6 +33,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-devtools'
 	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl'
 	implementation 'org.json:json:20230227'
+	implementation 'net.nurigo:sdk:4.3.0'
 }
 
 tasks.named('test') {

@@ -1,0 +1,360 @@
+@charset "UTF-8";
+* {
+	box-sizing: border-box;
+}
+
+html, body {
+	margin: 0;
+	padding: 0
+}
+
+.content {
+	flex: 3;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.content2 {
+	flex: 0.5;
+}
+
+.content3 {
+	flex: 0 1000px;
+	display: flex;
+	flex-direction: column;
+	padding: 5px;
+	margin: 100px;
+	width: 900px; /* 너비 조절 */
+	height: 800px; /* 높이 조절 */
+	align-items: center;
+	justify-content: center;
+}
+
+.content4 {
+	flex: 0.5;
+}
+
+.text {
+	flex: 8;
+	display: flex;
+	flex-direction: row;
+	padding-left: 50px;
+}
+
+.text2 {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.text3 {
+	flex: 3;
+}
+
+.information {
+	flex: 1;
+	margin-bottom: 10px;
+}
+
+.information2 {
+	flex: 1;
+	margin-bottom: 10px;
+}
+
+.information3 {
+	flex: 1;
+}
+
+.information4 {
+	flex: 1;
+	margin-bottom: 45px;
+}
+
+.information5 {
+	flex: 2;
+	margin-bottom: 50px;
+}
+
+.information6 {
+	flex: 1;
+	margin-bottom: 20px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.information7 {
+	flex: 1;
+	margin-bottom: 1px;
+}
+
+.information8 {
+	flex: 1;
+}
+
+.button {
+	flex: 1;
+	display: flex;
+	justify-content: space-around;
+	padding-top: 10px;
+	border: none;
+	border-radius: 5px;
+	font-size: 14px;
+	color: white;
+	cursor: pointer;
+	margin-right: 100px;
+}
+
+.footer {
+	flex: 0.5;
+}
+
+.content>.first {
+	flex: 0.5;
+}
+
+.content>.second {
+	flex: 5;
+}
+
+.content>.third {
+	flex: 1;
+}
+
+.join {
+	border-radius: 50px;
+}
+
+.second {
+	width: 100%;
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #f2f2f2;
+	border-radius: 5px;
+	font-family: Arial, sans-serif;
+	display: flex;
+	flex-direction: column;
+}
+
+.second2 {
+	flex: 10;
+	display: flex;
+	flex-direction: row;
+}
+
+.second3 {
+	flex: 1;
+}
+
+.second4 {
+	flex: 1;
+}
+
+.second h1 {
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+
+.second div {
+	margin-bottom: 10px;
+}
+
+.second input[type="text"] {
+	width: 100%;
+	padding: 5px 10px;
+	margin: 5px 0;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.second select {
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	background-color: #fff;
+}
+
+.second select#phone {
+	width: 80px;
+}
+
+.second button:hover {
+	background-color: black;
+	border: 1px;
+	border-radius: 50px;
+}
+
+.general-number {
+	width: 100px;
+}
+
+.button-wrapper {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+	padding: 20px 20px;
+	text-align: center;
+	font-size: 16px;
+	border-radius: 30%;
+}
+
+.button-wrapper button {
+	background-color: lightblue;
+	width: 43%;
+}
+
+.second button:hover {
+	background-color: pink;
+	border: 1px;
+	border-radius: 50px;
+}
+
+.address-input {
+	width: 100px;
+}
+
+.address2-input {
+	width: 80%;
+}
+
+.address-button {
+	color: aqua
+}
+
+input {
+	font-size: 14px;
+	color: #333;
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.dropdown {
+	position: relative;
+}
+
+.dropdown-toggle {
+	cursor: pointer;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a:focus {
+	text-decoration: none;
+}
+
+a:hover, a:active {
+	text-decoration: none;
+}
+
+.information2 span {
+	font-size: 3px;
+}
+
+.button button {
+	background-color: black;
+	color: white;
+	border: none;
+	/*       padding: 10px 16px;   */
+	margin-left: 80px;
+	font-size: 15px;
+	cursor: pointer;
+	transition: all 0.3s;
+	border-radius: 30px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-right: 30px;
+	padding-left: 30px;
+	margin-bottom: 30px;
+}
+
+.button button:hover {
+	background-color: #444;
+	transform: scale(1.1);
+}
+
+.Membership {
+	text-align: center;
+	padding-top: 60px;
+}
+
+.form-control {
+	height: 500px;
+}
+
+/* 로그인 부분 */
+.container {
+	max-width: 400px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #fff;
+	border-radius: 5px;
+}
+
+h2 {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.form-group {
+	/*     background-color:blue; */
+	/*       margin-bottom: 15px; */
+	
+}
+
+.form-group label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+.form-group input {
+	width: 80%;
+	padding: 10px;
+	margin-left: 35px;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+}
+
+.form-group button {
+	width: 85%;
+	padding: 15px;
+	border: none;
+	border-radius: 8px;
+	background-color: rgb(138, 142, 145);
+	color: #fff;
+	font-weight: bold;
+	font-size: large;
+	cursor: pointer;
+	margin-top: 30px;
+	margin-left: 35px;
+}
+
+.form-group button:hover {
+	background-color: rgb(116, 119, 121);
+}
+
+.form-group1 {
+	margin-top: 20px;
+	margin-bottom: 100px;
+	margin-left: 35px;
+}
+
+a {
+	text-decoration-line: none;
+	text-align: center;
+	color: inherit; /* 링크의 색상 제거 */
+}

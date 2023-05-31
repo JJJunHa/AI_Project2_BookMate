@@ -1,0 +1,106 @@
+@charset "UTF-8";
+.content > .content2{
+    /* background-color: firebrick; */
+    flex:8;
+    margin:80px;
+    
+}
+.content > .content3{
+    /* background-color: forestgreen; */
+    flex:1;
+    display: flex;
+    flex-direction: row;
+}
+
+.content3 > .content4{
+    /* background-color: gold; */
+    flex:8;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    /* margin-bottom: 30px; */
+}
+
+.content3 > .content5{
+    /* background-color: blue; */
+    flex:1.5;
+}
+
+
+
+.content > .content6{
+    /* background-color: darkmagenta; */
+    flex:1;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+#findidDialog {
+    display:none;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ccc;
+  }
+  
+  .findidTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .findidResult {
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  
+  .ui-dialog .ui-dialog-titlebar-close {
+    display: none;
+  }
+  
+ .off-screen {
+	display: none;
+}
+
+ .content5 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.content5 #writer {
+    background-color: gray;
+    /* color: white; */
+    border: none;
+    cursor: pointer;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.content5 #writer:hover {
+    background-color: #45a049;
+}
+
+ .loginInput{ 
+/*  	background-color:orange;  */
+border:none;
+ 	
+ } 
+ 
+ .minsuk{
+ 	padding-top:100px;
+ }
+ 
+ .hello1{
+ 	width:640px;
+/*  	background-color:red; */
+ 	display:flex;
+ 	justify-content: space-evenly;
+ }
