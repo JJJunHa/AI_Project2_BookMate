@@ -127,6 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         return data.choices[0].message.content.trim();
     };
+    
 	let manualMode = false;
     async function sendMessage() {
 		$('#loading').show();

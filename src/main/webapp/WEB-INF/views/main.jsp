@@ -89,7 +89,8 @@
 
             </div>
         </div>
-
+        </div>
+		</div>
 		<div id="loading">
 		    <img src="https://studentrights.sen.go.kr/images/common/loading.gif">
 		  </div>
