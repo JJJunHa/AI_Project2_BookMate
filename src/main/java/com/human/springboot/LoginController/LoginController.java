@@ -56,10 +56,10 @@ public class LoginController {
 	      return "redirect:/main";
 	   }
 	   
-	   @GetMapping("/main")
-	   public String main() {
-	      
-	      return "main";
-	   }
+//	   @GetMapping("/main")
+//	   public String main() {
+//	      
+//	      return "main";
+//	   }
 	
 }
