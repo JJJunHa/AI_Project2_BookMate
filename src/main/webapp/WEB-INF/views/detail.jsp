@@ -171,6 +171,7 @@ a:hover {
 /*     border: 2px solid red; */
 }
 .info1 {
+<<<<<<< HEAD
 	width: 33.33%;
 }
 .info2 {
@@ -178,6 +179,27 @@ a:hover {
 }
 .info3 {
 	width: 33.33%;
+=======
+	text-align: left;
+	float: left;
+	height:450px;
+	width:30%;
+/* 	border: 2px solid blue; */
+}
+.info2 {
+	float: left;
+	height:450px;
+	width:30%;
+	margin-left: 4%;
+/* 	border: 2px solid blue; */
+}
+.info3 {
+	float: left;
+	height:450px;
+	width:28%;
+	margin-left:5%;
+/* 	border: 2px solid blue; */
+>>>>>>> BookMate/master
 }
 #info-write {
 	font-size: 18px;
