@@ -112,8 +112,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     /*감정 모달 이벤트*/
     const chatGPT = async (messages, parameters = {}) => {
-        const apikey = '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';
+        const apikey = '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';
         if (messages[0].constructor === String) return await chatGPT([['user', messages[0]]]);
+		console.log(messages);
         messages = messages.map(line => ({ role: line[0],content: line[1].trim() }));
         const response = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
@@ -127,6 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         return data.choices[0].message.content.trim();
     };
+    
 	let manualMode = false;
     async function sendMessage() {
 		$('#loading').show();
