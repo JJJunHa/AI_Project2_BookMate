@@ -17,10 +17,16 @@
 </head>
 
 <body>
+
+	<input value="<%=session.getAttribute("id")%>" hidden>
+
     <div class="main">
        <div class="logo">
     	<img src="/img/logo.png" class="logoImg">
     </div>
+    
+    <% if(session.getAttribute("id")!=null){ %>
+    
     <div class="menu">
         <a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
     </div>

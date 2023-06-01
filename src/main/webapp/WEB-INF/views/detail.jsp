@@ -159,24 +159,25 @@ a:hover {
 }
 
 .info1 {
-	text-align: left;
-	float: left;
-	height:450px;
-	width:34.5%;
-/* 	border: 2px solid blue; */
+   text-align: left;
+   float: left;
+   height:450px;
+   width:30%;
+/*    border: 2px solid blue; */
 }
 .info2 {
-	float: left;
-	height:450px;
-	width:30%;
-/* 	border: 2px solid blue; */
+   float: left;
+   height:450px;
+   width:30%;
+   margin-left: 4%;
+/*    border: 2px solid blue; */
 }
 .info3 {
-	float: left;
-	height:450px;
-	width:34.5%;
-	margin-left: 1%;
-/* 	border: 2px solid blue; */
+   float: left;
+   height:450px;
+   width:28%;
+   margin-left:5%;
+/*    border: 2px solid blue; */
 }
 #info-write {
 	font-size: 18px;
