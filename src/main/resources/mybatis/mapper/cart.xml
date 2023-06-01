@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-/mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.human.springboot.CartController.CartDAO">
+	<!--책 select해서 category에 넣기 -->
+    <select id="load_cart" resultType="com.human.springboot.CartController.CartDTO">
+		select a.cart_num, b.book_cover, b.book_name, a.qty, b.book_price
+			from cart a, book b
+			where id=#{param1}
+			and a.book_num=b.book_num
+	</select>
+	<!--cart count 하기 -->
+    <select id="count_cart" resultType="int">
+		select count(*) from cart where id = #{param1}
+	</select>
+	
+	<!-- cart delete 하기 -->
+	<delete id="delete_cart">
+		delete from cart where cart_num = #{param1}
+	</delete>
+	
+	<!-- cart All delete 하기 -->
+	<delete id="Alldelete_cart">
+		delete from cart where id = #{param1}
+	</delete>
+	
+	<!-- cart 수량 변경하기 -->
+	<update id="modify_cart">
+		update cart set qty=#{param1}
+			where id = #{param2} and cart_num = #{param3}
+	</update>
+	<!-- cart에서 클릭 시 상세페이지 연결 -->
+	 <select id="find_book" resultType="String">
+		select book_num from book where book_name=#{param1}
+	</select>
+</mapper>

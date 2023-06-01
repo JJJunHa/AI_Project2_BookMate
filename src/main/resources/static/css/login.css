@@ -37,20 +37,69 @@ a:link {
     text-align : center;
     padding : 20px 0;
 }
-/* 카테고리 */
-
+/* 카테고리 */    
+#nav {
+	list-style:none;
+	height: 40px;
+	padding: 5px 1px;
+	margin: 0;
+}
+#nav li {
+	float:left;
+	position:relative;
+	margin-top:0.5%;
+	padding:0;
+}
+#nav li a {
+	display:block;
+	padding:7px 8px;
+	margin:0;
+	text-decoration: none;
+}
+#nav ul {
+	list-style: none;
+	margin:0;
+	padding:0;
+	position: absolute;
+	left:0;
+	top:40px;
+	text-align: center;
+	opacity: 0;
+}
+#nav ul li {
+	float: none;
+	margin:0;
+	padding:0;
+	width: 150px;
+	height:40px;
+	background-color: white;
+}
+#nav li:hover ul {
+	opacity: 1;
+	z-index: 1;
+}
+#nav li:hover ul li {
+	overflow: visible;
+	z-index: 1;
+}
+#nav li ul li:hover > a {
+	background-color: #97d4f7;
+	color:black;
+	margin:0;
+	padding:5px;
+	z-index: 1;
+}
 .category {
     width:100%;
     height:60px;
     background-color: white;
 }
 .category_ul {
-    list-style:none;
     float:right;
 }
 .category_li {
     float: left;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 a:hover {
         color: #97d4f7;
@@ -66,14 +115,15 @@ a:hover {
     border-radius: 15px;
     padding: 5px 5px;
     font-size: 14px;
+    margin-top:2%;
 }
 .search_img {
-    position : sticky;
-    
+    position : absolute;
     width: 17px;
-    top: 5px;
+    top: 10px;
     right: 10px;
 }
+/* ----------------------------------------------*/
 /* 로그인 부분 */
 .container {
       max-width: 400px;
