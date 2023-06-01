@@ -195,7 +195,7 @@ a:hover {
 }
 
 #nav1 {
-	width: 1150px;
+	width: 100%;
 	padding-right: 160px;
 	padding-top: 15px;
 
@@ -221,7 +221,7 @@ a:hover {
 
 .btnNew {
 	position: relative;
-	left: 420px; 
+	left: 38%; 
 	top: 15px;
 	background-color: #7ca8c2;
 	padding: 7px 11px;

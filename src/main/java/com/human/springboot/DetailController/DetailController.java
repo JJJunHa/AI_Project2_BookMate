@@ -80,6 +80,7 @@ public class DetailController {
 			jo.put("book_cover", alBook.get(i).getBook_cover());
 			jo.put("book_price", alBook.get(i).getBook_price());
 			jo.put("book_content", alBook.get(i).getBook_content());
+			jo.put("book_detail", alBook.get(i).getBook_detail());
 			
 			ja.put(jo);
 		}
