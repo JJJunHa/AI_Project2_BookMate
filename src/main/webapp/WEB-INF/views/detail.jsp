@@ -130,7 +130,7 @@ a:hover {
 }
 /* ----------------------------------------------*/
 .content-main {
-	width:85%;
+	width:90%;
     border: 2px solid rgb(216, 216, 216);
     text-align: center; 
     margin:0 auto;
@@ -162,20 +162,21 @@ a:hover {
 	text-align: left;
 	float: left;
 	height:450px;
-	width:34.5%;
+	width:30%;
 /* 	border: 2px solid blue; */
 }
 .info2 {
 	float: left;
 	height:450px;
 	width:30%;
+	margin-left: 4%;
 /* 	border: 2px solid blue; */
 }
 .info3 {
 	float: left;
 	height:450px;
-	width:34.5%;
-	margin-left: 1%;
+	width:28%;
+	margin-left:5%;
 /* 	border: 2px solid blue; */
 }
 #info-write {
