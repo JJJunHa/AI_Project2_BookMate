@@ -4,18 +4,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <!-- <link rel="stylesheet" href="css/detail.css"> -->
 <title>Detail</title>
 </head>
 <style>
+/* @media screen and (min-width:840px) { */
+/* body { */
+/* 	min-height: 100vh; */
+/*     min-width: 840px; */
+/* } */
 .main {
     width:100%;
     height:100%;
+/*     min-width: 840px; */
+/*     margin: 0 auto; */
     /* border: 1px solid black; */
 }
 .logo {
     width:100%;
-    height:100px;
     text-align: center;
 }
 .logoImg {
@@ -27,9 +35,9 @@
 /* 로그인, 장바구니, 마이페이지, 고객센터 연결 */
 .menu {
     width:100%;
-    height:40px;
     background-color: white;
     text-align : right;
+    margin-bottom: 1%;
 }
 a {
     text-decoration-line: none;
@@ -40,7 +48,7 @@ a:link {
 /* 색상상자 */
 .name{
     width:100%;
-    height:20px;
+/*     height:20px; */
     background-color: #97d4f7;
     color:white;
     text-align : center;
@@ -79,8 +87,8 @@ a:link {
 	float: none;
 	margin:0;
 	padding:0;
-	width: 150px;
-	height:40px;
+/* 	width: 150px; */
+/* 	height:40px; */
 	background-color: white;
 }
 #nav li:hover ul {
@@ -96,9 +104,10 @@ a:link {
 	padding:5px;
 }
 .category {
-    width:100%;
-    height:60px;
+    width:99%;
+    height:55px;
     background-color: white;
+  	margin-top: 0.5%;
 }
 .category_ul {
     float:right;
@@ -107,8 +116,11 @@ a:link {
     float: left;
     margin-right: 10px;
 }
+.category_li_sub {
+	width:100%;
+}
 a:hover {
-        color: #97d4f7;
+    color: #97d4f7;
 }
 /* 검색창 */
 .search {
@@ -116,29 +128,30 @@ a:hover {
     width: 100%;
 }
 .searchBox {
-    width: 250px;
+    width: 100%;
     border: 1px solid #bbb;
     border-radius: 15px;
     padding: 5px 5px;
     font-size: 14px;
+    margin-top:3%;
 }
 .search_img {
     position : absolute;
-    width: 17px;
-    top: 5px;
-    right: 10px;
+    width: 8%;
+    top: 35%;
+    right:1%;
 }
 /* ----------------------------------------------*/
 .content-main {
-	width:85%;
+	width:90%;
     border: 2px solid rgb(216, 216, 216);
     text-align: center; 
     margin:0 auto;
+    margin-top: 0.5%;
     margin-bottom: 5%;
 }
 .content-sub {
-	width:90%;
-    height:550px;
+	width:100%;
 /*     border: 2px solid red; */
     margin:0 auto;
 }
@@ -152,74 +165,55 @@ a:hover {
 	margin-top:5%;
 }
 .content-info {
-	width:100%;
-	height:450px;
-	margin:0 auto;
+	 display: flex;
+     flex-wrap: wrap;
+/*      margin-bottom: 10%; */
 /*     border: 2px solid red; */
 }
-
 .info1 {
-	text-align: left;
-	float: left;
-	height:450px;
-	width:34.5%;
-/* 	border: 2px solid blue; */
+	width: 33.33%;
 }
 .info2 {
-	float: left;
-	height:450px;
-	width:30%;
-/* 	border: 2px solid blue; */
+	width: 33.33%;
 }
 .info3 {
-	float: left;
-	height:450px;
-	width:34.5%;
-	margin-left: 1%;
-/* 	border: 2px solid blue; */
+	width: 33.33%;
 }
 #info-write {
 	font-size: 18px;
-	margin-left: 20%;
 	font-weight: bold;
 }
 #info-date {
 	font-size: 15px;
 	color: gray;
-	margin-left: 20%;
 }
-/* .info { */
-/* 	border: 0.5px solid lightgray; */
-/* 	width:80%; */
-/* 	height:100px; */
-/* 	margin: 0 auto; */
-/* 	margin-top: 10%; */
-/* } */
 .book_img {
-	width:310px;
-	height:450px;
+	width:60%;;
 	box-shadow: 3px 3px 3px 3px lightgray;
 }
 .book_img:hover {
-	width:330px;
-	height:470px;
+	width:70%;
 }
 #info-price1 {
 	font-size: 18px;
 	font-weight: bold;
-	width:30%;
 }
 #info-price2 {
 	font-size: 15px;
-	width:30%;
 }
 .tblprice {
-	width:95%;
-	margin: 0 auto;
+	width:85%;
 	margin-top: 5%;
+	margin-left: 1%;
+	
 }
 .tblprice tr {
 	height:50px;
+}
+.total {
+	text-align:right;
+	margin-top: 15%;
+	margin-right: 10%;
 }
 .content-coment {
 	width: 100%;
@@ -234,6 +228,16 @@ a:hover {
 	font-size: 25px;
 }
 #info-content2 {
+	margin-top: 10%;
+	line-height: 35px;
+	width: 95%;
+	margin: 0 auto;
+}
+#info-detail1 {
+	font-weight: bold;
+	font-size: 25px;
+}
+#info-detail2 {
 	margin-top: 10%;
 	line-height: 35px;
 	width: 95%;
@@ -366,14 +370,6 @@ cursor:pointer;
 	padding: 10px;
   	border-bottom: 1px solid #ccc;
 }
-.total {
-	text-align:left;
-	margin-top: 15%;
-	margin-left: 5%;
-}
-.total {
-	text-align: right;
-}
 #spanPrice {
 	font-size:22px;
 	font-weight: bold;
@@ -381,6 +377,7 @@ cursor:pointer;
 #spaninfo {
 	font-size:18px;
 }
+/* } */
 </style>
 <body>
 <div class="main">
@@ -427,10 +424,8 @@ cursor:pointer;
         			<input type=hidden id=book_num name=book_num value="${num}">
         				<p id="info-write"></p>
         				<p id="info-date"></p>
-<!--         				<div class=info></div> -->
         			</div>
-        			
-<!--         			<div class=info2 id= info2 onmouseover="mouseover()" onmouseleave="mouseleave()"> -->
+
 					<div class=info2 id= info2>
         			</div>
         			
@@ -472,8 +467,12 @@ cursor:pointer;
       				<span id=spantrans3 class=spantrans3><a href="#" data-anchor="transinfo">배송/교환/반품 안내</a></span>
        			</div>
         		<div class=info-coment id=info-coment>
-        			<p id="info-content1">책 소개</p><br>
+        			<p id="info-content1">책 요약</p><br>
         			<p id="info-content2"></p>
+        		</div>
+        		<div class=info-detail id=info-detail>
+        			<p id="info-detail1">책 소개</p><br>
+        			<p id="info-detail2"></p>
         		</div>
         		<div class="divReview" id="divReview">
         			<p id="info-review">책 리뷰</p><br>
@@ -527,8 +526,15 @@ cursor:pointer;
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script>
+// $(window).on('resize', function() {
+//     if ($(window).width() < 840) {
+//         window.resizeTo(840, $(window).height());
+//     }
+// });
+
 $(document)
 .ready(function(){
+// 	$(window).trigger('resize'); // 페이지 로드 후 초기 리사이즈 이벤트를 트리거합니다.
 	loadData();
 	loadReview();
 })
@@ -654,8 +660,6 @@ $('.spantrans3').on('click',function(){
    scroll_to_anchor_tab(anchorId);
 });
 
-
-
 // 스크롤 함수
 function scroll_to_anchor_tab(anchor_id,speed) {
         if( !speed ) var speed = 'slow';
@@ -694,6 +698,9 @@ function loadData() {
 
 			let book_content = data[0]['book_content'];
 			$('#info-content2').text(book_content);
+			
+			let book_detail = '<img src="' + data[0]['book_detail'] + '" class="book_img" id="book_img">';
+			$('#info-detail2').append(book_detail);
 		}
 	});
 }
