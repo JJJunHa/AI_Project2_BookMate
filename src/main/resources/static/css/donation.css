@@ -1,0 +1,296 @@
+
+.main {
+    width:100%;
+    height:100%;
+    /* border: 1px solid black; */
+}
+.logo {
+    width:100%;
+    height:100px;
+    text-align: center;
+}
+.logoImg {
+    width:20%;
+    margin-top:20px;
+    /* border: 1px solid black; */
+    display: inline-block;
+}
+/* 로그인, 장바구니, 마이페이지, 고객센터 연결 */
+.menu {
+    width:100%;
+    height:40px;
+    background-color: white;
+    text-align : right;
+}
+a {
+    text-decoration-line: none;
+}
+a:link {
+  color : gray;
+}
+/* 색상상자 */
+.name{
+    width:100%;
+    height:20px;
+    background-color: #97d4f7;
+    color:white;
+    text-align : center;
+    padding : 20px 0;
+}
+/* 카테고리 */    
+#nav {
+	list-style:none;
+	height: 40px;
+	padding: 5px 1px;
+	margin: 0;
+}
+#nav li {
+	float:left;
+	position:relative;
+	margin-top:0.5%;
+	padding:0;
+}
+#nav li a {
+	display:block;
+	padding:7px 8px;
+	margin:0;
+	text-decoration: none;
+}
+#nav ul {
+	list-style: none;
+	margin:0;
+	padding:0;
+	position: absolute;
+	left:0;
+	top:40px;
+	text-align: center;
+	opacity: 0;
+}
+#nav ul li {
+	float: none;
+	margin:0;
+	padding:0;
+	width: 150px;
+	height:40px;
+	background-color: white;
+}
+#nav li:hover ul {
+	opacity: 1;
+	z-index: 1;
+}
+#nav li:hover ul li {
+	overflow: visible;
+	z-index: 1;
+}
+#nav li ul li:hover > a {
+	background-color: #97d4f7;
+	color:black;
+	margin:0;
+	padding:5px;
+	z-index: 1;
+}
+.category {
+    width:100%;
+    height:60px;
+    background-color: white;
+}
+.category_ul {
+    float:right;
+}
+.category_li {
+    float: left;
+    margin-right: 10px;
+}
+a:hover {
+        color: #97d4f7;
+}
+/* 검색창 */
+.search {
+    position: relative;
+    width: 100%;
+}
+.searchBox {
+    width: 250px;
+    border: 1px solid #bbb;
+    border-radius: 15px;
+    padding: 5px 5px;
+    font-size: 14px;
+    margin-top:2%;
+}
+.search_img {
+    position : absolute;
+    width: 17px;
+    top: 10px;
+    right: 10px;
+}
+/* ----------------------------------------------*/
+/* 본문 */
+.contentBody-submit {
+    width:100%;
+    height:1300px;
+    border: 2px solid rgb(216, 216, 216);
+    text-align: center;
+}
+.content_All-submit {
+    width: 95%;
+    height:100%;
+    margin: auto;
+}
+hr {
+    background-color: rgb(83, 125, 150);
+    height: 1px;
+}
+/* 기부 개인정보 동의 */
+.content_agree {
+    width:100%;
+    /* border: 1px solid black; */
+    margin-top: 5px;
+    text-align: left;
+    font-size: 15px;
+    line-height: 25px;
+}
+.agreeTable {
+    width:100%;
+    height:30%;
+    margin-top: 20px;
+    border: 1px solid lightgray;
+    border-collapse: collapse;
+}
+.agreeTable th {
+    height:50px;
+    background-color: rgb(83, 125, 150);
+    color: white;
+    padding-left: 15px;
+}
+.agreeTable td {
+    padding-left: 20px;
+}
+.agreeTable td:last-child {
+    height:80px;
+    padding-left: 20px;
+    border: 1px solid lightgray;
+}
+.red-text {
+    color: red;
+
+}
+/* 기증자 정보 */
+.content_person {
+    width:100%;
+    /* border: 1px solid black; */
+    text-align: left;
+    font-size: 15px;
+    line-height: 25px;
+}
+.table_person {
+    width:100%;
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: left;
+    line-height: 1.5;
+    margin : 20px 10px;
+}
+.table_person tr {
+    height:40px;
+}
+.table_person th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-left: 1px solid rgb(83, 125, 150);
+}
+.textBox {
+    height: 30px;
+    font-size: 15px;
+    border: 0.5px solid lightgray;
+    outline: none;
+    padding-left: 10px;
+    margin-top: 3px;
+    background-color: #eaf5fc;
+
+}
+/* 기증 내용 및 방법 */
+.content_info {
+    width:100%;
+    /* border: 1px solid black; */
+    margin-top: 50px;
+    text-align: left;
+    font-size: 15px;
+    line-height: 25px;
+}
+.table_info {
+    width:100%;
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: left;
+    line-height: 1.5;
+    margin : 20px 10px;
+}
+.table_info th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-left: 1px solid rgb(83, 125, 150);
+}
+.address_postcode_btn {
+    border: 1px solid lightgray;
+    background-color: raba(0,0,0,0);
+    color: gray;
+    padding: 5px;
+}
+/* 신청 버튼 */
+.submit_btn {
+    width: 200px;
+    height: 50px;
+    border: 0;
+    margin-top:2%;
+    background-color: rgb(83, 125, 150);
+    padding: 5px;
+    color: white;
+    font-size: 15px;
+}
+/* ----------------------기부안내 페이지------------------------*/
+#contentBanner {
+	width: 100%;
+	height: 420px;
+	text-align: center;
+}
+.banner_img {
+	width: 100%;
+}
+.infomation {
+	width:100%;
+	text-align: left;
+    font-size: 15px;
+    line-height: 30px;
+}
+.content_All-main {
+	width: 95%;
+    height:70%;
+    margin: auto;
+}
+.contentBody-main {
+	width:100%;
+    height:1300px;
+    border: 2px solid rgb(216, 216, 216);
+    text-align: center;
+}
+.info2 {
+    margin-top: 2%;
+}
+.info3 {
+	margin-top: 3%;
+}
+
+/* donation-main 이미지 슬라이드 */
+.slider {
+	width: 100%;
+	margin: 0 auto;
+}
+.slider img {
+  	width: 100%;
+ 	height: auto;
+}
+

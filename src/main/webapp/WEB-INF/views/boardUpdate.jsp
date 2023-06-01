@@ -13,87 +13,130 @@
 <style>
 
 .main {
-	width: 100%;
-	height: 100%;
-	/* border: 1px solid black; */
+    width:100%;
+    height:100%;
+    /* border: 1px solid black; */
 }
-
 .logo {
-	width: 100%;
-	height: 100px;
-	text-align: center;
+    width:100%;
+    height:100px;
+    text-align: center;
 }
-
 .logoImg {
-	width: 20%;
-	margin-top: 20px;
-	/* border: 1px solid black; */
-	display: inline-block;
+    width:20%;
+    margin-top:20px;
+    /* border: 1px solid black; */
+    display: inline-block;
 }
 /* 로그인, 장바구니, 마이페이지, 고객센터 연결 */
 .menu {
-	width: 100%;
-	height: 40px;
-	background-color: white;
-	text-align: right;
+    width:100%;
+    height:40px;
+    background-color: white;
+    text-align : right;
 }
-
 a {
-	text-decoration-line: none;
+    text-decoration-line: none;
 }
-
 a:link {
-	color: gray;
+    color : gray;
 }
 /* 색상상자 */
-.name {
-	width: 100%;
-	height: 20px;
-	background-color: #97d4f7;
-	color: white;
-	text-align: center;
-	padding: 20px 0;
+.name{
+    width:100%;
+    height:20px;
+    background-color: #97d4f7;
+    color:white;
+    text-align : center;
+    padding : 20px 0;
 }
-/* 카테고리 */
-.category {
-	width: 100%;
-	height: 60px;
+/* 카테고리 */    
+#nav {
+	list-style:none;
+	height: 40px;
+	padding: 5px 1px;
+	margin: 0;
+}
+#nav li {
+	float:left;
+	position:relative;
+	margin-top:0.5%;
+	padding:0;
+}
+#nav li a {
+	display:block;
+	padding:7px 8px;
+	margin:0;
+	text-decoration: none;
+}
+#nav ul {
+	list-style: none;
+	margin:0;
+	padding:0;
+	position: absolute;
+	left:0;
+	top:40px;
+	text-align: center;
+	opacity: 0;
+}
+#nav ul li {
+	float: none;
+	margin:0;
+	padding:0;
+	width: 150px;
+	height:40px;
 	background-color: white;
 }
-
+#nav li:hover ul {
+	opacity: 1;
+	z-index: 1;
+}
+#nav li:hover ul li {
+	overflow: visible;
+	z-index: 1;
+}
+#nav li ul li:hover > a {
+	background-color: #97d4f7;
+	color:black;
+	margin:0;
+	padding:5px;
+	z-index: 1;
+}
+.category {
+    width:100%;
+    height:60px;
+    background-color: white;
+}
 .category_ul {
-	list-style: none;
-	float: right;
+    float:right;
 }
-
 .category_li {
-	float: left;
-	margin-right: 20px;
+    float: left;
+    margin-right: 10px;
 }
-
 a:hover {
-	color: #97d4f7;
+        color: #97d4f7;
 }
 /* 검색창 */
 .search {
-	position: relative;
-	width: 100%;
+    position: relative;
+    width: 100%;
 }
-
 .searchBox {
-	width: 250px;
-	border: 1px solid #bbb;
-	border-radius: 15px;
-	padding: 5px 5px;
-	font-size: 14px;
+    width: 250px;
+    border: 1px solid #bbb;
+    border-radius: 15px;
+    padding: 5px 5px;
+    font-size: 14px;
+    margin-top:2%;
 }
-
 .search_img {
-	position: absolute;
-	width: 17px;
-	top: 5px;
-	right: 10px;
+    position : absolute;
+    width: 17px;
+    top: 10px;
+    right: 10px;
 }
+/* ----------------------------------------------*/
 
 
 
@@ -117,13 +160,7 @@ a:hover {
 	display: none;
 }
 
-#nav {
-	width: 1150px;
-	padding-right: 160px;
-	padding-top: 15px;
 
-	
-}
 
 #nav a {
 	display: inline-block;
@@ -276,29 +313,40 @@ textarea.form-control {
 </style>
 <body>
     <div class="main">
-        <div class="logo">
-            <img src="/img/logo.png" class="logoImg">
-        </div>
-        <div class="menu">
-            <a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
-        </div>
-        <div class="name">지금 어떤 책을 읽어야 할지 고민하는 사용자의 상태에 맞는 책을 추천해주는 서비스</div>
-        <div class="category">
-            <ul class="category_ul">
-				<li class="category_li"><a href="C:\Users\admin\Desktop\bookstore\category_comedy.html">코미디</a></li>
-				<li class="category_li"><a href="/book2">로맨스</a></li>
-				<li class="category_li"><a href="/book3">판타지</a></li>
-				<li class="category_li"><a href="/book4">공포/스릴러/추리</a></li>
-				<li class="category_li"><a href="/book5">드라마/가족</a></li>
-                <li class="category_li"><a href="C:\Users\admin\Desktop\bookstore\donation.html">기부앤테이크</a></li>
-                <li class="category_li">
-                    <div class="search">
-                    <input type="text" class="searchBox" placeholder="  검색어를 입력하세요">
-                    <img src="/img/search.png" class="search_img">
-                    </div>
-                </li>
-			</ul>
-        </div>
+      <div class="logo">
+    	<img src="/img/logo.png" class="logoImg">
+    </div>
+    <div class="menu">
+        <a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+    </div>
+    
+    <div class="name">지금 어떤 책을 읽어야 할지 고민하는 사용자의 상태에 맞는 책을 추천해주는 서비스</div>
+    <div class="category">
+    	<ul class="category_ul"  id="nav">
+			<li class="category_li"><a href="/category1">코미디</a></li>
+			<li class="category_li"><a href="/category2">로맨스</a></li>
+			<li class="category_li"><a href="/category3">판타지</a></li>
+			<li class="category_li"><a href="/category4">공포/스릴러/추리</a></li>
+			<li class="category_li"><a href="/category5">드라마/가족</a></li>
+            <li class="category_li"><a href="/donation">기부앤테이크<i class='dropDown'></i></a>
+            	<ul>
+              		<li class="category_li_sub"><a href="/donation">기부앤테이크 안내</a></li>
+              		<li class="category_li_sub"><a href="/donation-submit" id=donation-submit>기부앤테이크 신청</a></li>
+              		<li class="category_li_sub"><a href="/donation-state">기부앤테이크 현황</a></li>
+              	</ul>
+            </li>
+             
+            <li class="category_li">
+            	<div class="search">
+                	<input type="text" class="searchBox" placeholder="  검색어를 입력하세요">
+                	<img src="/img/search.png" class="search_img">
+                </div>
+            </li>
+		</ul>
+	</div>
+
+
+
         
        <div class="content">
             

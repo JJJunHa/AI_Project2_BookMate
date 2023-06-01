@@ -1,85 +1,129 @@
 .main {
-	width: 100%;
-	height: 100%;
-	/* border: 1px solid black; */
+    width:100%;
+    height:100%;
+    /* border: 1px solid black; */
 }
-
 .logo {
-	width: 100%;
-	height: 100px;
-	text-align: center;
+    width:100%;
+    height:100px;
+    text-align: center;
 }
-
 .logoImg {
-	width: 20%;
-	margin-top: 20px;
-	/* border: 1px solid black; */
-	display: inline-block;
+    width:20%;
+    margin-top:20px;
+    /* border: 1px solid black; */
+    display: inline-block;
 }
 /* 로그인, 장바구니, 마이페이지, 고객센터 연결 */
 .menu {
-	width: 100%;
-	height: 40px;
-	background-color: white;
-	text-align: right;
+    width:100%;
+    height:40px;
+    background-color: white;
+    text-align : right;
 }
-
 a {
-	text-decoration-line: none;
+    text-decoration-line: none;
 }
-
 a:link {
-	color: gray;
+    color : gray;
 }
 /* 색상상자 */
-.name {
-	width: 100%;
-	height: 20px;
-	background-color: #97d4f7;
-	color: white;
-	text-align: center;
-	padding: 20px 0;
+.name{
+    width:100%;
+    height:20px;
+    background-color: #97d4f7;
+    color:white;
+    text-align : center;
+    padding : 20px 0;
 }
-/* 카테고리 */
-.category {
-	width: 100%;
-	height: 60px;
+/* 카테고리 */    
+#nav {
+	list-style:none;
+	height: 40px;
+	padding: 5px 1px;
+	margin: 0;
+	
+}
+#nav li {
+	float:left;
+	position:relative;
+	margin-top:0.5%;
+	padding:0;
+}
+#nav li a {
+	display:block;
+	padding:7px 8px;
+	margin:0;
+	text-decoration: none;
+}
+#nav ul {
+	list-style: none;
+	margin:0;
+	padding:0;
+	position: absolute;
+	left:0;
+	top:40px;
+	text-align: center;
+	opacity: 0;
+}
+#nav ul li {
+	float: none;
+	margin:0;
+	padding:0;
+	width: 150px;
+	height:40px;
 	background-color: white;
 }
-
+#nav li:hover ul {
+	opacity: 1;
+	z-index: 1;
+}
+#nav li:hover ul li {
+	overflow: visible;
+	z-index: 1;
+}
+#nav li ul li:hover > a {
+	background-color: #97d4f7;
+	color:black;
+	margin:0;
+	padding:5px;
+	z-index: 1;
+}
+.category {
+    width:100%;
+    height:60px;
+    background-color: white;
+}
 .category_ul {
-	list-style: none;
-	float: right;
+    float:right;
 }
-
 .category_li {
-	float: left;
-	margin-right: 20px;
+    float: left;
+    margin-right: 10px;
 }
-
 a:hover {
-	color: #97d4f7;
+        color: #97d4f7;
 }
 /* 검색창 */
 .search {
-	position: relative;
-	width: 100%;
+    position: relative;
+    width: 100%;
 }
-
 .searchBox {
-	width: 250px;
-	border: 1px solid #bbb;
-	border-radius: 15px;
-	padding: 5px 5px;
-	font-size: 14px;
+    width: 250px;
+    border: 1px solid #bbb;
+    border-radius: 15px;
+    padding: 5px 5px;
+    font-size: 14px;
+    margin-top:2%;
 }
-
 .search_img {
-	position: absolute;
-	width: 17px;
-	top: 5px;
-	right: 10px;
+    position : absolute;
+    width: 17px;
+    top: 10px;
+    right: 10px;
 }
+/* ----------------------------------------------*/
 
 
 
@@ -150,7 +194,7 @@ a:hover {
 	display: none;
 }
 
-#nav {
+#nav1 {
 	width: 1150px;
 	padding-right: 160px;
 	padding-top: 15px;
@@ -158,7 +202,7 @@ a:hover {
 	
 }
 
-#nav a {
+#nav1 a {
 	display: inline-block;
 	padding: 3px 5px;
 	margin-right: 10px;
@@ -170,7 +214,7 @@ a:hover {
 	text-decoration: none;
 }
 
-#nav a.active {
+#nav1 a.active {
 	background: #c8cfe2;
 	color: #000;
 }

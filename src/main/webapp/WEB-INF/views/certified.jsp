@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div class="logo">
-		<img src="/img/BookMate Logo2.jpg" class="logoImg">
+		<img src="/img/logo.png" class="logoImg">
 	</div>
 	<div class="container">
 		<h2>회원가입 본인 인증</h2>
