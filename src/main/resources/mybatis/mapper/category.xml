@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-/mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.human.springboot.DetailController.CategoryDAO">
+	<!--책 select해서 category에 넣기 -->
+    <select id="comedy_list" resultType="com.human.springboot.DetailController.CategoryDTO">
+		select book_num, book_cover, book_name, author, publication, book_price from book
+			where book_genre = '코미디' 
+	</select>
+	<select id="romance_list" resultType="com.human.springboot.DetailController.CategoryDTO">
+		select book_num, book_cover, book_name, author, publication, book_price from book
+			where book_genre = '로맨스' 
+	</select>
+	<select id="fantasy_list" resultType="com.human.springboot.DetailController.CategoryDTO">
+		select book_num, book_cover, book_name, author, publication, book_price from book
+			where book_genre = '판타지' 
+	</select>
+	<select id="mystery_list" resultType="com.human.springboot.DetailController.CategoryDTO">
+		select book_num, book_cover, book_name, author, publication, book_price from book
+			where book_genre = '공포/스릴러/추리' 
+	</select>
+	<select id="drama_list" resultType="com.human.springboot.DetailController.CategoryDTO">
+		select book_num, book_cover, book_name, author, publication, book_price from book
+			where book_genre = '드라마' 
+	</select>
+	
+	<!-- detail 책 정보 가져오기 -->
+	<select id="load_detail" resultType="com.human.springboot.DetailController.CategoryDTO">
+		select book_name, author, publication, book_cover, book_price, book_content
+		from book where book_num=#{param1}
+	</select>
+	
+	<!-- detail 책 정보 가져오기 -->
+	<select id="load_review" resultType="com.human.springboot.DetailController.ReviewDTO">
+		select * from Review where book_num=#{param1}
+	</select>
+	
+	
+	<!-- cart에 insert하기 전에 이미 있는 책인지 확인하기 -->
+	<select id="confirm_cart" resultType="int">
+		select count(*) from cart where id = #{param1} and book_num=#{param2}
+	</select>
+	<!-- cart에 insert 하기 -->
+	<insert id="insert_cart">
+		insert into cart(cart_num, id, qty, book_num) values(cart_num.nextval, #{param1},#{param2},#{param3}) 
+	</insert>
+	<!-- cart에 update 하기 전에 이미 있는 책의 qty 가져오기 -->
+	<select id="confirm_qty" resultType="int">
+		select qty from cart where id = #{param1} and book_num=#{param2}
+	</select>
+	<!-- cart에 이미 있는 책 수량 update 하기 -->
+	<update id="update_cart">
+		update cart set qty = #{param1}
+		where id=#{param2} and book_num=#{param3}
+	</update>
+</mapper>
