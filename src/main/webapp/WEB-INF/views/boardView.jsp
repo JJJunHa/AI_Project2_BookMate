@@ -386,7 +386,7 @@ textarea.form-control {
 <body>
 	<div class="main">
 		<div class="logo">
-			<img src="/img/logo.png" class="logoImg" >
+			<img src="/img/logo.png" class="logoImg">
 		</div>
 		<div class="menu">
 			<a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a
