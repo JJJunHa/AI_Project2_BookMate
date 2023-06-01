@@ -1,0 +1,224 @@
+.main {
+    width:100%;
+    height:100%;
+    /* border: 1px solid black; */
+}
+.logo {
+    width:100%;
+    height:100px;
+    text-align: center;
+}
+.logoImg {
+    width:20%;
+    margin-top:20px;
+    /* border: 1px solid black; */
+    display: inline-block;
+}
+/* 로그인, 장바구니, 마이페이지, 고객센터 연결 */
+.menu {
+    width:100%;
+    height:40px;
+    background-color: white;
+    text-align : right;
+}
+a {
+    text-decoration-line: none;
+}
+a:link {
+  color : gray;
+}
+/* 색상상자 */
+.name{
+    width:100%;
+    height:20px;
+    background-color: #97d4f7;
+    color:white;
+    text-align : center;
+    padding : 20px 0;
+}
+/* 카테고리 */    
+#nav {
+	list-style:none;
+	height: 40px;
+	padding: 5px 1px;
+	margin: 0;
+}
+#nav li {
+	float:left;
+	position:relative;
+	margin-top:0.5%;
+	padding:0;
+}
+#nav li a {
+	display:block;
+	padding:7px 8px;
+	margin:0;
+	text-decoration: none;
+}
+#nav ul {
+	list-style: none;
+	margin:0;
+	padding:0;
+	position: absolute;
+	left:0;
+	top:40px;
+	text-align: center;
+	opacity: 0;
+}
+#nav ul li {
+	float: none;
+	margin:0;
+	padding:0;
+	width: 150px;
+	height:40px;
+	background-color: white;
+}
+#nav li:hover ul {
+	opacity: 1;
+}
+#nav li:hover ul li {
+	overflow: visible;
+}
+#nav li ul li:hover > a {
+	background-color: #97d4f7;
+	color:black;
+	margin:0;
+	padding:5px;
+}
+.category {
+    width:100%;
+    height:60px;
+    background-color: white;
+}
+.category_ul {
+    float:right;
+}
+.category_li {
+    float: left;
+    margin-right: 10px;
+}
+a:hover {
+        color: #97d4f7;
+}
+/* 검색창 */
+.search {
+    position: relative;
+    width: 100%;
+}
+.searchBox {
+    width: 250px;
+    border: 1px solid #bbb;
+    border-radius: 15px;
+    padding: 5px 5px;
+    font-size: 14px;
+    margin-top:2%;
+}
+.search_img {
+    position : absolute;
+    width: 17px;
+    top: 10px;
+    right: 10px;
+}
+/* ----------------------------------------------*/
+.cart-main {
+	width: 90%;
+/* 	border: 2px solid rgb(216, 216, 216); */
+    text-align: center; 
+    margin:0 auto;
+    margin-bottom: 5%;
+}
+.tblCart {
+	width: 100%;
+	border-collapse: collapse;
+}
+.tblCart tr th{
+	height:50px;
+	border-top:3px solid lightgray;
+	border-bottom: 0.5px solid lightgray;
+}
+.tblCart tr td{
+	text-align:center;
+	height:90px;
+	border-bottom: 0.5px solid lightgray;
+}
+.cart_img {
+	width: 50px;
+}
+
+/* 버튼, 가격 */
+.cart-sub {
+	width:100%;
+}
+.cart-cate {
+	text-align: left;
+}
+.cart-price {
+	text-align: right;
+	margin-right: 1%;
+}
+.movecate1 {
+	margin-top:1%;
+	width: 120px;
+	height:30px;
+	border:none;
+	font-size: 12px;
+}
+#countcart {
+	font-size: 20px;
+}
+.btn-right {
+	text-align: right;
+	margin-right: 1%;
+	margin-top:3%;
+}
+.allDelete {
+	margin-right: 0.5%;
+	width: 150px;
+	height:40px;
+	border:none;
+	font-size: 15px;
+	border-radius: 20px;
+	background-color: lightgray;
+	color:white;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+.allOrder {
+	width: 150px;
+	height:40px;
+	border:none;
+	font-size: 15px;
+	border-radius: 20px;
+	background-color: #97d4f7;
+	color:white;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+.Delete {
+	border:none;
+	background-color: white;
+}
+/* 수량 버튼 */
+.qtybtnplus, .qtybtnminus {
+	background-color: white;
+	border:none;
+	width: 15%;
+}
+.qtybtnplus:hover, .qtybtnminus:hover {
+	background-color: #97d4f7;
+}
+.btnmodify:hover {
+	background-color: #97d4f7;
+}
+.btnmodify {
+	background-color: white;
+	border: none;
+	margin-top:1%;
+	width: 30%;
+	border-radius: 10px;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+input[name="qtytext"] {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  text-align: center;
+}
