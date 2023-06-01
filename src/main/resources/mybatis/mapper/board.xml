@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-/mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.human.springboot.BoardController.boardDAO">
+	<select id="bList"
+	resultType="com.human.springboot.BoardController.boardDTO">
+	select board_num, B_TITLE, ID, B_RCOUNT, B_CREATE_DATE
+	from Board
+	<!-- 관리자 상단으로 -->
+	ORDER BY DECODE(id, 'bookmate', 1), board_num DESC 
+
+	</select>
+	<select id="bView"
+		resultType="com.human.springboot.BoardController.boardDTO">
+		select board_num, B_TITLE, ID, B_CREATE_DATE,
+		B_UPDATE_DATE, B_CONTENT
+		from Board
+		where board_num=#{param1}
+	</select>
+	<select id="bViews"
+		resultType="com.human.springboot.BoardController.boardDTO">
+		select board_num, B_TITLE, ID, B_CREATE_DATE, B_CONTENT
+		from Board
+		where board_num=#{param1}
+	</select>
+	<insert id="bInsert" >
+		insert into Board (board_num, ID, B_TITLE, B_CREATE_DATE, B_CONTENT, B_UPDATE_DATE, B_RCOUNT)  
+					values (board_num.nextval, #{param1}, #{param2}, sysdate, #{param3},
+								 sysdate, 0) 
+	</insert>
+	<update id="bUpdate">
+		update Board set B_title=#{param1}, B_content=#{param2}, B_UPDATE_DATE=sysdate
+		where board_num=#{param3}
+	</update>
+	<delete id="bDelete">
+	 delete from Board where board_num=#{param1}
+	</delete>
+</mapper>
