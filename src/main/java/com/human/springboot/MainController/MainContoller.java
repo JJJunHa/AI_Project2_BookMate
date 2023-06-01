@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,12 @@ import jakarta.servlet.http.HttpServletRequest;
 public class MainContoller {
 	@Autowired
 	private MainDAO maindao;
+	
+	@GetMapping("/apikey")
+	  public ResponseEntity<String> getApiKey() {
+	    String apiKey = "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";
+	    return ResponseEntity.ok(apiKey);
+	  }
 	
 	@GetMapping("/main")
     public String showMain(HttpServletRequest req,Model model) {
