@@ -31,7 +31,7 @@
               		<li class="category_li_sub"><a href="/donation-submit" id=donation-submit>기부앤테이크 신청</a></li>
               		<li class="category_li_sub"><a href="/donation-state">기부앤테이크 현황</a></li>
               	</ul>
-            </li>
+           </li>
              
             <li class="category_li">
             	<div class="search">
@@ -41,27 +41,18 @@
             </li>
 		</ul>
 	</div>
-        <div class="category-All1">
+            <div class="category-All1">
         	<div class="category1-All">
 	        	<p class="bookCate">로맨스</p>
-	        		<div class="book1-All">
-	        			<c:forEach items="${romance_list}" var="rl">
+		        	<div class="book1-All">
 	        			<div class="book">
-	        				
-	        				<input type=hidden id=bookNum value="${rl.book_num}">
-	        				<div class="bookImg">
-	        					<img src="${rl.book_cover}" class="book_img" picname="${rl.book_num}">	        
-	        				</div>
-	        				<div class="bookName">
-	        					<p id=name>${rl.book_name}</p>
-	        					<p id=write>${rl.author}</p>
-	        					<p id=date>${rl.publication}</p>
-	        					<p id=price>${rl.book_price}</p>	        					
-	        				</div>	
-	        			</div>
-	        			</c:forEach> 	        			
-        			</div>
-       		</div>
+		        		</div>
+					</div>
+					<div class=divbody_r_footer>
+								<span name="page">1</span>
+								<span name="page">2</span>
+					</div>
+       		</div>	
 		</div>
 </div>
 </body>
@@ -69,10 +60,49 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script>
 $(document)
+.ready(function(){
+	$('span[name=page]:eq(0)').trigger('click')
+})
+.on('click','span[name=page]',function(){
+	var pageNum = parseInt($(this).text())
+	$('span[name=page]').css({'background-color':'#fff','color':'#000'})
+	$(this).css({'background-color':'#000','color':'#fff'})
+	loaddata(pageNum);
+})
+
+
 .on('click','.book_img',function(){
 	let imgval = $(this).attr("picname");
 // 	console.log(imgval);
 	document.location='/detail/'+imgval;
 })
+
+
+
+function loaddata(pageNum){
+	$.ajax({
+		url:"/load_category2",
+		data:{pageNum:pageNum},
+		type:"post",
+		dataType:"json",
+		success:function(data){
+			let i=0
+			let endPage = parseInt(data[0]['howmany'])
+			var pageStr=''
+			$('.divbody_r_footer').empty()
+			for(i=1; i<=endPage; i++){
+				pageStr=pageStr+ '&nbsp;<span name=page>'+i+'</span>&nbsp;'
+			}
+			$('.divbody_r_footer').append(pageStr)
+			$('.book').empty()
+			for(i=1; i<data.length; i++){		
+					let Prod_img = '<img src="'+data[i]['book_cover']+'" class="book_img" alt="" picname="'+data[i]['book_num']+'">'
+					let str = "<p id=name>"+data[i]['book_name']+"</p>" + "<p id=write>"+data[i]['author']+"</p>" + "<p id=date>"+data[i]['publication']+"</p>" + "<p id=price>"+data[i]['book_price']+"</p>"  
+					let div ='<div class="a"><div class="bookImg">'+Prod_img+'</div><div class="bookName">'+str+'</div></div>'
+					$('.book').append(div)
+					}
+			
+		}})
+}
 </script>
 </html>
