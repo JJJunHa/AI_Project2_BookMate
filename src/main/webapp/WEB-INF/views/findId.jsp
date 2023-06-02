@@ -10,16 +10,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    <title>BookMate - 아이디/비밀번호 찾기</title>
+    <link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
     <link rel="stylesheet" href="css/findId.css">
+    <title>북메이트</title>
 </head>
 <body>
     <div class="content">
        
            <div class="content2">
           
-           <div align=center><h3>아이디찾기</h3>
-           <p>회원가입시 등록한 회원정보로 아이디를 찾으실 수 있습니다.</p>
+           <div id="findId-tab" onclick="changeTab('findId')">아이디 찾기</div>
+           <div id="findPwd-tab" onclick="changeTab('findPwd')">비밀번호 찾기</div>
+           
            </div>
           <div align=center class="radio-wrap minsuk">
                     <label><input type="radio" name="find_id_type" id="use_email" value="email" checked="checked" /> 이메일</label>
@@ -140,6 +142,8 @@ $(document)
 		})
 	}
 })
+
+
 $('input[name="name"]').attr('placeholder','이름');
 $('input[name="email"], input[name="email"]').attr('placeholder','이메일');
 $('input[name="mobile"], input[name="mobile"]').attr('placeholder','휴대폰 번호');
@@ -161,8 +165,62 @@ jQuery('input[name=find_id_type]').click(function() {
 
 $(document)
 
-.on('click','#loggggin',function(){
-	document.location = '/login';
+.ready(function() {
+    $('#pwdForm').submit(function(e) {
+        e.preventDefault();
+        var email = $('#email').val();
+
+		$.ajax({
+			url : '/sendEmail',
+			type : 'post',
+			data : {
+				recipient : email,
+				subject : '비밀번호 찾기',
+				content : '회원님의 비밀번호는 ' + data + '입니다.'
+			},
+			success : function(response) {
+				alert(response);
+				$('#pwdid').val('')
+				$('#pwdem').val('')
+				$('#pwdnm').val('')
+			},
+			error : function(xhr, status, error) {
+				alert('이메일 전송에 실패했습니다.');
+			}
+		});
+    });
 })
+
+	$(document)
+
+	.on('click', '#loggggin', function() {
+		document.location = '/login';
+	})
+	
+	$("#delivery-tab").click(function () {
+    changeTab("delivery");
+})
+
+$("#posts-tab").click(function () {
+    changeTab("posts");
+})
+
+$("#comments-tab").click(function () {
+    changeTab("comments");
+})
+
+$("#membership-tab").click(function () {
+    changeTab("membership");
+})
+
+
+function changeTab(tab) {
+    $(".tab-item").removeClass("active");
+    $(".content-container").removeClass("active");
+
+    $("#" + tab + "-tab").addClass("active");
+    $("#" + tab).addClass("active");
+}
+
 </script>
 </html>

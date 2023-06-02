@@ -293,3 +293,8 @@ hr {
  	height: auto;
 }
 
+a {
+ 	 text-decoration-line: none;
+ 	 text-align: center;
+  	 color: inherit; /* 링크의 색상 제거 */
+	}

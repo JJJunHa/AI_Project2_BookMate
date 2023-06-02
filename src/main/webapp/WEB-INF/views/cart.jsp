@@ -5,16 +5,20 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/cart.css">
-<title>Cart</title>
+<link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
+<title>북메이트 - 장바구니</title>
 </head>
 <body>
+
+<input value="<%=session.getAttribute("id")%>" hidden>
+
 <div class="main">
 	<div class="logo">
-    	<img src="/img/logo.png" class="logoImg">
+    	<a href="/main"><img src="/img/logo.png" class="logoImg"></a>
     </div>
     <div class="menu">
-        <a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
-    	<input type=hidden id=cart_id value="cokezero">
+        <a href="/logout">로그아웃</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+<!--     	<input type=hidden id=cart_id value="cokezero"> -->
     </div>
     
     <div class="name">지금 어떤 책을 읽어야 할지 고민하는 사용자의 상태에 맞는 책을 추천해주는 서비스</div>
@@ -25,7 +29,9 @@
 			<li class="category_li"><a href="/category3">판타지</a></li>
 			<li class="category_li"><a href="/category4">공포/스릴러/추리</a></li>
 			<li class="category_li"><a href="/category5">드라마/가족</a></li>
-            <li class="category_li"><a href="/donation">기부앤테이크<i class='dropDown'></i></a></li>
+            <li class="category_li"><a href="/donation">기부앤테이크<i class='dropDown'></i></a>
+            </li>
+             
             <li class="category_li">
             	<div class="search">
                 	<input type="text" class="searchBox" placeholder="  검색어를 입력하세요">
@@ -62,6 +68,7 @@
 $(document)
 .ready(function(){
 	loadCart();
+	countCart();
 })
 // 장바구니 개별 삭제
 .on('click','.Delete',function(){
@@ -95,7 +102,7 @@ $(document)
 })
 // 전체 삭제 클릭 시
 .on('click','#allDelete', function(){
-	let id = $('#cart_id').val();
+	let id = '<%=session.getAttribute("id")%>';
 	$.ajax({
 		url: '/Alldelete_cart',
 		type: 'post',
@@ -127,7 +134,7 @@ $(document)
 // 변경 버튼 클릭 시
 .on('click','.btnmodify', function(){
 	let qty = $(this).closest('td').find('#qtytext').val();
-	let id = $('#cart_id').val();
+	let id = '<%=session.getAttribute("id")%>';
 	let cart_num = $(this).closest('tr').find('td:first').text();
 	console.log(qty);
 	console.log(cart_num);
@@ -139,7 +146,6 @@ $(document)
 		success: function(data) {
 			if(data=='ok') {
 				loadCart();
-				
 			} else {
 				alert("오류로 인해 잠시후에 다시 시도해주세요.");
 			}	
@@ -147,30 +153,22 @@ $(document)
 	})
 })
 // cart에서 상품 클릭 시 상세페이지로 연결
-.on('click','.tblCart tr td:nth-child(3)', function(event){
-// 	var rowIndex = $(event.target).index;
-// 	console.log(rowIndex);
-// 	if (rowIndex === 2) {
-// 	    return;
-// 	} else {
-// 	 	let book_name = $(this).find('td:nth-child(3)').text();
-//	 	let book_name = $(this).find('#book_name').text();
-// 		let book_name = $(this).find('td#book_name').text();
-		console.log(book_name);
-		$.ajax({
-			url: '/find_book',
-			type: 'post',
-			data: { book_name: book_name },
-			dataType: 'text',
-			success: function(data) {
-				if(data=='' || data==null || data=='fail') {
-					alert("오류로 인해 잠시후에 다시 시도해주세요.");
-				} else {
-					document.location="/detail/"+data;
-				}	
-			}
-		})
-// 	}
+.on('click','.tblCart tr td:nth-child(-n+3)', function(){
+	let book_name = $(this).find('td:nth-child(3)').text();
+	console.log(book_name);
+	$.ajax({
+		url: '/find_book',
+		type: 'post',
+		data: { book_name: book_name },
+		dataType: 'text',
+		success: function(data) {
+			if(data=='' || data==null || data=='fail') {
+				alert("오류로 인해 잠시후에 다시 시도해주세요.");
+			} else {
+				document.location="/detail/"+data;
+			}	
+		}
+	})
 })
 
 
@@ -178,7 +176,7 @@ $(document)
 
 
 function loadCart() {
-	let id = $('#cart_id').val();
+	let id = '<%=session.getAttribute("id")%>';
 	$.ajax({
 		url: '/load_cart',
 		type: 'post',
@@ -225,7 +223,7 @@ function loadCart() {
 }
 
 function countCart() {
-	let id = $('#cart_id').val();
+	let id = '<%=session.getAttribute("id")%>';
 	$.ajax({
 		url: '/count_cart',
 		type: 'post',

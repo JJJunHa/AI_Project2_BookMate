@@ -4,17 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0" >
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <!-- <link rel="stylesheet" href="css/detail.css"> -->
-<title>Detail</title>
+<link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
+<title>북메이트</title>
 </head>
 <style>
-/* @media screen and (min-width:840px) { */
-/* body { */
-/* 	min-height: 100vh; */
-/*     min-width: 840px; */
-/* } */
 .main {
     width:100%;
     height:100%;
@@ -42,7 +36,7 @@ a {
     text-decoration-line: none;
 }
 a:link {
-  color : gray;
+    color : gray;
 }
 /* 색상상자 */
 .name{
@@ -53,7 +47,7 @@ a:link {
     text-align : center;
     padding : 20px 0;
 }
-/* 카테고리 */    
+/* 카테고리 */
 #nav {
 	list-style:none;
 	height: 40px;
@@ -90,6 +84,18 @@ a:link {
 	height:40px;
 	background-color: white;
 }
+#nav li:hover ul {
+	opacity: 1;
+}
+#nav li:hover ul li {
+	overflow: visible;
+}
+#nav li ul li:hover > a {
+	background-color: #97d4f7;
+	color:black;
+	margin:0;
+	padding:5px;
+}
 .category {
     width:100%;
     height:60px;
@@ -116,25 +122,24 @@ a:hover {
     border-radius: 15px;
     padding: 5px 5px;
     font-size: 14px;
-    margin-top:2%;
 }
 .search_img {
     position : absolute;
     width: 17px;
-    top: 10px;
+    top: 5px;
     right: 10px;
 }
 /* ----------------------------------------------*/
 .content-main {
-	width:90%;
+	width:85%;
     border: 2px solid rgb(216, 216, 216);
     text-align: center; 
     margin:0 auto;
-    margin-top: 0.5%;
     margin-bottom: 5%;
 }
 .content-sub {
-	width:100%;
+	width:90%;
+    height:550px;
 /*     border: 2px solid red; */
     margin:0 auto;
 }
@@ -148,64 +153,75 @@ a:hover {
 	margin-top:5%;
 }
 .content-info {
-	 display: flex;
-     flex-wrap: wrap;
-/*      margin-bottom: 10%; */
+	width:100%;
+	height:450px;
+	margin:0 auto;
 /*     border: 2px solid red; */
 }
+
 .info1 {
-	width: 33.33%;
+   text-align: left;
+   float: left;
+   height:450px;
+   width:30%;
+/*    border: 2px solid blue; */
 }
 .info2 {
-	width: 33.33%;
+   float: left;
+   height:450px;
+   width:30%;
+   margin-left: 4%;
+/*    border: 2px solid blue; */
 }
 .info3 {
-	width: 33.33%;
-/* 	border: 2px solid blue; */
+   float: left;
+   height:450px;
+   width:28%;
+   margin-left:5%;
+/*    border: 2px solid blue; */
 }
 #info-write {
 	font-size: 18px;
-	font-weight: bold;
-	text-align: left;
 	margin-left: 20%;
+	font-weight: bold;
 }
 #info-date {
 	font-size: 15px;
 	color: gray;
-	text-align: left;
 	margin-left: 20%;
 }
+/* .info { */
+/* 	border: 0.5px solid lightgray; */
+/* 	width:80%; */
+/* 	height:100px; */
+/* 	margin: 0 auto; */
+/* 	margin-top: 10%; */
+/* } */
 .book_img {
-	width:60%;;
+	width:310px;
+	height:450px;
 	box-shadow: 3px 3px 3px 3px lightgray;
 }
 .book_img:hover {
-	width:70%;
-}
-.book_detail {
-	width:60%;;
-	box-shadow: 3px 3px 3px 3px lightgray;
+	width:330px;
+	height:470px;
 }
 #info-price1 {
 	font-size: 18px;
 	font-weight: bold;
+	width:30%;
 }
 #info-price2 {
 	font-size: 15px;
+	width:30%;
 }
 .tblprice {
-	width:85%;
+	width:95%;
+	margin: 0 auto;
 	margin-top: 5%;
-	margin-left: 1%;
-	
 }
 .tblprice tr {
 	height:50px;
-}
-.total {
-	text-align:right;
-	margin-top: 15%;
-	margin-right: 10%;
 }
 .content-coment {
 	width: 100%;
@@ -220,16 +236,6 @@ a:hover {
 	font-size: 25px;
 }
 #info-content2 {
-	margin-top: 10%;
-	line-height: 35px;
-	width: 95%;
-	margin: 0 auto;
-}
-#info-detail1 {
-	font-weight: bold;
-	font-size: 25px;
-}
-#info-detail2 {
 	margin-top: 10%;
 	line-height: 35px;
 	width: 95%;
@@ -362,6 +368,14 @@ cursor:pointer;
 	padding: 10px;
   	border-bottom: 1px solid #ccc;
 }
+.total {
+	text-align:left;
+	margin-top: 15%;
+	margin-left: 5%;
+}
+.total {
+	text-align: right;
+}
 #spanPrice {
 	font-size:22px;
 	font-weight: bold;
@@ -369,17 +383,35 @@ cursor:pointer;
 #spaninfo {
 	font-size:18px;
 }
-/* } */
+
+a {
+ 	 text-decoration-line: none;
+ 	 text-align: center;
+  	 color: inherit; /* 링크의 색상 제거 */
+	}
 </style>
 <body>
+
+<input value="<%=session.getAttribute("id")%>" hidden>
+
 <div class="main">
 <div class="logo">
-    	<img src="/img/logo.png" class="logoImg">
+    	<a href="/main"><img src="/img/logo.png" class="logoImg"></a>
     </div>
+    
+    <% if(session.getAttribute("id")!=null){ %>
+    
     <div class="menu">
-        <a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
-		<input type=hidden id=m_id value="cokezero">    
+        <a href="/logout">로그아웃</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
     </div>
+   
+	<% } else {%>
+	
+	<div class="menu">
+        <a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/login" onclick="alert('로그인 후 이용해주세요')">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+    </div>
+    
+    <% } %>
     
     <div class="name">지금 어떤 책을 읽어야 할지 고민하는 사용자의 상태에 맞는 책을 추천해주는 서비스</div>
     <div class="category">
@@ -389,7 +421,8 @@ cursor:pointer;
 			<li class="category_li"><a href="/category3">판타지</a></li>
 			<li class="category_li"><a href="/category4">공포/스릴러/추리</a></li>
 			<li class="category_li"><a href="/category5">드라마/가족</a></li>
-            <li class="category_li"><a href="/donation">기부앤테이크<i class='dropDown'></i></a></li>
+            <li class="category_li"><a href="/donation">기부앤테이크<i class='dropDown'></i></a>
+            </li>
              
             <li class="category_li">
             	<div class="search">
@@ -410,8 +443,10 @@ cursor:pointer;
         			<input type=hidden id=book_num name=book_num value="${num}">
         				<p id="info-write"></p>
         				<p id="info-date"></p>
+<!--         				<div class=info></div> -->
         			</div>
-
+        			
+<!--         			<div class=info2 id= info2 onmouseover="mouseover()" onmouseleave="mouseleave()"> -->
 					<div class=info2 id= info2>
         			</div>
         			
@@ -453,12 +488,8 @@ cursor:pointer;
       				<span id=spantrans3 class=spantrans3><a href="#" data-anchor="transinfo">배송/교환/반품 안내</a></span>
        			</div>
         		<div class=info-coment id=info-coment>
-        			<p id="info-content1">책 요약</p><br>
+        			<p id="info-content1">책 소개</p><br>
         			<p id="info-content2"></p>
-        		</div>
-        		<div class=info-detail id=info-detail>
-        			<p id="info-detail1">책 소개</p><br>
-        			<p id="info-detail2"></p>
         		</div>
         		<div class="divReview" id="divReview">
         			<p id="info-review">책 리뷰</p><br>
@@ -512,15 +543,8 @@ cursor:pointer;
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script>
-// $(window).on('resize', function() {
-//     if ($(window).width() < 840) {
-//         window.resizeTo(840, $(window).height());
-//     }
-// });
-
 $(document)
 .ready(function(){
-// 	$(window).trigger('resize'); // 페이지 로드 후 초기 리사이즈 이벤트를 트리거합니다.
 	loadData();
 	loadReview();
 })
@@ -550,7 +574,7 @@ $(document)
 
 // 카트에 넣기 클릭 시
 .on('click','#inputCart', function(){
-	let m_id = $('#m_id').val();
+	let m_id = '<%=session.getAttribute("id")%>';
 	let qty = $('#qty').val();
 	let book_num = $('#book_num').val();
 	$.ajax({
@@ -646,6 +670,8 @@ $('.spantrans3').on('click',function(){
    scroll_to_anchor_tab(anchorId);
 });
 
+
+
 // 스크롤 함수
 function scroll_to_anchor_tab(anchor_id,speed) {
         if( !speed ) var speed = 'slow';
@@ -684,9 +710,6 @@ function loadData() {
 
 			let book_content = data[0]['book_content'];
 			$('#info-content2').text(book_content);
-			
-			let book_detail = '<img src="' + data[0]['book_detail'] + '" class="book_detail" id="book_detail">';
-			$('#info-detail2').append(book_detail);
 		}
 	});
 }

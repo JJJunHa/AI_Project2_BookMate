@@ -104,3 +104,21 @@ border:none;
  	display:flex;
  	justify-content: space-evenly;
  }
+ 
+ .container {
+    max-width: 300px;
+    margin: 0 auto;
+    padding-top: 100px;
+    text-align: center;
+}
+
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+}
