@@ -23,13 +23,7 @@
 			<li class="category_li"><a href="/category3">판타지</a></li>
 			<li class="category_li"><a href="/category4">공포/스릴러/추리</a></li>
 			<li class="category_li"><a href="/category5">드라마/가족</a></li>
-            <li class="category_li"><a href="/donation">기부앤테이크<i class='dropDown'></i></a>
-            	<ul>
-              		<li class="category_li_sub"><a href="/donation">기부앤테이크 안내</a></li>
-              		<li class="category_li_sub"><a href="/donation-submit" id=donation-submit>기부앤테이크 신청</a></li>
-              		<li class="category_li_sub"><a href="/donation-state">기부앤테이크 현황</a></li>
-              	</ul>
-            </li>
+            <li class="category_li"><a href="/donation">기부앤테이크<i class='dropDown'></i></a></li>
              
             <li class="category_li">
             	<div class="search">
@@ -87,9 +81,9 @@
                     <hr>
                     <table class="table_person">
                         <tr><td colspan="2">* 표시는 필수 입력 항목입니다.</td></tr>
-                        <tr><th>* 개인 및 기관명</td><td><input type="text" class="textBox" style="width:500px;"></td></tr>
-                        <tr><th>* 휴대폰번호</td><td><input type="text" class="textBox" style="width:200px;"> * 입력 예 : 010-1234-5678</td></tr>
-                        <tr><th>* 주소</td>
+                        <tr><th>* 개인 및 기관명</th><td><input type="text" class="textBox" style="width:500px;"></td></tr>
+                        <tr><th>* 휴대폰번호</th><td><input type="text" class="textBox" style="width:200px;"> * 입력 예 : 010-1234-5678</td></tr>
+                        <tr><th>* 주소</th>
                             <td>
                                 <div class="address_All">
                                     <div class="address_postcode">

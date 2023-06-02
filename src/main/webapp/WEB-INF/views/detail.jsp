@@ -18,12 +18,11 @@
 .main {
     width:100%;
     height:100%;
-/*     min-width: 840px; */
-/*     margin: 0 auto; */
     /* border: 1px solid black; */
 }
 .logo {
     width:100%;
+    height:100px;
     text-align: center;
 }
 .logoImg {
@@ -35,26 +34,26 @@
 /* 로그인, 장바구니, 마이페이지, 고객센터 연결 */
 .menu {
     width:100%;
+    height:40px;
     background-color: white;
     text-align : right;
-    margin-bottom: 1%;
 }
 a {
     text-decoration-line: none;
 }
 a:link {
-    color : gray;
+  color : gray;
 }
 /* 색상상자 */
 .name{
     width:100%;
-/*     height:20px; */
+    height:20px;
     background-color: #97d4f7;
     color:white;
     text-align : center;
     padding : 20px 0;
 }
-/* 카테고리 */
+/* 카테고리 */    
 #nav {
 	list-style:none;
 	height: 40px;
@@ -87,27 +86,14 @@ a:link {
 	float: none;
 	margin:0;
 	padding:0;
-/* 	width: 150px; */
-/* 	height:40px; */
+	width: 150px;
+	height:40px;
 	background-color: white;
 }
-#nav li:hover ul {
-	opacity: 1;
-}
-#nav li:hover ul li {
-	overflow: visible;
-}
-#nav li ul li:hover > a {
-	background-color: #97d4f7;
-	color:black;
-	margin:0;
-	padding:5px;
-}
 .category {
-    width:99%;
-    height:55px;
+    width:100%;
+    height:60px;
     background-color: white;
-  	margin-top: 0.5%;
 }
 .category_ul {
     float:right;
@@ -116,11 +102,8 @@ a:link {
     float: left;
     margin-right: 10px;
 }
-.category_li_sub {
-	width:100%;
-}
 a:hover {
-    color: #97d4f7;
+        color: #97d4f7;
 }
 /* 검색창 */
 .search {
@@ -128,18 +111,18 @@ a:hover {
     width: 100%;
 }
 .searchBox {
-    width: 100%;
+    width: 250px;
     border: 1px solid #bbb;
     border-radius: 15px;
     padding: 5px 5px;
     font-size: 14px;
-    margin-top:3%;
+    margin-top:2%;
 }
 .search_img {
     position : absolute;
-    width: 8%;
-    top: 35%;
-    right:1%;
+    width: 17px;
+    top: 10px;
+    right: 10px;
 }
 /* ----------------------------------------------*/
 .content-main {
@@ -171,7 +154,6 @@ a:hover {
 /*     border: 2px solid red; */
 }
 .info1 {
-<<<<<<< HEAD
 	width: 33.33%;
 }
 .info2 {
@@ -179,35 +161,19 @@ a:hover {
 }
 .info3 {
 	width: 33.33%;
-=======
-	text-align: left;
-	float: left;
-	height:450px;
-	width:30%;
 /* 	border: 2px solid blue; */
-}
-.info2 {
-	float: left;
-	height:450px;
-	width:30%;
-	margin-left: 4%;
-/* 	border: 2px solid blue; */
-}
-.info3 {
-	float: left;
-	height:450px;
-	width:28%;
-	margin-left:5%;
-/* 	border: 2px solid blue; */
->>>>>>> BookMate/master
 }
 #info-write {
 	font-size: 18px;
 	font-weight: bold;
+	text-align: left;
+	margin-left: 20%;
 }
 #info-date {
 	font-size: 15px;
 	color: gray;
+	text-align: left;
+	margin-left: 20%;
 }
 .book_img {
 	width:60%;;
@@ -215,6 +181,10 @@ a:hover {
 }
 .book_img:hover {
 	width:70%;
+}
+.book_detail {
+	width:60%;;
+	box-shadow: 3px 3px 3px 3px lightgray;
 }
 #info-price1 {
 	font-size: 18px;
@@ -419,13 +389,7 @@ cursor:pointer;
 			<li class="category_li"><a href="/category3">판타지</a></li>
 			<li class="category_li"><a href="/category4">공포/스릴러/추리</a></li>
 			<li class="category_li"><a href="/category5">드라마/가족</a></li>
-            <li class="category_li"><a href="/donation">기부앤테이크<i class='dropDown'></i></a>
-            	<ul>
-              		<li class="category_li_sub"><a href="/donation">기부앤테이크 안내</a></li>
-              		<li class="category_li_sub"><a href="/donation-submit" id=donation-submit>기부앤테이크 신청</a></li>
-              		<li class="category_li_sub"><a href="/donation-state">기부앤테이크 현황</a></li>
-              	</ul>
-            </li>
+            <li class="category_li"><a href="/donation">기부앤테이크<i class='dropDown'></i></a></li>
              
             <li class="category_li">
             	<div class="search">
@@ -721,7 +685,7 @@ function loadData() {
 			let book_content = data[0]['book_content'];
 			$('#info-content2').text(book_content);
 			
-			let book_detail = '<img src="' + data[0]['book_detail'] + '" class="book_img" id="book_img">';
+			let book_detail = '<img src="' + data[0]['book_detail'] + '" class="book_detail" id="book_detail">';
 			$('#info-detail2').append(book_detail);
 		}
 	});

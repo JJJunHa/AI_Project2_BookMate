@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.human.springboot.ProdDTO;
+
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
@@ -22,39 +24,213 @@ public class DetailController {
 	/* category1 코미디 */
 	@GetMapping("/category1")
 	public String showCategory1(Model model) {
-		ArrayList<CategoryDTO> comedy_list = cdao.comedy_list();
-		model.addAttribute("comedy_list", comedy_list);
+//		ArrayList<CategoryDTO> comedy_list = cdao.comedy_list();
+//		model.addAttribute("comedy_list", comedy_list);
 		 return "category1";
 	}
+	
+	@PostMapping("/load_category1")
+	@ResponseBody
+	public String load_category1(HttpServletRequest req) {
+		int page_num = Integer.parseInt(req.getParameter("pageNum"));
+		ArrayList<CategoryDTO> comedy_list = cdao.comedy_list();
+		int howmanyProd = comedy_list.size();
+		int howmanyPages = (howmanyProd/5)+1;
+		if(howmanyProd%5==0) {howmanyPages = howmanyPages-1;}
+
+		JSONArray ja = new JSONArray();
+		int start=(page_num-1)*5;
+		int end=(page_num*5)-1;
+		try {
+			JSONObject jo = new JSONObject();
+			jo.put("howmany", howmanyPages);
+			ja.put(jo);
+			for(int i=start; i<=end; i++) {
+				if(i>=start && i<=end) {
+				jo = new JSONObject();
+				jo.put("book_cover", comedy_list.get(i).getBook_cover());
+				jo.put("book_num", comedy_list.get(i).getBook_num());
+				jo.put("book_name", comedy_list.get(i).getBook_name());
+				jo.put("author", comedy_list.get(i).getAuthor());
+				jo.put("publication", comedy_list.get(i).getPublication());
+				jo.put("book_price", comedy_list.get(i).getBook_price());
+				
+				ja.put(jo);
+				}
+			}
+		}catch (Exception e) {		
+		}
+		return ja.toString();
+	}
+	
 	/* category2 로맨스 */
 	@GetMapping("/category2")
 	public String showCategory2(Model model) {
-		ArrayList<CategoryDTO> romance_list = cdao.romance_list();
-		model.addAttribute("romance_list", romance_list);
+//		ArrayList<CategoryDTO> romance_list = cdao.romance_list();
+//		model.addAttribute("romance_list", romance_list);
 		 return "category2";
 	}
+	
+	@PostMapping("/load_category2")
+	@ResponseBody
+	public String load_category2(HttpServletRequest req) {
+		int page_num = Integer.parseInt(req.getParameter("pageNum"));
+		ArrayList<CategoryDTO> romance_list = cdao.romance_list();
+		int howmanyProd = romance_list.size();
+		int howmanyPages = (howmanyProd/5)+1;
+		if(howmanyProd%5==0) {howmanyPages = howmanyPages-1;}
+
+		JSONArray ja = new JSONArray();
+		int start=(page_num-1)*5;
+		int end=(page_num*5)-1;
+		try {
+			JSONObject jo = new JSONObject();
+			jo.put("howmany", howmanyPages);
+			ja.put(jo);
+			for(int i=start; i<=end; i++) {
+				if(i>=start && i<=end) {
+				jo = new JSONObject();
+				jo.put("book_cover", romance_list.get(i).getBook_cover());
+				jo.put("book_num", romance_list.get(i).getBook_num());
+				jo.put("book_name", romance_list.get(i).getBook_name());
+				jo.put("author", romance_list.get(i).getAuthor());
+				jo.put("publication", romance_list.get(i).getPublication());
+				jo.put("book_price", romance_list.get(i).getBook_price());
+				
+				ja.put(jo);
+				}
+			}
+		}catch (Exception e) {		
+		}
+		return ja.toString();
+	}
+	
 	/* category3 판타지 */
 	@GetMapping("/category3")
 	public String showCategory3(Model model) {
-		ArrayList<CategoryDTO> fantasy_list = cdao.fantasy_list();
-		model.addAttribute("fantasy_list", fantasy_list);
+//		ArrayList<CategoryDTO> fantasy_list = cdao.fantasy_list();
+//		model.addAttribute("fantasy_list", fantasy_list);
 		 return "category3";
 	}
+	
+	@PostMapping("/load_category3")
+	@ResponseBody
+	public String load_category3(HttpServletRequest req) {
+		int page_num = Integer.parseInt(req.getParameter("pageNum"));
+		ArrayList<CategoryDTO> fantasy_list = cdao.fantasy_list();
+		int howmanyProd = fantasy_list.size();
+		int howmanyPages = (howmanyProd/5)+1;
+		if(howmanyProd%5==0) {howmanyPages = howmanyPages-1;}
+
+		JSONArray ja = new JSONArray();
+		int start=(page_num-1)*5;
+		int end=(page_num*5)-1;
+		try {
+			JSONObject jo = new JSONObject();
+			jo.put("howmany", howmanyPages);
+			ja.put(jo);
+			for(int i=start; i<=end; i++) {
+				if(i>=start && i<=end) {
+				jo = new JSONObject();
+				jo.put("book_cover", fantasy_list.get(i).getBook_cover());
+				jo.put("book_num", fantasy_list.get(i).getBook_num());
+				jo.put("book_name", fantasy_list.get(i).getBook_name());
+				jo.put("author", fantasy_list.get(i).getAuthor());
+				jo.put("publication", fantasy_list.get(i).getPublication());
+				jo.put("book_price", fantasy_list.get(i).getBook_price());
+				
+				ja.put(jo);
+				}
+			}
+		}catch (Exception e) {		
+		}
+		return ja.toString();
+	}
+	
 	/* category4 공포/스릴러/추리 */
 	@GetMapping("/category4")
 	public String showCategory4(Model model) {
-		ArrayList<CategoryDTO> mystery_list = cdao.mystery_list();
-		model.addAttribute("mystery_list", mystery_list);
+//		ArrayList<CategoryDTO> mystery_list = cdao.mystery_list();
+//		model.addAttribute("mystery_list", mystery_list);
 		 return "category4";
 	}
+	
+	@PostMapping("/load_category4")
+	@ResponseBody
+	public String load_category4(HttpServletRequest req) {
+		int page_num = Integer.parseInt(req.getParameter("pageNum"));
+		ArrayList<CategoryDTO> mystery_list = cdao.mystery_list();
+		int howmanyProd = mystery_list.size();
+		int howmanyPages = (howmanyProd/5)+1;
+		if(howmanyProd%5==0) {howmanyPages = howmanyPages-1;}
+
+		JSONArray ja = new JSONArray();
+		int start=(page_num-1)*5;
+		int end=(page_num*5)-1;
+		try {
+			JSONObject jo = new JSONObject();
+			jo.put("howmany", howmanyPages);
+			ja.put(jo);
+			for(int i=start; i<=end; i++) {
+				if(i>=start && i<=end) {
+				jo = new JSONObject();
+				jo.put("book_cover", mystery_list.get(i).getBook_cover());
+				jo.put("book_num", mystery_list.get(i).getBook_num());
+				jo.put("book_name", mystery_list.get(i).getBook_name());
+				jo.put("author", mystery_list.get(i).getAuthor());
+				jo.put("publication", mystery_list.get(i).getPublication());
+				jo.put("book_price", mystery_list.get(i).getBook_price());
+				
+				ja.put(jo);
+				}
+			}
+		}catch (Exception e) {		
+		}
+		return ja.toString();
+	}
+	
 	/* category5 드라마 */
 	@GetMapping("/category5")
 	public String showCategory5(Model model) {
-		ArrayList<CategoryDTO> drama_list = cdao.drama_list();
-		model.addAttribute("drama_list", drama_list);
+//		ArrayList<CategoryDTO> drama_list = cdao.drama_list();
+//		model.addAttribute("drama_list", drama_list);
 		 return "category5";
 	}
 	
+	
+	@PostMapping("/load_category5")
+	@ResponseBody
+	public String load_category5(HttpServletRequest req) {
+		int page_num = Integer.parseInt(req.getParameter("pageNum"));
+		ArrayList<CategoryDTO> drama_list = cdao.drama_list();
+		int howmanyProd = drama_list.size();
+		int howmanyPages = (howmanyProd/5)+1;
+		if(howmanyProd%5==0) {howmanyPages = howmanyPages-1;}
+
+		JSONArray ja = new JSONArray();
+		int start=(page_num-1)*5;
+		int end=(page_num*5)-1;
+		try {
+			JSONObject jo = new JSONObject();
+			jo.put("howmany", howmanyPages);
+			ja.put(jo);
+			for(int i=start; i<=end; i++) {
+				if(i>=start && i<=end) {
+				jo = new JSONObject();
+				jo.put("book_cover", drama_list.get(i).getBook_cover());
+				jo.put("book_num", drama_list.get(i).getBook_num());
+				jo.put("book_name", drama_list.get(i).getBook_name());
+				jo.put("author", drama_list.get(i).getAuthor());
+				jo.put("publication", drama_list.get(i).getPublication());
+				jo.put("book_price", drama_list.get(i).getBook_price());
+				
+				ja.put(jo);
+				}
+			}
+		}catch (Exception e) {		
+		}
+		return ja.toString();
+	}
 	
 	// =================== detail_page =======================
 	  
