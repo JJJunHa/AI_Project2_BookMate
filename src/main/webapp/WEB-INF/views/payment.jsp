@@ -5,15 +5,17 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/payment.css">
+<link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
 <title>pay</title>
 </head>
 <body>
+
 <div class="main">
 	<div class="logo">
-    	<img src="/img/logo.png" class="logoImg">
+    	<a href="/main"><img src="/img/logo.png" class="logoImg"></a>
     </div>
     <div class="menu">
-        <a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+        <a href="/logout">로그아웃</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
     	<input type=hidden id=cart_id value="cokezero">
     </div>
     
@@ -26,11 +28,6 @@
 			<li class="category_li"><a href="/category4">공포/스릴러/추리</a></li>
 			<li class="category_li"><a href="/category5">드라마/가족</a></li>
             <li class="category_li"><a href="/donation">기부앤테이크<i class='dropDown'></i></a>
-            	<ul>
-              		<li class="category_li_sub"><a href="/donation">기부앤테이크 안내</a></li>
-              		<li class="category_li_sub"><a href="/donation-submit" id=donation-submit>기부앤테이크 신청</a></li>
-              		<li class="category_li_sub"><a href="/donation-state">기부앤테이크 현황</a></li>
-              	</ul>
             </li>
              
             <li class="category_li">

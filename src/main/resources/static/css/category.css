@@ -1,11 +1,17 @@
+/* @media screen and (min-width:840px) { */
+/* body { */
+/*    min-height: 100vh; */
+/*     min-width: 840px; */
+/* } */
 .main {
     width:100%;
     height:100%;
+/*     min-width: 840px; */
+/*     margin: 0 auto; */
     /* border: 1px solid black; */
 }
 .logo {
     width:100%;
-    height:100px;
     text-align: center;
 }
 .logoImg {
@@ -17,9 +23,9 @@
 /* 로그인, 장바구니, 마이페이지, 고객센터 연결 */
 .menu {
     width:100%;
-    height:40px;
     background-color: white;
     text-align : right;
+    margin-bottom: 1%;
 }
 a {
     text-decoration-line: none;
@@ -30,68 +36,66 @@ a:link {
 /* 색상상자 */
 .name{
     width:100%;
-    height:20px;
+/*     height:20px; */
     background-color: #97d4f7;
     color:white;
     text-align : center;
     padding : 20px 0;
 }
-/* 카테고리 */    
+/* 카테고리 */
 #nav {
-	list-style:none;
-	height: 40px;
-	padding: 5px 1px;
-	margin: 0;
+   list-style:none;
+   height: 40px;
+   padding: 5px 1px;
+   margin: 0;
 }
 #nav li {
-	float:left;
-	position:relative;
-	margin-top:0.5%;
-	padding:0;
+   float:left;
+   position:relative;
+   margin-top:0.5%;
+   padding:0;
 }
 #nav li a {
-	display:block;
-	padding:7px 8px;
-	margin:0;
-	text-decoration: none;
+   display:block;
+   padding:7px 8px;
+   margin:0;
+   text-decoration: none;
 }
 #nav ul {
-	list-style: none;
-	margin:0;
-	padding:0;
-	position: absolute;
-	left:0;
-	top:40px;
-	text-align: center;
-	opacity: 0;
+   list-style: none;
+   margin:0;
+   padding:0;
+   position: absolute;
+   left:0;
+   top:40px;
+   text-align: center;
+   opacity: 0;
 }
 #nav ul li {
-	float: none;
-	margin:0;
-	padding:0;
-	width: 150px;
-	height:40px;
-	background-color: white;
+   float: none;
+   margin:0;
+   padding:0;
+/*    width: 150px; */
+/*    height:40px; */
+   background-color: white;
 }
 #nav li:hover ul {
-	opacity: 1;
-	z-index: 1;
+   opacity: 1;
 }
 #nav li:hover ul li {
-	overflow: visible;
-	z-index: 1;
+   overflow: visible;
 }
 #nav li ul li:hover > a {
-	background-color: #97d4f7;
-	color:black;
-	margin:0;
-	padding:5px;
-	z-index: 1;
+   background-color: #97d4f7;
+   color:black;
+   margin:0;
+   padding:5px;
 }
 .category {
-    width:100%;
-    height:60px;
+    width:99%;
+    height:55px;
     background-color: white;
+     margin-top: 0.5%;
 }
 .category_ul {
     float:right;
@@ -100,8 +104,11 @@ a:link {
     float: left;
     margin-right: 10px;
 }
+.category_li_sub {
+   width:100%;
+}
 a:hover {
-        color: #97d4f7;
+    color: #97d4f7;
 }
 /* 검색창 */
 .search {
@@ -109,18 +116,18 @@ a:hover {
     width: 100%;
 }
 .searchBox {
-    width: 250px;
+    width: 100%;
     border: 1px solid #bbb;
     border-radius: 15px;
     padding: 5px 5px;
     font-size: 14px;
-    margin-top:2%;
+    margin-top:3%;
 }
 .search_img {
     position : absolute;
-    width: 17px;
-    top: 10px;
-    right: 10px;
+    width: 8%;
+    top: 35%;
+    right:1%;
 }
 /* ----------------------------------------------*/
 /* 카테고리 책 배치하기 */
@@ -145,9 +152,10 @@ a:hover {
     text-align: left;
 }
 .book1-All {
-	float:left;
-	width:99%;
-	height:330px;
+/*    float:left; */
+   width:99%;
+   height:330px;
+   margin: 0 auto;
 }
 .book {
 	width:19%;
@@ -174,9 +182,10 @@ a:hover {
 
 /* 책 넣기 */
 .bookCate {
-	font-weight: bold;
-	font-size:20px;
-	margin-left: 3%;
+   text-align:center;
+   font-weight: bold;
+   font-size:20px;
+/*    margin-left: 3%; */
 }
 .book_img {
 	width:100px;
@@ -204,3 +213,9 @@ a:hover {
 	font-size: 15px;
 	font-weight: bold;
 }
+
+a {
+ 	 text-decoration-line: none;
+ 	 text-align: center;
+  	 color: inherit; /* 링크의 색상 제거 */
+	}

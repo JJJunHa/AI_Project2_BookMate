@@ -13,7 +13,8 @@
 	integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
 	crossorigin="anonymous">
 	<link rel="stylesheet" href="css/signin.css">
-<title>BookMate - 회원가입</title>
+	<link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
+<title>북메이트</title>
 </head>
 <body>
 		<h2 class=Membership>회원가입</h2>

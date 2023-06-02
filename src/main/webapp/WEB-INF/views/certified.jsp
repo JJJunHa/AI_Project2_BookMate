@@ -4,13 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>BookMate - 회원가입 본인 인증</title>
+<title>북메이트</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <link rel="stylesheet" href="css/certified.css">
+<link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
 </head>
 <body>
 	<div class="logo">
-		<img src="/img/logo.png" class="logoImg">
+		<a href="/main"><img src="/img/logo.png" class="logoImg"></a>
 	</div>
 	<div class="container">
 		<h2>회원가입 본인 인증</h2>
@@ -59,26 +60,18 @@ $(document)
 		}
 	})
 
-	//휴대폰 인증번호 대조
+	// 	//휴대폰 인증번호 대조
 	$("#phoneChk2").click(function() {
-		if ($("#phone2").val() == code2) { // 위에서 저장한값을 비교함
-			alert('인증성공')
-			document.location = '/signin';
-		} else if(code2 == "") {
-			alert("인증번호를 제대로 입력해주세요.");
-		} else {
-			alert('인증실패');			
-		}
-	})
+		var certified = $("#phone2").val();
 
-// $("#phoneChk2").click(function() {
-//   if ($("#phone2").val() === code2 || !code2) {
-//     alert('인증실패');
-//   } else {
-//     alert('인증성공');
-//     document.location = '/signin';
-//   }
-// })
+		if (!certified || certified !== code2) {
+			alert('인증 실패');
+		} else {
+			alert('인증 성공');
+			document.location = '/signin';
+		}
+
+	})
 
 </script>
 </html>
