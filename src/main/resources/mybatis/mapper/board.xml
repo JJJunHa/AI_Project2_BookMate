@@ -37,4 +37,15 @@
 	<delete id="bDelete">
 	 delete from Board where board_num=#{param1}
 	</delete>
+	
+	<update id="bRead">
+		update Board set B_RCOUNT = B_RCOUNT+1 where board_num=#{param1}
+	</update>
+	<select id="bSearch" resultType="com.human.springboot.BoardController.boardDTO">
+	    SELECT board_num, B_TITLE, ID, B_RCOUNT, B_CREATE_DATE
+	    FROM Board
+	    where ${param1} like '%'||#{param2}||'%'
+	   
+	  	ORDER BY DECODE(id, 'bookmate', 1), board_num DESC 
+	</select>
 </mapper>

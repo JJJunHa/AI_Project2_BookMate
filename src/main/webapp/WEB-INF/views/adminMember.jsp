@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +50,7 @@
         <div class="content">
     
             <div class="content_A">
-                <h1>상품목록</h1>
+                <h1>회원목록</h1>
                 <br>
                 <div class="content2">
                     <table class="board" id="board">
@@ -61,26 +63,30 @@
 						
             
                     	<thead>
-	                        <tr>
-	                            <th>번호</th>
-	                            <th>제목</th>
-	                            <th>작가</th>
-	                            <th>가격</th>
-	                            <th>장르</th>
-	                            <th>감정</th>
-	                            <th>별점</th>
+	                        <tr class="small-text">
+	                            <th>이름</th>
+	                            <th>ID</th>	                          
+	                            <th>이메일</th>
+	                            <th>주소</th>
+	                            <th>전화번호</th>
+	                            <th>생일</th>
+	                            <th>가입일</th>
+	                            <th>삭제</th>
 	                        </tr>
 	                    </thead>
 	                    <tbody>
-							<c:forEach items="${pl}" var="plist">
-								<tr>
-									<td>${plist.book_num}</td>
-									<td>${plist.book_name}</td>
-									<td>${plist.author}</td>
-									<td>${plist.book_price}</td>
-									<td>${plist.book_genre}</td>
-									<td>${plist.emotion}</td>
-									<td>${plist.rating}</td>
+							<c:forEach items="${ml}" var="mlist">
+								<tr class="small-text">
+									<td>${mlist.name}</td>
+									<td>${mlist.id}</td>
+									<td>${mlist.email}</td>
+									<td>${mlist.address}</td>
+									<td>${mlist.mobile}</td>
+									<td>${fn:substring(mlist.birth,2,10)}</td>
+									<td>${fn:substring(mlist.regdate,2,10)}</td>
+									<td><input type="button" id="btnDel" name="${mlist.id}" value="삭제"></td>
+								</tr>
+								
 								</tr>
 							</c:forEach>
 
@@ -99,17 +105,28 @@
 
 <script>
 $(document)
-//새글쓰기
-.on('click','#btnNew',function(){
-	document.location='/adminNew';
-	return false;
+.on('click','#btnDel',function(){
+   
+   
+   let a = $(this).attr('name');
+   
+   
+   $.ajax({
+       url: "/memberDel",
+       type: "post",
+       dataType: "text",
+       data: { id: a },
+       success: function(data) {
+         if (data == "ok") {
+           
+           location.reload()
+         } else {
+           alert("delete 실패")
+         }
+       } 
+     });
 })
-//수정페이지로
-.on('click','#board tr:gt(0)',function(){
-	   let a=$(this).find('td:eq(0)').text();
-	   document.location='adminUpdate/'+a;
-	})
-	
+
 /*  페이지네이션  */
 var $setRows = $('#setRows');
 
@@ -127,7 +144,7 @@ $setRows.submit(function (e) {
 	$('#nav1').remove();
 	var $board = $('#board');
 
-	$('#board').after('<input type="button" value="상품등록" class="btnNew" id="btnNew">  <div id="nav1">');
+	$('#board').after(' <div id="nav1">');
 
 
 	var $tr = $('tbody tr');

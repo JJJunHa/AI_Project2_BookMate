@@ -8,10 +8,287 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/board.css">
+
     <title>BookMate</title>
 </head>
+<style>
+.main {
+    width:100%;
+    height:100%;
+    /* border: 1px solid black; */
+}
+.logo {
+    width:100%;
+    height:100px;
+    text-align: center;
+}
+.logoImg {
+    width:20%;
+    margin-top:20px;
+    /* border: 1px solid black; */
+    display: inline-block;
+}
+/* 로그인, 장바구니, 마이페이지, 고객센터 연결 */
+.menu {
+    width:100%;
+    height:40px;
+    background-color: white;
+    text-align : right;
+}
+a {
+    text-decoration-line: none;
+}
+a:link {
+    color : gray;
+}
+/* 색상상자 */
+.name{
+    width:100%;
+    height:20px;
+    background-color: #97d4f7;
+    color:white;
+    text-align : center;
+    padding : 20px 0;
+}
+/* 카테고리 */    
+#nav {
+	list-style:none;
+	height: 40px;
+	padding: 5px 1px;
+	margin: 0;
+	
+}
+#nav li {
+	float:left;
+	position:relative;
+	margin-top:0.5%;
+	padding:0;
+}
+#nav li a {
+	display:block;
+	padding:7px 8px;
+	margin:0;
+	text-decoration: none;
+}
+#nav ul {
+	list-style: none;
+	margin:0;
+	padding:0;
+	position: absolute;
+	left:0;
+	top:40px;
+	text-align: center;
+	opacity: 0;
+}
+#nav ul li {
+	float: none;
+	margin:0;
+	padding:0;
+	width: 150px;
+	height:40px;
+	background-color: white;
+}
+#nav li:hover ul {
+	opacity: 1;
+	z-index: 1;
+}
+#nav li:hover ul li {
+	overflow: visible;
+	z-index: 1;
+}
+#nav li ul li:hover > a {
+	background-color: #97d4f7;
+	color:black;
+	margin:0;
+	padding:5px;
+	z-index: 1;
+}
+.category {
+    width:100%;
+    height:60px;
+    background-color: white;
+}
+.category_ul {
+    float:right;
+}
+.category_li {
+    float: left;
+    margin-right: 10px;
+}
+a:hover {
+        color: #97d4f7;
+}
+/* 검색창 */
+.search {
+    position: relative;
+    width: 100%;
+}
+.searchBox {
+    width: 250px;
+    border: 1px solid #bbb;
+    border-radius: 15px;
+    padding: 5px 5px;
+    font-size: 14px;
+    margin-top:2%;
+}
+.search_img {
+    position : absolute;
+    width: 17px;
+    top: 10px;
+    right: 10px;
+}
+/* ----------------------------------------------*/
+/* 검색 */
+.bSearch {
+	text-align:left;
+	margin-left: 10%;
+/* 	margin-bottom: 20px; /* 추가 */ */
+}
+.bSearch input[type="submit"] {
+	position: relative;
 
+	background-color: #7ca8c2;
+	padding: 7px 11px;
+        border: none;
+        border-radius: 10px;
+        color: #fff;
+        cursor: pointer;
+}
+   .bSearch input[type="submit"]:hover {
+	background-color: #0056b3;
+}
+
+.bSearch select {
+ 	width: 100px;
+    border: 1px solid #bbb;
+    border-radius: 15px;
+    padding: 5px 5px;
+    font-size: 14px;
+    margin-top:2%;
+}
+
+.bSearch input[type="text"]
+ {
+	 width: 200px;
+    border: 1px solid #bbb;
+    border-radius: 15px;
+    padding: 5px 5px;
+    font-size: 14px;
+    margin-top:2%;
+}
+
+/*board 추가 부분*/
+.content {
+	width: 100%;
+
+}
+
+.content_A {
+	width: 95%;
+	height: 100%;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.content2 {
+	width: 95%;
+	height: 400px;
+	margin: auto;
+}
+
+/* 게시판 목록 스타일 */
+.board {
+	width: 80%;
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* 테이블 헤더 스타일 */
+.board th {
+	padding: 12px;
+	background-color: #ebedf3;
+	border-bottom: 1px solid #c8cfe2;
+	font-weight: bold;
+	text-align: center;
+}
+
+/* 테이블 셀 스타일 */
+.board td {
+	padding: 12px;
+	border-bottom: 1px solid #c8cfe2;
+	text-align: center;
+}
+
+/* 짝수 번째 행 배경색 지정 */
+.board tr:nth-child(odd) {
+	background-color: #f8f9fa;
+}
+
+/* 마우스 호버 효과 */
+.board tr:hover {
+	background-color: #ebedf3;
+}
+
+/* 제목 링크에 언더라인 및 호버 효과 */
+.board a.title-link {
+	text-decoration: underline;
+}
+
+.board a.title-link:hover {
+	text-decoration: none;
+}
+/* 페이지네이션 */
+.off-screen {
+	display: none;
+}
+
+#nav1 {
+	width: 102%;
+	padding-right: 160px;
+	padding-top: 15px;
+
+	
+}
+
+#nav1 a {
+	display: inline-block;
+	padding: 3px 5px;
+	margin-right: 10px;
+	margin-left: 1px;
+	margin-right: 5px;
+	font-family: Tahoma;
+/* 	background: #ccc; */
+	color: #000;
+	text-decoration: none;
+}
+
+#nav1 a.active {
+	background: #c8cfe2;
+	color: #000;
+}
+
+.btnNew {
+	position: relative;
+	left: 45%; 
+	top: 2px;
+	background-color: #7ca8c2;
+	padding: 7px 11px;
+        border: none;
+        border-radius: 10px;
+        color: #fff;
+        cursor: pointer;
+}
+    .btnNew:hover {
+	background-color: #0056b3;
+}
+
+
+/* ----------- */
+
+
+</style>
 <body>
     <div class="main">
         <div class="logo">
@@ -30,11 +307,7 @@
 			<li class="category_li"><a href="/category4">공포/스릴러/추리</a></li>
 			<li class="category_li"><a href="/category5">드라마/가족</a></li>
             <li class="category_li"><a href="/donation">기부앤테이크<i class='dropDown'></i></a>
-            	<ul>
-              		<li class="category_li_sub"><a href="/donation">기부앤테이크 안내</a></li>
-              		<li class="category_li_sub"><a href="/donation-submit" id=donation-submit>기부앤테이크 신청</a></li>
-              		<li class="category_li_sub"><a href="/donation-state">기부앤테이크 현황</a></li>
-              	</ul>
+            
             </li>
              
             <li class="category_li">
@@ -55,7 +328,8 @@
                 <h1>고객센터</h1>
                 <br>
                 <div class="content2">
-                    <table class="board" id="board">
+					
+					<table class="board" id="board">
                     <caption>
 						<form action="" id="setRows">
 							<p><input type="hidden" name="rowPerPage" value="6"></p>
@@ -87,6 +361,21 @@
 
 						</tbody>
                     </table>
+                    <form method="get" action="/board/search">
+					<div class="bSearch">
+						<select name="type" id="searchForm">
+							<option
+								value="ID||b_TITLE">전체검색</option>
+							<option value="ID">작성자</option>
+							<option value="b_TITLE">제목</option>
+						</select> 
+						
+						<input type="text" id="keyword" name="keyword"> <input
+							type="submit" id="btnsearch" value=검색>
+							<input type="button" value="글쓰기" class="btnNew" id="btnNew">
+							</div>
+					</form>
+					
                 </div>
                
             </div>
@@ -128,7 +417,7 @@ $setRows.submit(function (e) {
 	$('#nav1').remove();
 	var $board = $('#board');
 
-	$('#board').after('<input type="button" value="글쓰기" class="btnNew" id="btnNew">  <div id="nav1">');
+	$('.bSearch').after('  <div id="nav1">');
 
 
 	var $tr = $('tbody tr');
