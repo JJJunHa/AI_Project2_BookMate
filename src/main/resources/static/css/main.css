@@ -437,11 +437,4 @@ a:hover {
       cursor: pointer;
     }
     /* 감정표현모달 */
-  
-  	/* 링크 색상 제거 */
-  	a {
- 	 text-decoration-line: none;
- 	 text-align: center;
-  	 color: inherit; /* 링크의 색상 제거 */
-	}
     
