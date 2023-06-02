@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/category.css">
+
 <title>Romance</title>
 </head>
 <body>

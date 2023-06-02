@@ -9,13 +9,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/admin.css">
+    <link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
     <title>BookMate</title>
 </head>
 
 <body>
     <div class="main">
         <div class="logo">
-    	<img src="/img/logo.png" class="logoImg">
+    	<a href="/main"><img src="/img/logo.png" class="logoImg"></a>
     </div>
     <div class="menu">
         <a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
