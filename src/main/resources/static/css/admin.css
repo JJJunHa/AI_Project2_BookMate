@@ -149,7 +149,7 @@ a:hover {
 
 /* 게시판 목록 스타일 */
 .board {
-	width: 80%;
+	width: 100%;
 	border-collapse: collapse;
 	margin-left: auto;
 	margin-right: auto;
@@ -221,7 +221,7 @@ a:hover {
 
 .btnNew {
 	position: relative;
-	left: 38%; 
+	left:46%; 
 	top: 15px;
 	background-color: #7ca8c2;
 	padding: 7px 11px;
@@ -265,8 +265,3 @@ a:hover {
 	background-color: #0056b3;
 }
 
-a {
- 	 text-decoration-line: none;
- 	 text-align: center;
-  	 color: inherit; /* 링크의 색상 제거 */
-	}

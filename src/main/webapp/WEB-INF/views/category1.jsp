@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="css/category.css">
 <link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
 <title>북메이트 - 코미디</title>
@@ -54,23 +55,14 @@
         <div class="category-All1">
         	<div class="category1-All">
 	        	<p class="bookCate">코미디</p>
-	        		<div class="book1-All">
-	        			<c:forEach items="${comedy_list}" var="cl">
+		        	<div class="book1-All">
 	        			<div class="book">
-	        				<div class="bookImg">
-	        					<img alt="" src="${cl.book_cover}" class="book_img" picname="${cl.book_num}">	  
-<%-- 	        					<input type=hidden id=bookNum value="${cl.book_num}">       --%>
-	        				</div>
-	        				<div class="bookName">
-	        					
-	        					<p id=name>${cl.book_name}</p>
-	        					<p id=write>${cl.author}</p>
-	        					<p id=date>${cl.publication}</p>
-	        					<p id=price>${cl.book_price}</p>	        					
-	        				</div>	
-	        			</div>
-	        			</c:forEach> 	        			
-        			</div>
+		        		</div>
+					</div>
+					<div class=divbody_r_footer>
+								<span name="page">1</span>
+								<span name="page">2</span>
+					</div>
        		</div>	
 		</div>
 </div>
@@ -79,10 +71,49 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script>
 $(document)
+.ready(function(){
+	$('span[name=page]:eq(0)').trigger('click')
+})
+.on('click','span[name=page]',function(){
+	var pageNum = parseInt($(this).text())
+	$('span[name=page]').css({'background-color':'#fff','color':'#000'})
+	$(this).css({'background-color':'#000','color':'#fff'})
+	loaddata(pageNum);
+})
+
+
 .on('click','.book_img',function(){
 	let imgval = $(this).attr("picname");
 // 	console.log(imgval);
 	document.location='/detail/'+imgval;
 })
+
+
+
+function loaddata(pageNum){
+	$.ajax({
+		url:"/load_category1",
+		data:{pageNum:pageNum},
+		type:"post",
+		dataType:"json",
+		success:function(data){
+			let i=0
+			let endPage = parseInt(data[0]['howmany'])
+			var pageStr=''
+			$('.divbody_r_footer').empty()
+			for(i=1; i<=endPage; i++){
+				pageStr=pageStr+ '&nbsp;<span name=page>'+i+'</span>&nbsp;'
+			}
+			$('.divbody_r_footer').append(pageStr)
+			$('.book').empty()
+			for(i=1; i<data.length; i++){		
+					let Prod_img = '<img src="'+data[i]['book_cover']+'" class="book_img" alt="" picname="'+data[i]['book_num']+'">'
+					let str = "<p id=name>"+data[i]['book_name']+"</p>" + "<p id=write>"+data[i]['author']+"</p>" + "<p id=date>"+data[i]['publication']+"</p>" + "<p id=price>"+data[i]['book_price']+"</p>"  
+					let div ='<div class="a"><div class="bookImg">'+Prod_img+'</div><div class="bookName">'+str+'</div></div>'
+					$('.book').append(div)
+					}
+			
+		}})
+}
 </script>
 </html>

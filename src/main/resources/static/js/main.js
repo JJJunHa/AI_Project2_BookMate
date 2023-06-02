@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     /*감정 모달 이벤트*/
     const chatGPT = async (messages, parameters = {}) => {
-        const apikey = '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';
+        const apikey = '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';
         if (messages[0].constructor === String) return await chatGPT([['user', messages[0]]]);
 		console.log(messages);
         messages = messages.map(line => ({ role: line[0],content: line[1].trim() }));
