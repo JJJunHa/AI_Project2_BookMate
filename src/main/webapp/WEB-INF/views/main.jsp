@@ -7,6 +7,7 @@
 <html lang="en">
 
 <head>
+    <link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +16,7 @@
     <script src="js/main.js" type="text/javascript"></script>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <title>category_comedy</title>
+    <title>북메이트</title>
 </head>
 
 <body>
@@ -23,9 +24,19 @@
        <div class="logo">
     	<a href="/main"><img src="/img/logo.png" class="logoImg"></a>
     </div>
+    <% if(session.getAttribute("id")!=null){ %>
+    
     <div class="menu">
-        <a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+        <a href="/logout">로그아웃</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
     </div>
+   
+   <% } else {%>
+   
+   <div class="menu">
+        <a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/login" onclick="alert('로그인 후 이용해주세요')">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+    </div>
+    
+    <% } %>
     
     <div class="name">지금 어떤 책을 읽어야 할지 고민하는 사용자의 상태에 맞는 책을 추천해주는 서비스</div>
     <div class="category">
