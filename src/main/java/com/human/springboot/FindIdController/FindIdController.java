@@ -50,18 +50,23 @@ public class FindIdController {
 		return val;
 	}
 	
-	/*
-	 * @PostMapping("/sendEmail")
-	 * 
-	 * @ResponseBody public String sendEmail(HttpServletRequest req) { String
-	 * response = ""; try { String recipient = req.getParameter("recipient"); String
-	 * subject = req.getParameter("subject"); String content =
-	 * req.getParameter("content");
-	 * 
-	 * EmailService emailService = new EmailService(null);
-	 * emailService.sendEmail(recipient, subject, content); response =
-	 * "Email sent successfully!"; } catch (Exception e) { response =
-	 * "Failed to send email."; e.printStackTrace(); } return response; }
-	 */
+//	@PostMapping("/sendEmail")
+//    @ResponseBody
+//    public String sendEmail(HttpServletRequest req) {
+//       String response = "";
+//       try {
+//          String recipient = req.getParameter("recipient");
+//          String subject = req.getParameter("subject");
+//          String content = req.getParameter("content");
+//
+//          EmailService emailService = new EmailService(null);
+//		emailService.sendEmail(recipient, subject, content);
+//          response = "Email sent successfully!";
+//       } catch (Exception e) {
+//          response = "Failed to send email.";
+//          e.printStackTrace();
+//       }
+//       return response;
+//    }
 	
 }

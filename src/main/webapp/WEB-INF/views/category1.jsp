@@ -14,7 +14,7 @@
 
 <input value="<%=session.getAttribute("id")%>" hidden>
 
- <div class="main">
+<div class="main">
 <div class="logo">
     	<a href="/main"><img src="/img/logo.png" class="logoImg"></a>
     </div>
