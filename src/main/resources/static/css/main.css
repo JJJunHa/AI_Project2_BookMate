@@ -225,10 +225,12 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
   
+  
 }
 
 .column2 > div {
   flex-basis: 100%; /* Set each cell to take 100% width within the column */
+  
 }
 .column2 > div:nth-child(1) {
   /* background-color: yellow; Color for the first row */
@@ -244,44 +246,66 @@ a:hover {
 }
 
 .grid-container {
-  width: 1200px;
+  width: 100%;
   display: flex;
   flex-wrap: wrap; 
-  margin-left: 50px;
+  margin-left: 10px;
 }
 .main-image{
+	margin-left: 33.33%;
 	width:200px; 
 	height:300px; 
 }
 .grid-cell {
   flex-basis: 33.33%; /* Each cell takes 33.33% width within the container */
-  height: 370px; /* Adjust the height as needed */
+  height: 380px; /* Adjust the height as needed */
   display: flex;
+  margin-top:50px;
+  
+  
 }
 
-.grid-cell > div:nth-child(1) {
-	flex-basis: 50%;
+/* .grid-cell > div:nth-child(1) {
+	flex-basis: 30%;
 	margin-top:70px;
-	background-color: black;
-	height: 300px;
+	
+	height: 250px;
         
-    }
+    }  */
     .parent {
+	position: relative;
+	
+	
+  
+	
+}
+.poster {
+	position: relative;
+	
+}
+.cover {
 	position: relative;
 }
     
     .explanation{
+     	/* margin-top:0px; */
 		position: absolute;
-	bottom: 0;
-  		margin-left: 10px;
+		bottom: 0px;
+		width:100%; 
+  		margin-left: 33.33%;
+  		/* margin-bottom: 0px; */ 
+  		opacity: 1;
+  		transform: translateY(0);
+  		
+  		
   		
 	}
 	
- .grid-cell > div:nth-child(2) {
- 		flex-basis: 50%;
+ /* .grid-cell > div:nth-child(2) {
+ 		flex-basis: 80%;
  		margin-top:150px;
         
-    }
+    }  */
 
 
 
@@ -297,7 +321,7 @@ a:hover {
 
     .chat-content {
       height: 675px;
-      overflow-y: scroll;
+      overflow-y: scroll; /* 변경: scroll -> auto */
       border: 1px solid #ccc;
       padding: 10px;
      background-color:pink;
@@ -363,18 +387,18 @@ a:hover {
     
     /* 책 내용 제목  */
     .title {
-    
-    font-size: 24px;
+    text-align: center;
+    font-size: 12px;
     font-weight: bold;
   }
 
   .subtitle {
-  	
+  	text-align: center;
     font-size: 15px;
     font-weight: normal;
   }
   .button {
-    display: inline-block;
+   display: inline-block;
     background-color: #f1f1f1;
     border: 1px solid #ccc;
     text-decoration: none;
@@ -437,5 +461,116 @@ a:hover {
       cursor: pointer;
     }
     /* 감정표현모달 */
+  
+  /*이미지호버*/
+  .image_overlay
+{	margin-left: 25px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 285px;
+	height: 400px;
+	 
+	
+	
+	background: rgba(0,0,0,0.6);
+	color: #ffffff;
+	font-family: 'Poppins', san-serif;
+	display: flex; 
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transition: opacity 0.25s;
+	
+}
+
+.image_overlay_blur
+{
+	backdrop-filter: blur(5px);
+}
+
+.image_overlay > *
+{
+	transform: translateY(20px);
+	transition: transform 0.25s;
+}
+
+.image_overlay:hover
+{
+	opacity: 1;
+}
+
+.image_overlay:hover > *
+{
+	transform: translateY(0);
+}
+
+.image_movieStory
+{
+	font-size: 0.1em;
+	font-weight: bold;
+	/* color:red; */
+	
+	
+}
+.summary
+{	
+  margin-top: 0%;
+  padding: 10px 30px;
+
+  
+}
+
+.movieDetailBtn
+{
+	width: 30px;
+	height: 30px;
+	position: relative;
+	display: inline-block;
+	padding: 10px 30px;
+	text-decoration: none;
+	text-transform: uppercase;
+	/*color: rgba(255,255,255,0.4);*/
+	color: #000; /*rgba(0,0,0,0.4);*/
+	/*background: #262c37;*/
+	background: #DCDCDC;
+	letter-spacing: 2px;
+	font-size: 16px;
+	transition: 0.5s;
+
+}
+
+.movieDetailBtn:hover
+{
+	color: #870000;
+}
+
+
+.cartInsertBtn
+{
+	position: relative;
+	display: inline-block;
+	padding: 10px 30px;
+	text-decoration: none;
+	text-transform: uppercase;
+	/*color: rgba(255,255,255,0.4);*/
+	color: #000;/*rgba(0,0,0,0.4);*/
+	/*background: #262c37;*/
+	background: #FFD700;
+	letter-spacing: 2px;
+	font-size: 16px;
+	transition: 0.5s;
+
+}
+.explanation:hover .image_overlay {
+  opacity: 1;
+}
+.cartInsertBtn:hover
+{
+	color: #F8F8FF;
+}
+  
+  
   
     

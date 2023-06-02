@@ -21,7 +21,7 @@ public class MainContoller {
 	
 	@GetMapping("/apikey")
 	  public ResponseEntity<String> getApiKey() {
-	    String apiKey = "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";
+	    String apiKey = "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";
 	    return ResponseEntity.ok(apiKey);
 	  }
 	
@@ -56,6 +56,7 @@ public class MainContoller {
             jo.put("BOOK_COVER", bookList.get(i).getBOOK_COVER());
             jo.put("BOOK_CONTENT", bookList.get(i).getBOOK_CONTENT());
             jo.put("PUBLICATION", bookList.get(i).getPUBLICATION());
+            jo.put("BOOK_SUMMARY", bookList.get(i).getBOOK_SUMMARY());
             
             ja.put(jo);
         }
@@ -90,6 +91,34 @@ public class MainContoller {
         return ja.toString();
 	}
 	
+	@PostMapping("/priceSelection")
+	@ResponseBody
+	public String priceSelection(HttpServletRequest req) {
+    	
+		String genre = req.getParameter("genre")+"";
+		float grade = Float.parseFloat(req.getParameter("grade").replace("점", ""));
+		int price = Integer.parseInt(req.getParameter("price").replace("원", ""));
+		System.out.println(price);
+    	
+    	ArrayList<MainDTO> priceBookList = maindao.priceBookList(genre,grade,price);
+    	JSONArray ja = new JSONArray();
+        for (int i = 0; i < priceBookList.size(); i++) {
+            JSONObject jo = new JSONObject();
+            jo.put("BOOK_NUM", priceBookList.get(i).getBOOK_NUM());
+            jo.put("BOOK_NAME", priceBookList.get(i).getBOOK_NAME());
+            jo.put("BOOK_PRICE", priceBookList.get(i).getBOOK_PRICE());
+            jo.put("BOOK_GENRE", priceBookList.get(i).getBOOK_GENRE());
+            jo.put("AUTHOR", priceBookList.get(i).getAUTHOR());
+            jo.put("BOOK_COVER", priceBookList.get(i).getBOOK_COVER());
+            jo.put("BOOK_CONTENT", priceBookList.get(i).getBOOK_CONTENT());
+            jo.put("PUBLICATION", priceBookList.get(i).getPUBLICATION());
+            
+            ja.put(jo);
+        }
+        return ja.toString();
+	}
+	
+	
 	@PostMapping("/genreSelection")
 	@ResponseBody
 	public String genreSelection(HttpServletRequest req) {
@@ -114,6 +143,32 @@ public class MainContoller {
         }
         return ja.toString();
 	}
+	
+	@PostMapping("/gradeSelection")
+	@ResponseBody
+	public String gradeSelection(HttpServletRequest req) {
+    	
+		String genre=req.getParameter("genre")+"";
+		float grade = Float.parseFloat(req.getParameter("grade").replace("점", ""));
+    	
+    	ArrayList<MainDTO> gradeBookList = maindao.gradeBookList(genre,grade);
+    	JSONArray ja = new JSONArray();
+        for (int i = 0; i < gradeBookList.size(); i++) {
+            JSONObject jo = new JSONObject();
+            jo.put("BOOK_NUM", gradeBookList.get(i).getBOOK_NUM());
+            jo.put("BOOK_NAME", gradeBookList.get(i).getBOOK_NAME());
+            jo.put("BOOK_PRICE", gradeBookList.get(i).getBOOK_PRICE());
+            jo.put("BOOK_GENRE", gradeBookList.get(i).getBOOK_GENRE());
+            jo.put("AUTHOR", gradeBookList.get(i).getAUTHOR());
+            jo.put("BOOK_COVER", gradeBookList.get(i).getBOOK_COVER());
+            jo.put("BOOK_CONTENT", gradeBookList.get(i).getBOOK_CONTENT());
+            jo.put("PUBLICATION", gradeBookList.get(i).getPUBLICATION());
+            
+            ja.put(jo);
+        }
+        return ja.toString();
+	}
+	
 	
 	
 	@GetMapping("/")

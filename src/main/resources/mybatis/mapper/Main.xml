@@ -13,5 +13,19 @@
 		<select id="genreBookList" resultType="com.human.springboot.MainController.MainDTO">
 			select * from book where book_genre=#{param1}
 		</select>
+		<select id="gradeBookList" resultType="com.human.springboot.MainController.MainDTO">
+			SELECT *
+			FROM book
+			WHERE RATING >= #{param2} AND BOOK_GENRE = #{param1}
+		</select>
+		<select id="priceBookList" resultType="com.human.springboot.MainController.MainDTO">
+			SELECT *
+			FROM book
+			WHERE RATING >= #{param2} AND BOOK_GENRE = #{param1} AND NOT (BOOK_PRICE > #{param3})
+		</select>
+		
+		
+		
+		
     </mapper>
     
