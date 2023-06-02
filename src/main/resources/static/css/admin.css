@@ -189,6 +189,10 @@ a:hover {
 .board a.title-link:hover {
 	text-decoration: none;
 }
+
+.small-text {
+        font-size: 14px; /* 작게 표시할 글자 크기 설정 */
+    }
 /* 페이지네이션 */
 .off-screen {
 	display: none;

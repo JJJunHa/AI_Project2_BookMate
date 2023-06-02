@@ -8,8 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<link rel="stylesheet" href="css/board.css">
-	<link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
-	<title>북메이트 - 게시판</title>
+	<title>BookMate</title>
 </head>
 <style>
 
@@ -313,27 +312,13 @@ textarea.form-control {
   
 </style>
 <body>
-
-<input value="<%=session.getAttribute("id")%>" hidden>
-
     <div class="main">
       <div class="logo">
-    	<a href="/main"><img src="/img/logo.png" class="logoImg"></a>
+    	<img src="/img/logo.png" class="logoImg">
     </div>
-    
-	<% if(session.getAttribute("id")!=null){ %>
-    
     <div class="menu">
-        <a href="/logout">로그아웃</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+        <a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
     </div>
-   
-	<% } else {%>
-	
-	<div class="menu">
-        <a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/login" onclick="alert('로그인 후 이용해주세요')">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
-    </div>
-    
-    <% } %>
     
     <div class="name">지금 어떤 책을 읽어야 할지 고민하는 사용자의 상태에 맞는 책을 추천해주는 서비스</div>
     <div class="category">
@@ -344,6 +329,7 @@ textarea.form-control {
 			<li class="category_li"><a href="/category4">공포/스릴러/추리</a></li>
 			<li class="category_li"><a href="/category5">드라마/가족</a></li>
             <li class="category_li"><a href="/donation">기부앤테이크<i class='dropDown'></i></a>
+            	
             </li>
              
             <li class="category_li">

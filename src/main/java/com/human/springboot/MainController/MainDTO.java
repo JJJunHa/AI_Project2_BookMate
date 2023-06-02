@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class MainDTO {
+	String BOOK_SUMMARY;
 	String BOOK_NUM;
 	String BOOK_NAME;
 	String BOOK_PRICE;

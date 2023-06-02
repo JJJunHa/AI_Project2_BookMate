@@ -153,7 +153,6 @@ a:hover {
 	/* border: 1px solid #bbb;*/
      float:right;
      margin-right:20%;
-     margin-top:1.3%;
 }
 .content_C { 
     width:100%;
@@ -209,7 +208,7 @@ textarea {
 /* 뉴 버튼 스타일 */
 .button {
         text-align: center;
-   		margin-top: 20px;
+  
     }
     
     .button input[type="submit"],
@@ -269,83 +268,94 @@ textarea {
 
         
         <div class="content">
-       		<h1>상품추가</h1>
-       		<div class="content_C">
+       		<h1>상품 수정</h1>
+            <hr>
+        <div class="content_C">
             <div class="content_A">
              
                 <br>
-              
+                 <form action="/updatePro" method="post">
+                 <label for="label_">상품 번호</label>
+                  <input type="text" class="form-control form-control-lg" id="book_num" name="book_num" readonly value="${pro.book_num}"><br>
+                   <br>
                
-               
-                  <label for="book_name">제목:</label>
-                  <input type="text" class="form-control form-control-lg" id="book_name" name="book_name"><br>
+                  <label for="book_name">제목</label>
+                  <input type="text" class="form-control form-control-lg" id="book_name" name="book_name" value="${pro.book_name}"><br>
                    <br>
                    
-                  <label for="book_price">가격:</label>
-                  <input type="text" class="form-control form-control-lg" id="book_price" name="book_price"><br>
+                  <label for="book_price">가격</label>
+                  <input type="text" class="form-control form-control-lg" id="book_price" name="book_price" value="${pro.book_price}"><br>
                   <br>
                   
-                  <label for="book_genre">장르:</label> 
-                  <select id="book_genre" name="book_genre">
+                  <label for="book_genre">장르</label> 
+                  <select id="book_genre" name="book_genre" >
 					<option value="코미디">코미디</option>
 					<option value="로맨스">로맨스</option>
 					<option value="판타지">판타지</option>
 					<option value="공포/스릴러/추리">공포/스릴러/추리</option>
 					<option value="드라마/가족">드라마/가족</option>
+					<option selected value="${pro.book_genre}">${pro.book_genre}</option>
 					</select> <br>
 					
 					<br><div class="mb-3">
-                  <label for="book_cover">커버 사진:</label>
-                  <input type="file" class="form-control" id="book_cover" name="book_cover"><br>
+                  <label for="book_cover">커버 사진</label>
+                  <input type="text" id="book_covers" name="book_covers" value="${pro.book_cover}" readonly><br>
+                  <input type="file" class="form-control" id="book_cover" name="book_cover" ><br>
                   </div>
                     <br>
                     
-                   <label for="book_content">책 소개:</label>
-                  <textarea class="book_content" id="book_content"></textarea><br>
+                   <label for="book_content">책 소개</label>
+                  <textarea class="book_content" id="book_content" name="book_content" >${pro.book_content}</textarea><br>
                    <br>
-              </div>
+                </div>
                 <div class="content_B">
+                    <br>
                   <div class="mb-3">
-                  <label for="book_detail">상품 상세:</label>
-                  <input type="file" class="form-control" id="book_detail" name="book_detail"><br>
+                  <label for="book_detail">상품 상세</label>
+                  <input type="text" id="book_details" name="book_details" value="${pro.book_detail}" readonly><br>
+                  <input type="file" class="form-control" id="book_detail" name="book_detail" ><br>
                   </div>
                   <br>
                    
-                  <label for="author">작가:</label>
-                  <input type="text" id="author" name="author" ><br>
+                  <label for="author">작가</label>
+                  <input type="text" id="author" name="author"   value="${pro.author}"><br>
                   <br>
                   
-                  <label for="publication">출판일:</label>
-                  <input type="text" id="publication" name="publication" ><br>
+                  <label for="publication">출판일</label>
+                  <input type="text" id="publication" name="publication"   value="${pro.publication}"><br>
                   <br>
                   
-                  <label for="rating">별점:</label>
-                  <input type="number" class="form-control form-control-lg" id="rating" name="rating" max="10" min="0"><br>
+                  <label for="rating">별점</label>
+                  <input type="number" class="form-control form-control-lg" id="rating" name="rating"  value="${pro.rating}" max="10" min="0"><br>
                  <br>
           			
-          		<label for="emotion">감정:</label> 
-                  <select id="emotion" name="emotion">
+          		<label for="emotion">감정</label> 
+                  <select id="emotion" name="emotion"  value="${pro.emotion}">
 					<option value="슬픔">슬픔</option>
 					<option value="사랑">사랑</option>
 					<option value="불안">불안</option>
 					<option value="분노">분노</option>
 					<option value="행복">행복</option>
+					<option selected value="${pro.emotion}">${pro.emotion}</option>
 					</select> <br>
 					<br>
 					
-					<label for="book_summary">책 요약:</label>
-                  <input type="text" id="book_summary" name="book_summary" ><br>
+					<label for="book_summary">책 요약</label>
+                    <textarea class="book_summary" id="book_summary" name="book_summary" >${pro.book_summary}</textarea><br>
                   <br>
-                 </div>
-			</div>	
-				
-				<div class="button">
-                  <!-- <img src="#" alt="상품 이미지 미리보기"><br> -->
-                  <input type=button value='등록' id=btnInsert>
-                  <input type=button value='취소' id=btnCancle>
+                </div>
+			</div>
+
+             <div class="button">
+                  <input type=submit value='수정' id=btnModify>
+                  <input type=button value='삭제' id=btnDelete>
+                  <input type=button value='목록' id=btnList>
                   <br><br> 
-      			</div>
-         </div>
+             </div>
+      			  </form>
+           
+            
+        </div>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -353,63 +363,47 @@ textarea {
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script>
 $(document)
+	.on('click','#btnList',function(){
+			document.location='/prolist';
+		})
+	.on('click','#btnDelete',function(){
+		let a=$(book_num).val();
+		document.location='/productDelete/'+a;
+	})
+	 .on('click', '#btnModify', function(){
+	        var formData = new FormData();
+	        var files = $('#book_cover')[0].files[0];
+	        formData.append('file', files);
+	
+	        var formData2 = new FormData();
+	        var prod_content = $('#book_detail')[0].files[0];
+	        formData2.append('prod_content_file', prod_content);
+	
+	        $.ajax({
+	            url: '/updatefile',
+	            type: 'post',
+	            dataType: 'text',
+	            data: formData,
+	            enctype: 'multipart/form-data',
+	            contentType: false,
+	            processData: false,
+	            success: function(data) {
+	                $.ajax({
+	                    url: '/updatefile2',
+	                    type: 'post',
+	                    dataType: 'text',
+	                    data: formData2,
+	                    enctype: 'multipart/form-data',
+	                    contentType: false,
+	                    processData: false,
+	                    success: function(data) {
+	
+	                    }
+	                });
+	            }
+	        });
+	    });
 
-.on('click','#btnInsert',function(){
-     var formData = new FormData();   // 자바스크립트에서 폼 데이터를 다루는 객체
-    var files = $('#book_cover')[0].files[0];
-    formData.append('file', files);
-    
-    var formData2 = new FormData();
-    var book_detail = $('#book_detail')[0].files[0];
-    formData2.append('book_detail_file', book_detail);
-
-    	$.ajax({url:'/newProduct',type:'post',
-    		data:{book_name:$('#book_name').val(),book_price:$('#book_price').val(),
-    			book_genre:$('#book_genre option:selected').val(),book_content:$('#book_content').val()
-    			,author:$('#author').val(),publication:$('#publication').val()
-    			,rating:$('#rating').val(),emotion:$('#emotion option:selected').val()
-    			,book_summary:$('#book_summary').val()},
-    		dataType:'text',
-    		beforeSend:function(){
-    			let book_name=$.trim($('#book_name').val());
-    			if(book_name==''||book_name==null){
-    				alert('상품명을 입력하시오');
-    				return false;
-    			}
-    			if($('#book_price').val()==''){
-    				alert('가격을 입력하시오');
-    				return false;
-    			}
-    		},
-    		success:function(data){
-    			if(data=="ok"){
-    				alert("fileinsert 성공")
-//     				$('#btnCancle').trigger('click');
-    			} else {
-    				alert("fileinsert 실패")
-    			}
-    			$.ajax({url:'/newfile', type:'post', dataType:'text', data:formData,        
-    			      enctype:'multipart/form-data',
-    			      contentType:false,
-    			        processData:false,
-    			      success:function(data) {
-    			    	  
-    			    	  $.ajax({url:'/newfile2', type:'post', dataType:'text', data:formData2,        
-    	    			      enctype:'multipart/form-data',
-    	    			      contentType:false,
-    	    			        processData:false,
-    	    			      success:function(data) {
-    	    			      
-    	    			      }
-    	    			   })
-    			      }
-    			   })
-    		}
-    	})
-})
- .on('click','#btnCancle',function(){
-	document.location='/prolist';
-})
 </script>
 
 </html>

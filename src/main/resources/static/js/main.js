@@ -48,27 +48,38 @@ function suggestion(emotion) {
 function appendBoxesToGrid(data) {
 	
     for (let i = 0; i < data.length; i++) {
+
         let box = `
             <div class="grid-cell">
-                <div>
+                    		
+                <div class='poster'>
+                	<div  class = "image_overlay image_overlay_blur">
+									<div class = "image_movieStory"><div class ="summary">${data[i]['BOOK_SUMMARY']}</div></div>
+									<div>
+			                            <a class="button cart" href="#cart">장바구니</a>
+			                            <a class="button checkout" href="#checkout">바로결제</a>
+			                            <a class="button dashboard" href="detail/${data[i]['BOOK_NUM']}">상세보기</a>
+			                        </div>
+					</div>
                     <img src="${data[i]['BOOK_COVER']}" alt="Main Image" class="main-image">
-                </div>
-                <div class="parent">
+                    
+                
                     <div class="explanation">
+                    	<div>
+                            <div class="title">${data[i]['BOOK_PRICE']}원</div>
+                        </div>
+                        <br>
                         <div>
                             <div class="title">${data[i]['BOOK_NAME']}</div>
                         </div>
                         <div>
                             <div class="subtitle">${data[i]['AUTHOR']}</div>
                         </div>
-                        <div>
-                            <a class="button cart" href="#cart">장바구니</a>
-                            <a class="button checkout" href="#checkout">바로결제</a>
-                            <a class="button dashboard" href="#dashboard">보관함</a>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
+            					
         `;
         
         $('#grid-container').append(box);
@@ -112,9 +123,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     /*감정 모달 이벤트*/
     const chatGPT = async (messages, parameters = {}) => {
-        const apikey = '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';
+        const apiKeyResponse = await fetch('/apikey'); // Make an AJAX request to retrieve the API key
+  		const apikey = await apiKeyResponse.text(); // Extract the API key from the response
+  		console.log(apikey);
         if (messages[0].constructor === String) return await chatGPT([['user', messages[0]]]);
-		console.log(messages);
         messages = messages.map(line => ({ role: line[0],content: line[1].trim() }));
         const response = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
@@ -130,6 +142,8 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
 	let manualMode = false;
+	let genre="";
+	let grade="";
     async function sendMessage() {
 		$('#loading').show();
         const inputElement = document.getElementById("input");
@@ -155,7 +169,70 @@ document.addEventListener('DOMContentLoaded', function() {
 	        userChatBoxElement.textContent = message;
 	        userMessageElement.appendChild(userChatBoxElement);
 	        chatContentElement.appendChild(userMessageElement);
+	        console.log(genre);
+	        
+	        if (message.charAt(message.length - 1) === '원') {//평점순
+	        	price=message;
+			  	$('#grid-container').empty()
+				$.ajax({
+			        url: '/priceSelection',
+			        type: 'post',
+			        data: {
+			            grade: grade,
+			            genre: genre,
+			            price: message
+			        },
+			        dataType: 'json',
+			        beforeSend: function() {
+			            
+			        },
+			        success: function(data) {
+						addAssistantMessage("맞춤 도서를 추천해드릴게요");
+						console.log(data);
+			        	appendBoxesToGrid(data);
+						var chatContent = document.getElementById('chat-content');
+    					chatContent.scrollTop = chatContent.scrollHeight;
+    					
+			        }
+			    })
+				inputElement.value = "";
+				$('#loading').hide();
+				
+				return
+			}
+	        
+	        
+	        if (message.charAt(message.length - 1) === '점') {//평점순
+	        	grade=message;
+			  	$('#grid-container').empty()
+				$.ajax({
+			        url: '/gradeSelection',
+			        type: 'post',
+			        data: {
+			            grade: message,
+			            genre: genre
+			        },
+			        dataType: 'json',
+			        beforeSend: function() {
+			            
+			        },
+			        success: function(data) {
+						addAssistantMessage("얼마 이하 가격을 원하시나요?(ex:15000)");
+						console.log(data);
+			        	appendBoxesToGrid(data);
+						var chatContent = document.getElementById('chat-content');
+    					chatContent.scrollTop = chatContent.scrollHeight;
+    					
+			        }
+			    })
+				inputElement.value = "";
+				$('#loading').hide();
+				
+				return
+			}
+			//장르별
             if(message==="판타지"||message==="로맨스"||message==="공포/스릴러/추리"||message==="드라마"||message==="코미디"){
+				genre=message;
 				$('#grid-container').empty()
 				$.ajax({
 			        url: '/genreSelection',
@@ -168,42 +245,29 @@ document.addEventListener('DOMContentLoaded', function() {
 			            
 			        },
 			        success: function(data) {
+						addAssistantMessage("몇 점 이상을 원하시나요?(ex:5점)");
 						console.log(data);
 			        	appendBoxesToGrid(data);
+						var chatContent = document.getElementById('chat-content');
+    					chatContent.scrollTop = chatContent.scrollHeight;
+    					
 			        }
 			    })
 				inputElement.value = "";
 				$('#loading').hide();
+				
 				return
 			}
-	
-	        const assistantMessageElement = document.createElement("div");
-	        assistantMessageElement.classList.add("line2");
-	        const assistantChatBoxElement = document.createElement("span");
-	        assistantChatBoxElement.classList.add("chat-box", "mine");
+			
+	        	addAssistantMessage("어떤 장르를 원하시나요? ex(판타지,로맨스)");
 	        
-	        const assistantMessageElement2 = document.createElement("div");
-			  assistantMessageElement2.classList.add("line2");
-			  const assistantChatBoxElement2 = document.createElement("span");
-			  assistantChatBoxElement2.classList.add("chat-box", "mine");
-			  assistantChatBoxElement2.textContent = "어떤 장르를 원하시나요? ex(판타지,로맨스)";
-			  assistantMessageElement2.appendChild(assistantChatBoxElement2);
-			  
-			  const assistantMessageElement3 = document.createElement("div");
-			  assistantMessageElement3.classList.add("line2");
-			  const assistantChatBoxElement3 = document.createElement("span");
-			  assistantChatBoxElement3.classList.add("chat-box", "mine");
-			  assistantChatBoxElement3.textContent = '▼ 수동모드취소 ▼   "수동추천모드취소"';
-			  assistantMessageElement3.appendChild(assistantChatBoxElement3);
-			  
-			  
-			  chatContentElement.appendChild(assistantMessageElement2);
-			  chatContentElement.appendChild(assistantMessageElement3);
 			  
 			  
 			  
 	        inputElement.value = "";
             $('#loading').hide();
+            var chatContent = document.getElementById('chat-content');
+    		chatContent.scrollTop = chatContent.scrollHeight;
             return;
         }
 
@@ -309,8 +373,48 @@ document.addEventListener('DOMContentLoaded', function() {
 			
         
         inputElement.value = "";
-        chatContentElement.scrollTop = chatContentElement.scrollHeight;
+        var chatContent = document.getElementById('chat-content');
+    	chatContent.scrollTop = chatContent.scrollHeight;
     }
+    // 채팅 반복요소
+    function addAssistantMessage(text) {
+		const chatContentElement = document.getElementById("chat-content");
+
+	        const userMessageElement = document.createElement("div");
+	        userMessageElement.classList.add("line");
+	        
+	        
+	  		const assistantMessageElement = document.createElement("div");
+	        assistantMessageElement.classList.add("line2");
+	        const assistantChatBoxElement = document.createElement("span");
+	        assistantChatBoxElement.classList.add("chat-box", "mine");
+	        
+	        const assistantMessageElement2 = document.createElement("div");
+			assistantMessageElement2.classList.add("line2");
+			 const assistantChatBoxElement2 = document.createElement("span");
+			  assistantChatBoxElement2.classList.add("chat-box", "mine");
+			  assistantChatBoxElement2.textContent = text;
+			  assistantMessageElement2.appendChild(assistantChatBoxElement2);
+			  
+			  const assistantMessageElement3 = document.createElement("div");
+			  assistantMessageElement3.classList.add("line2");
+			  const assistantChatBoxElement3 = document.createElement("span");
+			  assistantChatBoxElement3.classList.add("chat-box", "mine");
+			  assistantChatBoxElement3.textContent = '▼ 수동모드취소 ▼   "수동추천모드취소"';
+			  assistantMessageElement3.appendChild(assistantChatBoxElement3);
+			  
+			  
+			  chatContentElement.appendChild(assistantMessageElement2);
+			  chatContentElement.appendChild(assistantMessageElement3);
+	}
+	// 채팅 박스 요소
+	
+	// 스크롤을 아래로 이동하는 함수
+	function scrollToBottom() {
+	  
+	}
+	
+    
 
     const sendButton = document.getElementById("send");
     sendButton.addEventListener("click", sendMessage);
