@@ -21,7 +21,7 @@ public class MainContoller {
 	
 	@GetMapping("/apikey")
 	  public ResponseEntity<String> getApiKey() {
-	    String apiKey = "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";
+	    String apiKey = "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";
 	    return ResponseEntity.ok(apiKey);
 	  }
 	
