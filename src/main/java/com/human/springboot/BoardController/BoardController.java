@@ -25,6 +25,12 @@ public class BoardController {
 		model.addAttribute("bl",bList);
 		return "board";
 	}
+	@GetMapping("/board/search")
+	public String bSearch(Model model, @RequestParam("type") String type, @RequestParam("keyword") String keyword) {
+	    ArrayList<boardDTO> bSearch = bdao.bSearch(type, keyword);
+	    model.addAttribute("bl", bSearch);
+	    return "board";
+	}
 //  새글 창
 	@GetMapping("/boardNew")
 	public String boardNew() {
@@ -43,6 +49,7 @@ public class BoardController {
 	@GetMapping("/boardView/{board_num}")
     public String boardView(@PathVariable("board_num") int board_num, Model model) {
 		boardDTO bView=bdao.bView(board_num);
+		bdao.bRead(board_num);
 		model.addAttribute("bView",bView);
         return "boardView";
     }
