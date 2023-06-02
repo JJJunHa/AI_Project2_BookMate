@@ -146,7 +146,7 @@
                  <form action="boardNewa" method="get" >
                     <tr>
                         
-                        <td><input type="text"  class="form-control" name="ID" id="ID" placeholder="작성자"></td>
+                        <td><input type="hidden"  class="form-control" name="ID" id="ID" value="<%=session.getAttribute("id")%>"></td>
                     </tr>
                     <tr>
                        

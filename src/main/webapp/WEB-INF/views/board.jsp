@@ -404,7 +404,18 @@ a:hover {
 $(document)
 //새글쓰기
 .on('click','#btnNew',function(){
-	document.location='/boardNew';
+	let m_id = '<%=session.getAttribute("id")%>';
+	
+		// 아이디가 없을 때
+	if(m_id=='' || m_id==null || m_id=='null') {
+		alert('로그인 후 이용해주세요');
+		document.location="/login";
+	} 
+	// 아이디가 있을 때
+	else {
+		document.location='/boardNew';
+	}
+	
 	return false;
 })
 //게시글 보기
