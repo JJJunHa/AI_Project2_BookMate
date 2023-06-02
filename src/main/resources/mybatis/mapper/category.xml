@@ -27,7 +27,7 @@
 	
 	<!-- detail 책 정보 가져오기 -->
 	<select id="load_detail" resultType="com.human.springboot.DetailController.CategoryDTO">
-		select book_name, author, publication, book_cover, book_price, book_content
+		select book_name, author, publication, book_cover, book_price, book_content, book_detail
 		from book where book_num=#{param1}
 	</select>
 	

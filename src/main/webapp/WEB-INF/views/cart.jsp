@@ -25,14 +25,7 @@
 			<li class="category_li"><a href="/category3">판타지</a></li>
 			<li class="category_li"><a href="/category4">공포/스릴러/추리</a></li>
 			<li class="category_li"><a href="/category5">드라마/가족</a></li>
-            <li class="category_li"><a href="/donation">기부앤테이크<i class='dropDown'></i></a>
-            	<ul>
-              		<li class="category_li_sub"><a href="/donation">기부앤테이크 안내</a></li>
-              		<li class="category_li_sub"><a href="/donation-submit" id=donation-submit>기부앤테이크 신청</a></li>
-              		<li class="category_li_sub"><a href="/donation-state">기부앤테이크 현황</a></li>
-              	</ul>
-            </li>
-             
+            <li class="category_li"><a href="/donation">기부앤테이크<i class='dropDown'></i></a></li>
             <li class="category_li">
             	<div class="search">
                 	<input type="text" class="searchBox" placeholder="  검색어를 입력하세요">
@@ -69,7 +62,6 @@
 $(document)
 .ready(function(){
 	loadCart();
-	countCart();
 })
 // 장바구니 개별 삭제
 .on('click','.Delete',function(){
@@ -147,6 +139,7 @@ $(document)
 		success: function(data) {
 			if(data=='ok') {
 				loadCart();
+				
 			} else {
 				alert("오류로 인해 잠시후에 다시 시도해주세요.");
 			}	
@@ -154,22 +147,30 @@ $(document)
 	})
 })
 // cart에서 상품 클릭 시 상세페이지로 연결
-.on('click','.tblCart tr td:nth-child(-n+3)', function(){
-	let book_name = $(this).find('td:nth-child(3)').text();
-	console.log(book_name);
-	$.ajax({
-		url: '/find_book',
-		type: 'post',
-		data: { book_name: book_name },
-		dataType: 'text',
-		success: function(data) {
-			if(data=='' || data==null || data=='fail') {
-				alert("오류로 인해 잠시후에 다시 시도해주세요.");
-			} else {
-				document.location="/detail/"+data;
-			}	
-		}
-	})
+.on('click','.tblCart tr td:nth-child(3)', function(event){
+// 	var rowIndex = $(event.target).index;
+// 	console.log(rowIndex);
+// 	if (rowIndex === 2) {
+// 	    return;
+// 	} else {
+// 	 	let book_name = $(this).find('td:nth-child(3)').text();
+//	 	let book_name = $(this).find('#book_name').text();
+// 		let book_name = $(this).find('td#book_name').text();
+		console.log(book_name);
+		$.ajax({
+			url: '/find_book',
+			type: 'post',
+			data: { book_name: book_name },
+			dataType: 'text',
+			success: function(data) {
+				if(data=='' || data==null || data=='fail') {
+					alert("오류로 인해 잠시후에 다시 시도해주세요.");
+				} else {
+					document.location="/detail/"+data;
+				}	
+			}
+		})
+// 	}
 })
 
 

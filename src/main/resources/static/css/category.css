@@ -1,3 +1,8 @@
+/* @media screen and (min-width:840px) { */
+/* body { */
+/* 	min-height: 100vh; */
+/*     min-width: 840px; */
+/* } */
 .main {
     width:100%;
     height:100%;
@@ -25,7 +30,7 @@ a {
     text-decoration-line: none;
 }
 a:link {
-    color : gray;
+  color : gray;
 }
 /* 색상상자 */
 .name{
@@ -145,17 +150,25 @@ a:hover {
     text-align: left;
 }
 .book1-All {
-	float:left;
+/* 	float:left; */
 	width:99%;
 	height:330px;
+	margin: 0 auto;
+/* 	flex: 0 0 auto; */
+/*   	margin-right: 10px; */
+/*   	display: flex; */
+ 	flex-wrap: nowrap;
+  	overflow-x: auto;
+ 	white-space: nowrap;
+ 	text-align: center;
 }
 .book {
-	width:19%;
+	width:100%;
 	height:290px;
 	float:left;
 	text-align: center;
-	margin-left: 1%;
-	margin-top: 1%;
+	margin: 0 auto;
+	display:inline-flex;
 }
 .bookImg {
 	width:100%;
@@ -165,18 +178,19 @@ a:hover {
 }
 .bookName {
 	width:100%;
-	height : 50%;
 	text-align: left;
 	line-height: 10px;
-	margin-left: 20%;
-
+/* 	margin-left: 20%; */
+	font-size:15px;
+	height:21%;
 }
 
 /* 책 넣기 */
 .bookCate {
+	text-align:center;
 	font-weight: bold;
 	font-size:20px;
-	margin-left: 3%;
+/* 	margin-left: 3%; */
 }
 .book_img {
 	width:100px;
@@ -186,21 +200,54 @@ a:hover {
 #date  {
 	color: gray;
 	font-size:12px;
+	margin-left: 25%;
 }
 #name {
 	width:160px;
-	height:40px;
+	height:25px;
 	overflow:hidden;
 	text-overflow:ellipsis;
 	font-size: 15px;
 	font-weight: bold;
 	line-height: 20px;
+	margin-left: 25%;
 }
 #write {
 	color: skyblue;
+	height:15px;
+	width:160px;
 	font-size:12px;
+	margin-left: 25%;
+	text-overflow:ellipsis;
+	overflow:hidden;
 }
 #price {
 	font-size: 15px;
 	font-weight: bold;
+	margin-left: 25%;
+}
+/* ------------------------------*/
+/* 페이징 */
+.divbody_r_footer{
+   position: absolute;
+   margin-top:1.5%;
+/*    bottom:10px; */
+/*    margin-bottom:15px; */
+   right:0;
+   
+   width:99%;
+   text-align:center;
+   height:30px;
+   font-size:20px;
+}
+.divbody_r_footer:hover{
+   cursor:pointer;
+} 
+span:hover {
+	color:#97d4f7;
+}
+.a {
+	width:19.5%;
+/* 	flex: 0 0 auto; */
+	margin:0 auto;
 }
