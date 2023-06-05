@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-/mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.human.springboot.PaymentController.PaymentDAO">
+	<select id="selectShip" resultType="com.human.springboot.PaymentController.PaymentDTO">
+		select zip_code, address, mobile, name, email from member where id=#{param1}
+	</select>
+	<insert id="insertOrderCart">
+		insert into ordered_cart values(#{param1},#{param2},#{param3},#{param4}) 
+	</insert>
+	<insert id="insertPayment">
+		insert into PAYMENT values(order_num.nextval,sysdate,#{param1},#{param2},#{param3},#{param4}) 
+	</insert>
+</mapper>
