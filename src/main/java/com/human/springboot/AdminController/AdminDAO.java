@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 
 
 
+
+
 @Mapper
 public interface AdminDAO {
 	///상품
@@ -25,6 +27,13 @@ public interface AdminDAO {
 			void updateUrlC(String x1, int x2);
 			//----
 			void proDelete(int x1);
+	////-------------------------
+			ArrayList<AdminDTO> pSearch(String x1, String x2);
 	//회원
 			ArrayList<AdminDTO> memlist();
+			///----------------
+
+			ArrayList<AdminDTO> mSearch(String x1, String x2);
+	//리뷰
+			ArrayList<AdminDTO> revlist();
 }

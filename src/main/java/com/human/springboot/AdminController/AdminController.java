@@ -9,8 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -165,6 +168,13 @@ public class AdminController {
 			adao.proDelete(book_num);
 			return "redirect:/prolist";
 		}
+//    상품검색
+		@PostMapping("/book/search")
+		public String bSearch(Model model, @RequestParam("type") String type, @RequestParam("keyword") String keyword) {
+		    ArrayList<AdminDTO> pSearch = adao.pSearch(type, keyword);
+		    model.addAttribute("pl", pSearch);
+		    return "adminProduct";
+		}
 
 		//회원관리
 		 /*회원목록*/
@@ -174,4 +184,35 @@ public class AdminController {
 			model.addAttribute("ml",memlist);
 			return "adminMember";
 		}
+		//회원검색
+		@PostMapping("/member/search")
+		public String mSearch(Model model, @RequestParam("type") String type, @RequestParam("keyword") String keyword) {
+		    ArrayList<AdminDTO> mSearch = adao.mSearch(type, keyword);
+		    model.addAttribute("ml", mSearch);
+		    return "adminMember";
+		}
+//		리뷰목록
+		@GetMapping("/revlist")
+		public String revlist(Model model) {
+			ArrayList<AdminDTO> revlist= adao.revlist();
+			model.addAttribute("rl",revlist);
+			return "adminReview";
+		}
+	//리뷰삭제
+//		@PostMapping("/reviewDel")
+//		@ResponseBody
+//		public String reviewDel(HttpServletRequest req) {
+//			String val="ok";
+//			try {
+//				String id=req.getParameter("id");
+//				ardao.reviewDel(id);
+//				
+//			} catch(Exception e) {
+//				val="fail";
+//				e.printStackTrace();
+//				System.out.println(req.getParameter("id"));
+//			}
+//			return val;
+//		}
 }
+

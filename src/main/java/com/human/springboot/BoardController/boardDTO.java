@@ -12,4 +12,11 @@ public class boardDTO {
 	int B_RCOUNT;
 	String ID;
 	
+	//댓글
+	int bcontent_num;
+	String bc_create_date;
+	String bc_update_date;
+	String bc_content;
+
+
 }

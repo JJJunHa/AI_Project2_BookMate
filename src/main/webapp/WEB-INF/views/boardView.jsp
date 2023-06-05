@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -365,6 +366,9 @@ textarea.form-control {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+
+
+
 }
 
 .comment .comment-date {
@@ -429,7 +433,7 @@ a {
 </style>
 <body>
 
-<input value="<%=session.getAttribute("id")%>" hidden>
+<input value="<%=session.getAttribute("id")%>" type=hidden id=hidden>
 
 	<div class="main">
 		<div class="logo">
@@ -487,14 +491,14 @@ a {
 						<tr>
 							<td>제목</td>
 							<td colspan="2"><input type="text" class="form-control"
-								name="writer" value="${bView.b_TITLE}" readonly></td>
-							<td><input type="hidden" value="${bView.board_num}"></td>
+								name="subject" value="${bView.b_TITLE}" readonly></td>
+							<td><input type="hidden" id="board_num" value="${bView.board_num}"></td>
 						</tr>
 
 						<tr>
 							<td>작성자</td>
 							<td colspan="3"><input type="text" readonly
-								class="form-control" name="subject" value="${bView.ID}"></td>
+								class="form-control" name="subject" id=id value="${bView.ID}"></td>
 						</tr>
 
 						<tr>
@@ -511,78 +515,39 @@ a {
                     
                         <td colspan="4"><textarea id="summernote" name="summernote">${bView.b_CONTENT}</textarea></td>
                     	</tr>
-						<tr>
-							<td colspan="4" class="button">
-							<input type="button" value="목록보기" id="btnList"> 
+                    		
+						<tr>	<td colspan="4" class="button">
+						<c:if test="${id == bView.ID || sessionScope.id == 'bookmate'}">
+						
 							<input type="submit" value="수정" id="btnModify"> 
-							<input type="button" value="삭제" id="btnDelete"></td>
+							<input type="button" value="삭제" id="btnDelete">	
+						</c:if>
+							<input type="button" value="목록보기" id="btnList"> </td>
 						</tr>
 
 					</table>
 					<br>
 					
-
+					
 <!-- 	------------------------댓글입력창----------------------------------------------		----------- -->
+					<c:if test="${id == bView.ID || sessionScope.id == 'bookmate'}">
 					<div class="content5">
 						<table class="tblComment">
 							<tr>
 								<td class=fdfd><textarea cols="60" rows="5"
 										id="BC_content" name=BC_content placeholder="답글을 입력하세요."></textarea></td>
-							<td class="button"><input type=button value='등록'></td>
+							<td class="button"><input type=button value='등록' id=BC_btnInsert></td>
 							</tr>
 						</table>
 						
 					</div>
+					</c:if>
 <!-- 				------------------------------------------------------------------------------------------ -->
 				<!-- ----------------------------------------댓글	------------------------------------------------------ -->
 			
-					<div id="box" class="comment">
+					<div id="comment" class="comment">
 
-
-						<div id="b_writer2" class="author-name">이진영</div>
-
-						<div class="comment-content">
-							<pre>냄비 받침으로 사용하시고 새 제품으로 보내드릴게요 죄송합니다.</pre>
-						</div>
-						<div class="comment-footer">
-							<div>
-								<span class="comment-date"> 2023.05.23</span>
-							</div>
-							<div>
-								<input type="submit" value="수정" class="btnCModify">
-								<button id="remove" value="" class="reply-btn">삭제</button>
-							</div>
-						</div>
-						<hr>
-						<div id="b_writer2" class="author-name">이진영</div>
-
-						<div class="comment-content">
-							<pre>냄비 받침으로 사용하시고 새 제품으로 보내드릴게요 죄송합니다.</pre>
-						</div>
-						<div class="comment-footer">
-							<div>
-								<span class="comment-date"> 2023.05.23</span>
-							</div>
-							<div>
-								<input type="submit" value="수정" class="btnCModify">
-								<button id="remove" value="" class="reply-btn">삭제</button>
-							</div>
-						</div>
-						<hr>
-						<div id="b_writer2" class="author-name">이진영</div>
-
-						<div class="comment-content">
-							<pre>냄비 받침으로 사용하시고 새 제품으로 보내드릴게요 죄송합니다.</pre>
-						</div>
-						<div class="comment-footer">
-							<div>
-								<span class="comment-date"> 2023.05.23</span>
-							</div>
-							<div>
-								<input type="submit" value="수정" class="btnCModify" id=''>
-								<button id="remove" value="" class="reply-btn">삭제</button>
-							</div>
-						</div>
+					
 					</div>
 <!-- 					------------------------------------------------- -->
 				</div>
@@ -604,6 +569,8 @@ a {
 
 $(document)
 .ready(function() {
+	showBC();	
+	
    $('#summernote').summernote({
         height: 350,                 
         width: 900,         
@@ -647,6 +614,93 @@ $('#summernote').summernote('disable')  //써머노트 readonly
 	let a=${bView.board_num}
 	document.location='/bDelete/'+a;
 })
+//댓글작성
+.on('click','#BC_btnInsert',function(){
+
+	$.ajax({url:'/bcInsert',type:'post',
+		data:{BC_content:$('#BC_content').val(), board_num:$('#board_num').val()},
+		dataType:'text',
+		beforeSend:function(){
+		},
+		success:function(data){
+			alert("댓글이 등록되었습니다.");
+			$('#BC_content').val("");
+			showBC();	
+			
+		}})
+})
+//댓글 삭제
+	.on('click', '#remove', function() {
+	
+		$.ajax({url:'/bcdel',
+			type:'post',
+			data:{num:$(this).val()},
+			dataType:'text',
+                beforeSend:function(){
+                			
+                			},
+                			success:function(data){
+                				alert("댓글이 삭제되었습니다.");
+                				showBC();
+                			}})
+                	  
+                	  
+                	})
+
+
+//댓글 목록
+function showBC() {
+
+  $.ajax({
+    url: '/selectBC',
+    type: 'post',
+    data: {
+      board_num: $('#board_num').val() 
+    },
+    dataType: 'json',
+    beforeSend: function() {               
+    },
+    success: function(data) {
+    	
+      $('#comment div').remove();
+      $('#comment hr').remove();
+      for (let i = 0; i < data.length; i++) {
+        let box = 
+	'<div id="b_writer2" class="author-name">&nbsp;&nbsp;'
+									+ data[i]['id']
+									+ '</div>'
+									+ '<div class="comment-content">'
+									+ '  <pre>&nbsp;&nbsp;'
+									+data[i]['bc_content']
+									+ '</pre>'
+									+ '</div>'
+									+ '<div class="comment-footer">'
+									+ '  <div>'
+									+ '    <span class="comment-date">&nbsp;&nbsp;'
+									+data[i]['bc_create_date']
+									+ '</span>'
+									+ '  </div>'
+									;
+							let box2 =  '  <div>'
+							
+							
+							+'<button id="remove" value="' + data[i]['bcontent_num'] + '" class="reply-btn">삭제</button>&nbsp;&nbsp'
+
+							let box3 = '</div>'+'</div>'+ '<hr>';
+					       box4='';
+							if (data[i]['check'] == 'check') {
+								box4 = box + box2 + box3;
+							} else {
+								box4 = box + box3;
+								
+							}
+							$('#comment').append(box4);
+							
+						}
+   
+					}
+				})
+	}
 
 </script>
 </html>

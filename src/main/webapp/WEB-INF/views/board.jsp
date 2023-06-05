@@ -382,10 +382,12 @@ a:hover {
 							<option value="ID">작성자</option>
 							<option value="b_TITLE">제목</option>
 						</select> 
-						
+					
 						<input type="text" id="keyword" name="keyword"> <input
 							type="submit" id="btnsearch" value=검색>
+								<% if(session.getAttribute("id")!=null){ %>
 							<input type="button" value="글쓰기" class="btnNew" id="btnNew">
+							<%} %>
 							</div>
 					</form>
 					
