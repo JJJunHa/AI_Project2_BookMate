@@ -73,21 +73,6 @@ a:link {
 	height:40px;
 	background-color: white;
 }
-#nav li:hover ul {
-	opacity: 1;
-	z-index: 1;
-}
-#nav li:hover ul li {
-	overflow: visible;
-	z-index: 1;
-}
-#nav li ul li:hover > a {
-	background-color: #97d4f7;
-	color:black;
-	margin:0;
-	padding:5px;
-	z-index: 1;
-}
 .category {
     width:100%;
     height:60px;
@@ -126,7 +111,6 @@ a:hover {
 /* 본문 */
 .contentBody-submit {
     width:100%;
-    height:1300px;
     border: 2px solid rgb(216, 216, 216);
     text-align: center;
 }
@@ -209,6 +193,16 @@ hr {
     background-color: #eaf5fc;
 
 }
+.dona-textBox {
+    height: 30px;
+    font-size: 15px;
+    border: 0.5px solid lightgray;
+    outline: none;
+    padding-left: 10px;
+    margin-top: 3px;
+    background-color: #eaf5fc;
+
+}
 /* 기증 내용 및 방법 */
 .content_info {
     width:100%;
@@ -233,7 +227,7 @@ hr {
     vertical-align: top;
     border-left: 1px solid rgb(83, 125, 150);
 }
-.address_postcode_btn {
+.btnPostcode {
     border: 1px solid lightgray;
     background-color: raba(0,0,0,0);
     color: gray;
@@ -244,7 +238,8 @@ hr {
     width: 200px;
     height: 50px;
     border: 0;
-    margin-top:2%;
+    margin-top:1%;
+    margin-bottom:5%;
     background-color: rgb(83, 125, 150);
     padding: 5px;
     color: white;
@@ -272,7 +267,6 @@ hr {
 }
 .contentBody-main {
 	width:100%;
-    height:1300px;
     border: 2px solid rgb(216, 216, 216);
     text-align: center;
 }
@@ -297,4 +291,34 @@ a {
  	 text-decoration-line: none;
  	 text-align: center;
   	 color: inherit; /* 링크의 색상 제거 */
-	}
+}
+/* dialog */
+.confirmDialog {
+	text-align: center;
+	margin: 0 auto;
+}
+.tbl_confirm {
+	text-align: left;
+	width: 100%;
+}
+.tbl_confirm th {
+	width: 27%;
+}
+.tbl_confirm td {
+	width: 73%;
+}
+.inputText {
+	width: 100%;
+	height:25px;
+	margin-top:1%;
+	border:0.5px solid lightgray;
+}
+.confirm_btn {
+	width: 200px;
+    background-color: rgb(83, 125, 150);
+    padding: 5px;
+    color: white;
+    border:none;
+    font-size: 12px;
+    margin-top:3%;
+}
