@@ -5,7 +5,7 @@
 <mapper namespace="com.human.springboot.CartController.CartDAO">
 	<!--책 select해서 category에 넣기 -->
     <select id="load_cart" resultType="com.human.springboot.CartController.CartDTO">
-		select a.cart_num, b.book_cover, b.book_name, a.qty, b.book_price
+		select a.cart_num, b.book_cover, b.book_name, a.qty, b.book_price , b.book_num
 			from cart a, book b
 			where id=#{param1}
 			and a.book_num=b.book_num

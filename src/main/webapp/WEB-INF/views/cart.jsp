@@ -42,7 +42,7 @@
 	</div>
 	
 	<div class=cart-main>
-		<p style="height:50px; font-size:30px;">장바구니</p>
+		<p style="height:50px; font-size:30px; ">장바구니</p>
 		<table class=tblCart id=tblCart>
 		</table>
 		<div class=cart-sub>
@@ -55,7 +55,7 @@
 			<div class=cart-btn>
 			<div class=btn-right>
 					<button type="button" class="allDelete" id=allDelete>전체 삭제</button>
-					<button type="button" class="allOrder">상품 주문하기</button>
+					<button type="button" class="allOrder" id=allOrder>상품 주문하기</button>
 				</div>
 			</div>
 		</div>
@@ -67,8 +67,11 @@
 <script>
 $(document)
 .ready(function(){
+	
 	loadCart();
-	countCart();
+})
+.on('click','.allOrder',function(){
+	CartCheck();
 })
 // 장바구니 개별 삭제
 .on('click','.Delete',function(){
@@ -133,6 +136,7 @@ $(document)
 })
 // 변경 버튼 클릭 시
 .on('click','.btnmodify', function(){
+	location.reload();
 	let qty = $(this).closest('td').find('#qtytext').val();
 	let id = '<%=session.getAttribute("id")%>';
 	let cart_num = $(this).closest('tr').find('td:first').text();
@@ -153,25 +157,24 @@ $(document)
 	})
 })
 // cart에서 상품 클릭 시 상세페이지로 연결
-.on('click','.tblCart tr td:nth-child(-n+3)', function(){
-	let book_name = $(this).find('td:nth-child(3)').text();
-	console.log(book_name);
+
+
+function CartCheck() {
+	let id = '<%=session.getAttribute("id")%>';
 	$.ajax({
-		url: '/find_book',
+		url: '/load_cart',
 		type: 'post',
-		data: { book_name: book_name },
-		dataType: 'text',
+		data: { id: id },
+		dataType: 'JSON',
 		success: function(data) {
-			if(data=='' || data==null || data=='fail') {
-				alert("오류로 인해 잠시후에 다시 시도해주세요.");
+			if(data=='' || data==null) {
+				alert("장바구니에 담긴 상품이 없습니다.");
 			} else {
-				document.location="/detail/"+data;
-			}	
+				document.location="/payment";
+			}
 		}
 	})
-})
-
-
+}
 
 
 
@@ -194,9 +197,9 @@ function loadCart() {
 				
 				let cart = data[0];
 	       		 let str='<tr>';
-	    		 str+="<td id=cart_num>"+cart['cart_num']+"</td>";
-	    		 str+="<td id=book_cover'>"+'<img src="' + cart['book_cover'] + '" class="cart_img" id="cart_img">'+"</td>";
-	    		 str+="<td id=book_name>"+cart['book_name']+"</td>";
+	    		 str+="<td id="+cart['book_num']+">"+cart['cart_num']+"</td>";
+	    		 str+="<td id="+cart['book_num']+">"+'<img src="' + cart['book_cover'] + '" class="cart_img" id="cart_img">'+"</td>";
+	    		 str+="<td id="+cart['book_num']+">"+cart['book_name']+"</td>";
 	    		 str+="<td id=qty><div><input type=text name= qtytext calss=qtytext id=qtytext value="+cart['qty']+" readonly><button class='qtybtnminus'>-</button><button class='qtybtnplus'>+</button><div><button class='btnmodify'>변경</button></td>";
 	    		 str+="<td id=book_price'>"+cart['book_price']+"</td>";
 	    		 str+="<td id=total>"+(parseInt(cart['qty'])*parseInt(cart['book_price']))+"</td><td rowspan="+data.length+">무료</td><td><button type='button' class='Delete' id=Delete>삭제</button></tr>";
@@ -208,15 +211,23 @@ function loadCart() {
 				for(let i=1; i<data.length; i++){
 		       		 let cart = data[i];
 		       		 let str='<tr>';
-		    		 str+="<td id=cart_num>"+cart['cart_num']+"</td>";
-		    		 str+="<td id=book_cover'>"+'<img src="' + cart['book_cover'] + '" class="cart_img" id="cart_img">'+"</td>";
-		    		 str+="<td id=book_name>"+cart['book_name']+"</td>";
+		    		 str+="<td id="+cart['book_num']+">"+cart['cart_num']+"</td>";
+		    		 str+="<td id="+cart['book_num']+">"+'<img src="' + cart['book_cover'] + '" class="cart_img" id="cart_img">'+"</td>";
+		    		 str+="<td id="+cart['book_num']+">"+cart['book_name']+"</td>";
 		    		 str+="<td id=qty><div><input type=text name= qtytext calss=qtytext id=qtytext value="+cart['qty']+" readonly><button class='qtybtnminus'>-</button><button class='qtybtnplus'>+</button><div><button class='btnmodify'>변경</button></td>";
 		    		 str+="<td id=book_price'>"+cart['book_price']+"</td>";
 		    		 str+="<td id=total>"+(parseInt(cart['qty'])*parseInt(cart['book_price']))+"</td><td><button type='button' class='Delete' id=Delete>삭제</button></tr>";
 		    		 
 		    		 $('#tblCart').append(str);
 		       	 }
+		    		 $(document)
+		    		 .on('click','.tblCart tr td:nth-child(-n+3)', function(){
+		    			 	let book_num = $(this).attr('id');
+		    				console.log(book_num);
+		    				console.log('check');
+		    				document.location="/detail/"+book_num;
+		    			})
+		    	countCart();
 			}
 		}
 	})

@@ -124,7 +124,7 @@
       </div>
     </div>
   </div>
-	
+	<input id="id" value="<%=session.getAttribute("id")%>" hidden>
 
 </body>
 

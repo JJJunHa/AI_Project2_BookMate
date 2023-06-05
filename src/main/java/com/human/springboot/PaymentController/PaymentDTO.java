@@ -8,4 +8,12 @@ public class PaymentDTO {
 	String order_date;
 	int cart_num;
 	String id;
+	String email;
+	String zip_code;
+	String address;
+	String mobile;
+	String address1;
+	String address2;
+	String address3;
+	String name;
 }

@@ -50,6 +50,7 @@ public class CartController {
          jo.put("cart_num", alCart.get(i).getCart_num());
          jo.put("book_cover", alCart.get(i).getBook_cover());
          jo.put("book_name", alCart.get(i).getBook_name());
+         jo.put("book_num", alCart.get(i).getBook_num());
          jo.put("qty", alCart.get(i).getQty());
          jo.put("book_price", alCart.get(i).getBook_price());
          
