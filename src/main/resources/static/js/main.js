@@ -15,6 +15,142 @@ $(document).ready(function() {
     });
     
 });
+//카트에 넣기 클릭 시
+function handleClickCartButton() {
+    $(document).on('click', '#cartButton', function() {
+        let m_id = $('#id').val();
+        let qty = 1;
+        let book_num = $(this).attr('name');
+
+        // 아이디가 있을 때
+        if(m_id=='' || m_id==null || m_id=='null') {
+            alert('로그인 후 이용해주세요');
+            document.location="/login";
+        } 
+        // 아이디가 없을 때
+        else {
+            $.ajax({
+                url: '/confirm_cart',
+                type: 'post',
+                data: { m_id: m_id,  qty:qty, book_num:book_num },
+                dataType: 'text',
+                success: function(data) {
+                    if(data == "already") {
+                        $.ajax({
+                            url: '/update_cart',
+                            type: 'post',
+                            data: { m_id: m_id, qty:qty, book_num:book_num },
+                            dataType: 'text',
+                            success: function(data) {
+                                if(data=="ok"){
+                                    var confirmval = confirm('이미 장바구니에 존재하는 상품입니다. 장바구니로 이동하시겠습니까?');
+                                    if(confirmval) {
+                                        document.location="/cart";
+                                    } else {
+
+                                    }
+                                } else {
+                                    alert("오류로 인해 잠시후에 다시 시도해주세요.");
+                                }
+                            }
+                        })
+                    } else if(data=="ok"){
+                        $.ajax({
+                            url: '/insert_cart',
+                            type: 'post',
+                            data: { m_id: m_id, qty:qty, book_num:book_num },
+                            dataType: 'text',
+                            success: function(data) {
+                                if(data=="ok"){
+                                    var confirmval = confirm('장바구니에 상품을 담았습니다. 장바구니로 이동하시겠습니까?');
+                                    if(confirmval) {
+                                        document.location="/cart";
+                                    } else {
+
+                                    }
+                                } else {
+                                    alert("오류로 인해 잠시후에 다시 시도해주세요.");
+                                }
+                            }
+                        })
+                    } else {
+                        alert("오류로 인해 잠시후에 다시 시도해주세요.");
+                    }
+                }
+            })
+        
+		}
+    });
+}
+
+//바로구매 클릭 시
+function handleClickPaymentButton() {
+    $(document).on('click', '#paymentButton', function() {
+        let m_id = $('#id').val();
+        let qty = 1;
+        let book_num = $(this).attr('name');
+
+        // 아이디가 있을 때
+        if(m_id=='' || m_id==null || m_id=='null') {
+            alert('로그인 후 이용해주세요');
+            document.location="/login";
+        } 
+        // 아이디가 없을 때
+        else {
+            $.ajax({
+                url: '/confirm_cart',
+                type: 'post',
+                data: { m_id: m_id,  qty:qty, book_num:book_num },
+                dataType: 'text',
+                success: function(data) {
+                    if(data == "already") {
+                        $.ajax({
+                            url: '/update_cart',
+                            type: 'post',
+                            data: { m_id: m_id, qty:qty, book_num:book_num },
+                            dataType: 'text',
+                            success: function(data) {
+                                if(data=="ok"){
+                                    var confirmval = confirm('이미 장바구니에 존재하는 상품입니다. 결제페이지로 이동하시겠습니까?');
+                                    if(confirmval) {
+                                        document.location="/payment";
+                                    } else {
+
+                                    }
+                                } else {
+                                    alert("오류로 인해 잠시후에 다시 시도해주세요.");
+                                }
+                            }
+                        })
+                    } else if(data=="ok"){
+                        $.ajax({
+                            url: '/insert_cart',
+                            type: 'post',
+                            data: { m_id: m_id, qty:qty, book_num:book_num },
+                            dataType: 'text',
+                            success: function(data) {
+                                if(data=="ok"){
+                                    var confirmval = confirm('장바구니에 상품을 담았습니다. 결제페이지로 이동하시겠습니까?');
+                                    if(confirmval) {
+                                        document.location="/payment";
+                                    } else {
+
+                                    }
+                                } else {
+                                    alert("오류로 인해 잠시후에 다시 시도해주세요.");
+                                }
+                            }
+                        })
+                    } else {
+                        alert("오류로 인해 잠시후에 다시 시도해주세요.");
+                    }
+                }
+            })
+        
+		}
+    });
+}
+
 
 /*---------------------------------------------------------------------------------아작스로 도서 뛰우기*/
 function showBook() {
@@ -25,8 +161,11 @@ function showBook() {
         dataType: 'json',
         beforeSend: function() {},
         success: function(data) {
-			console.log(data);
 			appendBoxesToGrid(data);
+			//카트에 넣기 클릭 시
+			handleClickCartButton();
+			//바로 결제 클릭시
+			handleClickPaymentButton();
         },
     });
 }
@@ -40,8 +179,8 @@ function suggestion(emotion) {
         dataType: 'json',
         beforeSend: function() {},
         success: function(data) {
-            
 			appendBoxesToGrid(data);
+
         },
     });
 }
@@ -56,8 +195,8 @@ function appendBoxesToGrid(data) {
                 	<div  class = "image_overlay image_overlay_blur">
 									<div class = "image_movieStory"><div class ="summary">${data[i]['BOOK_SUMMARY']}</div></div>
 									<div>
-			                            <a class="button cart" href="#cart">장바구니</a>
-			                            <a class="button checkout" href="#checkout">바로결제</a>
+			                            <a class="button cart" id="cartButton" name="${data[i]['BOOK_NUM']}">장바구니</a>
+			                            <a class="button checkout" id="paymentButton" name="${data[i]['BOOK_NUM']}">바로결제</a>
 			                            <a class="button dashboard" href="detail/${data[i]['BOOK_NUM']}">상세보기</a>
 			                        </div>
 					</div>
@@ -83,16 +222,12 @@ function appendBoxesToGrid(data) {
         `;
         
         $('#grid-container').append(box);
+
     }
+    
+    
+    
 }
-
-
-
-
-
-
-
-
 
 /*---------------------------------------------------------------------------------*/
 function changeTab(tab) {
@@ -192,6 +327,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			        	appendBoxesToGrid(data);
 						var chatContent = document.getElementById('chat-content');
     					chatContent.scrollTop = chatContent.scrollHeight;
+
     					
 			        }
 			    })
@@ -222,7 +358,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			        	appendBoxesToGrid(data);
 						var chatContent = document.getElementById('chat-content');
     					chatContent.scrollTop = chatContent.scrollHeight;
-    					
+			
 			        }
 			    })
 				inputElement.value = "";
@@ -250,6 +386,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			        	appendBoxesToGrid(data);
 						var chatContent = document.getElementById('chat-content');
     					chatContent.scrollTop = chatContent.scrollHeight;
+
     					
 			        }
 			    })
@@ -409,10 +546,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 	// 채팅 박스 요소
 	
-	// 스크롤을 아래로 이동하는 함수
-	function scrollToBottom() {
-	  
-	}
+	
 	
     
 

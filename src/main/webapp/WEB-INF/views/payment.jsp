@@ -10,12 +10,21 @@
 <body>
 <div class="main">
 	<div class="logo">
-    	<img src="/img/logo.png" class="logoImg">
+    	<a href="/main"><img src="/img/logo.png" class="logoImg"></a>
     </div>
+    <% if(session.getAttribute("id")!=null){ %>
+    
     <div class="menu">
-        <a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
-    	<input type=hidden id=cart_id value="cokezero">
+        <a href="/logout">로그아웃</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
     </div>
+   
+   <% } else {%>
+   
+   <div class="menu">
+        <a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/login" onclick="alert('로그인 후 이용해주세요')">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+    </div>
+    
+    <% } %>
     
     <div class="name">지금 어떤 책을 읽어야 할지 고민하는 사용자의 상태에 맞는 책을 추천해주는 서비스</div>
     <div class="category">
@@ -46,14 +55,6 @@
 				<th style="width:15%;">합계금액</th>
 				<th style="width:10%;">배송비</th>
 			</tr>
-			<tr>
-		    	<td id=book_cover><img src="/img/코미디 pic3.jpg" class="pay_img" id="pay_img"></td>
-		    	<td id=book_name>라바 시즌2 7: 산전수전 코미디</td>
-		    	<td id=qty>2</td>
-		    	<td id=book_price>9800</td>
-		    	<td id=total>19600</td>
-		    	<td id=fee>무료</td>
-			</tr>
 		</table>
 		
 		<div class=payment-sub>
@@ -61,13 +62,13 @@
 				<button type="button" class="movecart" id=movecart>◁ 장바구니 가기</button>
 			</div>
 			<div class=payment-price>
-				<span id=countpay>총 <b>1</b>개의 상품금액 <b>19600</b>원 + 배송비 <b>0</b>원 = 합계 <b>19600원</b></span>
+				<span id=countpay></span>
 			</div>
 			<div class=pay-agree>
 				<p><b>약관동의</b></p>
 				<div class=check-agree>
 					<form>
-					    <p><input type="checkbox" name="all" class="check-all"> <label style="font-size:17px;"><b>모두 동의</b></label></p>
+					    <p><input type="checkbox" name="all" id="check-all" class="check-all"> <label style="font-size:17px;"><b>모두 동의</b></label></p>
 					    <hr>
 					    <p><input type="checkbox" name="check1" class="check-1"> <label>(필수) 개인정보 수집 이용에 대한 내용을 확인 하였으며 이에 동의합니다.</label></p>
 					    <p><input type="checkbox" name="check2" class="check-1"> <label>(필수) 이용약관에 대한 내용을 확인 하였으며 이에 동의합니다.</label></p>
@@ -80,15 +81,15 @@
 				<table class=tbl-info>
 					<tr>
 						<th>주문하시는 분</th>
-						<td><input type="text" class="textBox1" id=name></td>
+						<td><input type="text" class="textBox1" id="name" value="${ship.name}" readonly></td>
 					</tr>
 					<tr>
 						<th>휴대폰 번호</th>
-						<td><input type="text" class="textBox1" id=mobile></td>
+						<td><input type="text" class="textBox1" id="mobile" value="${ship.mobile}" readonly></td>
 					</tr>
 					<tr>
 						<th>이메일</th>
-						<td><input type="text" class="textBox1" id=email></td>
+						<td><input type="text" class="textBox1" id="email" value="${ship.email}" readonly></td>
 					</tr>
 				</table>
 			</div>
@@ -103,19 +104,19 @@
 					</tr>
 					<tr>
 						<th>받으실 분</th>
-						<td><input type="text" class="textBox1" id=name1></td>
+						<td><input type="text" class="textBox1" id="name1" value="${ship.name}" readonly></td>
 					</tr>
 					<tr>
 						<th>받으실 곳</th>
-						<td><input type="text" id="postcode" class="textBox2" placeholder="    우편번호" >
-							<input type="button" class=btnPostcode onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-							<input type="text" id="address" class="textBox2" placeholder="    주소"><br>
-							<input type="text" id="detailAddress" class="textBox2" placeholder="    상세주소">
-							<input type="text" id="extraAddress" class="textBox3" placeholder="    참고항목"></td>
+						<td><input type="text" id="postcode" class="textBox2" placeholder="    우편번호"  value="${ship.zip_code}" readonly>
+							<input type="button" id="zipbutton" class=btnPostcode onclick="execDaumPostcode()" value="우편번호 찾기" readonly><br>
+							<input type="text" id="address" class="textBox2" placeholder="    주소" value="${ship.address1}" readonly><br>
+							<input type="text" id="detailAddress" class="textBox2" placeholder="    상세주소" value="${ship.address2}" readonly>
+							<input type="text" id="extraAddress" class="textBox3" placeholder="    참고항목" value="${ship.address3}" readonly></td>
 					</tr>
 					<tr>
 						<th>휴대폰 번호</th>
-						<td><input type="text" class="textBox1" id=mobile></td>
+						<td><input type="text" class="textBox1" id="mobile2" value="${ship.mobile}"></td>
 					</tr>
 					<tr>
 						<th>남기실 말씀</th>
@@ -137,7 +138,7 @@
 					</tr>
 					<tr>
 						<th>최종 결제 금액</th>
-						<td><input type="text" class="textBox4" id=price placeholder="10000" style="font-weight: bold; font-size:15px;">원</td>
+						<td><input type="text" class="textBox4" id=price2 placeholder="10000" style="font-weight: bold; font-size:15px;">원</td>
 					</tr>
 				</table>
 			</div>
@@ -146,7 +147,10 @@
 				<p><b>결제수간 선택 / 결제</b></p>
 				<table class=tbl-info>
 					<tr>
-						<td><input type="radio" name="pay" value="normal" id="normal-radio">&nbsp;무통장입금&nbsp;</td>
+						<td><input type="radio" name="pay" value="무통장입금" name="payway" id="normal-radio">&nbsp;무통장입금&nbsp;</td>
+					</tr>
+					<tr>
+						<td><input type="radio" name="pay" value="카카오페이" name="payway" id="normal-radio2">&nbsp;카카오페이&nbsp;</td>
 					</tr>
 				</table>
 			</div>
@@ -164,9 +168,205 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script>
 $(document)
+.ready(function(){
+	loadCart();
+	$('#zipbutton').prop('disabled', true);
+	$('#change-radio').prop('checked', true);
+	//약관동의
+	$('.check-all').click(function() {
+	    $('.check-1').prop('checked', this.checked);
+	  });
+
+	  $('.check-1').change(function() {
+	    if ($('.check-1:checked').length == $('.check-1').length) {
+	      $('.check-all').prop('checked', true);
+	    } else {
+	      $('.check-all').prop('checked', false);
+	    }
+	  });
+
+})
+//결제하기
+.on('click','#order', function(){
+	if (!$('#check-all').is(":checked")) {
+        alert('모든 약관에 동의를 해주세요');
+        return false;
+      } 
+	if($('#name1').val()===null||$('#name1').val()===''){
+		alert('받으실 분을 입력해주세요')
+		return false;
+	}
+	if($('#postcode').val()===null||$('#postcode').val()===''){
+		alert('우편버호를 입력해주세요')
+		return false;
+	}
+	if($('#address').val()===null||$('#address').val()===''){
+		alert('주소를 입력해주세요')
+		return false;
+	}
+	if($('#detailAddress').val()===null||$('#detailAddress').val()===''){
+		alert('상세주소를 입력해주세요')
+		return false;
+	}
+	if($('#mobile2').val()===null||$('#mobile2').val()===''){
+		alert('받는분 연락처를 입력해주세요')
+		return false;
+	}
+	if ($('input[name="pay"]:checked').length === 0) {
+	    alert('결제 수단을 선택해주세요.');
+	    return false;
+	}
+	coment
+	let id = '<%=session.getAttribute("id")%>';
+	console.log(id);
+	console.log($('#coment').val());
+	console.log($('input[name="pay"]:checked').val());
+	$.ajax({
+		url: '/paymentInsert',
+		type: 'post',
+		data: { id: id, coment: $('#coment').val(), payway: $('input[name="pay"]:checked').val()},
+		dataType: 'text',
+		success: function(data) {
+			if(data=='fail' || data==null) {
+				alert('오류가 발생했습니다');
+			} else {
+				alert('결제가 완료되었습니다.');
+				document.location="/main";
+			}	
+		}
+	})
+	 
+	
+})
+
+// 장바구니 가기 클릭 시
+.on('click','#movecart', function(){
+	document.location="/cart";
+})
+.on('click','#self-radio',function(){
+	$('#name1').val('');
+	$('#postcode').val('');
+	$('#address').val('');
+	$('#detailAddress').val('');
+	$('#mobile2').val('');
+	$('#extraAddress').val('');
+	$('#name1').prop('readonly', false);
+	$('#postcode').prop('readonly', false);
+	$('#address').prop('readonly', false);
+	$('#detailAddress').prop('readonly', false);
+	$('#mobile2').prop('readonly', false);
+	$('#zipbutton').prop('disabled', false);
+	$('#extraAddress').prop('readonly', false);
+	
+	
+})
+.on('click','#change-radio',function(){
+	$('#name1').val('${ship.name}');
+	$('#postcode').val('${ship.zip_code}');
+	$('#address').val('${ship.address1}');
+	$('#detailAddress').val('${ship.address2}');
+	$('#extraAddress').val('${ship.address3}');
+	$('#mobile2').val('${ship.mobile}');
+	$('#name1').prop('readonly', true);
+	$('#postcode').prop('readonly', true);
+	$('#address').prop('readonly', true);
+	$('#detailAddress').prop('readonly', true);
+	$('#extraAddress').prop('readonly', true);
+	$('#mobile2').prop('readonly', true);
+	$('#zipbutton').prop('disabled', true);
+})
 
 
 
+// 장바구니 목록 뛰우기
+function loadCart() {
+	let id = '<%=session.getAttribute("id")%>';
+	$.ajax({
+		url: '/load_cart',
+		type: 'post',
+		data: { id: id },
+		dataType: 'JSON',
+		success: function(data) {
+			
+			if(data=='' || data==null) {
+				$('#tblPayment').empty();
+	       		 let str="<tr> ";
+	    		 str+="<th class=cart_empty>장바구니에 담긴 상품이 없습니다.</th></tr>";
+	    		 $('#tblPayment').append(str);
+			} else {
+				$('#tblPayment').empty();
+				$('#tblPayment').append('<tr><th colspan="2" style="width:50%;">상품/옵션 정보</th><th style="width:10%;">수량</th><th style="width:15%;">상품금액</th><th style="width:15%;">합계금액</th><th style="width:10%;">배송비</th></tr>');
+				 
+	    		 let cart = data[0];
+	    		 let str = '<tr>';
+	    		 str += '<td id="book_cover">' + '<img src="' + cart['book_cover'] + '" class="pay_img" id="pay_img">' + '</td>';
+	    		 str += '<td id="book_name">' + cart['book_name'] + '</td>';
+	    		 str += '<td id="qty">' + cart['qty'] + '</td>';
+	    		 str += '<td id="book_price">' + cart['book_price'] + '</td>';
+	    		 str += '<td id="total">' + (parseInt(cart['qty']) * parseInt(cart['book_price'])) + '</td>';
+	    		 str += '<td id="fee">무료</td></tr>';
+	  
+	    		 $('#tblPayment').append(str);
+				
+				for(let i=1; i<data.length; i++){
+		       		 let cart = data[i];   	
+		    		 let str = '<tr>';
+		    		 str += '<td id="book_cover">' + '<img src="' + cart['book_cover'] + '" class="pay_img" id="pay_img">' + '</td>';
+		    		 str += '<td id="book_name">' + cart['book_name'] + '</td>';
+		    		 str += '<td id="qty">' + cart['qty'] + '</td>';
+		    		 str += '<td id="book_price">' + cart['book_price'] + '</td>';
+		    		 str += '<td id="total">' + (parseInt(cart['qty']) * parseInt(cart['book_price'])) + '</td>';
+		    		 str += '<td id="fee">무료</td></tr>';
+		    		 
+		    		 $('#tblPayment').append(str);
+		       	 }
+		    		 $(document)
+		    		 .on('click','.tblPayment tr td:nth-child(-n+3)', function(){
+		    			 	let book_num = $(this).attr('id');
+		    				console.log(book_num);
+		    				console.log('check');
+		    				document.location="/detail/"+book_num;
+		    			})
+			}
+			countCart();
+		}
+	})
+}
+function countCart() {
+	let id = '<%=session.getAttribute("id")%>';
+	$.ajax({
+		url: '/count_cart',
+		type: 'post',
+		data: { id: id },
+		dataType: 'text',
+		success: function(data) {
+			if(data=='' || data==null) {
+				let str = '총 <b>'+0+'</b>개의의 상품 금액 <b>0원</b>'
+				$('#countpay').append(str);
+				$('#price').val(0);
+				$('#price2').val(totalPrice);
+			} else {
+				let totalPrice = Total();
+				let str = '총 <b>' + data + '</b>개의 상품 금액 <b>' + totalPrice + '원</b>     +  배송비 <b>0</b>원  =   합계 <b>' + totalPrice + '원</b>'; // 'price' 변수 오타 수정
+		        $('#countpay').append(str);
+				$('#price').val(totalPrice);
+				$('#price2').val(totalPrice);
+			}	
+		}
+	})
+}
+function Total() {
+	let total = 0;
+  	$('#tblPayment tr').each(function() {
+    	$(this).find('td:eq(4)').each(function() {
+      		let price = parseInt($(this).text());
+      		if (!isNaN(price)) {
+        		total += price;
+      		}
+    	});
+  	});
+	return total;
+}
 // 우편번호 찾기
 function execDaumPostcode() {
         new daum.Postcode({
