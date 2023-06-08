@@ -262,26 +262,26 @@ $(document)
 .on('click','#confirm_btn', function(){
 	let id = '<%=session.getAttribute("id")%>';
 	console.log(id);
-	$.ajax({
-		url: '/insert_donation',
-		type: 'post',
-		data: { id:id, dona_name:nameVal, dona_qty:IntegerBookVal,  dona_way:donation_way},
-		dataType: 'text',
-		success: function(data) {
-			if(data=="ok") {
-				var confirmval = confirm('해당 정보로 기브앤테이크를 신청하시겠습니까?');
-				if(confirmval) {
-					alert("기브앤테이크 신청이 완료되었습니다. \n자세한 내용은 [마이페이지] - [기브앤테이크] 를 확인해주세요.")
-					document.location="/donation";
+	let confirmval = confirm('해당 정보로 기브앤테이크를 신청하시겠습니까?');
+	if(confirmval) {
+		$.ajax({
+			url: '/insert_donation',
+			type: 'post',
+			data: { id:id, dona_name:nameVal, dona_qty:IntegerBookVal,  dona_way:donation_way},
+			dataType: 'text',
+			success: function(data) {
+				if(data=="ok") {
+						alert("기브앤테이크 신청이 완료되었습니다. \n자세한 내용은 [마이페이지] - [기브앤테이크] 를 확인해주세요.")
+						document.location="/donation";
 				} else {
+					alert("오류로 인해 잠시후에 다시 시도해주세요.")
 					return false;
 				}
-			} else {
-				alert("오류로 인해 잠시후에 다시 시도해주세요.")
-				return false;
 			}
-		}
-	});	
+		});	
+	} else {
+		return false;
+	}
 })
 
 //  2-1. 모바일, 주소 클릭 시 회원정보 수정으로 가라는 alert 생성
