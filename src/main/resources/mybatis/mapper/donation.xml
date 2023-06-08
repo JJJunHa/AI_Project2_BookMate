@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-/mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.human.springboot.DonationController.DonationDAO">
+	<!--기부 신청 창에 회원정보 가져오기 -->
+    <select id="load_personInfo" resultType="com.human.springboot.DonationController.DonationDTO">
+		select name, mobile, zip_code, address from member where id = #{param1}
+	</select>
+
+	<insert id="insert_donation">
+		insert into donation(dona_num, dona_name, dona_qty, dona_way, id, dona_date) values(dona_num.nextval, #{param1},#{param2},#{param3}, #{param4}, TO_CHAR(SYSDATE, 'YYYY/MM/DD')) 
+	</insert>
+</mapper>
