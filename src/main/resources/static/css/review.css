@@ -1,0 +1,202 @@
+.main {
+    width:100%;
+    height:100%;
+    /* border: 1px solid black; */
+}
+.logo {
+    width:100%;
+    height:100px;
+    text-align: center;
+}
+.logoImg {
+    width:20%;
+    margin-top:20px;
+    /* border: 1px solid black; */
+    display: inline-block;
+}
+/* 로그인, 장바구니, 마이페이지, 고객센터 연결 */
+.menu {
+    width:100%;
+    height:40px;
+    background-color: white;
+    text-align : right;
+}
+a {
+    text-decoration-line: none;
+}
+a:link {
+  color : gray;
+}
+/* 색상상자 */
+.name{
+    width:100%;
+    height:20px;
+    background-color: #97d4f7;
+    color:white;
+    text-align : center;
+    padding : 20px 0;
+}
+/* 카테고리 */    
+#nav {
+	list-style:none;
+	height: 40px;
+	padding: 5px 1px;
+	margin: 0;
+}
+#nav li {
+	float:left;
+	position:relative;
+	margin-top:0.5%;
+	padding:0;
+}
+#nav li a {
+	display:block;
+	padding:7px 8px;
+	margin:0;
+	text-decoration: none;
+}
+#nav ul {
+	list-style: none;
+	margin:0;
+	padding:0;
+	position: absolute;
+	left:0;
+	top:40px;
+	text-align: center;
+	opacity: 0;
+}
+#nav ul li {
+	float: none;
+	margin:0;
+	padding:0;
+	width: 150px;
+	height:40px;
+	background-color: white;
+}
+.category {
+    width:100%;
+    height:60px;
+    background-color: white;
+}
+.category_ul {
+    float:right;
+}
+.category_li {
+    float: left;
+    margin-right: 10px;
+}
+a:hover {
+        color: #97d4f7;
+}
+/* 검색창 */
+.search {
+    position: relative;
+    width: 100%;
+}
+.searchBox {
+    width: 250px;
+    border: 1px solid #bbb;
+    border-radius: 15px;
+    padding: 5px 5px;
+    font-size: 14px;
+    margin-top:2%;
+}
+.search_img {
+    position : absolute;
+    width: 17px;
+    top: 10px;
+    right: 10px;
+}
+/* ----------------------------------------------*/
+.contentBody-main {
+	width:100%;
+	height:1300px;
+    border: 2px solid rgb(216, 216, 216);
+    text-align: center;
+}
+/* dialog 만들기 */
+.dialog-main {
+	width: 100%;
+}
+.dialog-book {
+	width: 95%;
+	height: 110px;
+	margin: 0 auto;
+	border:0.5px solid lightgray;
+}
+.dialog-review {
+	width: 100%;
+	height: 520px;
+	border-top:2px solid black;
+/* 	border:1px solid blue; */
+}
+.book-img {
+	float: left;
+	width: 15%;
+	text-align:center;
+	margin-top:1.5%;
+}
+.book-info {
+	float: left;
+	width: 84%;
+	margin-top: 0.5%;
+}
+.book_img {
+	width: 50px;
+}
+.book-name {
+	font-weight: bold;
+	font-size: 15px;
+}
+.book-qty, .book-price {
+	font-size: 12px;
+}
+/* ----------------------------------------*/
+/* table css */
+.dialog-table {
+	width: 100%;
+	margin-top: 0.5%;
+	border-collapse: collapse;
+}
+input:focus {outline: none;} /* outline 테두리 없애기 */
+.dialog-table tr {
+	border:none;
+	border-bottom: 1px solid lightgray;
+}
+.dialog-table th {
+	width: 30%;
+	height:60px;
+}
+.dialog-table td {
+	width: 70%;
+}
+.dialog-id {
+	width: 30%;
+	height: 25px;
+	font-size: 15px;
+	border: none;
+	outline: none;
+	padding-left: 10px;
+/* 	background-color: #F2F2F2; */
+}
+.dialog-text {
+	width: 80%;
+	height: 25px;
+	font-size: 15px;
+	border: 1px solid lightgray;
+	outline: none;
+	padding-left: 10px;
+/* 	background-color: #F2F2F2; */
+}
+/* -------------------------------------*/
+/* 버튼 */
+.dialog-btn {
+	width: 100%;
+	text-align: right;
+}
+.btn-rev {
+	border: 0.5px solid lightgray;
+	width: 10%;
+	height: 35px;
+	margin-bottom: 1%;
+}
