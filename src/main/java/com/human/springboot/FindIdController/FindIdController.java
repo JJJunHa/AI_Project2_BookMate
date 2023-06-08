@@ -30,13 +30,20 @@ public class FindIdController {
 		String val="";
 		System.out.println(req.getParameter("name"));
 		System.out.println(req.getParameter("mail"));
+		
 		String name = req.getParameter("name");
 		String email = req.getParameter("mail");
 		ArrayList<String> findid = findIddao.useemail(name,email);
-		val=findid.toString();
+		
+		if(findid.isEmpty()) {
+			val = "해당하는 정보가 없습니다.";
+		} else {			
+			val = findid.toString();
+		}
 		
 		return val;
 	}
+	
 	@PostMapping("/using_phone")
 	@ResponseBody
 	public String using_phone(HttpServletRequest req, Model model) {
@@ -52,7 +59,13 @@ public class FindIdController {
 		String mobile3 = mobile.substring(7);
 		mobile=mobile1+" "+mobile2+" "+mobile3;
 		ArrayList<String> findid = findIddao.usephone(name,mobile);
-		val=findid.toString();
+		
+		if(findid.isEmpty()) {
+			val = "해당하는 정보가 없습니다.";
+		} else {			
+			val = findid.toString();
+		}
+		
 		return val;
 	}
 	

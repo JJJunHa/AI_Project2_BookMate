@@ -114,11 +114,19 @@ $(document)
 			data:{name:$('#name').val(), mail:$('#email').val()},
 			type:'post',
 			dataType:'text',
-			beforesend:function(data){
+			beforesend:function(data) {
 				$('#findid').val('')
 			},
-			success:function(data){
-				if(data!=""){
+			success:function(data) {
+				if(data!="") {
+					
+					if(data == "해당하는 정보가 없습니다.") {
+						alert("해당하는 정보가 없습니다.");
+						$('#name').val('');
+					    $('#email').val('');
+						return false;
+					}
+					
 				alert("회원님의 아이디는 "+data+"입니다.");
 				$('#findid').val('회원님의 아이디는 '+data+'입니다.');	
 				$('#name').val('');
@@ -148,6 +156,14 @@ $(document)
 		});
 	}else if($('#use_phone').prop('checked')==true){
 		console.log('using phone')
+		var mobile = $('#mobile').val();
+		
+		if (mobile.length !== 11) {
+	        alert('휴대폰 번호를 제대로 입력해주세요.');
+	        $('#mobile').val('');
+	        return false;
+	    }
+		
 		$.ajax({
 			url:'/using_phone',
 			data:{name:$('#name').val(), phone:$('#mobile').val()},
@@ -158,6 +174,14 @@ $(document)
 			},
 			success:function(data){
 				if(data!=""){
+					
+					if(data == "해당하는 정보가 없습니다.") {
+						alert("해당하는 정보가 없습니다.");
+						$('#name').val('');
+					    $('#mobile').val('');
+						return false;
+					}
+					
 					alert("회원님의 아이디는 "+data+"입니다.");
 					$('#findid').val("회원님의 아이디는 "+data+"입니다.");
 					$('#name').val('');

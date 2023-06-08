@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-/mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.human.springboot.MypageController.mypageDAO">
+
+<!-- 	 회원정보수정관련 -->
+	<select id="selectMy" resultType="com.human.springboot.MypageController.mypageDTO">
+		select id,pwd,name,email,zip_code,mobile,birth from member
+	 	where id=#{param1}
+	</select>
+	
+	<select id="showAdr" resultType="com.human.springboot.MypageController.mypageDTO">
+	 	select address from  member
+	 	where id=#{param1}	 	
+	</select>
+	
+	<select id="showMob" resultType="com.human.springboot.MypageController.mypageDTO">
+	 	select mobile from  member
+	 	where id=#{param1}
+	</select>
+	
+	<select id="showBir" resultType="com.human.springboot.MypageController.mypageDTO">
+	 	select birth from  member
+	 	where id=#{param1}
+	</select>
+	
+	<update id="updateMy">
+		UPDATE member SET id = #{param1} , pwd=#{param3}, 
+					  	  name=#{param4}, email=#{param5}, zip_code=#{param6}, 
+					  	  address=#{param7}, mobile=#{param8}, birth=#{param9}
+					WHERE id = #{param2} 
+	</update>
+<!-- 	 회원정보수정관련 -->	
+
+<!-- 	 나의 게시글 관련	 -->
+	<select id="selectPlist" resultType="com.human.springboot.MypageController.POSTDTO">
+	 	select board_num, btitle, b_writer, b_create_date, b_rcount from board
+	 	where b_writer=#{param1} order by board_num asc
+	 	
+	</select>
+	<select id="selectBordNum" resultType="com.human.springboot.MypageController.POSTDTO">
+	 	select board_num from Board_comment where bcoment_num=#{param1}
+	 	
+	</select>
+<!-- 	 나의 게시글 관련 -->
+
+<!--  	나의 댓글 관련 -->
+ 	<select id="myComment" resultType="com.human.springboot.MypageController.POSTDTO">
+		select bc_content,bc_writer,bc_create_date,BCOMENT_NUM from board_comment where bc_writer=#{param1}
+		order by BCOMENT_NUM asc  
+ 	</select>
+<!--  	나의 댓글 관련 -->
+
+<!--    나의 주문내역 관련 -->
+	<select id="selectDelInfo" resultType="com.human.springboot.MypageController.orderedDTO">
+		select 
+
+    </select>
+
+<!--    나의 주문내역 관련 -->
+	
+</mapper>
