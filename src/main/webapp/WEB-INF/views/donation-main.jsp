@@ -91,7 +91,7 @@
 	        		<ul>
 	        			<li>북메이트 자료로 등록되는 자료에 기증자명을 표시합니다.</li>
 	        			<li>북메이트에서 검토, 확인 후 책이 필요한 정보소외지역(작은도서관, 지역아동센터 등)에 기부 시 기증자명을 표시합니다.</li>
-	        			<li>기부앤테이크 신청 후 보내주신 자료 확인 시 북메이트 내에서 사용할 수 있는 적립금을 드립니다.</li>
+	        			<li>기부앤테이크 신청 후 보내주신 자료 확인 시 [마이페이지] - [기부현황확인] 탭에서 확인하실 수 있습니다.</li>
 	        		</ul>
 	        		</div>
 	        	</div>
@@ -99,7 +99,6 @@
 	            <button class="submit_btn" id="submit_btn">기부앤테이크 신청하기</button>
 	       	 </div>
 	      </div>
-    </div>
 </body>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
@@ -112,10 +111,14 @@ $(document)
 	imgslider();
 })
 .on('click','#submit_btn',function(){
-	document.location="/donation-submit";
-})
-.on('click','#donation-submit',function(){
-	document.location="/donation-submit";
+	let m_id = '<%=session.getAttribute("id")%>';
+	if(m_id=='' || m_id==null || m_id=='null') {
+		alert('로그인 후 이용해주세요');
+		document.location="/login";
+	} else {
+		document.location="/donation-submit";
+	}
+	
 })
 
 
@@ -125,7 +128,7 @@ $('.slider').slick({
        dots: false, // 점 표시
        arrows: false, // 좌우 화살표 표시
        autoplay: true, // 자동 재생
-       autoplaySpeed: 3000 // 재생 간격 (ms)
+       autoplaySpeed: 2000 // 재생 간격 (ms)
      });
 }
 

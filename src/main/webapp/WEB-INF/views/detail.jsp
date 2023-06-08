@@ -568,12 +568,12 @@ $(document)
 	console.log(m_id);
 	console.log(qty);
 	console.log(book_num);
-	// 아이디가 있을 때
+	// 아이디가 없을 때
 	if(m_id=='' || m_id==null || m_id=='null') {
 		alert('로그인 후 이용해주세요');
 		document.location="/login";
 	} 
-	// 아이디가 없을 때
+	// 아이디가 있을 때
 	else {
 		$.ajax({
 			url: '/confirm_cart',
