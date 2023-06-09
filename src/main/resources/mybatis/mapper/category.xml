@@ -31,9 +31,21 @@
 		from book where book_num=#{param1}
 	</select>
 	
-	<!-- detail 책 정보 가져오기 -->
+	<!-- detail 책 리뷰 가져오기 -->
 	<select id="load_review" resultType="com.human.springboot.DetailController.ReviewDTO">
-		select * from Review where book_num=#{param1}
+		select * from review where book_num=#{param1}
+	</select>
+	
+	<!-- 리뷰 dialog 만들기 -->
+	<select id="dialog_review" resultType="com.human.springboot.DetailController.ReviewDTO">
+		select b.book_cover, b.book_name, b.book_price,
+				c.o_qty,
+				a.id, a.rev_title, a.rev_rating, a.rev_content
+		from review a, book b, ordered_cart c, payment d
+		where a.review_num=#{param1}
+		and a.book_num = b.book_num
+		and a.order_num = d.order_num
+		and d.cart_num = c.o_cart_num
 	</select>
 	
 	

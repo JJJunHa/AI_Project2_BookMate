@@ -3,11 +3,27 @@
 	PUBLIC "-/mybatis.org/DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.human.springboot.ReviewController.ReviewDAO">
-
-<!--     <insert id="insert_review"> -->
-<!-- 		insert into review (review_num, rev_title, rev_rating, rev_content, id, rev_create_date, rev_update_date, order_num, book_num) -->
-<!-- 		values (book_num.nextval, #{param1}, #{param2}, #{param3},#{param4},#{param5}, -->
-<!-- 		#{param6},#{param7},#{param8},#{param9}, '0','0') -->
-<!-- 	</insert> -->
+	<!-- 책 정보 가져오기 -->
+    <select id="review_book" resultType="com.human.springboot.ReviewController.ReviewDTO">
+		select b.book_name, b.book_price, b.book_cover, c.o_qty
+		from payment a, book b, ordered_cart c
+		where a.id=#{param1} and a.order_num=#{param2}
+		and a.cart_num = c.o_cart_num
+		and c.o_book_num = b.book_num
+	</select>
+	<!-- review 테이블에 book_num 넣기위해 조회 -->
+	 <select id="find_book_num" resultType="String">
+		select b.book_num
+		from payment a, book b, ordered_cart c
+		where a.id=#{param1} and a.order_num=#{param2}
+		and a.cart_num = c.o_cart_num
+		and c.o_book_num = b.book_num
+	</select>
+	
+	<!-- 리뷰 insert 하기 -->
+    <insert id="insert_review">
+		insert into review (review_num, order_num, id, rev_title, rev_rating, rev_content, book_num, rev_create_date)
+		values (review_num.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, TO_CHAR(SYSDATE, 'YYYY/MM/DD'))
+	</insert>
 
 </mapper>

@@ -1,5 +1,9 @@
 package com.human.springboot.ReviewController;
 
+import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,22 +22,53 @@ public class ReviewController {
 		 return "review-write";
 	}
 	
-//	@PostMapping("/insert_review")
-//	@ResponseBody
-//	public String insert_review(HttpServletRequest req) {
-//		String id = req.getParameter("id");
-//		String rev_title = req.getParameter("rev_title");
-//		int rev_rating = Integer.parseInt(req.getParameter("rev_rating"));
-//		String rev_content = req.getParameter("rev_content");
-//		
-//		String insertval=null;
-//		try {
-//			rdao.insert_review(id, rev_title, rev_rating, rev_content);
-//			insertval = "ok";
-//
-//		} catch(Exception e) {
-//			insertval="fail";
-//		}
-//		return insertval;
-//	}	
+	// 책 정보 가져오기
+	@PostMapping("/review_book")
+	@ResponseBody
+	public String review_book(HttpServletRequest req) {
+		String id = req.getParameter("id");
+		int order_num = Integer.parseInt(req.getParameter("order_num"));
+		
+		ArrayList<ReviewDTO> load_personInfo = rdao.review_book(id, order_num);
+		JSONArray ja = new JSONArray();
+		for(int i=0; i<load_personInfo.size(); i++) {
+			JSONObject jo = new JSONObject();
+			jo.put("book_name", load_personInfo.get(i).getBook_name());
+			jo.put("book_price", load_personInfo.get(i).getBook_price());
+			jo.put("book_cover", load_personInfo.get(i).getBook_cover());
+			jo.put("o_qty", load_personInfo.get(i).getO_qty());
+			
+			ja.put(jo);
+		}
+		return ja.toString();
+	}
+
+	// review insert;
+	@PostMapping("/insert_review")
+	@ResponseBody
+	public String insert_review(HttpServletRequest req) {
+		int order_num = Integer.parseInt(req.getParameter("order_num"));
+		String id = req.getParameter("id");
+		String rev_title = req.getParameter("rev_title");
+		int rev_rating = Integer.parseInt(req.getParameter("rev_rating"));
+		String rev_content = req.getParameter("rev_content");
+		int book_num = Integer.parseInt(rdao.find_book_num(id, order_num));
+		
+//		System.out.println(order_num);
+//		System.out.println(id);
+//		System.out.println(book_num);
+		
+		String insertval=null;
+		try {
+			rdao.insert_review(order_num, id, rev_title, rev_rating, rev_content, book_num);
+			insertval = "ok";
+
+		} catch(Exception e) {
+			insertval="fail";
+			e.printStackTrace();
+		}
+		return insertval;
+	}	
+	
+	
 }
