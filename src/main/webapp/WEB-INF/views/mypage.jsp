@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
 <!--     <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <link rel="stylesheet" href="./style.css"/>
     <link rel="stylesheet" href="css/mypage.css">
+    <link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" 
 
  integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous"> 
@@ -70,6 +70,44 @@
 					<div class="delivery-container">
 						<h2 class="mytext fst-italic">주문 내역</h2>
 
+						<c:forEach var="mydelis" items="${mydeli}">
+						
+							<div class="hi">
+                            <div class="hi2">
+                                <span><h4> ${mydelis.order_date} 주문</h4> </span> <!--  order_date  -->
+                                 <span>주문/상세보기</span>
+                                
+                            </div>
+                            <div class="hi3">
+                                <div class="hi4">
+                                 
+                                    <div class="hi6"> <h4 class="shipcomplete"></h4> <span style="color:green"></span></div>
+                                    <div class="hi7">
+                                        <div class="hi8"> <img id="img" alt="${mydelis.IMG_NAME1}" class="img-resize" src="${mydelis.book_cover}"></div>
+                                        <div class="hi9">
+                                        	<div id="del_pname">&nbsp;&nbsp;${mydelis.book_name}</div>
+                                         	<div class="hi10">&nbsp;&nbsp;${mydelis.BPR}원</div>
+                                          	<div id="qty1">&nbsp;&nbsp;${mydelis.o_qty}권</div>
+                                         	<span class="bag"></span>
+                                        </div>
+                                       
+                                        
+                                    </div>
+                               </div>
+                                <div class="hi5">
+                                    <div><button class="btn btn-outline-primary" name="${mydelis.CHECK}"onclick="window.open('https://www.cjlogistics.com/ko/tool/parcel/tracking', '_blank')">배송조회</button></div>
+									<div class="bag">
+                        <button id="btncartIn" class="btn btn-outline-secondary" name="${mydelis.book_num},${mydelis.o_qty},${mydelis.CHECK}">장바구니 담기</button>
+                    </div>
+                                    <div><button type="button" class="btn btn-outline-secondary" id="btnrevIn" name="${mydelis.book_num}">리뷰작성하기</button></div>
+                                </div>
+                            </div>
+                    
+                    
+                        </div>
+                        
+						
+						</c:forEach>
 
 
 					</div>
@@ -336,6 +374,9 @@ $(document)
 // by ChatGPT
 
 .ready(function() {
+	
+	console.log($("#qty1").val());
+	
 
 // ID 정규 표현식
 
@@ -393,14 +434,9 @@ pwField.val('');
 .on('click', '#img', function() {
     
     let s_no=$(this).prop('alt');
-    if(s_no.includes('상품')){
-    	s_no=s_no.replace('상품','');
-    document.location = '/pdetail/'+s_no;
-    return false;
-    }
-    if(s_no.includes('룸')){
-    	s_no=s_no.replace('룸','');
-    document.location = '/rdetail/'+s_no;
+    if(s_no.includes('책 이름')){
+//     	s_no=s_no.replace('상품','');
+   		document.location = '/detail/'+s_no;
     return false;
     }
 })
@@ -414,17 +450,14 @@ pwField.val('');
 	if('<%=session.getAttribute("id")%>'!=null) {
 		
 		$.ajax({url:'/MyPageAddCart', type:'post', dataType:'text', 
-			data:{id:'<%=session.getAttribute("id")%>
-	',
-							prod_num : name,
-
-						},
+			data:{id:'<%=session.getAttribute("id")%>',
+							prod_num : name},
 						success : function(data) {
 
 							if (data == "ok") {
 
 								// 					alert('입력이 성공했습니다.');
-								document.location = '/ShowCart';
+								document.location = '/cart';
 							}
 						},
 
@@ -498,7 +531,7 @@ pwField.val('');
 	$(document)
 
 	.ready(function() {
-		$('[name*="팀플넘무좋아"]').hide();
+		
 		loadData();
 
 	})
@@ -565,25 +598,6 @@ pwField.val('');
 
 	})
 
-	// $(document)
-
-	// .on('click','#tblBoard tr',function(){
-
-	// 	let a=$(this).find('td:eq(0)').text();
-	// 	let b=$(this).find('td:eq(2)').text();
-
-	// 	console.log(a);
-	// 	console.log(b);
-
-	// 	$.ajax({url:'/doQview',type:'get',data:{name:b,num:a},dataType:'text',
-	// 		beforeSend:function(){
-
-	// 		},
-	// 		success:function(data){
-	// 			document.location="/Qview?token="+data;
-	// 		}})
-	// })
-
 	///////////////////////////////////나의 댓글///////////////////////////////
 
 	///////////////////////////////////회원정보 변경/////////////////////////////
@@ -617,8 +631,7 @@ pwField.val('');
 			dataType : 'text',
 			data : {
 				id : $('#j_id').val(),
-				id2 : '
-<%=session.getAttribute("id")%>',
+				id2 : '<%=session.getAttribute("id")%>',
         	  pwd:$('#j_pwd').val(),
               name:$('#j_name').val(),
               email:$('#j_email').val(),
@@ -717,7 +730,8 @@ $('#psGuide2').text('비밀번호가 일치하지않습니다'); return false;
 
 function loadData(){
 	
-	$.ajax({url:'/myPlist',type:'get',data:{id:'<%=session.getAttribute("id")%>'},dataType:'json',
+	$.ajax({url:'/myPlist',type:'get',data:{id:'<%=session.getAttribute("id")%>'}
+											,dataType:'json',
 		success:function(data){
 // 			$('#tblBoard tr:gt(0)').remove();
 			for(let i=0; i<data.length; i++){
@@ -742,12 +756,13 @@ function loadData(){
 
 
 
-///////////////////////0410 현영수정//////////////////////
+/////////////////////// 게시판 글 select ajax //////////////////////
 function showBC() {
 	  $.ajax({
 	    url: '/showBC',
 	    type: 'post',
-	    data: {id:'<%=session.getAttribute("id")%>'},dataType: 'json',
+	    data: {id:'<%=session.getAttribute("id")%>'},
+	    	   dataType: 'json',
 	    beforeSend: function() {               
 	    },
 	    success: function(data) {
@@ -765,7 +780,7 @@ function showBC() {
 	  });
 	}
 
-///////////////////0410 현영 수정 끝//////////////////////
+/////////////////// 우편번호 API 코드 /////////////////////
 function sample6_execDaumPostcode() {
 	
         new daum.Postcode({
@@ -840,15 +855,15 @@ function changeTab(tab) {
     $("#" + tab + "-tab").addClass("active");
     $("#" + tab).addClass("active");
 }
-
+	
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-$(document).ready(function() {
-            $('#submit').click(function() {
-                window.open('https://kcp.co.kr/main.do', '_blank', 'width=800, height=600');
-            });
-        })
+// $(document).ready(function() {
+//             $('#submit').click(function() {
+//                 window.open('https://kcp.co.kr/main.do', '_blank', 'width=800, height=600');
+//             });
+//         })
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 </script>
 </html>

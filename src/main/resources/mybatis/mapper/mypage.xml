@@ -54,8 +54,15 @@
 
 <!--    나의 주문내역 관련 -->
 	<select id="selectDelInfo" resultType="com.human.springboot.MypageController.orderedDTO">
-		select 
-
+		SELECT 
+			b.book_name, b.book_price, b.book_cover, oc.o_qty, b.book_num,
+			p.order_date, p.id
+		FROM 
+			book b
+			JOIN ordered_cart oc ON b.book_num = oc.o_book_num
+			JOIN payment p ON oc.o_cart_num = p.cart_num
+		WHERE 
+			p.id = #{param1}
     </select>
 
 <!--    나의 주문내역 관련 -->

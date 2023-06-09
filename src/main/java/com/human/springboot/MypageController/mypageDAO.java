@@ -31,7 +31,7 @@ public interface mypageDAO {
 	
 	/// 주문 내역 ///
 	
-	// 상품,룸 
+	// 책 상품 
 	ArrayList<orderedDTO> selectDelInfo(String x1);
 	
 	
