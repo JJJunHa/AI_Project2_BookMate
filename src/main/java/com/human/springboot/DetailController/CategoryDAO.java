@@ -19,6 +19,8 @@ public interface CategoryDAO {
 	
 	/* detail 책 리뷰 가져오기 */
 	ArrayList<ReviewDTO> load_review(int book_num);
+	/* 리뷰 dialog 만들기 */
+	ArrayList<ReviewDTO> dialog_review(int review_num);
 	
 	/* cart에 insert 하기 */
 	void insert_cart(String m_id, int qty, int book_num);

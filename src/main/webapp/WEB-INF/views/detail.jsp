@@ -5,7 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <!-- <link rel="stylesheet" href="css/detail.css"> -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
 <link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <title>북메이트</title>
 </head>
 <style>
@@ -377,6 +380,109 @@ a {
  	 text-align: center;
   	 color: inherit; /* 링크의 색상 제거 */
 	}
+	
+/* dialog 만들기 */
+.dialog-main {
+	width: 100%;
+}
+.dialog-book {
+	width: 95%;
+	height: 110px;
+	margin: 0 auto;
+	border:0.5px solid lightgray;
+}
+.dialog-review {
+	width: 100%;
+	height: 520px;
+	border-top:2px solid black;
+/* 	border:1px solid blue; */
+}
+.view-img {
+	float: left;
+	width: 15%;
+	text-align:center;
+	margin-top:1.5%;
+}
+.view-info {
+	float: left;
+	width: 84%;
+	margin-top: 0.5%;
+}
+.view_img {
+	width: 60px;
+	height: 90px;
+}
+.view-name {
+	font-weight: bold;
+	font-size: 15px;
+}
+.view-qty, .view-price {
+	font-size: 12px;
+}
+/* ----------------------------------------*/
+/* table css */
+.dialog-table {
+	width: 100%;
+	margin-top: 0.5%;
+	border-collapse: collapse;
+}
+input:focus {outline: none;} /* outline 테두리 없애기 */
+.dialog-table tr {
+	border:none;
+	border-bottom: 1px solid lightgray;
+}
+.dialog-table th {
+	width: 30%;
+	height:60px;
+}
+.dialog-table td {
+	width: 70%;
+}
+.dialog-id {
+	width: 30%;
+	height: 25px;
+	font-size: 15px;
+	border: none;
+	outline: none;
+	padding-left: 10px;
+/* 	background-color: #F2F2F2; */
+}
+.dialog-text {
+	width: 80%;
+	height: 25px;
+	font-size: 15px;
+	border: none;
+	outline: none;
+	padding-left: 10px;
+/* 	background-color: #F2F2F2; */
+}
+.dialog-rating {
+	width: 30%;
+	height: 25px;
+	font-size: 15px;
+	border: none;
+	outline: none;
+	padding-left: 10px;
+}
+/* -------------------------------------*/
+/* 버튼 */
+.dialog-btn {
+	width: 100%;
+	text-align: right;
+}
+.btn-rev {
+	border: 0.5px solid lightgray;
+	width: 10%;
+	height: 35px;
+	margin-bottom: 1%;
+}
+.summernote {
+	height: 200px;               
+    width: 770px;
+    border: none;
+	outline: none;
+	padding-left: 10px;
+}
 </style>
 <body>
 
@@ -527,20 +633,126 @@ a {
        		</div> 	
         </div>
 </div>
+
+<!-- dialog -->
+<div class="dialog-view" id=dialog-view style="display:none;">
+	<div class=dialog-main>
+		<p style="font-size:15px; text-align:center;"> <b>상품 후기 작성하기</b></p>
+		<div class=dialog-book>
+			<div class=view-img id=view-img>
+			</div>
+			<div class=view-info>
+				<p class=view-name id=view-name></p>
+				<p class=view-qty id=view-qty></p>
+				<p class=view-price id=view-price></p>
+			</div>
+		</div>
+		<div class=dialog-review>
+			<table class=dialog-table>
+				<tr>
+					<th>아이디</th><td><input type="text" class=dialog-id id=dialog-id readonly></td>
+				</tr>
+				<tr>
+					<th>제목</th><td><input type="text" class=dialog-text id=dialog-text readonly></td>
+				</tr>
+				<tr>
+					<th>평점</th><td><input type="text" class=dialog-rating id=dialog-rating readonly></td>
+				</tr>
+				<tr>
+					<th style="height:300px;">내용</th><td><textarea id="summernote" name="summernote" class=summernote readonly></textarea></td>
+				</tr>
+			</table>
+			&nbsp;<font id="check_content" size=2></font>
+		</div>
+		<div class=dialog-btn>
+<!-- 			<button type="button" class="btn-rev" id=submit-rev>등록</button> -->
+			<button type="button" class="btn-rev" id=cancel-rev>닫기</button>
+		</div>
+		
+	</div>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script src="/summernote/summernote-lite.js"></script>
+<script src="/summernote/lang/summernote-ko-KR.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script>
 $(document)
 .ready(function(){
 	loadData();
-	loadReview();
+	loadReview();    
+	
+	$('#summernote').summernote({
+        height: 200,                 
+        width: 770,         
+        focus: true,                  
+        lang: "ko-KR",               
+        placeholder: '<br>내용을 입력하시오. <br> 최대 2000자까지 입력할 수 있습니다', 
+        toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']],
+                ['image',['picture']]
+           ],
+           fontNames: 
+              ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
+    })          
+    
+$('#summernote').summernote('disable')  //써머노트 readonly
 })
 .on('click','#tblreview tr', function(){
 	let review_num=$(this).find('td:eq(0)').text();
 	console.log(review_num);
-})
+	// dialog 열기
+	$('#dialog-view').dialog({
+			 title:'리뷰 상세보기',
+				    modal:true,
+				    width:900,
+				    height:750,
+				    resizable:false,
+				    show : 'slideDown',
+				    hide : 'slideUp'
+				});
+	
+	$.ajax({
+		url: '/dialog_review',
+		type: 'post',
+		data: { review_num: review_num },
+		dataType: 'JSON',
+		success: function(data) {
+			let dialog_id = data[0]['id'];
+			$('#dialog-id').val(dialog_id);
+			
+			let book_name = data[0]['book_name'];
+			$('#view-name').text(book_name);
+			let o_qty = data[0]['o_qty'];
+			$('#view-qty').text(o_qty);
+			let book_price = data[0]['book_price'];
+			$('#view-price').text(book_price);
+			let book_cover = '<img src="' + data[0]['book_cover'] + '" class="view_img" id="view_img">';
+			$('#view-img').append(book_cover);
+			
+			let rev_title = data[0]['rev_title'];
+			$('#dialog-text').val(rev_title);
+			
+			let rev_rating = data[0]['rev_rating'];
+			$('#dialog-rating').val(rev_rating);
+			
+			let rev_content = data[0]['rev_content'];
+// 			$('#summernote').val(rev_content);
+			$('#summernote').summernote('code', rev_content);
 
+		}
+	});
+})
+// 닫기 버튼 클릭 시 dialog 닫기
+.on('click','#cancel-rev',function(){
+	$(this).closest('.ui-dialog-content').dialog('close');
+})
 
 // 수량 변경 시 총액 업데이트
 .on('click', '#plus',function(){
@@ -729,16 +941,22 @@ function loadReview() {
 	    		 str+="<th class=rvinfo1>등록된 리뷰가 없습니다.</th></tr>";
 	    		 $('#tblreview').append(str);
 			} else {
+				
 				$('#tblreview').empty();
 				$('#tblreview').append('<tr><th style="width:80px;">글 번호</th><th style="width:300px;">제목</th><th style="width:500px;">내용</th><th style="width:200px;">작성일</th><th style="width:200px;">작성자</th></tr>');
 				for(let i=0; i<data.length; i++){
 		       		 let rev_detail = data[i];
 		       		 let str='<tr>';
-				
+		       		 
+		       		 // 날짜 뒤에 자르기
+		       		 let date = rev_detail['rev_create_date'];
+		       		 let rev_create = date.substring(0,11);
+		       		 
+		       		 
 		    		 str+="<td id=review_num'>"+rev_detail['review_num']+"</td>";
 		    		 str+="<td id=rev_title'>"+rev_detail['rev_title']+"</td>";
 		    		 str+="<td id=rev_content>"+rev_detail['rev_content']+"</td>";
-		    		 str+="<td id=rev_create_date'>"+rev_detail['rev_create_date']+"</td>";
+		    		 str+="<td id=rev_create_date'>"+rev_create+"</td>";
 		    		 str+="<td id=r_writer'>"+rev_detail['id']+"</td></tr>";
 		    		 
 		    		 $('#tblreview').append(str);

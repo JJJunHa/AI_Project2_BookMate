@@ -54,17 +54,20 @@
 	</div>
         <div class="contentBody-main">
         <button id=openRev_btn class="openRev_btn">리뷰작성버튼</button>
+        
+        <input type=hidden value=27 id=order_num>
+        
         	<div class="dialog-write" id=dialog-write style="display:none;">
         		<div class=dialog-main>
         			<p style="font-size:15px; text-align:center;"> <b>상품 후기 작성하기</b></p>
         			<div class=dialog-book>
-        				<div class=book-img>
-        					<img src="/img/공포,스릴러,추리 pic1.jpg" class="book_img">
+        				<div class=book-img id=book-img>
+<!--         					<img src="/img/공포,스릴러,추리 pic1.jpg" class="book_img"> -->
         				</div>
         				<div class=book-info>
-        					<p class=book-name>칵테일, 러브, 좀비 리커버</p>
-        					<p class=book-qty>1권</p>
-        					<p class=book-price>10000원</p>
+        					<p class=book-name id=book-name></p>
+        					<p class=book-qty id=book-qty></p>
+        					<p class=book-price id=book-price></p>
         				</div>
         			</div>
         			<div class=dialog-review>
@@ -114,6 +117,10 @@ $(document)
 	// 별점 하나만 선택 함수
 	rev_Selection();
 	
+	// order_num 넣기
+	let order_num = $('#order_num').val();
+// 	console.log(order_num);
+	
 	// id 넣기
 	let m_id = '<%=session.getAttribute("id")%>';
 	$('#dialog-id').val(m_id);
@@ -153,22 +160,56 @@ $(document)
  })
  // 리뷰 작성 클릭 시 dialog 열기
 .on('click','#openRev_btn', function(){
-	$('#dialog-write').dialog({
-		 title:'리뷰 작성하기',
-			    modal:true,
-			    width:900,
-			    height:750,
-			    resizable:false,
-			    show : 'slideDown',
-			    hide : 'slideUp'
-			});
+	// id, order_num 넣기
+	let c_id = '<%=session.getAttribute("id")%>';
+	let order_num = $('#order_num').val();
+	
+	// id가 없을 때 로그인 창으로 연결
+	if(c_id == '' || c_id == null || c_id == 'null') {
+		alert('로그인 후 이용해주세요');
+		document.location="/login";
+	} else {
+		$('#dialog-write').dialog({
+			 title:'리뷰 작성하기',
+				    modal:true,
+				    width:900,
+				    height:750,
+				    resizable:false,
+				    show : 'slideDown',
+				    hide : 'slideUp'
+				});
+	
+		// order_num으로 책 정보 가져오기
+		$.ajax({
+				url: '/review_book',
+				type: 'post',
+				data: { id:c_id, order_num:order_num},
+				dataType: 'JSON',
+				success: function(data) {
+					let book_name = data[0]['book_name'];
+					$('#book-name').text(book_name);
+					
+					let book_qty = data[0]['o_qty'];
+					$('#book-qty').text(book_qty);
+					
+					let book_price = data[0]['book_price'];
+					$('#book-price').text(book_price);
+					
+					let book_cover = '<img src="' + data[0]['book_cover'] + '" class="book_img" id="book_img">'
+					$('#book-img').append(book_cover);
+				}
+			})
+	}
+
 })
+
  // 닫기 버튼 클릭 시 dialog 닫기
 .on('click','#cancel-rev',function(){
 	$(this).closest('.ui-dialog-content').dialog('close');
 })
 // 등록 버튼 클릭 시 db 저장
 .on('click','#submit-rev',function(){
+	let order_num = $('#order_num').val();
 	let id = $('#dialog-id').val();
 	let rev_title = $('#dialog-text').val();
 // 	let rev_rating = $('input[name="rating"]:checked').val();
@@ -224,30 +265,38 @@ $(document)
 
 	// 6. $.ajax로 전송
 	// id, rev_title, rev_rating, rev_content, fileName 전송
-// 	if(id == '' || rev_title == '' || rev_rating == '' || rev_content == '' || id == null|| rev_title == null || rev_rating == null || rev_content == null) {
+	if(id == '' || rev_title == '' || rev_rating == '' || rev_content == '' || id == null|| rev_title == null || rev_rating == null || rev_content == null) {
 		
-// 	} else {
-// 		let confirmval = confirm('입력 내용으로 리뷰를 작성합니다.');
-// 		if(confirmval) {
-// 			$.ajax({
-// 				url: '/insert_review',
-// 				type: 'post',
-// 				data: { id:id, rev_title:rev_title, rev_rating:rev_rating,  rev_content:rev_content},
-// 				dataType: 'text',
-// 				success: function(data) {
-// 					if(data=="ok") {
-// 							alert("리뷰 작성이 완료되었습니다. \n자세한 내용은 [마이페이지] - [나의 리뷰] 를 확인해주세요.")
-// 							document.location="/donation";
-// 					} else {
-// 						alert("오류로 인해 잠시후에 다시 시도해주세요.")
-// 						return false;
-// 					}
-// 				}
-// 			})
-// 		} else {
-// 			return false;
-// 		}	
-// 	}
+	} else {
+		let confirmval = confirm('입력 내용으로 리뷰를 작성합니다.');
+		if(confirmval) {
+			
+			console.log(order_num);
+			console.log(id);
+			console.log(rev_title);
+			console.log(rev_rating);
+			console.log(rev_content);
+			
+			$.ajax({
+				url: '/insert_review',
+				type: 'post',
+				data: { order_num:order_num, id:id, rev_title:rev_title, rev_rating:rev_rating, rev_content:rev_content},
+				dataType: 'text',
+				success: function(data) {
+					if(data=="ok") {
+							alert("리뷰 작성이 완료되었습니다. \n자세한 내용은 [마이페이지] - [나의 리뷰] 를 확인해주세요.")
+							document.location="/review-write";
+					} else {
+						console.log("오류2")
+						alert("오류로 인해 잠시후에 다시 시도해주세요.")
+						return false;
+					}
+				}
+			})
+		} else {
+			return false;
+		}	
+	}
 })
 	
 // 파일 선택 시 이벤트 핸들러
