@@ -36,4 +36,6 @@ public interface AdminDAO {
 			ArrayList<AdminDTO> mSearch(String x1, String x2);
 	//리뷰
 			ArrayList<AdminDTO> revlist();
+			void reviewDel(int x1);
+			ArrayList<AdminDTO> rSearch(String x1, String x2);
 }

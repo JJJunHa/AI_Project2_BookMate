@@ -62,12 +62,22 @@
 	   
 	  	ORDER BY name DESC 
 	</select>
+<!-- 	리뷰 -->
 	<select id="revlist" resultType="com.human.springboot.AdminController.AdminDTO">
-		select review_num, id, rev_title, rev_content, rev_create_date,rev_update_date
-		from review
-			order by review_num
+		select a.review_num, a.id, b.book_name, a.rev_title, a.rev_content, a.rev_create_date
+		from review a, book b
+        where a.book_num = b.book_num
+ 		order by review_num
 	</select>
-<!-- 	<delete id="reviewDel" parameterType="String"> -->
-<!-- 		delete from review where review_num = #{param1} -->
-<!-- 	</delete> -->
+	<delete id="reviewDel" parameterType="Integer">
+		delete from review where review_num = #{param1}
+	</delete>
+	<select id="rSearch" resultType="com.human.springboot.AdminController.AdminDTO">
+	    select a.review_num, a.id, b.book_name, a.rev_title, a.rev_content, a.rev_create_date
+		from review a, book b
+        where a.book_num = b.book_num
+	    and ${param1} like '%'||#{param2}||'%'
+	   	order by review_num
+
+	</select>
 </mapper>

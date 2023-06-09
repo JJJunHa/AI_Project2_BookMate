@@ -380,6 +380,18 @@ $(document)
     				alert('가격을 입력하시오');
     				return false;
     			}
+    			if($('#author').val()==''){
+    				alert('작가를 입력하시오');
+    				return false;
+    			}
+    			if($('#publication').val()==''){
+    				alert('출판일을 입력하시오');
+    				return false;
+    			}
+    			if($('#rating').val()==''){
+    				alert('별점을 입력하시오');
+    				return false;
+    			}
     		},
     		success:function(data){
     			if(data=="ok"){
@@ -405,6 +417,7 @@ $(document)
     			      }
     			   })
     		}
+    		
     	})
 })
  .on('click','#btnCancle',function(){

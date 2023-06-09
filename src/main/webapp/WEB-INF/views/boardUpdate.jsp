@@ -373,7 +373,7 @@ textarea.form-control {
 								<td>제목</td>
 								<td colspan="2"><input type="text" class="form-control"
 									id="B_title" name="B_title" value="${bViews.b_TITLE}"></td>
-								<td><input type="text" id="board_num" name="board_num"
+								<td><input type="hidden" id="board_num" name="board_num"
 									value="${bViews.board_num}"></td>
 							</tr>
 
@@ -436,11 +436,25 @@ $(document)
            fontNames: 
               ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
         
-    })          
- })
+    });  
 
-.on('click','#btnCancle',function(){
-	document.location='/board';
+$(document)
+.on('click', '#btnCancle', function() {
+    document.location = '/board';
 })
+.on('click', '#btnUpdate', function() {
+    let v_title = $('#B_title').val();
+    let v_content = $('#summernote').val();
+    // 2. 제목을 입력했는지 확인하기
+    if (v_title == '' || v_title == null) {
+        alert("제목을 입력하세요");
+        return false;
+    }
+    if (v_content == '' || v_content == null) {
+        alert("내용을 입력하세요");
+        return false;
+    }
+});
+});
 </script>
 </html>

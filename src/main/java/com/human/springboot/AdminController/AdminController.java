@@ -198,21 +198,29 @@ public class AdminController {
 			model.addAttribute("rl",revlist);
 			return "adminReview";
 		}
-	//리뷰삭제
-//		@PostMapping("/reviewDel")
-//		@ResponseBody
-//		public String reviewDel(HttpServletRequest req) {
-//			String val="ok";
-//			try {
-//				String id=req.getParameter("id");
-//				ardao.reviewDel(id);
-//				
-//			} catch(Exception e) {
-//				val="fail";
-//				e.printStackTrace();
-//				System.out.println(req.getParameter("id"));
-//			}
-//			return val;
-//		}
+//	리뷰삭제
+		@PostMapping("/reviewDel")
+		@ResponseBody
+		public String reviewDel(HttpServletRequest req) {
+			String val="ok";
+			try {
+				int id=Integer.parseInt(req.getParameter("id"));
+				adao.reviewDel(id);
+				
+			} catch(Exception e) {
+				val="fail";
+				e.printStackTrace();
+				System.out.println(req.getParameter("id"));
+			}
+			return val;
+		}
+
+		// 리뷰검색
+		@PostMapping("/review/search")
+		public String rSearch(Model model, @RequestParam("type") String type, @RequestParam("keyword") String keyword) {
+			ArrayList<AdminDTO> rSearch = adao.rSearch(type, keyword);
+			model.addAttribute("rl", rSearch);
+			return "adminReview";
+		}
 }
 

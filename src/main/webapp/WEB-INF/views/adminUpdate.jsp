@@ -371,6 +371,28 @@ $(document)
 		document.location='/productDelete/'+a;
 	})
 	 .on('click', '#btnModify', function(){
+		 
+		 let book_name=$.trim($('#book_name').val());
+			if(book_name==''||book_name==null){
+				alert('상품명을 입력하시오');
+				return false;
+			}
+			if($('#book_price').val()==''){
+				alert('가격을 입력하시오');
+				return false;
+			}
+			if($('#author').val()==''){
+				alert('작가를 입력하시오');
+				return false;
+			}
+			if($('#publication').val()==''){
+				alert('출판일을 입력하시오');
+				return false;
+			}
+			if($('#rating').val()==''){
+				alert('별점을 입력하시오');
+				return false;
+			}
 	        var formData = new FormData();
 	        var files = $('#book_cover')[0].files[0];
 	        formData.append('file', files);

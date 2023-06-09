@@ -209,5 +209,19 @@ $(document)
 .on('click','#btnCancle',function(){
 	document.location='/board';
 })
+
+.on('click','#btnInsert',function(){
+	let rev_title = $('#B_title').val();
+	let rev_content = $('#summernote').val();
+	// 2. 제목을 입력했는지 확인하기
+	if(rev_title == '' || rev_title == null) {
+		alert("제목을 입력하세요")
+		return false
+	}
+	if(rev_content == '' || rev_content == null) {
+		alert("내용을 입력하세요")
+		return false
+	}
+})
 </script>
 </html>

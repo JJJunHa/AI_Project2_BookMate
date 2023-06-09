@@ -621,8 +621,14 @@ $('#summernote').summernote('disable')  //써머노트 readonly
 		data:{BC_content:$('#BC_content').val(), board_num:$('#board_num').val()},
 		dataType:'text',
 		beforeSend:function(){
+			let BC_content = $('#BC_content').val();
+	    	if(BC_content == '' || BC_content == null) {
+	    		alert("답글을 입력하세요")
+				return false
+	    	}
 		},
 		success:function(data){
+			
 			alert("댓글이 등록되었습니다.");
 			$('#BC_content').val("");
 			showBC();	
@@ -659,6 +665,7 @@ function showBC() {
     },
     dataType: 'json',
     beforeSend: function() {               
+    	
     },
     success: function(data) {
     	

@@ -286,12 +286,12 @@ a:hover {
 	background-color: #0056b3;
 }
 /* 검색 */
-.mSearch {
+.Search {
 	text-align:left;
 	margin-left: 2.5%;
 /* 	margin-bottom: 20px; /* 추가 */ 
 }
-.mSearch input[type="submit"] {
+.Search input[type="submit"] {
 	position: relative;
 
 	background-color: #7ca8c2;
@@ -301,11 +301,11 @@ a:hover {
         color: #fff;
         cursor: pointer;
 }
-   .mSearch input[type="submit"]:hover {
+   .Search input[type="submit"]:hover {
 	background-color: #0056b3;
 }
 
-.mSearch select {
+.Search select {
  	width: 100px;
     border: 1px solid #bbb;
     border-radius: 15px;
@@ -314,7 +314,7 @@ a:hover {
     margin-top:2%;
 }
 
-.mSearch input[type="text"]
+.Search input[type="text"]
  {
 	 width: 200px;
     border: 1px solid #bbb;
@@ -364,17 +364,15 @@ a:hover {
     
             <div class="content_A">
                 <h1>리뷰목록</h1>
-				<form method="post" action="/member/search">
-					<div class="mSearch">
+				<form method="post" action="/review/search">
+					<div class="Search">
 						<select name="type" id="searchForm">
-							<option value="name||id||email||address||mobile||birth||regdate">전체검색</option>
-							<option value="name">이름</option>
+							<option value="id||book_name||rev_title||rev_content">전체검색</option>
 							<option value="id">ID</option>
-							<option value="email">이메일</option>
-							<option value="address">주소</option>
-							<option value="mobile">전화번호</option>
-							<option value="birth">생일</option>
-							<option value="regdate">가입일</option>
+							<option value="book_name">책 제목</option>
+							<option value="rev_title">제목</option>
+							<option value="rev_content">내용</option>
+							
 						</select> <input type="text" id="keyword" name="keyword"> <input
 							type="submit" id="btnsearch" value=검색>
 					</div>
@@ -392,11 +390,11 @@ a:hover {
                     	<thead>
 	                        <tr class="small-text">
 	                            <th>No</th>
-	                            <th>ID</th>	                          
+	                            <th>ID</th>	  
+	                            <th>책 제목</th>                        
 	                            <th>제목</th>
 	                            <th>내용</th>
 	                            <th>작성일</th>
-	                            <th>수정일</th>
 	                            <th>삭제</th>
 	                        </tr>
 	                    </thead>
@@ -405,11 +403,12 @@ a:hover {
 								<tr class="small-text">
 									<td>${revlist.review_num}</td>
 									<td>${revlist.id}</td>
+									<td>${revlist.book_name}</td>
 									<td>${revlist.rev_title}</td>
 									<td>${revlist.rev_content}</td>
 									<td>${fn:substring(revlist.rev_create_date,2,10)}</td>
-									<td>${fn:substring(revlist.rev_update_date,2,10)}</td>
-									<td><input type="button" id="btnDel" name="${revlist.id}" value="삭제"></td>
+								
+									<td><input type="button" id="btnDel" name="${revlist.review_num}" value="삭제"></td>
 								</tr>
 								
 								</tr>
@@ -429,29 +428,26 @@ a:hover {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
-$(document)
-.on('click','#btnDel',function(){
-   
-   
-   let a = $(this).attr('name');
-   
-   
-   $.ajax({
-       url: "/memberDel",
-       type: "post",
-       dataType: "text",
-       data: { id: a },
-       success: function(data) {
-         if (data == "ok") {
-           
-           location.reload()
-         } else {
-           alert("delete 실패")
-         }
-       } 
-     });
-})
+$(document).on('click', '#btnDel', function() {
+	  let a = $(this).attr('name');
 
+	
+	  if (confirm("정말로 삭제하시겠습니까?")) {
+	    $.ajax({
+	      url: "/reviewDel",
+	      type: "post",
+	      dataType: "text",
+	      data: { id: a },
+	      success: function(data) {
+	        if (data == "ok") {
+	          location.reload();
+	        } else {
+	          alert("delete 실패");
+	        }
+	      }
+	    });
+	  }
+	})
 /*  페이지네이션  */
 var $setRows = $('#setRows');
 
