@@ -361,7 +361,7 @@ a:hover {
         <div class="content">
     
             <div class="content_A">
-                <h1>상품목록</h1>
+                <h1>주문목록</h1>
                 <form method="post" action="/book/search">
 					<div class="pSearch">
 						<select name="type" id="searchForm">

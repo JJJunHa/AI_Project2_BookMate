@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+	<link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
 	<link rel="stylesheet" href="css/board.css">
 	<title>BookMate</title>
 </head>
@@ -312,14 +312,27 @@ textarea.form-control {
   
 </style>
 <body>
-    <div class="main">
-      <div class="logo">
-    	<img src="/img/logo.png" class="logoImg">
-    </div>
-    <div class="menu">
-        <a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+
+  <input value="<%=session.getAttribute("id")%>" hidden>
+
+	<div class="main">
+		<div class="logo">
+    	<a href="/main"><img src="/img/logo.png" class="logoImg"></a>
     </div>
     
+	<% if(session.getAttribute("id")!=null){ %>
+    
+    <div class="menu">
+        <a href="/logout">로그아웃</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+    </div>
+   
+	<% } else {%>
+	
+	<div class="menu">
+        <a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/login" onclick="alert('로그인 후 이용해주세요')">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+    </div>
+    
+    <% } %>
     <div class="name">지금 어떤 책을 읽어야 할지 고민하는 사용자의 상태에 맞는 책을 추천해주는 서비스</div>
     <div class="category">
     	<ul class="category_ul"  id="nav">
@@ -360,7 +373,7 @@ textarea.form-control {
 								<td>제목</td>
 								<td colspan="2"><input type="text" class="form-control"
 									id="B_title" name="B_title" value="${bViews.b_TITLE}"></td>
-								<td><input type="text" id="board_num" name="board_num"
+								<td><input type="hidden" id="board_num" name="board_num"
 									value="${bViews.board_num}"></td>
 							</tr>
 
@@ -423,11 +436,25 @@ $(document)
            fontNames: 
               ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
         
-    })          
- })
+    });  
 
-.on('click','#btnCancle',function(){
-	document.location='/board';
+$(document)
+.on('click', '#btnCancle', function() {
+    document.location = '/board';
 })
+.on('click', '#btnUpdate', function() {
+    let v_title = $('#B_title').val();
+    let v_content = $('#summernote').val();
+    // 2. 제목을 입력했는지 확인하기
+    if (v_title == '' || v_title == null) {
+        alert("제목을 입력하세요");
+        return false;
+    }
+    if (v_content == '' || v_content == null) {
+        alert("내용을 입력하세요");
+        return false;
+    }
+});
+});
 </script>
 </html>

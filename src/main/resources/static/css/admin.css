@@ -268,4 +268,43 @@ a:hover {
     .button input[type="submit"]:hover {
 	background-color: #0056b3;
 }
+/* 검색 */
+.pSearch {
+	text-align:left;
+	margin-left: 2.5%;
+/* 	margin-bottom: 20px; /* 추가 */ 
+}
+.pSearch input[type="submit"] {
+	position: relative;
+
+	background-color: #7ca8c2;
+	padding: 7px 11px;
+        border: none;
+        border-radius: 10px;
+        color: #fff;
+        cursor: pointer;
+}
+   .pSearch input[type="submit"]:hover {
+	background-color: #0056b3;
+}
+
+.pSearch select {
+ 	width: 100px;
+    border: 1px solid #bbb;
+    border-radius: 15px;
+    padding: 5px 5px;
+    font-size: 14px;
+    margin-top:2%;
+}
+
+.pSearch input[type="text"]
+ {
+	 width: 200px;
+    border: 1px solid #bbb;
+    border-radius: 15px;
+    padding: 5px 5px;
+    font-size: 14px;
+    margin-top:2%;
+}
+
 

@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+	<link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
     <title>BookMate</title>
 </head>
 <style>
@@ -237,7 +237,7 @@ textarea {
 <body>
     <div class="main">
         <div class="logo">
-    	<img src="/img/logo.png" class="logoImg">
+    	<a href="/main"><img src="/img/logo.png" class="logoImg"></a>
     </div>
     <div class="menu">
         <a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
@@ -371,6 +371,28 @@ $(document)
 		document.location='/productDelete/'+a;
 	})
 	 .on('click', '#btnModify', function(){
+		 
+		 let book_name=$.trim($('#book_name').val());
+			if(book_name==''||book_name==null){
+				alert('상품명을 입력하시오');
+				return false;
+			}
+			if($('#book_price').val()==''){
+				alert('가격을 입력하시오');
+				return false;
+			}
+			if($('#author').val()==''){
+				alert('작가를 입력하시오');
+				return false;
+			}
+			if($('#publication').val()==''){
+				alert('출판일을 입력하시오');
+				return false;
+			}
+			if($('#rating').val()==''){
+				alert('별점을 입력하시오');
+				return false;
+			}
 	        var formData = new FormData();
 	        var files = $('#book_cover')[0].files[0];
 	        formData.append('file', files);
