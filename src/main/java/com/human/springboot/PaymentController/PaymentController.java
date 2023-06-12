@@ -32,10 +32,14 @@ public class PaymentController {
 	PaymentDTO ship=pdao.selectShip(id);
 	String cut[]=ship.getAddress().split("@");
 	String cut2[] = cut[1].split("\\)");
+	try {
 	ship.setAddress1(cut[0]);
 	ship.setAddress2(cut2[1]);
 	ship.setAddress3(cut2[0].replace("(", ""));
-	model.addAttribute("ship",ship); 
+	model.addAttribute("ship",ship);
+	} catch(Exception e) { return "payment"; }
+	
+    
 	return "payment";
 	}
 	

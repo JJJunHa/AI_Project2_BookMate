@@ -5,13 +5,24 @@ $(document).ready(function() {
     // jQuery 코드 작성
     $("#bestSeller-tab").click(function () {
         changeTab("bestSeller");
+        $(".column1").css("flex-basis", "30%");
+   	    $(".column2").css("flex-basis", "70%");
+        $(".container2").show();
+        
     });
     $("#donation-tab").click(function () {
         changeTab("donation");
+        $(".container2").hide();
+        $(".column1").css("flex-basis", "0%");
+    	$(".column2").css("flex-basis", "100%");
+    	    
     });
 
     $("#notification-tab").click(function () {
         changeTab("notification");
+        $(".container2").hide();
+        $(".column1").css("flex-basis", "0%");
+    	$(".column2").css("flex-basis", "100%");
     });
     
 });
