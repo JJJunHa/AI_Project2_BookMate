@@ -38,4 +38,7 @@ public interface AdminDAO {
 			ArrayList<AdminDTO> revlist();
 			void reviewDel(int x1);
 			ArrayList<AdminDTO> rSearch(String x1, String x2);
+//-----------------------------------------------------------
+	//주문
+			ArrayList<AdminDTO> orlist();
 }

@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,11 +8,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
+    
+    <link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
     <title>BookMate</title>
 </head>
 <style>
+
 .main {
     width:100%;
     height:100%;
@@ -286,12 +285,12 @@ a:hover {
 	background-color: #0056b3;
 }
 /* 검색 */
-.mSearch {
+.pSearch {
 	text-align:left;
 	margin-left: 2.5%;
 /* 	margin-bottom: 20px; /* 추가 */ 
 }
-.mSearch input[type="submit"] {
+.pSearch input[type="submit"] {
 	position: relative;
 
 	background-color: #7ca8c2;
@@ -301,11 +300,11 @@ a:hover {
         color: #fff;
         cursor: pointer;
 }
-   .mSearch input[type="submit"]:hover {
+   .pSearch input[type="submit"]:hover {
 	background-color: #0056b3;
 }
 
-.mSearch select {
+.pSearch select {
  	width: 100px;
     border: 1px solid #bbb;
     border-radius: 15px;
@@ -314,7 +313,7 @@ a:hover {
     margin-top:2%;
 }
 
-.mSearch input[type="text"]
+.pSearch input[type="text"]
  {
 	 width: 200px;
     border: 1px solid #bbb;
@@ -325,12 +324,11 @@ a:hover {
 }
 
 
-
 </style>
 <body>
     <div class="main">
         <div class="logo">
-    <a href="/main"><img src="/img/logo.png" class="logoImg"></a>
+    	<a href="/main"><img src="/img/logo.png" class="logoImg"></a>
     </div>
     <div class="menu">
         <a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
@@ -363,68 +361,62 @@ a:hover {
         <div class="content">
     
             <div class="content_A">
-                <h1>회원목록</h1>
-				<form method="post" action="/member/search">
-					<div class="mSearch">
+                <h1>주문목록</h1>
+                <form method="post" action="/book/search">
+					<div class="pSearch">
 						<select name="type" id="searchForm">
-							<option value="name||id||email||address||mobile||birth||regdate">전체검색</option>
-							<option value="name">이름</option>
-							<option value="id">ID</option>
-							<option value="email">이메일</option>
-							<option value="address">주소</option>
-							<option value="mobile">전화번호</option>
-							<option value="birth">생일</option>
-							<option value="regdate">가입일</option>
+							<option value="book_name||author||book_price||book_genre||emotion||rating">전체검색</option>
+							<option value="book_name">제목</option>
+							<option value="author">작가</option>
+							<option value="book_price">가격</option>
+							<option value="book_genre">장르</option>
+							<option value="emotion">감정</option>
+							<option value="rating">별점</option>
 						</select> <input type="text" id="keyword" name="keyword"> <input
 							type="submit" id="btnsearch" value=검색>
-					</div>
-				</form>
-				<div class="content2">
-                    <table class="board" id="board">
-                    <caption>
-						<form action="" id="setRows">
-							<p><input type="hidden" name="rowPerPage" value="15"></p>
-						</form>
-						</caption>
-						
-						
-            
-                    	<thead>
-	                        <tr class="small-text">
-	                            <th>이름</th>
-	                            <th>ID</th>	                          
-	                            <th>이메일</th>
-	                            <th>주소</th>
-	                            <th>전화번호</th>
-	                            <th>생일</th>
-	                            <th>가입일</th>
-	                            <th>삭제</th>
-	                        </tr>
-	                    </thead>
-	                    <tbody>
-							<c:forEach items="${ml}" var="mlist">
-								<tr class="small-text">
-									<td>${mlist.name}</td>
-									<td>${mlist.id}</td>
-									<td>${mlist.email}</td>
-									<td>${mlist.address}</td>
-									<td>${mlist.mobile}</td>
-									<td>${fn:substring(mlist.birth,2,10)}</td>
-									<td>${fn:substring(mlist.regdate,2,10)}</td>
-									<td><input type="button" id="btnDel" name="${mlist.id}" value="삭제"></td>
-								
-								</tr>
-								
-								</tr>
-							</c:forEach>
+						</div>
+					</form>
+						<div class="content2">
+							<table class="board" id="board">
+								<caption>
+									<form action="" id="setRows">
+										<p>
+											<input type="hidden" name="rowPerPage" value="15">
+										</p>
+									</form>
+								</caption>
 
-						</tbody>
-                    </table>
-                </div>
-               
-            </div>
-            
-        </div>
+
+
+								<thead>
+									<tr>
+										<th>번호</th>
+										<th>제목</th>
+										<th>작가</th>
+										<th>가격</th>
+										<th>장르</th>
+										<th>감정</th>
+										<th>별점</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${pl}" var="plist">
+										<tr>
+											<td>${plist.book_num}</td>
+											<td>${plist.book_name}</td>
+											<td>${plist.author}</td>
+											<td>${plist.book_price}</td>
+											<td>${plist.book_genre}</td>
+											<td>${plist.emotion}</td>
+											<td>${plist.rating}</td>
+										</tr>
+									</c:forEach>
+
+								</tbody>
+							</table>
+						</div>
+
+					</div></div>
 		
     </div>
 </body>
@@ -433,30 +425,17 @@ a:hover {
 
 <script>
 $(document)
-
-
-.on('click','#btnDel',function(){
-	
-	 
-   let a = $(this).attr('name');
-   
-   
-   $.ajax({
-       url: "/memberDel",
-       type: "post",
-       dataType: "text",
-       data: { id: a },
-       success: function(data) {
-         if (data == "ok") {
-           
-           location.reload()
-         } else {
-           alert("delete 실패")
-         }
-       } 
-     });
+//새글쓰기
+.on('click','#btnNew',function(){
+	document.location='/adminNew';
+	return false;
 })
-
+//수정페이지로
+.on('click','#board tr:gt(0)',function(){
+	   let a=$(this).find('td:eq(0)').text();
+	   document.location='adminUpdate/'+a;
+	})
+	
 /*  페이지네이션  */
 var $setRows = $('#setRows');
 
@@ -474,7 +453,7 @@ $setRows.submit(function (e) {
 	$('#nav1').remove();
 	var $board = $('#board');
 
-	$('#board').after(' <div id="nav1">');
+	$('#board').after('<input type="button" value="상품등록" class="btnNew" id="btnNew">  <div id="nav1">');
 
 
 	var $tr = $('tbody tr');

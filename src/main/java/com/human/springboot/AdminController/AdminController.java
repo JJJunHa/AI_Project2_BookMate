@@ -222,5 +222,13 @@ public class AdminController {
 			model.addAttribute("rl", rSearch);
 			return "adminReview";
 		}
+//주문
+		//주문 목록
+		@GetMapping("/orlist")
+		public String orlist(Model model) {
+			ArrayList<AdminDTO> orlist= adao.orlist();
+			model.addAttribute("ol",orlist);
+			return "adminOrder";
+		}
 }
 
