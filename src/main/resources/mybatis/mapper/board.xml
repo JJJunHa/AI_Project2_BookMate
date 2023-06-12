@@ -48,4 +48,17 @@
 	   
 	  	ORDER BY DECODE(id, 'bookmate', 1), board_num DESC 
 	</select>
+<!-- 	댓글등록 -->
+	<insert id="bcInsert" >
+		insert into board_comment values (BCOMMENT_NUM.nextval,  sysdate, 
+								 sysdate, #{param3}, #{param2}, #{param1}) 
+	</insert>
+	<select resultType="com.human.springboot.BoardController.boardDTO" id="comment">
+		select id,bc_create_date,bc_content,bcontent_num 
+		from board_comment where board_num=#{param1}
+		order by bc_create_date 
+	</select>
+	<delete id="bcdel" >
+		delete from board_comment where bcontent_num=#{param1}
+	</delete>
 </mapper>

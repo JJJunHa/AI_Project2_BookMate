@@ -20,6 +20,8 @@ public interface mypageDAO {
 	ArrayList<POSTDTO> selectPlist(String x1);
 	POSTDTO showPlist(String x1);
 	void Pread(String x1);
+	POSTDTO QviewList(int x1);
+	void Qread(int board_num);
 	
 	
 	
@@ -29,10 +31,19 @@ public interface mypageDAO {
 	
 	
 	
-	/// 주문 내역 ///
+	// 나의 기부
+	ArrayList<POSTDTO> myDonation(String x1);
 	
-	// 상품,룸 
+	
+	
+	/// 주문 내역 ///
+	// mypage에서 cart로 insert 하기
+	void MyPageAddCart(String id, int book_num, int qty);
+	
+	// 책 상품 
 	ArrayList<orderedDTO> selectDelInfo(String x1);
 	
+	// 리뷰 관련 part
+	orderedDTO compareRev(String x1, int x2);
 	
 }

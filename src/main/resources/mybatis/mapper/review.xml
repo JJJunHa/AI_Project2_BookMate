@@ -26,4 +26,10 @@
 		values (review_num.nextval, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, TO_CHAR(SYSDATE, 'YYYY/MM/DD'))
 	</insert>
 
+	<!-- 리뷰 확인하기 -->
+	 <select id="check_review" resultType="int">
+		select count(*) from review
+		where order_num=#{param1}
+		and id=#{param2}
+	</select>
 </mapper>

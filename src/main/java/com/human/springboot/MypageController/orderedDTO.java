@@ -9,13 +9,24 @@ public class orderedDTO {
 	
 	// from payment
 	String order_date;
-	String order_num; 
+	int order_num; 
+	int o_qty;
 	
 	// from cart
 	String qty;
 	
 	// from book
+	String book_num;
 	String book_name;
 	String book_price;
 	String book_cover;
+	
+	String IMG_NAME1;
+	
+//	String OPTION; // 권 수
+	int BPR;
+	String CHECK;
+	String BOOK;
+	
+//	String BOOK_NUM;
 }

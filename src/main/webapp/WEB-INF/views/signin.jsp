@@ -14,10 +14,17 @@
 	crossorigin="anonymous">
 	<link rel="stylesheet" href="css/signin.css">
 	<link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
-<title>북메이트</title>
+	
+<title>북메이트 | 회원가입</title>
 </head>
+
 <body>
-		<h2 class=Membership>회원가입</h2>
+	<div class="logo">
+		<a href="/main"><img src="/img/logo.png" class="logoImg"></a>
+	</div>
+	
+<!-- 		<h2 class=Membership>회원가입</h2> -->
+
 		<!-- Content -->
 		<div class="content">
 			<div class="content2"></div>
@@ -31,24 +38,31 @@
 									placeholder="아이디" id="j_id" name="j_id"
 									style="font-size: 14px;"> <label id="idGuide"
 									for="j_id" style="font-size: 14px;">아이디를 입력해주세요</label>
+									<div style="font-size: 2px;">[영문대소문자/숫자, 4~20자]</div>
 							</div>
 							<div class="form-floating mb-3">
 								<input type="password" class="form-control" placeholder="비밀번호"
-									id="j_pwd" name="j_pwd" style="width: 400px;"> <label
-									id="psGuide" for="j_pwd" style="font-size: 14px;">비밀번호를 입력해주세요</label>
-								<div style="font-size: 2px;">(영문대소문자/숫자/특수문자, 10~16자)</div>
+									id="j_pwd" name="j_pwd" style="width: 400px;">
+									
+<!-- 									<img src="/img/free-icon-eye-show.jpg" id="showPwd">  -->
+
+									<label id="psGuide" for="j_pwd" style="font-size: 14px;">비밀번호를 입력해주세요</label>
+								<div style="font-size: 2px;">[영문대소문자/숫자/특수문자(@$!%*#?&), 8~22자]</div>
 							</div>
 							<div class="form-floating mb-3">
 								<input type="password" class="form-control"
 									placeholder="비밀번호 확인" id="j_pwdcf" name="j_pwdcf"
-									style="width: 400px;"> <label id="psGuide2"
-									for="j_pwdcf" style="font-size: 14px;">다시한번 입력해주세요</label>
+									style="width: 400px;">
+									
+<!-- 									<img src="/img/free-icon-eye-show.jpg" id="showPwd2"> -->
+									
+									 <label id="psGuide2" for="j_pwdcf" style="font-size: 14px;">다시한번 입력해주세요</label>
 
 							</div>
 							<div class="form-floating mb-3">
-								<input type="text" class="form-control" placeholder="이름"
+								<input type="text" class="form-control" placeholder="이름을 입력해주세요"
 									id="j_name" name="j_name" style="font-size: 14px;" required>
-								<label for="j_name" style="font-size: 14px;">Name</label>
+								<label for="j_name" style="font-size: 14px;">이름을 입력해주세요</label>
 							</div>
 							<div class="information5">
 								<input type="address" class="address-input" id=zip_code
@@ -70,27 +84,27 @@
 									<option value="017">017</option>
 									<option value="018">018</option>
 									<option value="019">019</option>
-								</select> - <input type="tel" id=j_midphone name=j_midphone
-									class="general-number" required> - <input type="tel"
+								</select>&nbsp; - &nbsp;<input type="tel" id=j_midphone name=j_midphone
+									class="general-number" required>&nbsp; - &nbsp;<input type="tel"
 									id=j_lastphone name=j_lastphone class="general-number" required>
 									
 							</div>
 							<div class="form-floating mb-3">
-								<input type="email" class="form-control" placeholder="이메일"
+								<input type="email" class="form-control" placeholder="이메일을 입력해주세요"
 									id="j_email" name="j_email" style="width: 500px;" required>
-								<label for="floatingPassword" style="font-size: 14px;">E-mail</label>
+								<label for="floatingPassword" style="font-size: 14px;">이메일을 입력해주세요</label>
 							</div>
 							<div class="information8" style="display: flex; gap: 10px;">
 								<label for="year"></label> <select id="j_year" name="j_year"
 									style="width: 100px;" class="form-select">
 									<!-- 연도 -->
-								</select> <label for="month">Year</label> <select id="j_month"
+								</select> <label for="month">년</label> <select id="j_month"
 									name="j_month" style="width: 80px;" class="form-select">
 									<!-- 월 -->
-								</select> <label for="day">Month</label> <select id="j_day" name="j_day"
+								</select> <label for="day">월</label> <select id="j_day" name="j_day"
 									style="width: 80px;" class="form-select">
 									<!-- 일 -->
-								</select> Day
+								</select> 일
 							</div>
 
 
@@ -163,7 +177,34 @@ for (let i = 1; i <= 31; i++) {
 }
 
 
+//---- 비밀번호 표시 코드 part ---- //
+// $(document)
 
+// document.getElementById("showPwd").addEventListener("click", function() {
+// 		var passwordInput = document.getElementById("j_pwd");
+// 		var eyeIcon = document.getElementById("showPwd");
+		
+// 		if (passwordInput.type === "password") {
+// 			passwordInput.type = "text";
+// 			eyeIcon.src = "/img/free-icon-eye-hidden.jpg";
+// 		} else {
+// 			passwordInput.type = "password";
+// 			eyeIcon.src = "/img/free-icon-eye-show.jpg";
+// 		}
+// 	})
+	
+// 	document.getElementById("showPwd2").addEventListener("click", function() {
+// 		var passwordInput = document.getElementById("j_pwdcf");
+// 		var eyeIcon = document.getElementById("showPwd2");
+		
+// 		if (passwordInput.type === "password") {
+// 			passwordInput.type = "text";
+// 			eyeIcon.src = "/img/free-icon-eye-hidden.jpg";
+// 		} else {
+// 			passwordInput.type = "password";
+// 			eyeIcon.src = "/img/free-icon-eye-show.jpg";
+// 		}
+// 	})
 
 
 $(document)

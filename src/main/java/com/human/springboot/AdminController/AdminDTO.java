@@ -27,4 +27,12 @@ public class AdminDTO {
 	String mobile;
 	String birth;
 	String regdate;
+	//review
+	int review_num;
+	String rev_title;
+	String rev_content;
+	String rev_create_date;
+	String rev_update_date;
+	int order_num;
+
 }

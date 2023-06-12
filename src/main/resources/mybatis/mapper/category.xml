@@ -48,6 +48,19 @@
 		and d.cart_num = c.o_cart_num
 	</select>
 	
+		<!-- 리뷰 dialog 만들기 mypage -->
+	<select id="dialog_review1" resultType="com.human.springboot.DetailController.ReviewDTO">
+		select b.book_cover, b.book_name, b.book_price,
+				c.o_qty,
+				a.id, a.rev_title, a.rev_rating, a.rev_content
+		from review a, book b, ordered_cart c, payment d
+		where a.order_num = #{param1}
+		and a.id=#{param2}
+		and a.book_num = b.book_num
+		and a.order_num = d.order_num
+		and d.cart_num = c.o_cart_num
+	</select>
+	
 	
 	<!-- cart에 insert하기 전에 이미 있는 책인지 확인하기 -->
 	<select id="confirm_cart" resultType="int">

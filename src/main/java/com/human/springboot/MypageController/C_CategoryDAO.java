@@ -1,12 +1,15 @@
-package com.human.springboot.DetailController;
+package com.human.springboot.MypageController;
 
 import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.human.springboot.DetailController.CategoryDTO;
+import com.human.springboot.DetailController.ReviewDTO;
 
 @Mapper
-public interface CategoryDAO {
+public interface C_CategoryDAO {
+	
 	/* category 책 가져오기 */
 	ArrayList<CategoryDTO> comedy_list();
 	ArrayList<CategoryDTO> romance_list();
@@ -19,10 +22,6 @@ public interface CategoryDAO {
 	
 	/* detail 책 리뷰 가져오기 */
 	ArrayList<ReviewDTO> load_review(int book_num);
-	/* 리뷰 dialog 만들기 */
-	ArrayList<ReviewDTO> dialog_review(int review_num);
-	/* 리뷰 dialog 만들기 */
-	ArrayList<ReviewDTO> dialog_review1(int order_num, String id);
 	
 	/* cart에 insert 하기 */
 	void insert_cart(String m_id, int qty, int book_num);
@@ -30,4 +29,5 @@ public interface CategoryDAO {
 	int confirm_cart(String m_id, int book_num);
 	int confirm_qty(String m_id, int book_num);
 	void update_cart(int total_qty, String m_id, int book_num);
+	
 }

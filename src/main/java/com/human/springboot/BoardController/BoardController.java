@@ -2,6 +2,8 @@ package com.human.springboot.BoardController;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,8 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class BoardController {
@@ -25,6 +29,7 @@ public class BoardController {
 		model.addAttribute("bl",bList);
 		return "board";
 	}
+	//  게시글 검색
 	@GetMapping("/board/search")
 	public String bSearch(Model model, @RequestParam("type") String type, @RequestParam("keyword") String keyword) {
 	    ArrayList<boardDTO> bSearch = bdao.bSearch(type, keyword);
@@ -75,6 +80,55 @@ public class BoardController {
 		bdao.bDelete(board_num);
 		return "redirect:/board";
 	}
-//  게시글 검색
+//댓글 작성
+	@PostMapping("/bcInsert")
+	@ResponseBody
+	public String bcInsert(HttpServletRequest req, Model model) {
+		HttpSession session = req.getSession();
+		String id=(String) session.getAttribute("id");
+		String content=req.getParameter("BC_content");
+		int board_num=Integer.parseInt(req.getParameter("board_num"));
+	
+		bdao.bcInsert(content,id,board_num);
+		
+		
+		return "board";
+	}
+//댓글 목록
+	@PostMapping("/selectBC")
+	@ResponseBody
+	public String selectBC(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		String id=(String) session.getAttribute("id");
+		String board_num=req.getParameter("board_num");
+		ArrayList<boardDTO> comment = bdao.comment(Integer.parseInt(board_num));
+		JSONArray ja = new JSONArray();
+		for(int i=0; i<comment.size(); i++) {
+			
+			JSONObject jo = new JSONObject();
+			jo.put("id", comment.get(i).getID());
+			jo.put("bc_create_date", comment.get(i).getBc_create_date());
+			jo.put("bc_content", comment.get(i).getBc_content());
+			jo.put("bcontent_num", comment.get(i).getBcontent_num());
+			if(id.equals(comment.get(i).getID())) {
+				jo.put("check", "check");
+			}
+			
+			
+			ja.put(jo);
+		}
+		return ja.toString();
+	}
+//댓글 삭제
 
+	@PostMapping("/bcdel")
+	@ResponseBody
+	public String bcdel(HttpServletRequest req, Model model) {
+		String num=req.getParameter("num");
+		bdao.bcdel(Integer.parseInt(num));
+		
+		String box="";
+		
+		return box;
+	}
 }
