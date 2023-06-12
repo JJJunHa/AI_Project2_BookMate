@@ -42,10 +42,42 @@
 	<delete id="proDelete">
 		delete from Book where book_num=#{param1}
 	</delete>
+	<select id="pSearch" resultType="com.human.springboot.AdminController.AdminDTO">
+	    SELECT book_num, book_name, AUTHOR, book_price, book_genre, EMOTION,RATING
+	    FROM Book
+	    where ${param1} like '%'||#{param2}||'%'
+	   
+	  	ORDER BY book_num DESC 
+	</select>
 <!-- 	회원 -->
 	<select id="memlist" resultType="com.human.springboot.AdminController.AdminDTO">
 		select id, name, email, address, mobile, birth, regdate
 		from member
 		ORDER BY name
+	</select>
+	<select id="mSearch" resultType="com.human.springboot.AdminController.AdminDTO">
+	    SELECT id, name, email, address, mobile, birth, regdate
+	    FROM member
+	    where ${param1} like '%'||#{param2}||'%'
+	   
+	  	ORDER BY name DESC 
+	</select>
+<!-- 	리뷰 -->
+	<select id="revlist" resultType="com.human.springboot.AdminController.AdminDTO">
+		select a.review_num, a.id, b.book_name, a.rev_title, a.rev_content, a.rev_create_date
+		from review a, book b
+        where a.book_num = b.book_num
+ 		order by review_num
+	</select>
+	<delete id="reviewDel" parameterType="Integer">
+		delete from review where review_num = #{param1}
+	</delete>
+	<select id="rSearch" resultType="com.human.springboot.AdminController.AdminDTO">
+	    select a.review_num, a.id, b.book_name, a.rev_title, a.rev_content, a.rev_create_date
+		from review a, book b
+        where a.book_num = b.book_num
+	    and ${param1} like '%'||#{param2}||'%'
+	   	order by review_num
+
 	</select>
 </mapper>

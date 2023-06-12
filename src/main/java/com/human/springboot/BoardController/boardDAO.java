@@ -1,8 +1,10 @@
 package com.human.springboot.BoardController;
 
+
 import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
+
 
 
 
@@ -16,5 +18,10 @@ public interface boardDAO {
 	void bDelete(int x1);
 	void bRead(int board_num);
 	ArrayList<boardDTO> bSearch(String x1, String x2);
+	
+	//댓글
+	void bcInsert(String x1, String x2, int x3);
+	ArrayList<boardDTO> comment(int x1);
+	void bcdel(int x1);
 
 }

@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+	<link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
     <title>BookMate</title>
 </head>
 <style>
@@ -290,13 +290,26 @@ a:hover {
 
 </style>
 <body>
-    <div class="main">
-        <div class="logo">
-    	<img src="/img/logo.png" class="logoImg">
+   <input value="<%=session.getAttribute("id")%>" hidden>
+
+	<div class="main">
+		<div class="logo">
+    	<a href="/main"><img src="/img/logo.png" class="logoImg"></a>
     </div>
+    
+	<% if(session.getAttribute("id")!=null){ %>
+    
     <div class="menu">
-        <a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+        <a href="/logout">로그아웃</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
     </div>
+   
+	<% } else {%>
+	
+	<div class="menu">
+        <a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/login" onclick="alert('로그인 후 이용해주세요')">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+    </div>
+    
+    <% } %>
     
     <div class="name">지금 어떤 책을 읽어야 할지 고민하는 사용자의 상태에 맞는 책을 추천해주는 서비스</div>
     <div class="category">
@@ -369,10 +382,12 @@ a:hover {
 							<option value="ID">작성자</option>
 							<option value="b_TITLE">제목</option>
 						</select> 
-						
+					
 						<input type="text" id="keyword" name="keyword"> <input
 							type="submit" id="btnsearch" value=검색>
+								<% if(session.getAttribute("id")!=null){ %>
 							<input type="button" value="글쓰기" class="btnNew" id="btnNew">
+							<%} %>
 							</div>
 					</form>
 					
@@ -391,7 +406,18 @@ a:hover {
 $(document)
 //새글쓰기
 .on('click','#btnNew',function(){
-	document.location='/boardNew';
+	let m_id = '<%=session.getAttribute("id")%>';
+	
+		// 아이디가 없을 때
+	if(m_id=='' || m_id==null || m_id=='null') {
+		alert('로그인 후 이용해주세요');
+		document.location="/login";
+	} 
+	// 아이디가 있을 때
+	else {
+		document.location='/boardNew';
+	}
+	
 	return false;
 })
 //게시글 보기
