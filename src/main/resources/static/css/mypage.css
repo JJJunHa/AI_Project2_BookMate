@@ -31,7 +31,7 @@ a:link {
 /* 색상상자 */
 .name{
     width:100%;
-    height:20px;
+    height:60px;
     background-color: #97d4f7;
     color:white;
     text-align : center;
@@ -110,138 +110,15 @@ a:hover {
 }
 /* ----------------------------------------------*/
 
-  .html, body {margin: 0; padding:0}
-.container {
-/*      background-color: purple;  */
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-a { text-decoration: none; color: black; }
-    a:visited { text-decoration: none; }
-    a:hover { text-decoration: none; }
-    a:focus { text-decoration: none; }
-    a:hover, a:active { text-decoration: none; }
-
-
-.header {
-    /* background-color: red; */
-    flex: 0 200px;
-    display: flex;
-    flex-direction: column;
-    
-}
-
 .mypage{
     display: flex;
     justify-content: center;
     padding-bottom: 50px;
 }
 
-.header > .logo-section {
-    /* background-color: red; */
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    font-size: 80px;
-    align-items: center;
-    justify-content: center;
-    padding-bottom:50px;
-    font-family: 'Nanum Gothic';
-    font-style: italic;
-     font-style: italic;
-     font-weight: 400;
-    src: url(폰트경로/NanumGothic-Regular-italic.woff2) format("woff2"), 
-        url(폰트경로/NanumGothic-Regular-italic.woff) format("woff"), 
-}
-.header > .logo-section > img {
-    /*width: 250px;*/
-}
-
-.header > .gnb {
-    /* background-color: orange; */
-    flex: 0 50px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    font-size: 19px;
-}
-.header > .gnb > .menu-btn {
-    /* background-color: brown; */
-    flex: 0 250px;
-    text-align: center;
-}
-
-
-.content {
-/*      background-color: aqua;  */
-    flex: 1;
-    
-}
-.footer {
-    flex: 0 80px;
-    /* background-color: chartreuse; */
-    padding:7px;
-    display:flex;
-    flex-direction: row;
-    font-size: 13px;
-}
-
-.footer2{
-    flex:1;
-    /* background-color: blue; */
-}
-.footer3{
-    /* background-color:orange ; */
-    flex:1;
-}
-.footer4{
-    /* background-color: chocolate; */
-    flex:1;
-}
-
-.menu-icon:hover {
-  transform: scale(1.2);
-}
-
-
-/* Dropdown menu styles */
-.dropdown {
-    position: relative;
-}
-
-.dropdown-toggle {
-    cursor: pointer;
-}
-
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    background-color: white;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    min-width: 160px;
-    padding: 12px 16px;
-    font-size: 16px;
-}
-
-.dropdown-menu a {
-    color: black;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-menu a:hover {
-    background-color: #f1f1f1;
-}
-
 /* /////////////////////////////////////////////////////////// */
-* {
-            box-sizing: border-box;
-        }
-        body {
+
+    body {
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
@@ -281,6 +158,7 @@ a { text-decoration: none; color: black; }
     .posts-container,
     .comments-container,
     .membership-container,
+    .donation-container,
     .delivery-container {
         padding: 20px;
         /* background-color: #f8f8f8; */
@@ -291,53 +169,25 @@ a { text-decoration: none; color: black; }
 
 
 
-    .text{
-
-/* background-color: forestgreen; */
-
-flex:8;
-
-display: flex;
-
-flex-direction: row;
-
-padding-left:50px;
-
-padding-top: 50px;
-
+.text{
+	flex:8;
+	display: flex;
+	flex-direction: row;
+	padding-left:50px;
+	padding-top: 50px;
 }
 
 .text2{
-
-/* background-color: gold; */
-
-flex:1;
-
-display: flex;
-
-flex-direction: column;
-
-/* justify-content: center; */
-
-/* align-items: center; */
-
-
+	flex:1;
+	display: flex;
+	flex-direction: column;
 }
 
-.text3{
-
-/* background-color: blue; */
-
-flex:3;
-
-
-/* display: flex; */
-
-/* /* flex-direction: column; */
-
+.text3{	
+	flex:3;
 }
 
-.name{
+.name1{
 
 /* background-color: aqua; */
 
@@ -426,23 +276,44 @@ flex:1;
 /* background-color: chocolate; */
 
 flex:1;
+position: relative;
 
 /* margin-bottom:10px; */
 
 }
+
+
 
 .information3{
 
 /* background-color: salmon; */
 
 flex:1;
-
+position: relative;
 
 
 /* padding-top:20px; */
 
 }
 
+/* 비밀번호 보기 표시 */
+#showPwd {
+    position: absolute;
+	border: none;
+	background-color: white;
+	padding-right: 10px;
+	width: 28px;
+/* 	right: 1px; */
+	}
+	#showPwd2 {
+    position: absolute;
+	border: none;
+	background-color: white;
+	padding-right: 10px;
+	width: 28px;
+/* 	right: 1px; */
+	}
+	
 .information4{
 
 /* background-color: chocolate; */
@@ -509,6 +380,7 @@ flex:1;
     padding-right: 100px;
     margin-top: 20px;;
 }
+
 .button button {
 
 background-color: black;
@@ -670,12 +542,10 @@ table {
             background-color: #f2f2f2;
         }
 
-
-
-
 .mytext{
     text-align: center;
     padding-bottom: 30px;
+    margin-top:25px;
 
 }
    
@@ -686,3 +556,157 @@ table {
 	align-items:top;
 
 }
+
+
+
+
+/* -------------------------------------------*/
+.contentBody-main {
+	width:100%;
+	height:1300px;
+    border: 2px solid rgb(216, 216, 216);
+    text-align: center;
+}
+/* dialog 만들기 */
+.dialog-main {
+	width: 100%;
+}
+.dialog-book {
+	width: 95%;
+	height: 110px;
+	margin: 0 auto;
+	border:0.5px solid lightgray;
+}
+.dialog-review {
+	width: 100%;
+	height: 520px;
+	border-top:2px solid black;
+/* 	border:1px solid blue; */
+}
+.book-img {
+	float: left;
+	width: 15%;
+	text-align:center;
+	margin-top:1.5%;
+}
+.book-info {
+	float: left;
+	width: 84%;
+	margin-top: 0.5%;
+}
+.book_img {
+	width: 60px;
+	height: 90px;
+}
+.book-name {
+	font-weight: bold;
+	font-size: 15px;
+}
+.book-qty, .book-price {
+	font-size: 12px;
+}
+/* ----------------------------------------*/
+/* table css */
+.dialog-table {
+	width: 100%;
+	margin-top: 0.5%;
+	border-collapse: collapse;
+}
+input:focus {outline: none;} /* outline 테두리 없애기 */
+
+.dialog-table tr {
+	border:none;
+	border-bottom: 1px solid lightgray;
+}
+.dialog-table th {
+	width: 35%;
+	height:60px;
+	font-size: 15px;
+}
+.dialog-table td {
+	width: 65%;
+}
+.dialog-id, .dialog-id1 {
+	width: 30%;
+	height: 25px;
+	font-size: 15px;
+	border: none;
+	outline: none;
+	padding-left: 10px;
+/* 	background-color: #F2F2F2; */
+}
+.dialog-text {
+	width: 80%;
+	height: 25px;
+	font-size: 15px;
+	border: 1px solid lightgray;
+	outline: none;
+	padding-left: 10px;
+/* 	background-color: #F2F2F2; */
+}
+.dialog-text1 {
+	width: 80%;
+	height: 25px;
+	font-size: 15px;
+	border: none;
+	outline: none;
+	padding-left: 10px;
+/* 	background-color: #F2F2F2; */
+}
+.dialog-rating1 {
+	width: 30%;
+	height: 25px;
+	font-size: 15px;
+	border: none;
+	outline: none;
+	padding-left: 10px;
+}
+.summernote .summernote1 {
+	height: 200px;               
+    width: 770px;
+    border: none;
+	outline: none;
+	padding-left: 10px;
+}
+/* -------------------------------------*/
+/* 버튼 */
+.dialog-btn {
+	width: 100%;
+	text-align: right;
+}
+.btn-rev, .btn-rev1 {
+	border: 0.5px solid lightgray;
+	width: 10%;
+	height: 35px;
+	margin-bottom: 1%;
+}
+
+/* ----------------------------------------- */
+.view-img {
+	float: left;
+	width: 15%;
+	text-align:center;
+	margin-top:1.5%;
+}
+.view-info {
+	float: left;
+	width: 84%;
+	margin-top: 0.5%;
+}
+.view_img {
+	width: 60px;
+	height: 90px;
+}
+.view-name {
+	font-weight: bold;
+	font-size: 15px;
+}
+.view-qty, .view-price {
+	font-size: 12px;
+}
+
+a {
+ 	 text-decoration-line: none;
+ 	 text-align: center;
+  	 color: inherit; /* 링크의 색상 제거 */
+	}

@@ -14,4 +14,8 @@ public class CategoryDTO {
 	String publication;
 	int rating;
 	String book_detail;
+	
+	
+	int order_num;
+	String id;
 }

@@ -310,6 +310,33 @@ public class DetailController {
 		return ja.toString();
 	}
 	
+	// 리뷰 dialog 만들기 - mypage
+		@PostMapping("/dialog_review1")
+		@ResponseBody
+		public String dialog_review1(HttpServletRequest req) {
+			String id = req.getParameter("id");
+			int order_num = Integer.parseInt(req.getParameter("order_num"));
+			
+			ArrayList<ReviewDTO> alReview3 = cdao.dialog_review1(order_num, id);
+			JSONArray ja = new JSONArray();
+			for(int i=0; i<alReview3.size(); i++) {
+				JSONObject jo = new JSONObject();
+				jo.put("book_cover", alReview3.get(i).getBook_cover());
+				jo.put("book_name", alReview3.get(i).getBook_name());
+				jo.put("book_price", alReview3.get(i).getBook_price());
+				
+				jo.put("o_qty", alReview3.get(i).getO_qty());
+				
+				jo.put("id", alReview3.get(i).getId());
+				jo.put("rev_title", alReview3.get(i).getRev_title());
+				jo.put("rev_rating", alReview3.get(i).getRev_rating());			
+				jo.put("rev_content", alReview3.get(i).getRev_content());
+				
+				ja.put(jo);
+			}
+			return ja.toString();
+		}
+	
 	
 	// cart에 insert 하기 전에 이미 있는 책인지 확인하기
 	@PostMapping("/confirm_cart")

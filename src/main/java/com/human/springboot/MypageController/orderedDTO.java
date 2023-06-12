@@ -9,7 +9,7 @@ public class orderedDTO {
 	
 	// from payment
 	String order_date;
-//	String order_num; 
+	int order_num; 
 	int o_qty;
 	
 	// from cart

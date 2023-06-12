@@ -14,4 +14,7 @@ public interface ReviewDAO {
 	
 	// review insert
 	void insert_review(int order_num, String id, String rev_title, int rev_rating, String rev_content, int book_num);
+	
+	// 리뷰 확인하기
+	int check_review(int order_num, String id);
 }

@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.human.springboot.BoardController.boardDTO;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -20,32 +18,35 @@ import jakarta.servlet.http.HttpSession;
 public class MypageController {
 	
 	@Autowired private mypageDAO mypagedao;
-	@Autowired private C_BoardDAO c_boarddao;
 	@Autowired private C_CartDAO c_cartdao;
 	@Autowired private C_CategoryDAO c_categorydao;
-//	@Autowired private MypageDAO mypagedao1;
 	
 	@GetMapping("/mypage")
     public String showMypage(HttpServletRequest req, Model model) {
     	
     	HttpSession session = req.getSession();
 		String id=(String)session.getAttribute("id");
-		System.out.println(id);
+//		System.out.println(id);
+		
+//		int order_num=(int)session.getAttribute("order_num");
+//		System.out.println(order_num);
+		
+//		orderedDTO compareRev = mypagedao.compareRev(id,order_num);
 		
 		mypageDTO showAdr = mypagedao.showAdr(id);
 		mypageDTO showMob = mypagedao.showMob(id);
 		mypageDTO showBir = mypagedao.showBir(id);
 		
+//		System.out.println(showAdr);
 		System.out.println(showAdr);
-		
 		String cut[]=showAdr.getAddress().split("@");
-		System.out.println(cut[1]);
+//		System.out.println(cut[1]);
 		
 		showAdr.setAddress1(cut[0]);
 		showAdr.setAddress2(cut[1]);
 		
 		String cut1[]=showMob.getMobile().split(" ");
-		System.out.println(cut1[1]);
+//		System.out.println(cut1[1]);
 		
 		showMob.setMobile1(cut1[0]);
 		showMob.setMobile2(cut1[1]);
@@ -55,7 +56,7 @@ public class MypageController {
 		String cut4 = cut3.substring(0, 10);
 		
 		String cut2[]=cut4.split("-");
-		System.out.println(cut2[1]);
+//		System.out.println(cut2[1]);
 		
 		showBir.setBirth1(cut2[0]);
 		showBir.setBirth2(cut2[1]);
@@ -84,7 +85,7 @@ public class MypageController {
 	
 //	///// 주문내역 상품 select 하는 코드 /////
 			  ArrayList<orderedDTO> mydeli = mypagedao.selectDelInfo(id);
-		      System.out.println(mydeli);
+//		      System.out.println(mydeli);
 		      ArrayList<Integer> product_prices = new ArrayList<>();
 		      
 		      for (int i = 0; i < mydeli.size(); i++) {
@@ -108,13 +109,8 @@ public class MypageController {
 		          String book_price = mydeli.get(i).getBook_price(); // int
 //		          System.out.println(book_price);
 		          
-		           // 주문한 각 상품의 가격을 계산합니다.
-		         
-//		    	  if (qty != null) {
-//		    		  
-//		    		  mydeli.get(i).setOPTION("권");
-//		    		  
-//				    }
+		          int order_num = mydeli.get(i).getOrder_num();
+//		          System.out.println(order_num);
 				    
 				    if(book_price != null) {
 				    	
@@ -134,7 +130,11 @@ public class MypageController {
 		      }
 
 		      model.addAttribute("mydeli",mydeli);
-		      	      
+		      	
+		      
+		      // 리뷰 작성 확인하기 
+		      
+		      
 		       return "mypage";
 
 	    }
@@ -152,91 +152,142 @@ public class MypageController {
     
     
     
-////////////////////////////// 게시글 part //////////////////////////////
+////////////////////////////// 게시글 part ///////////////////////////////
 	
-//    @GetMapping("/myPlist")
-//	@ResponseBody
-//	public String doGetList(HttpServletRequest req) {
-//    	
-//    	HttpSession session = req.getSession();
-//		String id=(String)session.getAttribute("id");
-//		
+    @GetMapping("/myPlist")
+	@ResponseBody
+	public String doGetList(HttpServletRequest req) {
+    	
+    	HttpSession session = req.getSession();
+		String id=(String)session.getAttribute("id");
+		
 //		System.out.println(id);
-//    	
-//		ArrayList<POSTDTO> plist = mypagedao.selectPlist(id);
-//		System.out.println(plist);
-//		
-//		JSONArray ja =new JSONArray();
-//		
-//		for(int i=0; i<plist.size(); i++) {
-//			
-//			JSONObject jo = new JSONObject();
-//			jo.put("board_num", plist.get(i).getBoard_num());
-//			jo.put("Btitle", plist.get(i).getBtitle());
-//			jo.put("B_writer", plist.get(i).getB_writer());
-//			jo.put("B_Create_date", plist.get(i).getB_create_date());
-//			jo.put("B_rcount",plist.get(i).getB_rcount());
-//		
-//			ja.put(jo);
-//		}
-//		return ja.toString();
-//	} 
+    	
+		ArrayList<POSTDTO> plist = mypagedao.selectPlist(id);
+		System.out.println(plist);
+		
+		JSONArray ja =new JSONArray();
+		
+		for(int i=0; i<plist.size(); i++) {
+			
+			JSONObject jo = new JSONObject();
+			jo.put("board_num", plist.get(i).getBoard_num());
+			jo.put("B_title", plist.get(i).getB_title());
+			jo.put("id", plist.get(i).getId());
+			jo.put("B_Create_date", plist.get(i).getB_create_date());
+			jo.put("B_rcount",plist.get(i).getB_rcount());
+		
+			ja.put(jo);
+		}
+		return ja.toString();
+	} 
+    
+    @GetMapping("/doQview")
+	@ResponseBody
+	public String viewBBS(HttpServletRequest req) {
+
+		String id=req.getParameter("name");
+		String board_num=req.getParameter("num");
+		
+		POSTDTO qo=mypagedao.QviewList(Integer.parseInt(board_num));
+
+		String pstr=qo.getB_title()+",:"+qo.getB_content()+",:"+qo.getId()+
+				",:"+qo.getB_create_date()+",:"+qo.getB_update_date()+",:"+
+				qo.getB_rcount()+",:"+qo.getBoard_num();
+
+		
+		//System.out.println(qa);
+		return pstr;
+	}
     
 //////////////////////////////// 게시글 part //////////////////////////////
-
+    
     
 //////////////////////////////// 댓글 part ///////////////////////////////   
     
-//    @PostMapping("/showBC")
-//	@ResponseBody
-//	public String showBC(HttpServletRequest req) {
-//		HttpSession session = req.getSession();
-//		String writer=(String) session.getAttribute("id");
-//		
-//		ArrayList<POSTDTO> myComment = mypagedao.myComment(writer);
-//		JSONArray ja = new JSONArray();
-//		for(int i=0; i<myComment.size(); i++) {
-//			
-//			JSONObject jo = new JSONObject();
-//			jo.put("BC_num", myComment.get(i).getBcoment_num());
-//			jo.put("BC_content", myComment.get(i).getBC_content());
-//			jo.put("BC_writer", myComment.get(i).getBC_writer());
-//			jo.put("BC_create", myComment.get(i).getBC_create_date());
+    @PostMapping("/showBC")
+	@ResponseBody
+	public String showBC(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		String writer=(String) session.getAttribute("id");
+		
+		ArrayList<POSTDTO> myComment = mypagedao.myComment(writer);
+		JSONArray ja = new JSONArray();
+		for(int i=0; i<myComment.size(); i++) {
+			
+			JSONObject jo = new JSONObject();
+			jo.put("BC_num", myComment.get(i).getBcontent_num());
+			jo.put("BC_content", myComment.get(i).getBC_content());
+			jo.put("id", myComment.get(i).getId());
+			jo.put("BC_create", myComment.get(i).getBC_create_date());
 //			if(writer.equals(myComment.get(i).getBC_writer())) {
 //				jo.put("check", "check");
 //			}
-//			
-//			
-//			ja.put(jo);
-//		}
-//		return ja.toString();
-//	}
-//    
-//    @GetMapping("/doQview2")
-//	@ResponseBody
-//	public String viewBBS(HttpServletRequest req) {
-//    	System.out.println("checkComment");
-//		String id=req.getParameter("name");
-//		String num=req.getParameter("num");
-//		System.out.println("num ["+num+"]");
-//		System.out.println("id "+id);
-//		POSTDTO BordNum=mypagedao.selectBordNum(num);
-//		
-//			
-//			System.out.println("bordNum= "+BordNum.getBoard_num());
-//		
-//		c_boarddao.Qread(BordNum.getBoard_num());
-//		boardDTO qo=c_boarddao.QviewList(BordNum.getBoard_num());
-//		System.out.println("btitle="+qo.getB_TITLE());
-//		String pstr=qo.getB_TITLE()+",:"+qo.getB_CONTENT()+",:"+qo.getID()+
-//				",:"+qo.getB_CREATE_DATE()+",:"+qo.getB_UPDATE_DATE()+",:"+
-//				qo.getB_RCOUNT()+",:"+qo.getBoard_num();
-//
-//		return pstr;
-//	}
+			
+			
+			ja.put(jo);
+		}
+		return ja.toString();
+	}
+    
+    
+    
+    @GetMapping("/doQview2")
+	@ResponseBody
+	public String viewBBS2(HttpServletRequest req) {
+    	
+		String id=req.getParameter("name");
+		String num=req.getParameter("num");
+		
+		POSTDTO BordNum=mypagedao.selectBordNum(num);
+		
+			
+		System.out.println("bordNum= "+BordNum.getBoard_num());
+		
+		mypagedao.Qread(BordNum.getBoard_num());
+		
+		POSTDTO qo=mypagedao.QviewList(BordNum.getBoard_num());
+
+		String pstr=qo.getB_title()+",:"+qo.getBcontent_num()+",:"+qo.getID()+
+				",:"+qo.getB_create_date()+",:"+qo.getB_UPDATE_DATE()+",:"+
+				qo.getB_RCOUNT()+",:"+qo.getBoard_num();
+
+		return pstr;
+	}
+	
 //////////////////////////////// 댓글 part ///////////////////////////////
     
-//////////////////////////////// 회원정보 update part /////////////////////////////
+    
+//////////////////////////////// 나의 기부 part ///////////////////////////
+    
+    @PostMapping("/showDN")
+	@ResponseBody
+	public String showDN(HttpServletRequest req) {
+    	
+		HttpSession session = req.getSession();
+		String dona_id = (String) session.getAttribute("id");
+		
+		ArrayList<POSTDTO> myDonation = mypagedao.myDonation(dona_id);
+		JSONArray ja = new JSONArray();
+		for(int i=0; i<myDonation.size(); i++) {
+			
+			JSONObject jo = new JSONObject();
+			jo.put("dona_num", myDonation.get(i).getDona_num());
+			jo.put("dona_name", myDonation.get(i).getDona_name());
+			jo.put("dona_qty", myDonation.get(i).getDona_qty());
+			jo.put("dona_way", myDonation.get(i).getDona_way());
+			jo.put("dona_date", myDonation.get(i).getDona_date());
+			
+			ja.put(jo);
+		}
+		
+		return ja.toString();
+	}
+    
+//////////////////////////////// 나의 기부 part ///////////////////////////
+    
+    
+//////////////////////////////// 회원정보 update part /////////////////////
     
     @PostMapping("/updateMy")
     @ResponseBody
@@ -251,19 +302,6 @@ public class MypageController {
     	String mobile = req.getParameter("mobile");
     	String birth = req.getParameter("birth");
     	
-    
-		
-    	System.out.println(id);
-    	System.out.println(id2);
-		System.out.println(pwd);
-		System.out.println(name);
-		System.out.println(email);
-		System.out.println(zip_code);
-		System.out.println(address);
-		System.out.println(mobile);
-		System.out.println(birth);
-
-
 		mypagedao.updateMy(id, id2, pwd, name, email, zip_code, address, mobile, birth);
 		
 		return "ok";
@@ -275,87 +313,28 @@ public class MypageController {
 
     
     
-////////////////////////////////////////// mypage part ///////////////////////////////////////////////////
+////////////////////////////// mypage part ////////////////////////////////////
     
-//    @PostMapping("/MyPageAddCart")
-//    @ResponseBody
-//    public String doAddCart(HttpServletRequest req) {
-//       String id=req.getParameter("id");
-//       String box=req.getParameter("prod_num");
-//       System.out.println(box);
-//       String[] box1=box.split(",");
-//       System.out.println(box1[0]);
-//       System.out.println(box1[1]);
-//       int prod_num = Integer.parseInt(box1[0]);
-//       int qty = Integer.parseInt(box1[1]);
-//       boolean a= false;
-//       boolean b= false;
-//       System.out.println(id);
-//       
-//       ArrayList<C_CartDTO> cart = c_cartdao.load_cart(id);
-//       ArrayList<SDTO> order = sdao.order(id);
-//       for (int i = 0; i < cart.size(); i++) {
-//          
-//
-//          // STAY_DATE 값이 null이 아닌 경우 해당 인덱스의 요소에 "예약일" 추가
-//          String tNum = cart.get(i).getTcart_num();
-////          System.out.println("tcart= "+tNum);
-//          for(int j = 0; j< order.size(); j++ ) {
-//             String oNum = order.get(j).getTcart_num()+"";
-////             System.out.println("ordernum "+oNum);
-//             if(tNum.equals(oNum)) {
-//                b=true;
-//             }
-//   
-//          }
-//  
-//      }
-//
-////      try {   
-//      ArrayList<C_CategoryDTO> users = c_categorydao.checkNum(id);
-//      ArrayList<C_CartDTO> max= c_cartdao.maxNum();
-//      String num="";
-//      for(C_CartDTO x:max) {
-//         num=x.getTcart_num();
-//      }
-//      System.out.println("num= "+num);
-//      
-//         for(int i=0;i<users.size();i++) {
-//            if(users.get(i).prod_num==prod_num&&users.get(i).order_check==null) {
-//               a=true;
-//               System.out.println("up");
-//               c_categorydao.qtyUp(qty, id, prod_num);
-//               return "ok";
-//            }       
-//      }
-//         if(a) {
-//            
-//         }else {
-//        	 c_categorydao.addCart(id, prod_num, qty);
-//         
-//            if(b) {
-//               System.out.println("OredsequnsUp");
-//               c_categorydao.addToCart(id, prod_num);
-//            }else {
-//               if (num != "") {
-//                  System.out.println("check");
-//                  System.out.println("sequnsStay");
-//                  // do something with str
-//                  c_categorydao.nomalAddToCart(id, prod_num, num);   
-//                  num="";
-//               }else {
-//                  System.out.println("sequnsUp");
-//                  c_categorydao.addToCart(id, prod_num);
-//               }
-//            }
-//               
-//            
-//            
-//         }
-         
-//         
-//      return "ok";
-//       
-//    }
-	
+    // mypage에서 cart insert 하기
+    @PostMapping("/MyPageAddCart")
+	@ResponseBody
+	public String MyPageAddCart(HttpServletRequest req) {
+    	String id = req.getParameter("id");
+		int book_num = Integer.parseInt(req.getParameter("book_num"));
+		int qty = Integer.parseInt(req.getParameter("qty"));
+		System.out.println(book_num);
+		System.out.println(qty);
+
+		String cartinsertval=null;
+		try {
+			mypagedao.MyPageAddCart(id, book_num, qty);
+			cartinsertval="ok";
+			
+		} catch(Exception e) {
+			cartinsertval="fail";
+			e.printStackTrace();
+		}
+		return cartinsertval;
+	}	
+
 }
