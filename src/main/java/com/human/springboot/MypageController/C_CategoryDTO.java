@@ -1,9 +1,10 @@
-package com.human.springboot.DetailController;
+package com.human.springboot.MypageController;
 
 import lombok.Data;
 
 @Data
-public class CategoryDTO {
+public class C_CategoryDTO {
+	String id;
 	int book_num;
 	String book_name;
 	int book_price;
@@ -14,8 +15,4 @@ public class CategoryDTO {
 	String publication;
 	int rating;
 	String book_detail;
-	
-	
-	int order_num;
-	String id;
 }

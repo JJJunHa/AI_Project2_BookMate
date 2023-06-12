@@ -37,7 +37,7 @@ public class ReviewController {
 			jo.put("book_price", load_personInfo.get(i).getBook_price());
 			jo.put("book_cover", load_personInfo.get(i).getBook_cover());
 			jo.put("o_qty", load_personInfo.get(i).getO_qty());
-			
+			jo.put("dia_order_num", order_num);
 			ja.put(jo);
 		}
 		return ja.toString();
@@ -53,6 +53,7 @@ public class ReviewController {
 		int rev_rating = Integer.parseInt(req.getParameter("rev_rating"));
 		String rev_content = req.getParameter("rev_content");
 		int book_num = Integer.parseInt(rdao.find_book_num(id, order_num));
+		
 		
 //		System.out.println(order_num);
 //		System.out.println(id);
@@ -70,5 +71,30 @@ public class ReviewController {
 		return insertval;
 	}	
 	
+	// 리뷰 확인하기
+	@PostMapping("/check_review")
+	@ResponseBody
+	public String check_review(HttpServletRequest req) {
+		
+		int orderNum = Integer.parseInt(req.getParameter("orderNum"));
+		String id = req.getParameter("id");
+		
+//		System.out.println(id);
+//		System.out.println(orderNum);
+//		
+		String checkval=null;
+		try {
+			int check = rdao.check_review(orderNum, id);
+			if(check == 1) {
+				checkval = "ok";
+			} else {
+				checkval="fail";
+			}
+		} catch(Exception e) {
+			checkval="fail";
+			e.printStackTrace();
+		}
+		return checkval;
+	}	
 	
 }

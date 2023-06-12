@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-/mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.human.springboot.MypageController.mypageDAO">
+
+<!-- 	 회원정보수정관련 -->
+	<select id="selectMy" resultType="com.human.springboot.MypageController.mypageDTO">
+		select id,pwd,name,email,zip_code,mobile,birth from member
+	 	where id=#{param1}
+	</select>
+	
+	<select id="showAdr" resultType="com.human.springboot.MypageController.mypageDTO">
+	 	select address from  member
+	 	where id=#{param1}	 	
+	</select>
+	
+	<select id="showMob" resultType="com.human.springboot.MypageController.mypageDTO">
+	 	select mobile from  member
+	 	where id=#{param1}
+	</select>
+	
+	<select id="showBir" resultType="com.human.springboot.MypageController.mypageDTO">
+	 	select birth from  member
+	 	where id=#{param1}
+	</select>
+	
+	<update id="updateMy">
+		UPDATE member SET id = #{param1} , pwd=#{param3}, 
+					  	  name=#{param4}, email=#{param5}, zip_code=#{param6}, 
+					  	  address=#{param7}, mobile=#{param8}, birth=#{param9}
+					WHERE id = #{param2} 
+	</update>
+<!-- 	 회원정보수정관련 -->	
+
+
+
+<!-- 	 나의 게시글 관련	 -->
+	<select id="selectPlist" resultType="com.human.springboot.MypageController.POSTDTO">
+	 	select board_num, b_title, id, b_create_date, b_rcount from board
+	 	where id=#{param1} order by board_num asc
+	 	
+	</select>
+	<select id="QviewList" resultType="com.human.springboot.MypageController.POSTDTO">
+		select board_num, B_title, B_content, id, B_create_date, B_Update_date, B_rcount
+			from Board
+			where board_num=#{param1}
+	</select>
+	<update id="Qread">
+		update Board set B_rcount = B_rcount+1 where board_num=#{param1}
+	</update>
+<!-- 	 나의 게시글 관련 -->
+
+
+
+<!--  	나의 댓글 관련 -->
+ 	<select id="myComment" resultType="com.human.springboot.MypageController.POSTDTO">
+		select bc_content, id, bc_create_date, bcontent_num from board_comment where id=#{param1}
+		order by bcontent_num asc  
+ 	</select>
+	<select id="selectBordNum" resultType="com.human.springboot.MypageController.POSTDTO">
+	 	select board_num from board_comment where bcontent_num=#{param1}
+	 	
+	</select>
+<!--  	나의 댓글 관련 -->
+
+
+
+<!--  	나의 기부 관련 -->
+	<select id="myDonation" resultType="com.human.springboot.MypageController.POSTDTO">
+		select dona_num, dona_name, dona_qty, dona_way, dona_date from donation
+			where id=#{param1} order by dona_num asc 
+ 	</select>
+<!--  	나의 기부 관련 -->
+
+
+
+<!--    나의 주문내역 관련 -->
+	<!-- mypage에서 cart로 insert 하기 -->
+	<insert id="MyPageAddCart">
+		insert into cart(cart_num, id, book_num, qty) values(cart_num.nextval, #{param1},#{param2},#{param3}) 
+	</insert>
+	
+	<select id="selectDelInfo" resultType="com.human.springboot.MypageController.orderedDTO">
+		SELECT 
+			b.book_name, b.book_price, b.book_cover, oc.o_qty, b.book_num,
+			p.order_date, p.id, p.order_num
+		FROM 
+			book b
+			JOIN ordered_cart oc ON b.book_num = oc.o_book_num
+			JOIN payment p ON oc.o_cart_num = p.cart_num
+		WHERE 
+			p.id = #{param1} order by p.order_date desc
+    </select>
+	
+	<!-- 리뷰 관련 part -->
+	<select id="compareRev" resultType="com.human.springboot.MypageController.orderedDTO">
+		select id, order_num from review where id = #{param1} and order_num = #{param2}  
+ 	</select>
+ 	<!-- 리뷰 관련 part -->
+ 	
+<!--    나의 주문내역 관련 -->
+	
+</mapper>

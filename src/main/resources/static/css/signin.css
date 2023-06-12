@@ -1,4 +1,21 @@
 @charset "UTF-8";
+
+/* 상단 로고 css 코드 */
+.logo {
+	width: 100%;
+	height: 100px;
+	text-align: center;
+}
+
+.logoImg {
+	width: 20%;
+	margin-top: 20px;
+	/* border: 1px solid black; */
+	display: inline-block;
+}
+
+
+
 * {
 	box-sizing: border-box;
 }
@@ -26,7 +43,7 @@ html, body {
 	padding: 5px;
 	margin: 100px;
 	width: 900px; /* 너비 조절 */
-	height: 800px; /* 높이 조절 */
+	height: 700px; /* 높이 조절 */
 	align-items: center;
 	justify-content: center;
 }
@@ -104,10 +121,6 @@ html, body {
 	color: white;
 	cursor: pointer;
 	margin-right: 100px;
-}
-
-.footer {
-	flex: 0.5;
 }
 
 .content>.first {
@@ -190,20 +203,20 @@ html, body {
 	width: 100px;
 }
 
-.button-wrapper {
-	display: flex;
-	justify-content: space-between;
-	margin-top: 20px;
-	padding: 20px 20px;
-	text-align: center;
-	font-size: 16px;
-	border-radius: 30%;
-}
+/* .button-wrapper { */
+/* 	display: flex; */
+/* 	justify-content: space-between; */
+/* 	margin-top: 20px; */
+/* 	padding: 20px 20px; */
+/* 	text-align: center; */
+/* 	font-size: 16px; */
+/* 	border-radius: 30%; */
+/* } */
 
-.button-wrapper button {
-	background-color: lightblue;
-	width: 43%;
-}
+/* .button-wrapper button { */
+/* 	background-color: lightblue; */
+/* 	width: 43%; */
+/* } */
 
 .second button:hover {
 	background-color: pink;
@@ -219,24 +232,12 @@ html, body {
 	width: 80%;
 }
 
-.address-button {
-	color: aqua
-}
-
 input {
 	font-size: 14px;
 	color: #333;
 	padding: 5px 10px;
 	border: 1px solid #ccc;
 	border-radius: 4px;
-}
-
-.dropdown {
-	position: relative;
-}
-
-.dropdown-toggle {
-	cursor: pointer;
 }
 
 a {
@@ -286,75 +287,45 @@ a:hover, a:active {
 	transform: scale(1.1);
 }
 
-.Membership {
-	text-align: center;
-	padding-top: 60px;
-}
-
-.form-control {
-	height: 500px;
-}
-
-/* 로그인 부분 */
-.container {
-	max-width: 400px;
-	margin: 0 auto;
-	padding: 20px;
-	background-color: #fff;
-	border-radius: 5px;
-}
-
-h2 {
-	text-align: center;
-	margin-bottom: 20px;
-}
-
-.form-group {
-	/*     background-color:blue; */
-	/*       margin-bottom: 15px; */
-	
-}
-
-.form-group label {
-	display: block;
-	margin-bottom: 5px;
-	font-weight: bold;
-}
-
-.form-group input {
-	width: 80%;
-	padding: 10px;
-	margin-left: 35px;
-	border: 1px solid #ccc;
-	border-radius: 8px;
-}
-
-.form-group button {
-	width: 85%;
-	padding: 15px;
-	border: none;
-	border-radius: 8px;
-	background-color: rgb(138, 142, 145);
-	color: #fff;
-	font-weight: bold;
-	font-size: large;
-	cursor: pointer;
-	margin-top: 30px;
-	margin-left: 35px;
-}
-
-.form-group button:hover {
-	background-color: rgb(116, 119, 121);
-}
-
-.form-group1 {
-	margin-top: 20px;
-	margin-bottom: 100px;
-	margin-left: 35px;
-}
-
 a {
 	text-decoration-line: none;
 	text-align: center;
 	color: inherit; /* 링크의 색상 제거 */
 }
+
+#j_id, #j_name {
+	width: 80%;
+}
+
+
+
+/* .form-control { */
+/* 	height: 500px; */
+/* /* 	position: relative; /* 비밀번호 표시 코드 */
+/* } */
+
+
+/* 상단 로고 아래 회원가입 안내 글자 (h2) */
+/* .Membership { */
+/* 	text-align: center; */
+/* 	padding-top: 60px; */
+/* } */
+
+
+/* 비밀번호 보기 표시 */
+/* #showPwd { */
+/*     position: absolute; */
+/* 	border: none; */
+/* 	background-color: white; */
+/* 	padding-right: 10px; */
+/* 	width: 28px; */
+/* 	right: 1px; */
+/* 	} */
+/* 	#showPwd2 { */
+/*     position: absolute; */
+/* 	border: none; */
+/* 	background-color: white; */
+/* 	padding-right: 10px; */
+/* 	width: 28px; */
+/* 	right: 1px; */
+/* 	} */
