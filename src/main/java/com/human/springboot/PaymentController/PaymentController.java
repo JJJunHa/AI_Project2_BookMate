@@ -51,6 +51,10 @@ public class PaymentController {
 	 ArrayList<CartDTO> alCart = cartdao.load_cart(id);
 	 String coment=req.getParameter("coment");
 	 String payWay=req.getParameter("payway");
+	 String name=req.getParameter("name");
+	 String mobile=req.getParameter("mobile");
+	 String address=req.getParameter("address");
+	 String price=req.getParameter("price");	 
 	 System.out.println(id);
 	 System.out.println(coment);
 	 System.out.println(payWay);
@@ -61,7 +65,7 @@ public class PaymentController {
 		 int bookNum=alCart.get(i).getBook_num();
 		 cartdao.delete_cart(cartNum);
 		 pdao.insertOrderCart(cartNum,qty,id,bookNum);
-		 pdao.insertPayment(cartNum,id,coment,payWay);
+		 pdao.insertPayment(cartNum,id,coment,payWay,address,name,mobile,price);
       }
 	} catch(Exception e) { return "fail"; }
 			

@@ -10,6 +10,6 @@
 		insert into ordered_cart values(#{param1},#{param2},#{param3},#{param4}) 
 	</insert>
 	<insert id="insertPayment">
-		insert into PAYMENT values(order_num.nextval,sysdate,#{param1},#{param2},#{param3},#{param4}) 
+		insert into PAYMENT values(order_num.nextval,sysdate,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},'주문완료') 
 	</insert>
 </mapper>

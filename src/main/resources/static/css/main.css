@@ -4,6 +4,15 @@
     height:100%;
     /* border: 1px solid black; */
 }
+.footer {
+        /* position: fixed; */
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #f5f5f5;
+        margin-top: 150px;
+        text-align: center;
+    }
 .logo {
     width:100%;
     height:100px;
@@ -127,16 +136,19 @@ a:hover {
 
 
 
-
+.finger-cursor {
+	cursor: pointer;
+}
 .container {
-  display: flex;
-  height: 1500px;
+    display: flex;
+    height:675px;
+    
 }
  #output-text {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid white;
-        }
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid white;
+}
         
 /* page-loading */
     #loading {
@@ -196,9 +208,7 @@ a:hover {
 
     .content-container.active {
         display: block;
-        width: 100%;
-        
-        
+        width: 100%;       
     }
 
     .posts-container,

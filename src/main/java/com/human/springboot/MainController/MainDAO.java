@@ -11,6 +11,7 @@ public interface MainDAO {
 	ArrayList<MainDTO> genreBookList(String genre);
 	ArrayList<MainDTO> gradeBookList(String genre,float grade);
 	ArrayList<MainDTO> priceBookList(String genre,float grade,int price);
+	ArrayList<MainDTO> selectWord(String word);
 	
 
 }

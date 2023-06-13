@@ -224,7 +224,7 @@ $(document)
 	$.ajax({
 		url: '/paymentInsert',
 		type: 'post',
-		data: { id: id, coment: $('#coment').val(), payway: $('input[name="pay"]:checked').val()},
+		data: { id: id, coment: $('#coment').val(), payway: $('input[name="pay"]:checked').val(), name: $('#name1').val(), mobile: $('#mobile2').val(), address: $('#address').val()+"@"+$('#detailAddress').val()+"@"+$('#extraAddress').val(), price: $('#price2').val()},
 		dataType: 'text',
 		success: function(data) {
 			if(data=='fail' || data==null) {
