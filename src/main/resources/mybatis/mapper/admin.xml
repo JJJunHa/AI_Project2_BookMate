@@ -76,6 +76,29 @@
 
 		ORDER BY name DESC
 	</select>
+<!-- 	회원삭제 -->
+	
+<!-- 	<delete id=""> -->
+<!-- 		delete from cart where id= #{param1} -->
+<!-- 	</delete> -->
+<!-- 	<delete id=""> -->
+<!-- 		delete from cart where id= #{param1} -->
+<!-- 	</delete> -->
+<!-- 	<delete id=""> -->
+<!-- 		delete from cart where id= #{param1} -->
+<!-- 	</delete> -->
+<!-- 	<delete id=""> -->
+<!-- 		delete from cart where id= #{param1} -->
+<!-- 	</delete> -->
+<!-- 	<delete id=""> -->
+<!-- 		delete from cart where id= #{param1} -->
+<!-- 	</delete> -->
+<!-- 	<delete id=""> -->
+<!-- 		delete from cart where id= #{param1} -->
+<!-- 	</delete> -->
+<!-- 	<delete id=""> -->
+<!-- 		delete from cart where id= #{param1} -->
+<!-- 	</delete> -->
 	<!-- 리뷰 -->
 	<select id="revlist"
 		resultType="com.human.springboot.AdminController.AdminDTO">

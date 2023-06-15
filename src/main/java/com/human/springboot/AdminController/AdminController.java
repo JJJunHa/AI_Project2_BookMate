@@ -191,6 +191,8 @@ public class AdminController {
 		    model.addAttribute("ml", mSearch);
 		    return "adminMember";
 		}
+		//회원삭제
+		
 //		리뷰목록
 		@GetMapping("/revlist")
 		public String revlist(Model model) {
