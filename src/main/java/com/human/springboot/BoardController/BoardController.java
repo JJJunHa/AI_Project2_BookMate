@@ -110,9 +110,10 @@ public class BoardController {
 			jo.put("bc_create_date", comment.get(i).getBc_create_date());
 			jo.put("bc_content", comment.get(i).getBc_content());
 			jo.put("bcontent_num", comment.get(i).getBcontent_num());
-			if(id.equals(comment.get(i).getID())) {
-				jo.put("check", "check");
-			}
+			if (id != null && id.equals(comment.get(i).getID())) {
+	            jo.put("check", "check");
+	        }
+			
 			
 			
 			ja.put(jo);

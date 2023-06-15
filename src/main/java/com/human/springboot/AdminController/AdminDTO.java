@@ -34,5 +34,14 @@ public class AdminDTO {
 	String rev_create_date;
 	String rev_update_date;
 	int order_num;
-
+	//payment
+	String order_date;
+	int cart_num;
+	String deli_message;
+	String pay_ment;
+	//ordered_cart
+	int o_cart_num;
+	int o_qty;
+	String o_id;
+	int o_book_num;
 }

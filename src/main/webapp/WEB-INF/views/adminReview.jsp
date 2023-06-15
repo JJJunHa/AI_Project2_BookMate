@@ -381,7 +381,7 @@ a:hover {
                     <table class="board" id="board">
                     <caption>
 						<form action="" id="setRows">
-							<p><input type="hidden" name="rowPerPage" value="15"></p>
+							<p><input type="hidden" name="rowPerPage" value="10"></p>
 						</form>
 						</caption>
 						

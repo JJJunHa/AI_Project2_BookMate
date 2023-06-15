@@ -692,9 +692,9 @@ function showBC() {
 							
 							
 							+'<button id="remove" value="' + data[i]['bcontent_num'] + '" class="reply-btn">삭제</button>&nbsp;&nbsp'
-
-							let box3 = '</div>'+'</div>'+ '<hr>';
-					       box4='';
+							+'</div>'
+							let box3 = '</div>'+ '<hr>';
+					      	let box4='';
 							if (data[i]['check'] == 'check') {
 								box4 = box + box2 + box3;
 							} else {
