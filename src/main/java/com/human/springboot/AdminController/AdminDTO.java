@@ -34,5 +34,33 @@ public class AdminDTO {
 	String rev_create_date;
 	String rev_update_date;
 	int order_num;
+	//payment
+	String order_date;
+
+	int cart_num;
+	String deli_message;
+	String pay_way;
+	String price;
+	String status;
+	//ordered_cart
+	int o_cart_num;
+	String o_qty;
+	String o_id;
+	int o_book_num;
+	
+	//고객센터
+	int board_num;
+	String B_TITLE;
+	String B_CONTENT;
+	String B_CREATE_DATE;
+	String B_UPDATE_DATE;
+	int B_RCOUNT;
+
+	
+	//댓글
+	int bcontent_num;
+	String bc_create_date;
+	String bc_update_date;
+	String bc_content;
 
 }

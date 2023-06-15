@@ -16,6 +16,7 @@ public interface boardDAO {
 	void bInsert(String x1, String x2, String x3);
 	void bUpdate(String B_TITLE, String B_CONTENT, int board_num);
 	void bDelete(int x1);
+	void tbcdel(int x1);
 	void bRead(int board_num);
 	ArrayList<boardDTO> bSearch(String x1, String x2);
 	
