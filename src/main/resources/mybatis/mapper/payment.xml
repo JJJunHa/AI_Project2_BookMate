@@ -10,6 +10,21 @@
 		insert into ordered_cart values(#{param1},#{param2},#{param3},#{param4}) 
 	</insert>
 	<insert id="insertPayment">
-		insert into PAYMENT values(order_num.nextval,sysdate,#{param1},#{param2},#{param3},#{param4}) 
+		insert into PAYMENT values(order_num.nextval,sysdate,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},'주문완료') 
 	</insert>
+	<insert id="singleInsert_cart">
+		insert into singleCart(CART_NUM, ID, QTY, BOOK_NUM) values(cart_num.nextval, #{param1},#{param2},#{param3}) 
+	</insert>
+	<select id="load_singleCart" resultType="com.human.springboot.PaymentController.PaymentDTO">
+		select a.cart_num, b.book_cover, b.book_name, a.qty, b.book_price , b.book_num
+			from singleCart a, book b
+			where id=#{param1}
+			and a.book_num=b.book_num
+	</select>
+	<delete id="Alldelete_singleCart">
+		delete from singleCart where id = #{param1}
+	</delete>
+	<delete id="delete_singleCart">
+		delete from singleCart where cart_num = #{param1}
+	</delete>
 </mapper>

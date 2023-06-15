@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,8 +51,8 @@
              
             <li class="category_li">
             	<div class="search">
-                	<input type="text" class="searchBox" placeholder="  검색어를 입력하세요">
-                	<img src="/img/search.png" class="search_img">
+                	<input type="text" id='word' class="searchBox" placeholder="  검색어를 입력하세요">
+                	<img src="/img/search.png" class="search_img" id='search'>
                 </div>
             </li>
 		</ul>
@@ -80,25 +81,11 @@
 
                     <div class="tab-menu">
                         <div id="bestSeller-tab" class="tab-item active" onclick="changeTab('bestSeller')">추천 베스트셀러</div>
-                        <div id="donation-tab" class="tab-item" onclick="changeTab('donation')">기부하기</div>
-                        <div id="notification-tab" class="tab-item" onclick="changeTab('notification')">공지사항</div>
+                  
                     </div>
-					
                     <div id="bestSeller" class="content-container active">
                         <div class="grid-container" id="grid-container">
                         
-                    </div>
-
-
-                    <div id="donation" class="content-container">
-
-
-
-
-                    </div>
-                    <div id="notification" class="content-container">
-
-
                     </div>
 
                 </div>
@@ -106,7 +93,7 @@
             </div>
         </div>
 </div>
-</div>
+
 		<div id="loading">
 		    <img src="https://studentrights.sen.go.kr/images/common/loading.gif">
 		  </div>
@@ -124,6 +111,44 @@
     </div>
   </div>
 	<input id="id" value="<%=session.getAttribute("id")%>" hidden>
+	        <div class="footer">
+           
+        <div class="footer2"> 
+                COMPANY HUMAN<br>
+                TEL:010-3024-8400<br>
+                OWNER: 김준하<br>
+                BUSINESS LICENSE: 422-4212-421<br>
+                Copyright by BookMate<br>
+                ADDRESS: 충청남도 천안시 동남구<br>
+                Mail:info@korea.com
+                개인정보취급관리자: 김준하
+            </div>
+            <div class="footer3"> 
+                
+                <span style="opacity: 0.7;">CS CENTER<br></span>
+                
+                <span style="color:red; font-weight:bold;">070-4140-0732</span><br>
+                <span style="opacity: 0.7;"> MON-FRI AM 10 - PM 6<br></span>
+                <span style="opacity: 0.7;"> LUNCH PM1-PM2</span>
+                <span style="opacity: 0.7;"> SAT.SUN/HOLIDAY OFF<br><br></span>
+                <span style="opacity: 0.7;"> 하나은행 302123131545301</span>
+    
+    
+            
+            </div>
+            <div class="footer4">
+                <span style="color:red; font-weight:bold;">교환/반품 주소</span><br>
+                <span style="opacity: 0.7;">충청남도 서북구<br></span>
+                <span style="opacity: 0.7;">  CJ대한통운 1588 1255 <br></span>
+                <a href="https://www.cjlogistics.com/ko/tool/parcel/tracking">배송위치 조회하기</a><br>
+                <span style="opacity: 0.7;">고객님은 안전거래를 위해 결제시 저희 쇼핑몰에게</span>
+                <span style="opacity: 0.7;">가입한 KCP 에스그로 구매안전 서비스를 이용할수있습니다.</span>
+                <span style="opacity: 0.7;"><button id=submit>서비스가입 사실확인</button> </span><br>            
+                <span style="opacity: 0.7;">COPYRIGHT ALL RIGHT RESERVED</span>
+               
+                
+            </div>
+        </div>
 
 </body>
 

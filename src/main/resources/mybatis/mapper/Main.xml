@@ -10,6 +10,9 @@
 		<select id="emotionBookList" resultType="com.human.springboot.MainController.MainDTO">
 			select * from book where emotion=#{param1}
 		</select>
+		<select id="selectWord" resultType="com.human.springboot.MainController.MainDTO">
+			select * from book where book_name=#{parma1}
+		</select>
 		<select id="genreBookList" resultType="com.human.springboot.MainController.MainDTO">
 			select * from book where book_genre=#{param1}
 		</select>

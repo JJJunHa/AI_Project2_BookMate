@@ -24,6 +24,11 @@ public class MainContoller {
 	    String apiKey = "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";
 	    return ResponseEntity.ok(apiKey);
 	  }
+	@GetMapping("/")
+	public String Main2() {
+		
+		return "redirect:/main";
+    }
 	
 	@GetMapping("/main")
     public String showMain(HttpServletRequest req,Model model) {
@@ -37,6 +42,31 @@ public class MainContoller {
 		model.addAttribute("prod",bookimage);
         return "main";
     }
+	
+	@PostMapping("/selectWord")
+	@ResponseBody
+	public String selectWord(HttpServletRequest req) {
+    	String word=req.getParameter("word");
+ 
+    	
+    	ArrayList<MainDTO> selectWord = maindao.selectWord(word);
+    	JSONArray ja = new JSONArray();
+        for (int i = 0; i < selectWord.size(); i++) {
+            JSONObject jo = new JSONObject();
+            jo.put("BOOK_NUM", selectWord.get(i).getBOOK_NUM());
+            jo.put("BOOK_NAME", selectWord.get(i).getBOOK_NAME());
+            jo.put("BOOK_PRICE", selectWord.get(i).getBOOK_PRICE());
+            jo.put("BOOK_GENRE", selectWord.get(i).getBOOK_GENRE());
+            jo.put("AUTHOR", selectWord.get(i).getAUTHOR());
+            jo.put("BOOK_COVER", selectWord.get(i).getBOOK_COVER());
+            jo.put("BOOK_CONTENT", selectWord.get(i).getBOOK_CONTENT());
+            jo.put("PUBLICATION", selectWord.get(i).getPUBLICATION());
+            jo.put("BOOK_SUMMARY", selectWord.get(i).getBOOK_SUMMARY());
+            
+            ja.put(jo);
+        }
+        return ja.toString();
+	}
 	
 	@PostMapping("/selectpRe")
 	@ResponseBody
@@ -71,7 +101,7 @@ public class MainContoller {
 		if(emotion.equals("우울")||emotion.equals("우울")) {
 			emotion="슬픔";
 		}
-		System.out.println(emotion);
+
     	
     	ArrayList<MainDTO> emotionBookList = maindao.emotionBookList(emotion);
     	JSONArray ja = new JSONArray();
@@ -98,7 +128,7 @@ public class MainContoller {
 		String genre = req.getParameter("genre")+"";
 		float grade = Float.parseFloat(req.getParameter("grade").replace("점", ""));
 		int price = Integer.parseInt(req.getParameter("price").replace("원", ""));
-		System.out.println(price);
+
     	
     	ArrayList<MainDTO> priceBookList = maindao.priceBookList(genre,grade,price);
     	JSONArray ja = new JSONArray();
@@ -124,7 +154,7 @@ public class MainContoller {
 	public String genreSelection(HttpServletRequest req) {
     	
 		String genre=req.getParameter("genre")+"";
-		System.out.println(genre);
+
     	
     	ArrayList<MainDTO> genrenBookList = maindao.genreBookList(genre);
     	JSONArray ja = new JSONArray();
@@ -171,7 +201,7 @@ public class MainContoller {
 	
 	
 	
-	@GetMapping("/")
+	@GetMapping("/5")
     public String showchat() {
         return "chat5";
     }

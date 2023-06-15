@@ -5,16 +5,96 @@ $(document).ready(function() {
     // jQuery 코드 작성
     $("#bestSeller-tab").click(function () {
         changeTab("bestSeller");
+        $(".column1").css("flex-basis", "30%");
+   	    $(".column2").css("flex-basis", "70%");
+        $(".container2").show();
+        
     });
     $("#donation-tab").click(function () {
+        $(".column1").css("flex-basis", "0%");
+    	$(".column2").css("flex-basis", "100%");
         changeTab("donation");
+        $(".container2").hide();
+    	    
     });
 
     $("#notification-tab").click(function () {
+        $(".column1").css("flex-basis", "0%");
+    	$(".column2").css("flex-basis", "100%");
         changeTab("notification");
+        $(".container2").hide();
     });
+
+  	setInterval(changeText, 1500);
     
 });
+    $(document).on('click', '#search', function() {
+		let search_word = $('#word').val();
+		if(search_word==''){
+			alert('검색어를 입력하세요');
+		}else{
+			$('#grid-container').empty()
+			$.ajax({
+		        url: '/selectWord',  // 필요에 따라 URL 수정
+		        type: 'post',
+		        data: {word:search_word},  // prod_num 값 추가하여 서버로 전달
+		        dataType: 'json',
+		        beforeSend: function() {},
+		        success: function(data) {
+					appendBoxesToGrid(data);	
+		        },
+	    	});
+			
+		}
+		
+		
+    })
+    
+    var textArray = [
+    "도서 추천 서비스",
+    "독서 목록 관리",
+    "독서 습관 형성",
+    "추천 도서 리뷰",
+    "지금 어떤 책을 읽어야 할지 고민하는 사용자의 상태에 맞는 책을 추천해주는 서비스"
+  ];
+
+  // 텍스트 변경 함수
+  function changeText() {
+    var nameElement = $('.name');
+    var randomIndex = Math.floor(Math.random() * textArray.length);
+    nameElement.text(textArray[randomIndex]);
+  }
+
+  
+    
+    
+    $(document).on('keypress', '#word', function(event) {
+			if (event.which === 13) { // Enter 키를 눌렀을 때
+				event.preventDefault(); // 기본 동작(폼 제출 등)을 방지
+				$('#search').trigger('click'); // #search 요소의 click 이벤트를 트리거
+			}
+	});
+    $(document).on('mouseenter', '#search', function() {
+		$(this).addClass('finger-cursor');
+});
+
+	$(document).on('mouseleave', '#search', function() {
+	 	$(this).removeClass('finger-cursor');
+	});
+	$(document).on('mouseenter', '#paymentButton', function() {
+		$(this).addClass('finger-cursor');
+});
+
+	$(document).on('mouseleave', '#paymentButton', function() {
+	 	$(this).removeClass('finger-cursor');
+	});
+	$(document).on('mouseenter', '#cartButton', function() {
+		$(this).addClass('finger-cursor');
+});
+
+	$(document).on('mouseleave', '#cartButton', function() {
+	 	$(this).removeClass('finger-cursor');
+	});
 //카트에 넣기 클릭 시
 function handleClickCartButton() {
     $(document).on('click', '#cartButton', function() {
@@ -89,7 +169,7 @@ function handleClickPaymentButton() {
         let m_id = $('#id').val();
         let qty = 1;
         let book_num = $(this).attr('name');
-
+		
         // 아이디가 있을 때
         if(m_id=='' || m_id==null || m_id=='null') {
             alert('로그인 후 이용해주세요');
@@ -97,7 +177,11 @@ function handleClickPaymentButton() {
         } 
         // 아이디가 없을 때
         else {
-            $.ajax({
+
+			var orderType = confirm("장바구니 상품까지 같이 주문하실건가여??");
+  
+			  if (orderType) {
+			    $.ajax({
                 url: '/confirm_cart',
                 type: 'post',
                 data: { m_id: m_id,  qty:qty, book_num:book_num },
@@ -111,12 +195,9 @@ function handleClickPaymentButton() {
                             dataType: 'text',
                             success: function(data) {
                                 if(data=="ok"){
-                                    var confirmval = confirm('이미 장바구니에 존재하는 상품입니다. 결제페이지로 이동하시겠습니까?');
-                                    if(confirmval) {
+                                    
                                         document.location="/payment";
-                                    } else {
-
-                                    }
+                                    
                                 } else {
                                     alert("오류로 인해 잠시후에 다시 시도해주세요.");
                                 }
@@ -130,12 +211,9 @@ function handleClickPaymentButton() {
                             dataType: 'text',
                             success: function(data) {
                                 if(data=="ok"){
-                                    var confirmval = confirm('장바구니에 상품을 담았습니다. 결제페이지로 이동하시겠습니까?');
-                                    if(confirmval) {
+                                   
                                         document.location="/payment";
-                                    } else {
-
-                                    }
+                                    
                                 } else {
                                     alert("오류로 인해 잠시후에 다시 시도해주세요.");
                                 }
@@ -146,11 +224,35 @@ function handleClickPaymentButton() {
                     }
                 }
             })
+			    
+			  } else {
+                        $.ajax({
+                            url: '/singleInsert_cart',
+                            type: 'post',
+                            data: { m_id: m_id, qty:qty, book_num:book_num },
+                            dataType: 'text',
+                            success: function(data) {
+                                if(data=="ok"){
+                                   
+                                        document.location="/singlePayment";
+                                    
+                                } else {
+                                    alert("오류로 인해 잠시후에 다시 시도해주세요.");
+                                }
+                            }
+                        })
+			    alert("단일 결제로 주문됩니다.");
+			  }
+			
+			}
+			
+			
+           
         
-		}
+		
     });
-}
 
+}
 
 /*---------------------------------------------------------------------------------아작스로 도서 뛰우기*/
 function showBook() {
@@ -184,6 +286,7 @@ function suggestion(emotion) {
         },
     });
 }
+
 function appendBoxesToGrid(data) {
 	
     for (let i = 0; i < data.length; i++) {
@@ -221,22 +324,28 @@ function appendBoxesToGrid(data) {
             					
         `;
         
-        $('#grid-container').append(box);
 
-    }
-    
-    
-    
+        $('#grid-container').append(box);
+    	
+    }	
+    	if(data==""){
+    	alert(data);
+			 $('.footer').css('margin-top', 1000+'px');
+		}
+        var gridHeight = $('.grid-container').height();
+ 		  $('.container').css('height', gridHeight+'px');
+   
 }
 
 /*---------------------------------------------------------------------------------*/
-function changeTab(tab) {
+/*function changeTab(tab) {
+	alert("chek");
     $(".tab-item").removeClass("active");
     $(".content-container").removeClass("active");
 
     $("#" + tab + "-tab").addClass("active");
     $("#" + tab).addClass("active");
-}
+}*/
 //감정 모달 클릭 시키는 함수
 function clickModalButton() {
   var modalBtn = document.getElementById("open-modal-btn");
@@ -353,7 +462,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			            
 			        },
 			        success: function(data) {
-						addAssistantMessage("얼마 이하 가격을 원하시나요?(ex:15000)");
+						addAssistantMessage("얼마 이하 가격을 원하시나요?(ex:15000원)");
 						console.log(data);
 			        	appendBoxesToGrid(data);
 						var chatContent = document.getElementById('chat-content');

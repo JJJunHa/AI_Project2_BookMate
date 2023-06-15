@@ -6,14 +6,13 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.human.springboot.DetailController.CategoryDAO;
-import com.human.springboot.DetailController.CategoryDTO;
+
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -27,15 +26,7 @@ public class CartController {
    public String showCart() {
        return "cart";
    }
-//   /* cart 제품 load 하기 */
-//   @GetMapping("/cart")
-//   public String loadcart(HttpServletRequest req, Model model) {
-//      String id = req.getParameter("cart_id");
-//      System.out.println(id);
-//      ArrayList<CartDTO> load_cart = cartdao.load_cart(id);
-//      model.addAttribute("load_cart", load_cart);
-//       return "cart";
-//   }
+
    
    // 장바구니 제품 load하기
    @PostMapping("/load_cart")
