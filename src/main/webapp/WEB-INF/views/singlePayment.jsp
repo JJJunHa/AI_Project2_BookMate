@@ -10,7 +10,7 @@
 <body>
 <div class="main">
 	<div class="logo">
-    	<a href="/main"><img src="/img/logo.png" class="logoImg"></a>
+    	<a href="/main"><img src="/img/logo2.png" class="logoImg"></a>
     </div>
     <% if(session.getAttribute("id")!=null){ %>
     
@@ -104,19 +104,19 @@
 					</tr>
 					<tr>
 						<th>받으실 분</th>
-						<td><input type="text" class="textBox1" id="name1" value="${ship.name}" readonly></td>
+						<td><input type="text" class="textBox1 nameBox" id="name1" value="${ship.name}" readonly></td>
 					</tr>
 					<tr>
 						<th>받으실 곳</th>
-						<td><input type="text" id="postcode" class="textBox2" placeholder="    우편번호"  value="${ship.zip_code}" readonly>
+						<td><input type="text" id="postcode" class="textBox2 postcodeBox" placeholder="    우편번호"  value="${ship.zip_code}" readonly>
 							<input type="button" id="zipbutton" class=btnPostcode onclick="execDaumPostcode()" value="우편번호 찾기" readonly><br>
-							<input type="text" id="address" class="textBox2" placeholder="    주소" value="${ship.address1}" readonly><br>
-							<input type="text" id="detailAddress" class="textBox2" placeholder="    상세주소" value="${ship.address2}" readonly>
+							<input type="text" id="address" class="textBox2 addressBox" placeholder="    주소" value="${ship.address1}" readonly><br>
+							<input type="text" id="detailAddress" class="textBox2 detailAddressBox" placeholder="    상세주소" value="${ship.address2}" readonly>
 							<input type="text" id="extraAddress" class="textBox3" placeholder="    참고항목" value="${ship.address3}" readonly></td>
 					</tr>
 					<tr>
 						<th>휴대폰 번호</th>
-						<td><input type="text" class="textBox1" id="mobile2" value="${ship.mobile}"></td>
+						<td><input type="text" class="textBox1 mobileBox" id="mobile2" value="${ship.mobile}"></td>
 					</tr>
 					<tr>
 						<th>남기실 말씀</th>
@@ -143,7 +143,7 @@
 				</table>
 			</div>
 			
-			<div class=payment-pay>
+			<div class="payment-pay payBox">
 				<p><b>결제수간 선택 / 결제</b></p>
 				<table class=tbl-info>
 					<tr>
@@ -199,34 +199,69 @@ $(document)
 //결제하기
 .on('click','#order', function(){
 	if (!$('#check-all').is(":checked")) {
-        alert('모든 약관에 동의를 해주세요');
-        return false;
-      } 
+		  alert('모든 약관에 동의를 해주세요');
+		  $('#check-all')[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+		  $('.check-agree').css('color', 'red');
+		  $(document).on('click', function() {
+			    $('.check-agree').css('color', ''); // Remove the 'color' property to revert to the default color
+			  });
+		  return false;
+		}
 	if($('#name1').val()===null||$('#name1').val()===''){
-		alert('받으실 분을 입력해주세요')
+		alert('받으실 분을 입력해주세요');
+		$('#name1')[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+		  $('.nameBox').css('border', '0.5px solid red');
+		  $(document).on('click', function() {
+			    $('.nameBox').css('border', '0.5px solid lightgray'); // Remove the 'color' property to revert to the default color
+			  });
 		return false;
 	}
 	if($('#postcode').val()===null||$('#postcode').val()===''){
-		alert('우편버호를 입력해주세요')
+		alert('우편버호를 입력해주세요');
+		$('#postcode')[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+		  $('.postcodeBox').css('border', '0.5px solid red');
+		  $(document).on('click', function() {
+			    $('.postcodeBox').css('border', '0.5px solid lightgray'); // Remove the 'color' property to revert to the default color
+			  });
 		return false;
 	}
 	if($('#address').val()===null||$('#address').val()===''){
-		alert('주소를 입력해주세요')
+		alert('주소를 입력해주세요');
+		$('#address')[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+		  $('.addressBox').css('border', '0.5px solid red');
+		  $(document).on('click', function() {
+			    $('.addressBox').css('border', '0.5px solid lightgray'); // Remove the 'color' property to revert to the default color
+			  });
 		return false;
 	}
 	if($('#detailAddress').val()===null||$('#detailAddress').val()===''){
 		alert('상세주소를 입력해주세요')
+		$('#detailAddress')[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+		  $('.detailAddressBox').css('border', '0.5px solid red');
+		  $(document).on('click', function() {
+			    $('.detailAddressBox').css('border', '0.5px solid lightgray'); // Remove the 'color' property to revert to the default color
+			  });
 		return false;
 	}
 	if($('#mobile2').val()===null||$('#mobile2').val()===''){
 		alert('받는분 연락처를 입력해주세요')
+		$('#mobile2')[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+		  $('.mobileBox').css('border', '0.5px solid red');
+		  $(document).on('click', function() {
+			    $('.mobileBox').css('border', '0.5px solid lightgray'); // Remove the 'color' property to revert to the default color
+			  });
 		return false;
 	}
 	if ($('input[name="pay"]:checked').length === 0) {
 	    alert('결제 수단을 선택해주세요.');
+	    $('input[name="pay"]')[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+		  $('.payBox').css('color', 'red');
+		  $(document).on('click', function() {
+			    $('.payBox').css('color', ''); // Remove the 'color' property to revert to the default color
+			  });
 	    return false;
 	}
-	coment
+
 	let id = '<%=session.getAttribute("id")%>';
 		
 		$.ajax({

@@ -22,7 +22,7 @@
 <body>
     <div class="main">
        <div class="logo">
-    	<a href="/main"><img src="/img/logo.png" class="logoImg"></a>
+    	<a href="/main"><img src="/img/logo2.png" class="logoImg"></a>
     </div>
     <% if(session.getAttribute("id")!=null){ %>
     
@@ -80,7 +80,7 @@
                 <div>
 
                     <div class="tab-menu">
-                        <div id="bestSeller-tab" class="tab-item active" onclick="changeTab('bestSeller')">추천 베스트셀러</div>
+                        <div id="bestSeller-tab" class="tab-item active">추천 베스트셀러</div>
                   
                     </div>
                     <div id="bestSeller" class="content-container active">
@@ -92,6 +92,7 @@
 
             </div>
         </div>
+	</div>
 </div>
 
 		<div id="loading">

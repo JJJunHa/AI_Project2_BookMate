@@ -189,6 +189,24 @@ a:hover {
 	border-radius: 20px;
 	border: 0.5px solid lightgray;
 }
+.nameBox{
+	border: 0.5px solid lightgray;
+}
+.postcodeBox{
+	border: 0.5px solid lightgray;
+}
+.addressBox{
+	border: 0.5px solid lightgray;
+}
+.detailAddressBox{
+	border: 0.5px solid lightgray;
+}
+.mobileBox{
+	border: 0.5px solid lightgray;
+}
+.payBox{
+	color:black;
+}
 /* 배송정보 */
 .payment-trans {
 	width: 100%;

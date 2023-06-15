@@ -178,7 +178,7 @@ function handleClickPaymentButton() {
         // 아이디가 없을 때
         else {
 
-			var orderType = confirm("장바구니 상품까지 같이 주문하실건가여??");
+			var orderType = confirm("장바구니 상품까지 같이 주문하시겠습니까?");
   
 			  if (orderType) {
 			    $.ajax({
@@ -272,7 +272,6 @@ function showBook() {
     });
 }
 function suggestion(emotion) {
-	alert(emotion);
 	$('#grid-container').empty()
     $.ajax({
         url: '/suggestion',  // 필요에 따라 URL 수정
@@ -288,7 +287,9 @@ function suggestion(emotion) {
 }
 
 function appendBoxesToGrid(data) {
-	
+	if(data==null||data==""){
+		alert("찾으시는 도서가 없습니다.")
+	}	
     for (let i = 0; i < data.length; i++) {
 
         let box = `
@@ -328,8 +329,10 @@ function appendBoxesToGrid(data) {
         $('#grid-container').append(box);
     	
     }	
+        if(data==null||data==""){
+			location.reload();
+		}
     	if(data==""){
-    	alert(data);
 			 $('.footer').css('margin-top', 1000+'px');
 		}
         var gridHeight = $('.grid-container').height();
@@ -490,7 +493,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			            
 			        },
 			        success: function(data) {
-						addAssistantMessage("몇 점 이상을 원하시나요?(ex:5점)");
+						addAssistantMessage("몇 점 이상을 원하시나요?(ex:5점 만점)");
 						console.log(data);
 			        	appendBoxesToGrid(data);
 						var chatContent = document.getElementById('chat-content');
@@ -571,8 +574,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			chatContentElement.appendChild(assistantMessageElement);
          try {
 			  console.log(emotionbox);
-			  const emotion = JSON.parse(emotionbox);
-			  alert(emotion.reasonForRecommendation);
+			  const emotion = JSON.parse(emotionbox);			  
 			  console.log(emotion.emotion);
 			  const heading = document.querySelector('h2');
 			  heading.textContent = emotion.emotion;

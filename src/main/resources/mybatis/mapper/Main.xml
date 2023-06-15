@@ -5,7 +5,11 @@
 	
 	<mapper namespace="com.human.springboot.MainController.MainDAO"><!-- dto칼럼이 적은건 오류안남 반대는 오류 -->
 		<select id="bookList" resultType="com.human.springboot.MainController.MainDTO">
-			select * from book
+		  SELECT *
+		  FROM (SELECT *
+		        FROM book
+		        ORDER BY RATING DESC)
+		  WHERE ROWNUM &lt;= 9
 		</select>
 		<select id="emotionBookList" resultType="com.human.springboot.MainController.MainDTO">
 			select * from book where emotion=#{param1}

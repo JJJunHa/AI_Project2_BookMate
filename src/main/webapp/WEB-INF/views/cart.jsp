@@ -14,7 +14,7 @@
 
 <div class="main">
 	<div class="logo">
-    	<a href="/main"><img src="/img/logo.png" class="logoImg"></a>
+    	<a href="/main"><img src="/img/logo2.png" class="logoImg"></a>
     </div>
     <div class="menu">
         <a href="/logout">로그아웃</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>

@@ -884,6 +884,95 @@ $('#summernote').summernote('disable')  //써머노트 readonly
 	
 	
 })
+//바로구매 클릭 시
+.on('click', '#inputPay', function() {
+
+    	let m_id = '<%=session.getAttribute("id")%>';
+    	let qty = $('#qty').val();
+    	let book_num = $('#book_num').val();
+    	console.log(m_id);
+    	console.log(qty);
+    	console.log(book_num);
+
+		
+        // 아이디가 있을 때
+        if(m_id=='' || m_id==null || m_id=='null') {
+            alert('로그인 후 이용해주세요');
+            document.location="/login";
+        } 
+        // 아이디가 없을 때
+        else {
+
+			var orderType = confirm("장바구니 상품까지 같이 주문하시겠습니까?");
+  
+			  if (orderType) {
+			    $.ajax({
+                url: '/confirm_cart',
+                type: 'post',
+                data: { m_id: m_id,  qty:qty, book_num:book_num },
+                dataType: 'text',
+                success: function(data) {
+                    if(data == "already") {
+                        $.ajax({
+                            url: '/update_cart',
+                            type: 'post',
+                            data: { m_id: m_id, qty:qty, book_num:book_num },
+                            dataType: 'text',
+                            success: function(data) {
+                                if(data=="ok"){
+                                    
+                                        document.location="/payment";
+                                    
+                                } else {
+                                    alert("오류로 인해 잠시후에 다시 시도해주세요.");
+                                }
+                            }
+                        })
+                    } else if(data=="ok"){
+                        $.ajax({
+                            url: '/insert_cart',
+                            type: 'post',
+                            data: { m_id: m_id, qty:qty, book_num:book_num },
+                            dataType: 'text',
+                            success: function(data) {
+                                if(data=="ok"){
+                                   
+                                        document.location="/payment";
+                                    
+                                } else {
+                                    alert("오류로 인해 잠시후에 다시 시도해주세요.");
+                                }
+                            }
+                        })
+                    } else {
+                        alert("오류로 인해 잠시후에 다시 시도해주세요.");
+                    }
+                }
+            })
+			    
+			  } else {
+                        $.ajax({
+                            url: '/singleInsert_cart',
+                            type: 'post',
+                            data: { m_id: m_id, qty:qty, book_num:book_num },
+                            dataType: 'text',
+                            success: function(data) {
+                                if(data=="ok"){
+                                   
+                                        document.location="/singlePayment";
+                                    
+                                } else {
+                                    alert("오류로 인해 잠시후에 다시 시도해주세요.");
+                                }
+                            }
+                        })
+			    alert("단일 결제로 주문됩니다.");
+			  }
+			
+			} 	
+    });
+
+
 
 // 수량옵션 
 $('._count :button').on({
