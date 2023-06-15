@@ -38,7 +38,7 @@
 	
 	<!-- 리뷰 dialog 만들기 -->
 	<select id="dialog_review" resultType="com.human.springboot.DetailController.ReviewDTO">
-		select b.book_cover, b.book_name, b.book_price,
+		select b.book_cover, b.book_name, b.book_price, b.book_num,
 				c.o_qty,
 				a.id, a.rev_title, a.rev_rating, a.rev_content
 		from review a, book b, ordered_cart c, payment d
@@ -50,9 +50,9 @@
 	
 		<!-- 리뷰 dialog 만들기 mypage -->
 	<select id="dialog_review1" resultType="com.human.springboot.DetailController.ReviewDTO">
-		select b.book_cover, b.book_name, b.book_price,
+		select b.book_cover, b.book_name, b.book_price, b.book_num,
 				c.o_qty,
-				a.id, a.rev_title, a.rev_rating, a.rev_content
+				a.id, a.rev_title, a.rev_rating, a.rev_content, a.review_num
 		from review a, book b, ordered_cart c, payment d
 		where a.order_num = #{param1}
 		and a.id=#{param2}

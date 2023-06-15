@@ -192,10 +192,13 @@ a:hover {
 	width:310px;
 	height:450px;
 	box-shadow: 3px 3px 3px 3px lightgray;
+	position: relative;
+	transition: transform 0.3s;
 }
 .book_img:hover {
 	width:330px;
 	height:470px;
+	transform: translate(-10px, -10px);
 }
 #info-price1 {
 	font-size: 18px;
@@ -282,6 +285,7 @@ a:hover {
 	background-color: #f7598c;
 	border:none;
 	color:white;
+	cursor: pointer;
 }
 .inputPay {
 	width: 150px;
@@ -289,6 +293,7 @@ a:hover {
 	background-color: #f95353;
 	border:none;
 	color:white;
+	cursor: pointer;
 }
 
  /* 수량 버튼 만들기 */
@@ -358,6 +363,7 @@ cursor:pointer;
 	height: 50px;
 	padding: 10px;
   	border-bottom: 1px solid #ccc;
+  	cursor: pointer;
 }
 .total {
 	text-align:left;
@@ -475,6 +481,7 @@ input:focus {outline: none;} /* outline 테두리 없애기 */
 	width: 10%;
 	height: 35px;
 	margin-bottom: 1%;
+	cursor: pointer;
 }
 .summernote {
 	height: 200px;               
@@ -490,13 +497,13 @@ input:focus {outline: none;} /* outline 테두리 없애기 */
 
 <div class="main">
 <div class="logo">
-    	<a href="/main"><img src="/img/logo.png" class="logoImg"></a>
+    	<a href="/main"><img src="/img/logo2.png" class="logoImg"></a>
     </div>
     
     <% if(session.getAttribute("id")!=null){ %>
     
     <div class="menu">
-        <a href="/logout">로그아웃</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+        <%=session.getAttribute("id")%> 님, <a href="/logout">로그아웃</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
     </div>
    
 	<% } else {%>
@@ -665,10 +672,10 @@ input:focus {outline: none;} /* outline 테두리 없애기 */
 			&nbsp;<font id="check_content" size=2></font>
 		</div>
 		<div class=dialog-btn>
-<!-- 			<button type="button" class="btn-rev" id=submit-rev>등록</button> -->
+			<button type="button" class="btn-rev" id=modify-rev>수정</button>
+			<button type="button" class="btn-rev" id=delete-rev>삭제</button>
 			<button type="button" class="btn-rev" id=cancel-rev>닫기</button>
 		</div>
-		
 	</div>
 </div>
 </body>
@@ -704,6 +711,7 @@ $(document)
     
 $('#summernote').summernote('disable')  //써머노트 readonly
 })
+
 .on('click','#tblreview tr', function(){
 	let review_num=$(this).find('td:eq(0)').text();
 	console.log(review_num);
@@ -734,24 +742,60 @@ $('#summernote').summernote('disable')  //써머노트 readonly
 			let book_price = data[0]['book_price'];
 			$('#view-price').text(book_price);
 			let book_cover = '<img src="' + data[0]['book_cover'] + '" class="view_img" id="view_img">';
-			$('#view-img').append(book_cover);
+			$('#view-img').empty().append(book_cover);
 			
 			let rev_title = data[0]['rev_title'];
 			$('#dialog-text').val(rev_title);
 			
 			let rev_rating = data[0]['rev_rating'];
+			if(rev_rating == 1) {
+				rev_rating = '★';
+			} else if(rev_rating == 2) {
+				rev_rating = '★★';
+			} else if(rev_rating == 3) {
+				rev_rating = '★★★';
+			} else if(rev_rating == 4) {
+				rev_rating = '★★★★';
+			} else if(rev_rating == 5) {
+				rev_rating = '★★★★★';
+			}
+			
 			$('#dialog-rating').val(rev_rating);
 			
 			let rev_content = data[0]['rev_content'];
 // 			$('#summernote').val(rev_content);
 			$('#summernote').summernote('code', rev_content);
 
-		}
+			// id에 따라 수정, 삭제 버튼 보이기
+		      if (dialog_id === '<%=session.getAttribute("id")%>') {
+		        $('#modify-rev').show();
+		        $('#delete-rev').show();
+		      } else {
+		        $('#modify-rev').hide();
+		        $('#delete-rev').hide();
+		      }
+		  }
 	});
 })
 // 닫기 버튼 클릭 시 dialog 닫기
 .on('click','#cancel-rev',function(){
 	$(this).closest('.ui-dialog-content').dialog('close');
+})
+// 삭제 버튼 클릭시 
+.on('click','#delete-rev',function(){
+	let confirmval = confirm('리뷰 삭제는 [마이페이지]-[리뷰 보기]에서 삭제가 가능합니다. \n마이페이지로 이동하시겠습니까?');
+	if(confirmval) {
+		document.location="/mypage";		
+	} else {
+	}
+})
+// 삭제 버튼 클릭시 
+.on('click','#modify-rev',function(){
+	let confirmval = confirm('리뷰 수정은 [마이페이지]-[리뷰 보기]에서 수정이 가능합니다. \n마이페이지로 이동하시겠습니까?');
+	if(confirmval) {
+		document.location="/mypage";		
+	} else {
+	}
 })
 
 // 수량 변경 시 총액 업데이트
@@ -915,7 +959,7 @@ function loadData() {
 			$('#info-date').text(publication);
 
 			let book_cover = '<img src="' + data[0]['book_cover'] + '" class="book_img" id="book_img">';
-			$('#info2').append(book_cover);
+			$('#info2').empty().append(book_cover);
 
 			let book_price = data[0]['book_price'];
 			$('#info-price2').text(book_price);

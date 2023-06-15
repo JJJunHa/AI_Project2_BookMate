@@ -7,11 +7,6 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
-	crossorigin="anonymous">
 	<link rel="stylesheet" href="css/signin.css">
 	<link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
 	
@@ -20,111 +15,117 @@
 
 <body>
 	<div class="logo">
-		<a href="/main"><img src="/img/logo.png" class="logoImg"></a>
+		<a href="/main"><img src="/img/logo2.png" class="logoImg"></a>
 	</div>
-	
-<!-- 		<h2 class=Membership>회원가입</h2> -->
-
 		<!-- Content -->
 		<div class="content">
-			<div class="content2"></div>
+			<h1>회원가입</h1>
 			<form action="/doInsert" method="post" id=frmInsert>
-				<div class="content3">
-					<div class="text">
+			<div class=signin1>
+				<h3 style="text-align:left;">&nbsp;&nbsp;로그인 정보</h3>
+				<table class=tbllogin>
+					<tr>
+						<th>아이디</th><td><input type="text" class="form-control form-control-lg"
+											placeholder=" 아이디를 입력해주세요" id="j_id" name="j_id"
+											style="font-size: 14px;"><br>
+										<font id="idGuide" for="j_id"  style="font-size: 10px; font-weight:bold;">[영문대소문자/숫자, 4~20자]</font>
+									</td>
+					</tr>
+					<tr>
+						<th>비밀번호</th><td>
+										<div class="form-group">
+										<input type="password" class="form-control" placeholder=" 비밀번호를 입력해주세요"
+											id="j_pwd" name="j_pwd"><img src="/img/free-icon-eye-show.jpg" id="showPwd"><br>
+											<font id="psGuide" for="j_pwd" style="font-size: 10px; font-weight:bold;">[영문대소문자/숫자/특수문자(@$!%*#?&), 8~22자]</font>	
+										</div>
+										</td>
+					</tr>
+					<tr>
+						<th>비밀번호 확인</th><td>
+											<div class="form-group">
+											<input type="password" class="form-control"
+											placeholder=" 비밀번호 확인" id="j_pwdcf" name="j_pwdcf"><img src="/img/free-icon-eye-show.jpg" id="showPwd2"><br>
+											<font id="psGuide2" for="j_pwdcf" style="font-size: 10px; font-weight:bold;"></font>
+											</div>
+											</td>
+					</tr>
+				</table>
+			</div>
+			<div class=signin2>
+				<h3 style="text-align:left;">&nbsp;&nbsp;회원 정보</h3>
+				<table class=tblmember>
+					<tr>
+						<th>이름</th><td><input type="text" class="form-control" placeholder=" 실명을 입력해주세요"
+									id="j_name" name="j_name" style="font-size: 14px;" required></td>
+					</tr>
+					<tr>
+						<th>휴대전화</th><td>
+											<div class="information6">
+											<select id=j_fisrtphone name=j_firstphone class="form-select">
+												<option class=optionnum value="010" selected>010</option>
+												<option class=optionnum value="011">011</option>
+												<option class=optionnum value="016">016</option>
+												<option class=optionnum value="017">017</option>
+												<option class=optionnum value="018">018</option>
+												<option class=optionnum value="019">019</option>
+											</select>&nbsp; - &nbsp;
+											<input type="tel" id=j_midphone name=j_midphone class="general-number" required>
+												&nbsp; - &nbsp;
+												<input type="tel" id=j_lastphone name=j_lastphone class="general-number" required>		
+											</div>
+									  </td>
+						
+					</tr>
+					<tr>
+						<th style="height: 170px;">주소</th><td><div class="information5">
+											<input type="address" class="address-input" id=zip_code
+												name=zip_code placeholder=" 우편번호" readonly>
+											&nbsp;
+											<input
+												type="button" onclick="sample6_execDaumPostcode()"
+												value="우편번호 찾기" id=btn_code><br> <br>
+											<input
+												type="address" id=j_address1 name=j_address1 readonly
+												class="address2-input" placeholder=" 기본주소" required> <br>
 
-						<div class="text3">
-							<div class="form-floating mb-3">
-								<input type="text" class="form-control form-control-lg"
-									placeholder="아이디" id="j_id" name="j_id"
-									style="font-size: 14px;"> <label id="idGuide"
-									for="j_id" style="font-size: 14px;">아이디를 입력해주세요</label>
-									<div style="font-size: 2px;">[영문대소문자/숫자, 4~20자]</div>
-							</div>
-							<div class="form-floating mb-3">
-								<input type="password" class="form-control" placeholder="비밀번호"
-									id="j_pwd" name="j_pwd" style="width: 400px;">
-									
-<!-- 									<img src="/img/free-icon-eye-show.jpg" id="showPwd">  -->
-
-									<label id="psGuide" for="j_pwd" style="font-size: 14px;">비밀번호를 입력해주세요</label>
-								<div style="font-size: 2px;">[영문대소문자/숫자/특수문자(@$!%*#?&), 8~22자]</div>
-							</div>
-							<div class="form-floating mb-3">
-								<input type="password" class="form-control"
-									placeholder="비밀번호 확인" id="j_pwdcf" name="j_pwdcf"
-									style="width: 400px;">
-									
-<!-- 									<img src="/img/free-icon-eye-show.jpg" id="showPwd2"> -->
-									
-									 <label id="psGuide2" for="j_pwdcf" style="font-size: 14px;">다시한번 입력해주세요</label>
-
-							</div>
-							<div class="form-floating mb-3">
-								<input type="text" class="form-control" placeholder="이름을 입력해주세요"
-									id="j_name" name="j_name" style="font-size: 14px;" required>
-								<label for="j_name" style="font-size: 14px;">이름을 입력해주세요</label>
-							</div>
-							<div class="information5">
-								<input type="address" class="address-input" id=zip_code
-									name=zip_code placeholder="우편번호" readonly><input
-									type="button" onclick="sample6_execDaumPostcode()"
-									value="우편번호 찾기"><br> <br> <input
-									type="address" id=j_address1 name=j_address1 readonly
-									class="address2-input" placeholder="기본주소" required> <br>
-								<br>
-								<input type="address" id=j_address2 name=j_address2
-									class="address2-input" placeholder="상세주소" required>
-							</div>
-							<div class="information6">
-								<select id=j_fisrtphone name=j_firstphone style="width: 80px;"
-									class="form-select">
-									<option value="010" selected>010</option>
-									<option value="011">011</option>
-									<option value="016">016</option>
-									<option value="017">017</option>
-									<option value="018">018</option>
-									<option value="019">019</option>
-								</select>&nbsp; - &nbsp;<input type="tel" id=j_midphone name=j_midphone
-									class="general-number" required>&nbsp; - &nbsp;<input type="tel"
-									id=j_lastphone name=j_lastphone class="general-number" required>
-									
-							</div>
-							<div class="form-floating mb-3">
-								<input type="email" class="form-control" placeholder="이메일을 입력해주세요"
-									id="j_email" name="j_email" style="width: 500px;" required>
-								<label for="floatingPassword" style="font-size: 14px;">이메일을 입력해주세요</label>
-							</div>
-							<div class="information8" style="display: flex; gap: 10px;">
-								<label for="year"></label> <select id="j_year" name="j_year"
-									style="width: 100px;" class="form-select">
-									<!-- 연도 -->
-								</select> <label for="month">년</label> <select id="j_month"
-									name="j_month" style="width: 80px;" class="form-select">
-									<!-- 월 -->
-								</select> <label for="day">월</label> <select id="j_day" name="j_day"
-									style="width: 80px;" class="form-select">
-									<!-- 일 -->
-								</select> 일
-							</div>
-
-
-						</div>
-
-
-
-					</div>
-					<br>
-					<div class="button">
-						<button type="submit" style="border-radius: 30px;">회원가입</button>
-						<button id="cancel" type="cancel" style="border-radius: 30px;"padding:50px;>취소</button>
-					</div>
+											<input type="address" id=j_address2 name=j_address2
+												class="address2-input" placeholder=" 상세주소" required>
+											</div>
+									  </td>
+					</tr>
+					<tr>
+						<th>이메일</th><td>
+										<div class="form-floating mb-3">
+											<input type="email" class="form-control" placeholder="이메일을 입력해주세요"
+												id="j_email" name="j_email"  required>
+											<label for="floatingPassword"></label>
+										</div>
+									  </td>
+					</tr>
+					<tr>
+						<th>생년월일</th><td>
+										<div class="information8" style="display: flex;">
+											<label for="year"></label>
+											<select id="j_year" name="j_year" class="form-select">
+												<!-- 연도 -->
+											</select> <label for="month">&nbsp;&nbsp;년&nbsp;&nbsp;</label>
+											<select id="j_month" name="j_month" class="form-select">
+												<!-- 월 -->
+											</select> <label for="day">&nbsp;&nbsp;월&nbsp;&nbsp;</label>
+											<select id="j_day" name="j_day" class="form-select">
+												<!-- 일 -->
+											</select> &nbsp;&nbsp;일&nbsp;&nbsp;
+										</div>
+									  </td>
+					</tr>
+				</table>
+			</div>
+			<div class=signin3>
+				<button type="submit" id="join">회 원 가 입</button>		
+			</div>
 			</form>
 		</div>
 
-		<div class="content4"></div>
-
-	</div>
-	</div>
 
 </body>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
@@ -176,35 +177,35 @@ for (let i = 1; i <= 31; i++) {
     daySelect.add(option);
 }
 
-
 //---- 비밀번호 표시 코드 part ---- //
-// $(document)
-
-// document.getElementById("showPwd").addEventListener("click", function() {
-// 		var passwordInput = document.getElementById("j_pwd");
-// 		var eyeIcon = document.getElementById("showPwd");
-		
-// 		if (passwordInput.type === "password") {
-// 			passwordInput.type = "text";
-// 			eyeIcon.src = "/img/free-icon-eye-hidden.jpg";
-// 		} else {
-// 			passwordInput.type = "password";
-// 			eyeIcon.src = "/img/free-icon-eye-show.jpg";
-// 		}
-// 	})
+$(document)
+document.getElementById("showPwd").addEventListener("click", function() {
+	var passwordInput = document.getElementById("j_pwd");
+	var eyeIcon = document.getElementById("showPwd");
 	
-// 	document.getElementById("showPwd2").addEventListener("click", function() {
-// 		var passwordInput = document.getElementById("j_pwdcf");
-// 		var eyeIcon = document.getElementById("showPwd2");
-		
-// 		if (passwordInput.type === "password") {
-// 			passwordInput.type = "text";
-// 			eyeIcon.src = "/img/free-icon-eye-hidden.jpg";
-// 		} else {
-// 			passwordInput.type = "password";
-// 			eyeIcon.src = "/img/free-icon-eye-show.jpg";
-// 		}
-// 	})
+	if (passwordInput.type === "password") {
+		passwordInput.type = "text";
+		eyeIcon.src = "/img/free-icon-eye-hidden.jpg";
+	} else {
+		passwordInput.type = "password";
+		eyeIcon.src = "/img/free-icon-eye-show.jpg";
+	}
+})
+
+document.getElementById("showPwd2").addEventListener("click", function() {
+	var passwordInput = document.getElementById("j_pwdcf");
+	var eyeIcon = document.getElementById("showPwd2");
+	
+	if (passwordInput.type === "password") {
+		passwordInput.type = "text";
+		eyeIcon.src = "/img/free-icon-eye-hidden.jpg";
+	} else {
+		passwordInput.type = "password";
+		eyeIcon.src = "/img/free-icon-eye-show.jpg";
+	}
+})
+
+
 
 
 $(document)
@@ -229,6 +230,7 @@ $(document)
     if (!idPattern.test(id)) {
       alert('ID는 영어 소문자, 대문자, 숫자만 사용하여 4~20자 이내로 입력해주세요.');
       idField.val('');
+      $('#idGuide').text('');
     }
   });
 
@@ -236,7 +238,9 @@ $(document)
   pwField.on('change', function() {
     var pw = pwField.val();
     if (!pwPattern.test(pw)) {
-      alert('비밀번호는 영어 소문자, 대문자, 숫자, 특수문자(@$!%*#?&) 중 최소 1개 이상을 포함하여 8~22자 이내로 입력해주세요.');
+//       alert('비밀번호는 영어 소문자, 대문자, 숫자, 특수문자(@$!%*#?&) 중 최소 1개 이상을 포함하여 8~22자 이내로 입력해주세요.');
+      $('#psGuide').attr('color', 'red');
+      $('#psGuide').text('영어 소문자, 대문자, 숫자, 특수문자(@$!%*#?&)를 포함하여 8~22자 이내로 입력해주세요.'); return false;
       pwField.val('');
     }
   });
@@ -260,31 +264,80 @@ $(document)
    alert('회원가입이 성공적으로 완료되었습니다.');
 })
 
-.on('blur','#j_id',function(){
+/* 아이디 입력 */
+.on('keyup','#j_id',function(){
    
    $.ajax({url:'/idCheck',
           type:'post', 
           dataType:'text', 
          data:{j_id:$('#j_id').val()},
          
-         success:function(data){
-            $('#idGuide').text(data);
+         success:function(data){ 
+        	if(data === "사용 가능한 아이디입니다") {
+        		$('#idGuide').attr('color', 'green');
+                $('#idGuide').text(data);
+        	} else {
+        		$('#idGuide').attr('color', 'red');
+                $('#idGuide').text(data);
+        	}
+        	
          }
    })
 })
+.on('blur','#j_id',function(){  
+   id = $('#j_id').val();   
+   if(id==''||id==null){
+	  $('#idGuide').attr('color', 'red');
+      $('#idGuide').text('아이디를 입력해주세요'); return false;
+   }
+})
+/* 비밀번호 입력 */
+.on('blur','#j_pwd',function(){  
+   ps1 = $('#j_pwd').val();   
+   if(ps1==''||ps1==null){
+	  $('#psGuide').attr('color', 'red');
+      $('#psGuide').text('비밀번호를 입력해주세요'); return false;
+   }
+})
+.on('keyup','#j_pwd',function(){
+	var pwPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,22}$/;
 
-.on('blur','#j_pwdcf',function(){
+    ps1 = $('#j_pwd').val();
+    if(ps1!=''||ps1!=null){
+        $('#psGuide').text(''); return false;
+     }
+    
+    if (!pwPattern.test(pw)) {
+    	$('#psGuide').attr('color', 'red');
+        $('#psGuide').text('비밀번호를 입력해주세요'); 
+    	pwField.val('');
+    	return false;
+      }
+})
+/* 비밀번호 확인 입력 */
+.on('blur','#j_pwdcf',function(){  
+   ps2 = $('#j_pwdcf').val();   
+   if(ps2==''||ps2==null){
+	  $('#psGuide2').attr('color', 'red');
+      $('#psGuide2').text('비밀번호를 확인해주세요'); return false;
+   }
+})
+
+.on('keyup','#j_pwdcf',function(){
    
    ps1 = $('#j_pwd').val();
    ps2 = $('#j_pwdcf').val();
    
    if(ps1==''||ps1==null){
-      $('#psGuide2').text('비밀번호를 입력해주세요'); return false;
+	   $('#psGuide2').attr('color', 'red');
+       $('#psGuide2').text('비밀번호를 입력해주세요'); return false;
    }
    else if(ps1==ps2){
-      $('#psGuide2').text('비밀번호가 일치합니다'); return false;
+	   $('#psGuide2').attr('color', 'green');
+       $('#psGuide2').text('비밀번호가 일치합니다'); return false;
    } else {
-      $('#psGuide2').text('비밀번호가 일치하지않습니다'); return false;
+	  	$('#psGuide2').attr('color', 'red');
+       $('#psGuide2').text('비밀번호가 일치하지않습니다'); return false;
    }
 })
 

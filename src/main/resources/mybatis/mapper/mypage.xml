@@ -60,7 +60,6 @@
  	</select>
 	<select id="selectBordNum" resultType="com.human.springboot.MypageController.POSTDTO">
 	 	select board_num from board_comment where bcontent_num=#{param1}
-	 	
 	</select>
 <!--  	나의 댓글 관련 -->
 
@@ -76,6 +75,13 @@
 
 
 <!--    나의 주문내역 관련 -->
+	<!-- mypage에서 cart에 있는지 찾기 -->
+	<select id="MyPageCartFind" resultType="int">
+		SELECT count(*)
+		FROM cart
+		WHERE id = #{param1} and book_num = #{param2}
+ 	</select>
+
 	<!-- mypage에서 cart로 insert 하기 -->
 	<insert id="MyPageAddCart">
 		insert into cart(cart_num, id, book_num, qty) values(cart_num.nextval, #{param1},#{param2},#{param3}) 
@@ -93,12 +99,52 @@
 			p.id = #{param1} order by p.order_date desc
     </select>
 	
+	<!-- 주문 목록 갯수 불러오기 -->
+	<select id="count_order" resultType="int">
+		SELECT count(*)
+		FROM payment
+		WHERE id = #{param1}
+ 	</select>
+	
 	<!-- 리뷰 관련 part -->
 	<select id="compareRev" resultType="com.human.springboot.MypageController.orderedDTO">
 		select id, order_num from review where id = #{param1} and order_num = #{param2}  
  	</select>
+	
+	
  	<!-- 리뷰 관련 part -->
  	
+ 
+	<!--  주문목록 불러오기 -->
+	<select id="load_order" resultType="com.human.springboot.MypageController.orderedDTO">
+		SELECT 
+			b.book_name, b.book_price, b.book_cover, oc.o_qty, b.book_num, b.author,
+			p.order_date, p.id, p.order_num, p.status, p.pay_way
+		FROM 
+			book b
+			JOIN ordered_cart oc ON b.book_num = oc.o_book_num
+			JOIN payment p ON oc.o_cart_num = p.cart_num
+		WHERE 
+			p.id = #{param1} order by p.order_date desc
+ 	</select>
+ 	
+	<!-- payment 에서 status 가져오기 -->
+	<select id="check_status" resultType="String">
+		select status from payment where id = #{param1} and order_num = #{param2}  
+ 	</select>
+ 	<!-- payment 에서 주문취소하기 -->
+	<delete id="order_delete">
+		delete from payment where id = #{param1} and order_num = #{param2}  
+ 	</delete>
+ 	<!-- payment 에서 cart_num 찾기 -->
+	<select id="order_delete_cart" resultType="int">
+		select cart_num from payment where id = #{param1} and order_num = #{param2}  
+ 	</select>
+ 	<!-- ordered_cart 에서 주문취소하기 -->
+	<delete id="order_delete1">
+		delete from ordered_cart where o_id = #{param1} and o_cart_num = #{param2}  
+ 	</delete>
 <!--    나의 주문내역 관련 -->
+
 	
 </mapper>
