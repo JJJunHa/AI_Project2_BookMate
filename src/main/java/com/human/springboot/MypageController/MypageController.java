@@ -38,7 +38,7 @@ public class MypageController {
 		mypageDTO showBir = mypagedao.showBir(id);
 		
 //		System.out.println(showAdr);
-		System.out.println(showAdr);
+//		System.out.println(showAdr);
 		String cut[]=showAdr.getAddress().split("@");
 //		System.out.println(cut[1]);
 		
@@ -143,9 +143,7 @@ public class MypageController {
     
 ////////////////////////////// 주문내역 part //////////////////////////////
 
-
-    
-  
+	
     
     
 ////////////////////////////// 주문내역 part //////////////////////////////    
@@ -164,7 +162,7 @@ public class MypageController {
 //		System.out.println(id);
     	
 		ArrayList<POSTDTO> plist = mypagedao.selectPlist(id);
-		System.out.println(plist);
+//		System.out.println(plist);
 		
 		JSONArray ja =new JSONArray();
 		
@@ -238,20 +236,19 @@ public class MypageController {
     	
 		String id=req.getParameter("name");
 		String num=req.getParameter("num");
-		
+
 		POSTDTO BordNum=mypagedao.selectBordNum(num);
 		
 			
-		System.out.println("bordNum= "+BordNum.getBoard_num());
+//		System.out.println("bordNum= "+BordNum.getBoard_num());
 		
 		mypagedao.Qread(BordNum.getBoard_num());
 		
 		POSTDTO qo=mypagedao.QviewList(BordNum.getBoard_num());
 
-		String pstr=qo.getB_title()+",:"+qo.getBcontent_num()+",:"+qo.getID()+
-				",:"+qo.getB_create_date()+",:"+qo.getB_UPDATE_DATE()+",:"+
-				qo.getB_RCOUNT()+",:"+qo.getBoard_num();
-
+		String pstr=qo.getB_title()+",:"+qo.getBcontent_num()+",:"+qo.getId()+
+				",:"+qo.getB_create_date()+",:"+qo.getB_update_date()+",:"+qo.getB_rcount()+",:"+qo.getBoard_num();
+	
 		return pstr;
 	}
 	
@@ -302,6 +299,7 @@ public class MypageController {
     	String mobile = req.getParameter("mobile");
     	String birth = req.getParameter("birth");
     	
+    	
 		mypagedao.updateMy(id, id2, pwd, name, email, zip_code, address, mobile, birth);
 		
 		return "ok";
@@ -315,6 +313,30 @@ public class MypageController {
     
 ////////////////////////////// mypage part ////////////////////////////////////
     
+    // mypage에서 cart에 있는지 찾기
+    @PostMapping("/MyPageCartFind")
+	@ResponseBody
+	public String MyPageCartFind(HttpServletRequest req) {
+    	String id = req.getParameter("id");
+		int book_num = Integer.parseInt(req.getParameter("book_num"));
+
+		String cartinsertval=null;
+		int count = mypagedao.MyPageCartFind(id, book_num);
+		try {
+			if(count == 0) {
+				cartinsertval="none";
+			} else {
+				cartinsertval="ok";
+			}
+
+		} catch(Exception e) {
+			cartinsertval="fail";
+			e.printStackTrace();
+		}
+		return cartinsertval;
+	}	
+    
+    
     // mypage에서 cart insert 하기
     @PostMapping("/MyPageAddCart")
 	@ResponseBody
@@ -322,8 +344,8 @@ public class MypageController {
     	String id = req.getParameter("id");
 		int book_num = Integer.parseInt(req.getParameter("book_num"));
 		int qty = Integer.parseInt(req.getParameter("qty"));
-		System.out.println(book_num);
-		System.out.println(qty);
+//		System.out.println(book_num);
+//		System.out.println(qty);
 
 		String cartinsertval=null;
 		try {
@@ -336,5 +358,110 @@ public class MypageController {
 		}
 		return cartinsertval;
 	}	
+    
+//    // mypage에서 주문 목록 갯수 불러오기
+//    @PostMapping("/count_order")
+//	@ResponseBody
+//	public String count_order(HttpServletRequest req) {
+//    	String id = req.getParameter("id");
+//		String count_order = "";
+//		try {
+//			count_order = Integer.toString(mypagedao.count_order(id));
+////			System.out.println(count_order);
+//			
+//		} catch(Exception e) {
+//			count_order="fail";
+//			e.printStackTrace();
+//		}
+//		return count_order;
+//	}	
+    
+    // 주문 목록 불러오기
+    @PostMapping("/load_order")
+	@ResponseBody
+	public String load_order(HttpServletRequest req) {;
+		String id = req.getParameter("id");
+		
+		ArrayList<orderedDTO> ar = mypagedao.load_order(id);
 
+		JSONArray ja = new JSONArray();
+
+		try {
+			JSONObject jo = new JSONObject();			
+			for(int i=0; i<ar.size(); i++) {
+					jo = new JSONObject();			
+					jo.put("book_name", ar.get(i).getBook_name());
+					jo.put("book_price", ar.get(i).getBook_price());
+					jo.put("book_cover", ar.get(i).getBook_cover());
+					jo.put("author", ar.get(i).getAuthor());
+					jo.put("o_qty", ar.get(i).getO_qty());
+					jo.put("book_num", ar.get(i).getBook_num());
+					jo.put("order_date", ar.get(i).getOrder_date());
+					jo.put("id", ar.get(i).getId());
+					jo.put("order_num", ar.get(i).getOrder_num());
+					jo.put("status", ar.get(i).getStatus());
+					jo.put("pay_way", ar.get(i).getPay_way());
+					
+					int total = Integer.parseInt(ar.get(i).getBook_price()) * ar.get(i).getO_qty();
+					jo.put("total", total);
+					
+					ja.put(jo);
+					}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ja.toString();
+	}
+    
+    // mypage에서 배송상태 확인 하기
+    @PostMapping("/check_status")
+    @ResponseBody
+    public String check_status(HttpServletRequest req) {
+        String id = req.getParameter("id");
+        int orderNum = Integer.parseInt(req.getParameter("orderNum"));
+
+        String statusval = null;
+        try {
+            String status = mypagedao.check_status(id, orderNum);
+//            System.out.println(status);
+            if (status.equals("주문완료")) {
+                statusval = "ok1";
+            } else if(status.equals("배송준비")) {
+                statusval = "ok2";
+            } else if(status.equals("배송중")) {
+                statusval = "ok3";
+            } else if(status.equals("배송완료")) {
+                statusval = "ok4";
+            }
+        } catch (Exception e) {
+            statusval = "fail";
+            e.printStackTrace();
+        }
+        return statusval;
+    }
+    
+    // 주문취소하기
+    @PostMapping("/order_delete")
+    @ResponseBody
+    public String order_delete(HttpServletRequest req) {
+        String id = req.getParameter("id");
+        int orderNum = Integer.parseInt(req.getParameter("orderNum"));
+
+        String deleteval = null;
+        try {
+
+        	int cart_num =  mypagedao.order_delete_cart(id, orderNum);
+        	mypagedao.order_delete(id, orderNum);
+        	mypagedao.order_delete1(id, cart_num);
+            
+            deleteval = "ok";
+           
+        } catch (Exception e) {
+        	deleteval = "fail";
+            e.printStackTrace();
+        }
+        return deleteval;
+    }
+
+  
 }

@@ -297,6 +297,9 @@ public class DetailController {
 			jo.put("book_cover", alReview2.get(i).getBook_cover());
 			jo.put("book_name", alReview2.get(i).getBook_name());
 			jo.put("book_price", alReview2.get(i).getBook_price());
+			jo.put("book_num", alReview2.get(i).getBook_num());
+			
+			
 			
 			jo.put("o_qty", alReview2.get(i).getO_qty());
 			
@@ -315,7 +318,7 @@ public class DetailController {
 		@ResponseBody
 		public String dialog_review1(HttpServletRequest req) {
 			String id = req.getParameter("id");
-			int order_num = Integer.parseInt(req.getParameter("order_num"));
+			int order_num = Integer.parseInt(req.getParameter("orderNum"));
 			
 			ArrayList<ReviewDTO> alReview3 = cdao.dialog_review1(order_num, id);
 			JSONArray ja = new JSONArray();
@@ -324,6 +327,7 @@ public class DetailController {
 				jo.put("book_cover", alReview3.get(i).getBook_cover());
 				jo.put("book_name", alReview3.get(i).getBook_name());
 				jo.put("book_price", alReview3.get(i).getBook_price());
+				jo.put("book_num", alReview3.get(i).getBook_num());
 				
 				jo.put("o_qty", alReview3.get(i).getO_qty());
 				
@@ -331,6 +335,7 @@ public class DetailController {
 				jo.put("rev_title", alReview3.get(i).getRev_title());
 				jo.put("rev_rating", alReview3.get(i).getRev_rating());			
 				jo.put("rev_content", alReview3.get(i).getRev_content());
+				jo.put("review_num", alReview3.get(i).getReview_num());
 				
 				ja.put(jo);
 			}

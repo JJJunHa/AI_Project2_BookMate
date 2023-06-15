@@ -11,7 +11,9 @@ public class orderedDTO {
 	String order_date;
 	int order_num; 
 	int o_qty;
-	
+	String status;
+	int cart_num;
+	String pay_way;
 	// from cart
 	String qty;
 	
@@ -20,6 +22,7 @@ public class orderedDTO {
 	String book_name;
 	String book_price;
 	String book_cover;
+	String author;
 	
 	String IMG_NAME1;
 	
