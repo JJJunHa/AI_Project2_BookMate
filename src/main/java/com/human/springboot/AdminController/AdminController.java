@@ -2,8 +2,10 @@ package com.human.springboot.AdminController;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
-
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -230,5 +230,57 @@ public class AdminController {
 			model.addAttribute("ol",orlist);
 			return "adminOrder";
 		}
+		//주문 상세
+		@GetMapping("/dorder")
+		public ResponseEntity<List<AdminDTO>> dorder(@RequestParam("id") String id, @RequestParam("price") String price) {
+		    List<AdminDTO> dorder = adao.dorder(id, price);
+		    if (dorder != null && !dorder.isEmpty()) {
+		        return ResponseEntity.ok(dorder);
+		    } else {
+		        return ResponseEntity.notFound().build();
+		    }
+		}
+		
+		@PostMapping("/delivery")
+		@ResponseBody
+		public String delivery(HttpServletRequest req) {
+		try {
+			String status = req.getParameter("status");
+			String id = req.getParameter("id");
+			int order_num = Integer.parseInt(req.getParameter("order_num"));
+			adao.delivery(status, id, order_num);
+		} catch(Exception e) {
+			System.out.println(req.getParameter("id"));
+		}
+			return "redirect:/adminOrder";
+		}
+		
+//		주문삭제
+			@PostMapping("/ordel")
+			@ResponseBody
+			public String ordel(HttpServletRequest req) {
+				String val="ok";
+				try {
+					String id = req.getParameter("id");
+					int order_num = Integer.parseInt(req.getParameter("order_num"));
+					adao.oreviewDel(order_num, id);
+					adao.ordered_cart(order_num, id);
+					adao.payment(order_num, id);
+					
+				} catch(Exception e) {
+					val="fail";
+					e.printStackTrace();
+					System.out.println(req.getParameter("id"));
+				}
+				return val;
+			}
+			//주문검색
+			// 리뷰검색
+			@PostMapping("/order/search")
+			public String oSearch(Model model, @RequestParam("type") String type, @RequestParam("keyword") String keyword) {
+				ArrayList<AdminDTO> oSearch = adao.oSearch(type, keyword);
+				model.addAttribute("ol", oSearch);
+				return "adminOrder";
+			}
 }
-
+ 

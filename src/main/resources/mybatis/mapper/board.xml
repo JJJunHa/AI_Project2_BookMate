@@ -37,7 +37,9 @@
 	<delete id="bDelete">
 	 delete from Board where board_num=#{param1}
 	</delete>
-	
+	<delete id="tbcdel" >
+		delete from board_comment where board_num=#{param1}
+	</delete>
 	<update id="bRead">
 		update Board set B_RCOUNT = B_RCOUNT+1 where board_num=#{param1}
 	</update>

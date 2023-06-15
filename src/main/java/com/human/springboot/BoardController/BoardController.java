@@ -77,6 +77,7 @@ public class BoardController {
 //  게시글 삭제	
 	@GetMapping("/bDelete/{board_num}")
 	public String Qdelete(@PathVariable("board_num") int board_num) {
+		bdao.tbcdel(board_num);
 		bdao.bDelete(board_num);
 		return "redirect:/board";
 	}
@@ -110,7 +111,7 @@ public class BoardController {
 			jo.put("bc_create_date", comment.get(i).getBc_create_date());
 			jo.put("bc_content", comment.get(i).getBc_content());
 			jo.put("bcontent_num", comment.get(i).getBcontent_num());
-			if (id != null && id.equals(comment.get(i).getID())) {
+			if (id.equals(comment.get(i).getID())) {
 	            jo.put("check", "check");
 	        }
 			

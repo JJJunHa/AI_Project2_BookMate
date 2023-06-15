@@ -208,7 +208,7 @@ a:hover {
 /* 테이블 헤더 스타일 */
 .board th {
 	padding: 12px;
-	background-color: #ebedf3;
+	background-color: #d7dbe9;
 	border-bottom: 1px solid #c8cfe2;
 	font-weight: bold;
 	text-align: center;
@@ -222,14 +222,14 @@ a:hover {
 }
 
 /* 짝수 번째 행 배경색 지정 */
-.board tr:nth-child(odd) {
-	background-color: #f8f9fa;
-}
+/* .board tr:nth-child(odd) { */
+/* 	background-color: #f8f9fa; */
+/* } */
 
 /* 마우스 호버 효과 */
-.board tr:hover {
-	background-color: #ebedf3;
-}
+/* .board tr:hover { */
+/* 	background-color: #ebedf3; */
+/* } */
 
 /* 제목 링크에 언더라인 및 호버 효과 */
 .board a.title-link {
@@ -286,7 +286,11 @@ a:hover {
 
 
 /* ----------- */
-
+.bookmate-row {
+  background-color: #ebedf3; /* 원하는 색상으로 변경 가능 */
+  font-weight: bold;
+  
+}
 
 </style>
 <body>
@@ -362,7 +366,7 @@ a:hover {
 	                    </thead>
 	                    <tbody>
 							<c:forEach items="${bl}" var="blist">
-								<tr>
+								<tr class="${blist.ID eq 'bookmate' ? 'bookmate-row' : ''}">
 									<td>${blist.board_num}</td>
 									<td>${blist.b_TITLE}</td>
 									<td>${blist.ID}</td>
@@ -404,6 +408,7 @@ a:hover {
 
 <script>
 $(document)
+
 //새글쓰기
 .on('click','#btnNew',function(){
 	let m_id = '<%=session.getAttribute("id")%>';
