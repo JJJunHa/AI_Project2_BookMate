@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div class="logo">
-		<a href="/main"><img src="/img/logo.png" class="logoImg"></a>
+		<a href="/main"><img src="/img/logo2.png" class="logoImg"></a>
 	</div>
 	<div class="container">
 		<h2>회원가입 본인 인증</h2>

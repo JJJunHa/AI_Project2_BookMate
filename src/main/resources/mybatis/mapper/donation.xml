@@ -9,6 +9,6 @@
 	</select>
 
 	<insert id="insert_donation">
-		insert into donation(dona_num, dona_name, dona_qty, dona_way, id, dona_date) values(dona_num.nextval, #{param1},#{param2},#{param3}, #{param4}, TO_CHAR(SYSDATE, 'YYYY/MM/DD')) 
+		insert into donation(dona_num, dona_name, dona_qty, dona_way, id, dona_date) values(dona_num.nextval, #{param1},#{param2},#{param3}, #{param4}, SYSDATE) 
 	</insert>
 </mapper>

@@ -19,6 +19,7 @@ public class ReviewDTO {
 	String book_name;
 	int book_price;
 	String book_cover;
+	int rating;
 	
 	// ordered_cart
 	int o_qty;

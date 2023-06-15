@@ -31,7 +31,7 @@ a:link {
 /* 색상상자 */
 .name{
     width:100%;
-    height:60px;
+    height:20px;
     background-color: #97d4f7;
     color:white;
     text-align : center;
@@ -154,6 +154,7 @@ a:hover {
     .content-container.active {
         display: block;
     }
+  
 
     .posts-container,
     .comments-container,
@@ -166,15 +167,16 @@ a:hover {
         /* border-radius: 5px; */
         margin-bottom:20px;
     }
-
+/* --------------------------------------------- */
 
 
 .text{
 	flex:8;
 	display: flex;
 	flex-direction: row;
-	padding-left:50px;
-	padding-top: 50px;
+/* 	padding-left:50px; */
+/* 	padding-top: 50px; */
+	margin: 0 auto;
 }
 
 .text2{
@@ -187,240 +189,6 @@ a:hover {
 	flex:3;
 }
 
-.name1{
-
-/* background-color: aqua; */
-
-flex:1.2;
-margin-bottom: 20px;
-
-}
-
-.name2{
-
-/* background-color: goldenrod; */
-
-flex:1.5;
-
-}
-
-.name3{
-
-/* background-color: forestgreen; */
-
-flex:1.5;
-margin-bottom: 20px;
-
-/* margin-bottom:50px; */
-
-}
-
-.name4{
-
-/* background-color: darkkhaki; */
-
-flex:1;
-margin-bottom: 30px;
-
-
-}
-
-.name5{
-
-/* background-color: hotpink; */
-
-flex:4;
-
-}
-
-.name6{
-
-/* background-color: teal; */
-
-flex:1;
-margin-top: 15px;
-/* padding-top: 50px; */
-
-}
-
-.name7{
-
-/* background-color: blue; */
-
-flex:1;
-margin-top: 10px;
-
-}
-
-.name8{
-
-/* background-color: violet; */
-
-flex:1;
-
-}
-
-.information{
-
-/* background-color: salmon; */
-
-flex:1;
-
-
-/* margin-bottom:10px; */
-
-}
-
-.information2{
-
-/* background-color: chocolate; */
-
-flex:1;
-position: relative;
-
-/* margin-bottom:10px; */
-
-}
-
-
-
-.information3{
-
-/* background-color: salmon; */
-
-flex:1;
-position: relative;
-
-
-/* padding-top:20px; */
-
-}
-
-/* 비밀번호 보기 표시 */
-#showPwd {
-    position: absolute;
-	border: none;
-	background-color: white;
-	padding-right: 10px;
-	width: 28px;
-/* 	right: 1px; */
-	}
-	#showPwd2 {
-    position: absolute;
-	border: none;
-	background-color: white;
-	padding-right: 10px;
-	width: 28px;
-/* 	right: 1px; */
-	}
-	
-.information4{
-
-/* background-color: chocolate; */
-
-flex:1;
-
-margin-bottom:45px;
-
-
-
-
-}
-
-.information5{
-
-/* background-color: salmon; */
-
-flex:2;
-
-margin-bottom:20px;
-
-
-
-}
-
-.information6{
-
-/* background-color: chocolate; */
-
-flex:1;
-
-margin-bottom:20px;
-
-display: flex;
-
-flex-direction: row;
-
-align-items: center;
-
-}
-
-.information7{
-
-/* background-color: salmon; */
-
-flex:1;
-
-margin-bottom:1px;
-
-
-}
-
-.information8{
-
-/* background-color: chocolate; */
-
-flex:1;
-
-}
-
-.button{
-    display: flex;
-    justify-content: space-around;
-    padding-right: 100px;
-    margin-top: 20px;;
-}
-
-.button button {
-
-background-color: black;
-
-color: white;
-
-border: none;
-
-/* padding: 10px 16px; */
-
-margin-left: 80px;
-
-font-size: 15px;
-
-cursor: pointer;
-
-transition: all 0.3s;
-
-border-radius:30px;
-
-padding-top:20px;
-
-padding-bottom:20px;
-
-padding-right:30px;
-
-padding-left:30px;
-
-margin-bottom:30px;
-
-}
-
-.button button:hover {
-
-background-color: #444;
-
-transform: scale(1.1);
-
-}
-
 /*  */
 .hi{
     display: flex;
@@ -428,15 +196,18 @@ transform: scale(1.1);
     /* background-color: firebrick; */
     min-height:100px;
     min-width: 20vh;
+    width:95%;
+    margin: 0 auto;
     /* border: 1px solid gray; */
-    margin:30px;
+/*     margin:30px; */
 }
 .hi2{
     /* background-color: palegreen; */
     flex:1;
-    padding-top:30px;
-    padding-left:30px;
-    padding-right:30px;
+    
+/*     padding-top:30px; */
+/*     padding-left:30px; */
+/*     padding-right:30px; */
     display: flex;
     justify-content: space-between;
     /* padding:500px; */
@@ -461,7 +232,7 @@ transform: scale(1.1);
     display: flex;
     flex-direction: column;
     padding-bottom:20px;
-	 border: 1px solid rgba(0, 0, 0, 0.1);
+/* 	 border: 1px solid rgba(0, 0, 0, 0.1); */
 }
 .hi5{
 /*      background-color: blue;  */
@@ -477,13 +248,13 @@ transform: scale(1.1);
   width: 100%;
 }
 
-.hi6{
-    /* background-color: forestgreen; */
-    flex:1;
-    /* padding:20px; */
-    padding-top: 20px;
-    padding-left: 20px;
-}
+/* .hi6{ */
+/*     background-color: forestgreen; */
+/*     flex:1; */
+/*     padding:20px; */
+/*     padding-top: 20px; */
+/*     padding-left: 20px; */
+/* } */
 .hi7{
     /* background-color: red; */
     flex:3;
@@ -508,7 +279,10 @@ transform: scale(1.1);
 }
 .img-resize {
   width: 70px; 
+  height:100px;
+  margin-top:2%;
   font-size: 10px;
+  cursor: pointer;
   /* background-color: gold; */
 }
 .img-resize2{
@@ -518,7 +292,6 @@ transform: scale(1.1);
     display: flex;
     justify-content: flex-end;
 }
-
 /*  */
 
 .general-number{
@@ -529,18 +302,18 @@ transform: scale(1.1);
 
 }
 
-table {
-            width: 100%;
-            /* border-collapse: collapse; */
-        }
-        th, td {
-            /* border: 1px solid black; */
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
+/* table { */
+/*             width: 100%; */
+/*             border-collapse: collapse; */
+/*         } */
+/*         th, td { */
+/*             border: 1px solid black; */
+/*             padding: 8px; */
+/*             text-align: left; */
+/*         } */
+/*         th { */
+/*             background-color: #f2f2f2; */
+/*         } */
 
 .mytext{
     text-align: center;
@@ -556,17 +329,253 @@ table {
 	align-items:top;
 
 }
-
-
-
-
-/* -------------------------------------------*/
-.contentBody-main {
-	width:100%;
-	height:1300px;
-    border: 2px solid rgb(216, 216, 216);
-    text-align: center;
+/* 게시글 table */
+#tblBoard, #tblBoard2, #tblBoard3 {
+	width: 100%;
+/* 	border-collapse: collapse; */
 }
+#tblBoard th, #tblBoard2 th, #tblBoard3 th {
+/* 	border: 1px solid black; */
+	padding: 8px;
+	text-align: left;
+	background-color: #f2f2f2;
+}
+#tblBoard td, #tblBoard2 td, #tblBoard3 td {
+/* 	border: 1px solid black; */
+	padding: 8px;
+	text-align: left;
+}
+/* 나의 정보 변경 */
+.tblmodify {
+	width:50%;
+	margin: 0 auto;
+	border-collapse: collapse;
+}
+.tblmodify tr {
+	border-top: 0.5px solid lightgray;
+}
+.tblmodify th {
+	width:25%;
+	padding: 8px;
+	text-align: left;
+	background-color: #f2f2f2;
+}
+.tblmodify td {
+	width:75%;
+	padding: 8px;
+	text-align: left;
+}
+.divbutton {
+	text-align: center;
+}
+#btnupdate {
+	margin-right: 5%;
+	margin-left:4%;
+	width:150px;
+	border-radius:15px;
+	cursor: pointer;
+	border: 1px solid lightgray;
+	height: 35px;
+	transition: all 0.3s;
+}
+#btnupdate:hover {
+	background-color:#BDBDBD;
+}
+#btncancel {
+	width:150px;
+	height: 35px;
+	border-radius:15px;
+	cursor: pointer;
+	border: 1px solid lightgray;
+	transition: all 0.3s;
+}
+#btncancel:hover {
+	background-color:#BDBDBD;
+}
+#j_name, #j_id {
+	border:none;
+	outline: none;
+}
+#j_pwd, #j_pwdcf {
+	height: 25px;
+	width:62.5%;
+	font-size: 15px;
+	position: relative;
+}
+/* 비밀번호 보기 표시 */
+#showPwd {
+    position: absolute;
+	border: none;
+	background-color: white;
+	width: 23px;
+	margin-left: 0.5%;
+	margin-top: 0.3%;
+}
+#showPwd2 {
+    position: absolute;
+	border: none;
+	background-color: white;
+	width: 23px;
+	margin-left: 0.5%;
+	margin-top: 0.3%;
+}
+	
+.divpw {
+	margin-top: 1%;
+}
+#zip_code {
+	width:35%;
+	height: 25px;
+}
+#zip_btn {
+	width:33.5%;
+	height: 30px;
+	margin-top: 1%;
+	cursor: pointer;
+}
+#j_address1, #j_address2 {
+	width:70%;
+	margin-top: 1%;
+	height: 25px;
+}
+#j_fisrtphone, #j_midphone, #j_lastphone {
+	width: 20%;
+	height: 25px;
+}
+#j_email {
+	width: 70%;
+	height: 25px;
+}
+#j_year, #j_month, #j_day {
+	width:21.3%;
+	height: 25px;
+}
+.name2, .name3 {
+	height: 50px;
+}
+
+/* 나의 게시글 */
+.table-hover {
+	border-collapse: collapse;
+}
+#tblBoard tr:hover, #tblBoard2 tr:hover {
+	background-color:#F2F2F2;
+}
+#tblBoard th, #tblBoard2 th {
+	background-color:#E6E6E6;
+	height: 30px;
+}
+#tblBoard td:hover, #tblBoard2 td:hover {
+	cursor: pointer;
+}
+.thnum {
+	width: 15%;
+}
+.thtitle {
+	width: 30%;
+}
+.thwrite {
+	width: 20%;
+}
+#tblBoard3 th {
+	background-color:#E6E6E6;
+	height: 30px;
+}
+#tblBoard td, #tblBoard2 td, #tblBoard3 td {
+	border-bottom: 0.5px solid lightgray;
+}
+/* 비밀번호 재확인 */
+.divpwdcheck {
+	margin-top: 1%;
+}
+.divall {
+	margin:0 auto;
+	text-align: center;
+	border: 1px solid lightgray;
+	width: 90%;
+}
+.divcheck {
+	margin:0 auto;
+	text-align: center;
+	margin-top: 3%;
+}
+.pwdcheckimg {
+	width: 80px;
+	margin-top: 1%;
+}
+#pwdcheck2 {
+	height: 25px;
+	width:17%;
+	font-size: 15px;
+}
+input[name="pwdcheck2"]:focus {
+	border:2px solid #97d4f7;
+/*    border-color:; */
+   	outline: none; /* 원하는 색상으로 변경하세요 */
+}
+#btncheck2 {
+	width:5%;
+	height:30px;
+	border:none;
+	background-color:#97d4f7;
+	color:white;
+	border-radius: 5px;
+	margin-left: 0.5%;
+	cursor: pointer;
+	transition: all 0.3s;
+}
+#btncheck2:hover {
+	background-color:#2E9AFE;
+}
+/* 버튼 배송조회, 장바구니 담기, 리뷰 css */
+.btn-outline-primary {
+	width: 60%;
+	height: 30px;
+	margin-top:7%;
+	border:none;
+	border-radius: 7px;
+	background-color: #2E9AFE;
+	font-size: 15px;
+	color:#FFF;
+	font-weight: bold;
+	transition: all 0.3s;
+}
+.btn-outline-primary:hover {
+	background-color:#81DAF5;
+	color:#FFF;
+	cursor: pointer;
+}
+.btn-outline-secondary {
+	width: 80%;
+	height: 40px;
+	border: 1px solid gray;
+	border-radius: 7px;
+	background-color: white;
+	font-size: 15px;
+	color:gray;
+	font-weight: bold;
+	transition: all 0.3s;
+/* 	display: flex; */
+ }
+ .btn-outline-secondary1 {
+	width: 80%;
+	height: 40px;
+	margin-top:2%;
+	border: 1px solid gray;
+	border-radius: 7px;
+	background-color: white;
+	font-size: 15px;
+	color:gray;
+	font-weight: bold;
+	transition: all 0.3s;
+/* 	display: flex; */
+ }
+ .btn-outline-secondary:hover, .btn-outline-secondary1:hover {
+	background-color: #A4A4A4 ;
+	color:white;
+	cursor: pointer;
+}
+/* -------------------------------------------*/
 /* dialog 만들기 */
 .dialog-main {
 	width: 100%;
@@ -579,7 +588,7 @@ table {
 }
 .dialog-review {
 	width: 100%;
-	height: 520px;
+	height: 530px;
 	border-top:2px solid black;
 /* 	border:1px solid blue; */
 }
@@ -620,8 +629,9 @@ input:focus {outline: none;} /* outline 테두리 없애기 */
 }
 .dialog-table th {
 	width: 35%;
-	height:60px;
+	height:50px;
 	font-size: 15px;
+	text-align: center;
 }
 .dialog-table td {
 	width: 65%;
@@ -648,8 +658,8 @@ input:focus {outline: none;} /* outline 테두리 없애기 */
 	width: 80%;
 	height: 25px;
 	font-size: 15px;
-	border: none;
-	outline: none;
+	border: 1px solid lightgray;
+/* 	outline: none; */
 	padding-left: 10px;
 /* 	background-color: #F2F2F2; */
 }
@@ -660,6 +670,7 @@ input:focus {outline: none;} /* outline 테두리 없애기 */
 	border: none;
 	outline: none;
 	padding-left: 10px;
+	margin-bottom: 1%;
 }
 .summernote .summernote1 {
 	height: 200px;               
@@ -679,6 +690,7 @@ input:focus {outline: none;} /* outline 테두리 없애기 */
 	width: 10%;
 	height: 35px;
 	margin-bottom: 1%;
+	cursor: pointer;
 }
 
 /* ----------------------------------------- */
@@ -710,3 +722,116 @@ a {
  	 text-align: center;
   	 color: inherit; /* 링크의 색상 제거 */
 	}
+/* ----------------------------*/
+/* 주문목록 table */
+.tblOrder {
+	width: 100%;
+	border-top: 2px solid black;
+	border-collapse: collapse;
+	text-align: center;
+}
+.tblOrder tr {
+	border-bottom: 0.5px solid #F2F2F2;
+}
+.tblOrder th {
+	height:50px;
+	border-bottom: 1px solid black;
+}
+.tblNum {
+	width: 10%;
+}
+.tblProduct {
+	width:33%;
+}
+.tblDate {
+	width: 17%;
+}
+.tblQty {
+	width: 10%;
+}
+.tblStatus {
+	width: 30%;
+}
+.pName {
+	font-weight: bold;
+	font-size: 15px;
+/* 	margin-left:1%; */
+	white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+ 	overflow: hidden; /* 텍스트 오버플로우 숨김 처리 */
+  	text-overflow: ellipsis; /* 말줄임표 표시 */
+  	max-width: 280px; /* 요소의 최대 너비 지정 */
+}
+.pWriter {
+	font-size: 12px;
+	margin-top: 0.5%;
+}
+.tdStatus {
+	width: 13%;
+}
+.ptotal {
+	font-weight: bold;
+	font-size: 15px;
+}
+.pay_way {
+	font-size: 12px;
+/* 	background-color: #CEE3F6; */
+	color: #2E9AFE;
+/* 	width: 75%; */
+/* 	margin-left:13%; */
+}
+.tblMoney {
+	text-align: center;
+	height: 130px;
+	line-height:30px;
+	
+}
+.tblName {
+	text-align: center;
+	line-height:40px;
+}
+
+/* 페이지네이션 */
+.off-screen {
+	display: none;
+}
+#nav1 {
+	width: 100%;
+/* 	padding-right: 160px; */
+	padding-top: 15px;
+}
+#nav1 a {
+	display: inline-block;
+	padding: 3px 5px;
+	margin-right: 10px;
+	margin-left: 1px;
+	margin-right: 5px;
+	font-family: Tahoma;
+/* 	background: #ccc; */
+	color: #000;
+	text-decoration: none;
+}
+
+#nav1 a.active {
+	background: #97d4f7;
+	color: #fff;
+}
+
+.btnNew {
+	position: relative;
+	left: 45%; 
+	top: 2px;
+	background-color: #7ca8c2;
+	padding: 7px 11px;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+}
+.btnNew:hover {
+	background-color: #0056b3;
+}
+.delivery-container {
+	text-align: center;
+}
+
+/* ----------- */

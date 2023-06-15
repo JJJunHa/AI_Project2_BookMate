@@ -14,13 +14,13 @@
 <input value="<%=session.getAttribute("id")%>" hidden>
 
 <div class="logo">
-    	<a href="/main"><img src="/img/logo.png" class="logoImg"></a>
+    	<a href="/main"><img src="/img/logo2.png" class="logoImg"></a>
     </div>
     
 <% if(session.getAttribute("id")!=null){ %>
     
     <div class="menu">
-        <a href="/logout">로그아웃</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+        <%=session.getAttribute("id")%> 님, <a href="/logout">로그아웃</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
     </div>
    
 	<% } else {%>
@@ -218,6 +218,7 @@ $(document)
 	IntegerBookVal = parseInt($('#dona_book').val());
 	if(IntegerBookVal < 5 || IntegerBookVal >20) {
 		 alert('1회 기부앤테이크 도서수량은 기본 5권 이상 20권 이하입니다.');
+		 $('#dona_book').val('');
 		    return false;
 	}
 	

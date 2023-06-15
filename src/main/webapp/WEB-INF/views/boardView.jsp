@@ -487,42 +487,87 @@ a {
 
 				<div class="content2">
 					<table class="table-striped">
-
+				
+				<!-- 0610 민석 코드 바꾼거 시작 -->
 						<tr>
 							<td>제목</td>
+							<c:choose>
+								<c:when test="${bView.ID != null}">
 							<td colspan="2"><input type="text" class="form-control"
 								name="subject" value="${bView.b_TITLE}" readonly></td>
 							<td><input type="hidden" id="board_num" value="${bView.board_num}"></td>
+								</c:when>
+								<c:when test="${id != null}">
+							<td colspan="2"><input type="text" class="form-control"
+								name="subject" value="${b_title}" readonly></td>
+							<td><input type="hidden" id="board_num" value="${board_num}"></td>
+								</c:when>
+							</c:choose>
 						</tr>
 
 						<tr>
 							<td>작성자</td>
-							<td colspan="3"><input type="text" readonly
-								class="form-control" name="subject" id=id value="${bView.ID}"></td>
+<!-- 							<td colspan="3"><input type="text" readonly -->
+<%-- 								class="form-control" name="subject" id=id value="${bView.ID}${id}"></td> --%>
+								
+							<c:choose>
+							    <c:when test="${bView.ID != null}">
+							        <td colspan="3"><input type="text" readonly class="form-control" name="subject" value="${bView.ID}"></td>
+							    </c:when>
+							    <c:when test="${id != null}">
+							        <td colspan="3"><input type="text" readonly class="form-control" name="subject" value="${id}"></td>
+							    </c:when>
+							</c:choose>
+							
 						</tr>
 
 						<tr>
 							<td>등록일</td>
+							<c:choose>
+								<c:when test="${bView.ID != null}">
 							<td><input type="text" readonly class="form-control"
 								name="subject" value="${bView.b_CREATE_DATE}"></td>
+								</c:when>
+								<c:when test="${id != null}">
+								<td><input type="text" readonly class="form-control"
+								name="subject" value="${b_create_date}"></td>
+								</c:when>
+							</c:choose>
+							
 							<td>수정일</td>
+							<c:choose>
+								<c:when test="${bView.ID != null}">
 							<td><input type="text" readonly class="form-control"
 								name="subject" value="${bView.b_UPDATE_DATE}"></td>
+								</c:when>
+								<c:when test="${id != null}">
+								<td><input type="text" readonly class="form-control"
+								name="subject" value="${b_update_date}"></td>
+								</c:when>
+							</c:choose>
 						</tr>
 
 					
 						<tr class="note"> 
-                    
-                        <td colspan="4"><textarea id="summernote" name="summernote">${bView.b_CONTENT}</textarea></td>
+                    	<c:choose>
+								<c:when test="${bView.ID != null}">
+									<td colspan="4"><textarea id="summernote" name="summernote">${bView.b_CONTENT}</textarea></td>
+								</c:when>
+								<c:when test="${id != null}">
+									 <td colspan="4"><textarea id="summernote" name="summernote">${b_content}</textarea></td>
+								</c:when>
+							</c:choose>
                     	</tr>
-                    		
-						<tr>	<td colspan="4" class="button">
-						<c:if test="${id == bView.ID || sessionScope.id == 'bookmate'}">
-						
-							<input type="submit" value="수정" id="btnModify"> 
-							<input type="button" value="삭제" id="btnDelete">	
-						</c:if>
-							<input type="button" value="목록보기" id="btnList"> </td>
+                    <!-- 0610 민석 코드 바꾼거 끝 -->
+                    
+						<tr>
+							<td colspan="4" class="button">
+							<c:if test="${id == bView.ID || sessionScope.id == 'bookmate'}">
+								<input type="submit" value="수정" id="btnModify"> 
+								<input type="button" value="삭제" id="btnDelete">	
+							</c:if>
+								<input type="button" value="목록보기" id="btnList">
+							</td>
 						</tr>
 
 					</table>
@@ -616,7 +661,7 @@ $('#summernote').summernote('disable')  //써머노트 readonly
 })
 //댓글작성
 .on('click','#BC_btnInsert',function(){
-
+	
 	$.ajax({url:'/bcInsert',type:'post',
 		data:{BC_content:$('#BC_content').val(), board_num:$('#board_num').val()},
 		dataType:'text',

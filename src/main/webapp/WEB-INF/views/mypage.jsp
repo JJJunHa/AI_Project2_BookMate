@@ -9,24 +9,25 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <link rel="stylesheet" href="css/mypage.css">
     <link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" 
+<!--     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"  -->
 
- integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous"> 
+<!--  integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">  -->
  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <title>북메이트 | 마이페이지</title>
+    <title>마이페이지 | 북메이트 </title>
 </head>
 <body>
+
 
 <input value="<%=session.getAttribute("id")%>" hidden>
 
 <!-- 	<div class="container"> -->
 <div class="main">
 		<div class="logo">
-			<a href="/main"><img src="/img/logo.png" class="logoImg"></a>
+			<a href="/main"><img src="/img/logo2.png" class="logoImg"></a>
 		</div>
 
 		<div class="menu">
-			<a href="/logout">로그아웃</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a
+			<%=session.getAttribute("id")%> 님, <a href="/logout">로그아웃</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a
 				href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
 		</div>
 
@@ -72,50 +73,28 @@
 
 				<div id="delivery" class="content-container active">
 					<div class="delivery-container">
-						<h2 class="mytext fst-italic">주문 내역</h2>
-
-						<c:forEach var="mydelis" items="${mydeli}">
-						<div class="hi">
+						<h2 class='mytext fst-italic'>주문 내역 조회</h2>
+						<table class=tblOrder id=tblOrder>
+							<thead>
+								<tr>
+								<th class=tblNum>주문번호</th>
+								<th colspan = 2 class=tblProduct>상품정보</th>
+								<th class=tblDate>주문일자</th>
+								<th class=tblQty>주문금액(수량)</th>
+								<th colspan=2 class=tblStatus>주문 상태</th>
+								</tr>
+							</thead>
+						<caption>
+							<form action="" id="setRows">
+								<p><input type="hidden" name="rowPerPage" value="5"></p>
+							</form>
+						</caption>
+						</table>
+						<div class="bSearch">
 						
-							<input type=hidden value="${mydelis.order_num}" id="order_num"> 
-							
-                            <div class="hi2">
-                                <span><h4> ${mydelis.order_date} 주문</h4> </span> <!--  order_date  -->
-<!--                                  <span>주문/상세보기</span> -->
-                                
-                            </div>
-                            
-                            <div class="hi3">
-                            
-                                <div class="hi4">
-                                 
-                                    <div class="hi6"> <h4 class="shipcomplete"></h4> <span style="color:green"></span></div>
-                                    
-                                    <div class="hi7">
-                                        <div class="hi8"> <img src="${mydelis.book_cover}" class=img-resize alt="" picname="${mydelis.book_num}"></div>
-                                        <div class="hi9">
-                                        	<div id="del_pname">&nbsp;&nbsp;${mydelis.book_name}</div>
-                                         	<div class="hi10">&nbsp;&nbsp;${mydelis.BPR}원</div>
-                                          	<div id="qty1">&nbsp;&nbsp;${mydelis.o_qty}권</div>
-                                         	<span class="bag"></span>
-                                        </div>                                       
-                                    </div>
-                                    
-                               </div>
-                               
-                                <div class="hi5">
-                                    <div><button class="btn btn-outline-primary" onclick="window.open('https://www.cjlogistics.com/ko/tool/parcel/tracking', '_blank')">배송조회</button></div>
-									<div class="bag">
-                       				<button id="btncartIn" class="btn btn-outline-secondary" name="${mydelis.book_num},${mydelis.o_qty}">장바구니 담기</button>
-                    				</div>
-                                    <div><button type="button" class="btn btn-outline-secondary" id="openRev_btn" name="${mydelis.book_num}"></button></div>
-                                </div>
-                                
-                            </div>                   
-                        </div>                        	
-						</c:forEach>
-					</div>
-				</div>
+               			</div>    
+                	</div>
+				</div>	
 
 
 
@@ -123,14 +102,14 @@
 					<div class="posts-container">
 						<h2 class="mytext fst-italic">게시글</h2>
 						<table class="table table-hover" id="tblBoard">
-						
+							
 							<thead>
 								<tr>
-									<th>POST ID</th>
-									<th>제목</th>
-									<th>작성자</th>
-									<th>작성일</th>
-									<th>조회수</th>
+									<th class=thnum>POST ID</th>
+									<th class=thtitle>제목</th>
+									<th class=thwrite>작성자</th>
+									<th class=thdate>작성일</th>
+									<th class=thcount>조회수</th>
 								</tr>
 							</thead>
 
@@ -147,10 +126,10 @@
 						
 							<thead>
 								<tr>
-									<th>POST ID</th>
-									<th>댓글내용</th>
-									<th>작성자</th>
-									<th>작성일</th>
+									<th class=thnum>POST ID</th>
+									<th class=thtitle>댓글내용</th>
+									<th class=thwrite>작성자</th>
+									<th class=thdate>작성일</th>
 								</tr>
 							</thead>
 							
@@ -167,7 +146,7 @@
 							
 							<thead>
 								<tr>
-									<th>DONATION ID</th>
+									<th class=thnum>DONATION ID</th>
 									<th>기부자</th>
 									<th>기부 권 수</th>
 									<th>기부 방법</th>
@@ -179,159 +158,127 @@
 					</div>	
 				</div>
 
-
-
-				<div id="membership" class="content-container">
+				
+				
+				
+				<div id="membership" class="content-container">						
 					<div class="membership-container">
-						<h2 class="mytext fst-italic">정보 변경</h2>
-						<div class="text">
-
-
-							<div class="text2">
-
-								<div class="name1">아이디</div>
-
-								<div class="name2">비밀번호</div>
-
-								<div class="name3">비밀번호 확인</div>
-
-								<div class="name4">이름</div>
-
-								<div class="name5">주소</div>
-
-								<div class="name6">휴대전화</div>
-
-								<div class="name7">이메일</div>
-
-								<div class="name8">생년월일</div>
-
-
-
-
+						
+						<div class=divpwdcheck>
+							<div class=divall>
+								<div class=divpwdimg>
+									<img src="/img/password_check.png"  class=pwdcheckimg id="pwdcheckimg">
+								</div>
+								<div class=divpwdinfo>
+									<h3>비밀번호 재확인</h3>
+									<p>회원 정보를 안전하게 보호하기 위해 회원 비밀번호를 다시 확인합니다.</p>
+								</div>
 							</div>
-
+							<div class=divcheck>
+								<span style="font-size:15px; font-weight: bold;">회원 비밀번호&nbsp;&nbsp;</span>
+								<input type=password name=pwdcheck2 id=pwdcheck2 placeholder='  비밀번호'>
+								<button id=btncheck2>확인</button>
+							</div>
+						</div>		
+						
+						
+						<div class="divtext"  style="display:none;">
+						<h2 class="mytext fst-italic">정보 변경</h2>
+							<table class=tblmodify>
 							<c:forEach var="my" items="${selectMy}">
-								<div class="text3">
-
-									<div class="information">
-
-										<input type="text" readonly id="j_id" name="j_id"
-											value="${my.id}" style="width: 200px;">
-										<div style="font-size: 12px;">(영문소문자/숫자,4~16자)</div>
-
-										<label id=idGuide style="font-size: 10px"></label>
-
-									</div>
-
-									<div class="information2">
-
-										<input type=password id=j_pwd name=j_pwd value="${my.pwd}"><img src="/img/free-icon-eye-show.jpg" id="showPwd">
-										<div style="font-size: 3px;">(영문대소문자/숫자/특수문자,10~16자)</div>
-
-										<label id=psGuide style="font-size: 10px"></label>
-
-									</div>
-
-									<div class="information3">
-
-										<input type=password id=j_pwdcf name=j_pwdcf><img src="/img/free-icon-eye-show.jpg" id="showPwd2"><br>
-										<br> <label id=psGuide2 style="font-size: 10px"></label>
-
-									</div>
-
-									<div class="information4">
-
-										<input type=name id=j_name name=j_name value="${my.name}"
-											required>
-
-									</div>
-
-									<div class="information5">
-
-										<input type="address" class="address-input" id=zip_code
-											name=zip_code placeholder="우편번호" value="${my.zip_code}"
-											readonly><input type="button"
-											class="btn btn-secondary"
-											onclick="sample6_execDaumPostcode()" value="우편번호 찾기"
-											style="width: 130px; height: 30px; margin-left: 10px;"><br>
-
-										<br> <input type="address" id=j_address1 name=j_address1
+							<tr>
+								<th class=tblname4>이름</th>
+								<td>
+									<input type=text id=j_name name=j_name value="${my.name}" readonly>
+								</td>
+							</tr>
+							<tr>
+								<th class=name1>아이디</th>
+								<td>
+									<input type="text" readonly id="j_id" name="j_id" value="${my.id}">
+								</td>
+							</tr>
+							<tr>
+								<th class=name2>비밀번호</th>
+								<td>
+									<input type=password id=j_pwd name=j_pwd value="${my.pwd}"><img src="/img/free-icon-eye-show.jpg" id="showPwd">
+									<div class=divpw style="font-size: 3px;">(영문대소문자/숫자/특수문자,10~16자)</div>
+									<label id=psGuide style="font-size: 10px"></label>
+									<input type=hidden id=originalpwd value="${my.pwd}">
+								</td>
+							</tr>
+							<tr>
+								<th class=name3>비밀번호 확인</th>
+								<td>
+									<input type=password id=j_pwdcf name=j_pwdcf><img src="/img/free-icon-eye-show.jpg" id="showPwd2"><br>
+									<label id=psGuide2 style="font-size: 10px"></label>
+								</td>
+							</tr>
+							
+							<tr>
+								<th class=name5>주소</th>
+								<td>
+									<input type="address" class="address-input" id=zip_code
+											name=zip_code placeholder="우편번호" value="${my.zip_code}" readonly>
+									<input type=hidden id=originalcode value="${my.zip_code}">
+									<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"
+											id=zip_btn>
+									<input type="address" id=j_address1 name=j_address1
 											readonly class="address2-input" placeholder="기본주소"
-											value="${showAdr.address1}" required> <br> <br>
-										<input type="address" id=j_address2 name=j_address2
+											value="${showAdr.address1}" required><br>
+									<input type="address" id=j_address2 name=j_address2
 											class="address2-input" placeholder="상세주소"
 											value="${showAdr.address2}" required>
-
-									</div>
-
-									<div class="information6">
-
-										<input type="tel" id=j_fisrtphone name=j_firstphone
-											style="width: 80px;" value="${showMob.mobile1}"> </select> - <input
-											type="tel" id=j_midphone name=j_midphone
+								</td>
+							</tr>
+							<tr>
+								<th class=name6>휴대전화</th>
+								<td>
+									<input type="tel" id=j_fisrtphone name=j_firstphone value="${showMob.mobile1}"> - 
+									<input type="tel" id=j_midphone name=j_midphone
 											class="general-number" value="${showMob.mobile2}" required>
 										- <input type="tel" id=j_lastphone name=j_lastphone
 											class="general-number" value="${showMob.mobile3}" required>
-
-									</div>
-
-									<div class="information7">
-
-										<input type="email" id=j_email name=j_email
+								</td>
+							</tr>
+							<tr>
+								<th class=name7>이메일</th>
+								<td>
+									<input type="email" id=j_email name=j_email
 											value="${my.email}" required>
-
-									</div>
-									<br>
-
-									<div class="information8" style="display: flex; gap: 10px;">
-
-										<label for="year"></label> <input type="text" id="j_year"
-											name="j_year" style="width: 100px;" value="${showBir.birth1}">
-
+									<input type=hidden id=originalEmail value="${my.email}">
+								</td>
+							</tr>
+							<tr>
+								<th class=name8>생년월일</th>
+								<td>
+									<input type="text" id="j_year" name="j_year"  value="${showBir.birth1}">
 										<!-- 연도 -->
-
-
-
-
-										<label for="month"></label> <input type="text" id="j_month"
-											name="j_month" style="width: 80px;" value="${showBir.birth2}">
-
+									<input type="text" id="j_month" name="j_month" value="${showBir.birth2}">
 										<!-- 월 -->
-
-
-
-
-										<label for="day"></label> <input type="text" id="j_day"
-											name="j_day" style="width: 80px;" value="${showBir.birth3}">
-
-										<!-- 일 -->
-
-									</div>
-
-								</div>
-
+									<input type="text" id="j_day" name="j_day" value="${showBir.birth3}">
+								</td>
+							</tr>
 							</c:forEach>
-						</div>
-						<br>
-						<div class="button">
-
-							<input type="button" id="btnupdate" style="border-radius: 20px;"
-								value="회원정보 수정"> <input type="button" id="btncancel"
-								style="border-radius: 20px;" padding:50px; value="취소">
-
+							</table>
+							
+							<br>
+							<div class="divbutton">
+	
+								<input type="button" id="btnupdate" value="회원정보 수정">
+								<input type="button" id="btncancel" value="취소">
+	
+							</div>
 						</div>
 
 					</div>
 				</div>
-
-			</div>
-
 		</div>
 		
 		<!-- 리뷰 작성 dialog part -->
 		<div class="dialog-write" id=dialog-write style="display:none;">
         		<div class=dialog-main>
-        			<p style="font-size:15px; text-align:center;"> <b>상품 후기 작성하기</b></p>
+        			<p style="font-size:18px; text-align:center;"> <b>상품 후기 작성하기</b></p>
         			<div class=dialog-book>
         				<div class=book-img id=book-img>
 
@@ -373,15 +320,16 @@
         		</div>
         	</div>
         	
-        	<!--------------------------- 리뷰 작성 dialog part ------------------------------------->
+        	<!--------------------------- 리뷰 보기 dialog part ------------------------------------->
         	<!-- dialog -->
 		<div class="dialog-view" id=dialog-view style="display: none;">
 			<div class=dialog-main>
-				<p style="font-size: 15px; text-align: center;">
+				<p style="font-size: 18px; text-align: center;">
 					<b>상품 후기 작성하기</b>
 				</p>
 				<div class=dialog-book>
-					<div class=view-img id=view-img></div>
+					<div class=view-img id=view-img>
+					</div>
 					<div class=view-info>
 						<p class=view-name id=view-name></p>
 						<p class=view-qty id=view-qty></p>
@@ -392,26 +340,32 @@
 					<table class=dialog-table>
 						<tr>
 							<th>아이디</th>
-							<td><input type="text" class=dialog-id1 id=dialog-id1 readonly></td>
+							<td><input type="text" class=dialog-id1 id=dialog-id1 readonly><input type="hidden" id=dialog-review_num></td>
 						</tr>
 						<tr>
 							<th>제목</th>
-							<td><input type="text" class=dialog-text1 id=dialog-text1
-								readonly></td>
+							<td><input type="text" class=dialog-text1 id=dialog-text1>&nbsp;&nbsp;&nbsp;<font id="check_text1" size=2></font></td>
 						</tr>
 						<tr>
-							<th>평점</th>
-							<td><input type="text" class=dialog-rating1 id=dialog-rating1
-								readonly></td>
+							<th style="height:80px;">평점</th>
+							<td><input type="text" class=dialog-rating1 id=dialog-rating1><br>
+								<input type="radio" name=rating value=1 id=one>★
+								<input type="radio" name=rating value=2 id=two>★★
+								<input type="radio" name=rating value=3 id=three>★★★
+								<input type="radio" name=rating value=4 id=four>★★★★
+								<input type="radio" name=rating value=5 id=five>★★★★★</td>
 						</tr>
 						<tr>
 							<th style="height: 300px;">내용</th>
 							<td><textarea id="summernote1" name="summernote1"
-									class=summernote1 readonly></textarea></td>
+									class=summernote1></textarea></td>
 						</tr>
 					</table>
+					&nbsp;<font id="check_content1" size=2></font>
 				</div>
 				<div class=dialog-btn>
+					<button type="button" class="btn-rev1" id=modify-rev1>수정</button>
+					<button type="button" class="btn-rev1" id=delete-rev1>삭제</button>
 					<button type="button" class="btn-rev1" id=cancel-rev1>닫기</button>
 				</div>
 
@@ -428,43 +382,11 @@
 <script src="/summernote/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="summernote/summernote-lite.css">
 <script>
-
 let rev_rating = ''; // 평점 전역변수
-// let order_num1 = $('#dia_order_num').val();
-
-$(document)
-
-let slideIndex = 0;
-
-const slides = $(".slide");
-
-slides.hide();
-
-function showSlides() {
-
-slides.hide();
-
-slideIndex++;
-
-if (slideIndex > slides.length) {slideIndex = 1}
-
-slides.eq(slideIndex - 1).fadeIn(1000);
-
-setTimeout(showSlides, 3000); // Change image every 3 seconds
-
-}
-
-showSlides();
-
-const yearSelect = document.getElementById("j_year");
-
-const monthSelect = document.getElementById("j_month");
-
-const daySelect = document.getElementById("j_day");
+let book_num_review = ''; // 리뷰의 책 제목 전역변수
 
 // ---- 비밀번호 표시 코드 part ---- //
 $(document)
-
 document.getElementById("showPwd").addEventListener("click", function() {
 		var passwordInput = document.getElementById("j_pwd");
 		var eyeIcon = document.getElementById("showPwd");
@@ -493,11 +415,10 @@ document.getElementById("showPwd").addEventListener("click", function() {
 
 
 $(document)
-
 // by ChatGPT
-
-.ready(function() {
-	find_review();
+.ready(function() {	
+	// 주문 목록 불러오기 
+	loadOrder();
 	
 // ---- 평점 관련 dialog part ---- //
 	// 별점 하나만 선택 함수
@@ -560,9 +481,23 @@ $(document)
            ],
            fontNames: 
               ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
-    })          
+              callbacks: {
+                  onKeyup: function(e) {
+                      // keyup 이벤트 발생 시 실행할 코드 작성
+                  	var contentData1 = $('#summernote1').val()
+                  	console.log(contentData1);
+                  	if(contentData1 !=''){
+                  		$('#check_content1').html('');
+                  	} else if(contentData1 =='') {
+                  		$('#check_content1').html('내용을 입력하세요.');
+                  		$('#check_content1').attr('color', 'red');
+                  	}
+                        
+                  }
+             }
+      })       
     
-$('#summernote1').summernote('disable')  //써머노트 readonly
+// $('#summernote1').summernote('disable')  //써머노트 readonly
 	
     
 // ID 정규 표현식
@@ -615,16 +550,131 @@ pwField.val('');
 
 })
 
-
-
 // ---- 리뷰 관련 dialog part ---- // 
+// 수정 화면에서 라디오버튼 클릭 시
+$(document)
+.on('change', 'input[name=rating]', function() {
+  let ratingValue = $(this).val();
+  if(ratingValue == 1) {
+	  ratingValue = "★";
+  } else if(ratingValue == 2) {
+	  ratingValue = "★★";
+  } else if(ratingValue == 3) {
+	  ratingValue = "★★★";
+  } else if(ratingValue == 4) {
+	  ratingValue = "★★★★";
+  } else if(ratingValue == 5) {
+	  ratingValue = "★★★★★";
+  }
+  $('#dialog-rating1').val(ratingValue);
+})
 
- // 리뷰 작성 클릭 시 dialog 열기
+
+// 수정 버튼 클릭 시
+.on('click','#modify-rev1', function(){
+	let id = '<%=session.getAttribute("id")%>';
+	let review_num = $('#dialog-review_num').val();
+	
+	let rev_title1 = $('#dialog-text1').val();
+	if(rev_title1 == '' || rev_title1 == null) {
+		$('#check_text1').html('제목을 입력하세요.');
+		$('#check_text1').attr('color', 'red');
+	}
+	
+	let rev_content1 = $('#summernote1').val();
+	if(rev_content1 == '' || rev_content1 == null || rev_content1 == '<p><br></p>') {
+		$('#check_content1').html('내용을 입력하세요.');
+		$('#check_content1').attr('color', 'red');
+	}
+	
+	let rev_rating1 = $('#dialog-rating1').val();
+	if(rev_rating1 == "★") {
+		rev_rating1 = 1;
+	} else if(rev_rating1 == "★★") {
+		rev_rating1 = 2;
+	} else if(rev_rating1 == "★★★") {
+		rev_rating1 = 3;
+	} else if(rev_rating1 == "★★★★") {
+		rev_rating1 = 4;
+	} else if(rev_rating1 == "★★★★★") {
+		rev_rating1 = 5;
+	}
+
+	$.ajax({
+		url: '/update_review',
+		type: 'post',
+		data: { id:id, review_num:review_num, rev_title1:rev_title1, rev_content1:rev_content1, rev_rating1:rev_rating1},
+		dataType: 'text',
+		success: function(data) {
+			if(data=="ok") {
+				$.ajax({
+					url: '/book_rating1',
+					type: 'post',
+					data: {rev_rating:rev_rating1, book_num_review:book_num_review },
+					dataType: 'text',
+					success: function(data) {
+						if(data=="ok") {
+							alert("리뷰 수정이 완료되었습니다.");
+							document.location="/mypage";
+						} else {
+							
+						}
+					}
+				})
+				
+			} else {
+				alert("오류가 발생하였습니다. 잠시후에 다시 시도해주세요.");
+				return false;
+			}
+			
+		}
+	})
+	
+})
+// 주문취소, 배송조회 버튼 클릭 시
+.on('click','#order_status', function(){
+	let status = $(this).text();
+// 	console.log(status);
+	if(status === "배송조회") {
+		window.open("https://www.cjlogistics.com/ko/tool/parcel/tracking", "_blank");
+	} else if(status === "주문취소"){
+		let orderNum = $(this).attr('name');
+		let id = '<%=session.getAttribute("id")%>';
+		
+		let confirmval = confirm('주문을 취소하시겠습니까?');
+		if(confirmval) {
+			$.ajax({
+				url: '/order_delete',
+				type: 'post',
+				data: {orderNum:orderNum, id:id },
+				dataType: 'text',
+				success: function(data) {
+					if(data=="ok") {
+						alert("주문을 취소하였습니다.");
+						document.location = '/mypage';
+					} else {
+						alert("오류가 발생하였습니다. 잠시후에 다시 시도해주세요. code 1");
+						return false;
+					}
+				}
+			})	
+		} else {
+			console.log("오류3");
+			return false;
+		}	
+	} else {
+		alert("오류가 발생하였습니다. 잠시후에 다시 시도해주세요. code 2");
+		return false;
+	}
+})
+
+// 리뷰 작성 클릭 시 dialog 열기
 .on('click','#openRev_btn', function(){
 	// id, order_num 넣기
 	let c_id = '<%=session.getAttribute("id")%>';
-	let order_num = $(this).closest('.hi').find('#order_num').val();
+	let orderNum = $(this).attr('name');
 	
+// 	console.log(orderNum);
 	
 	// id가 없을 때 로그인 창으로 연결
 	if(c_id == '' || c_id == null || c_id == 'null') {
@@ -648,7 +698,7 @@ pwField.val('');
 			$.ajax({
 					url: '/review_book',
 					type: 'post',
-					data: { id:c_id, order_num:order_num},
+					data: { id:c_id, orderNum:orderNum},
 					dataType: 'JSON',
 					success: function(data) {
 						let book_name = data[0]['book_name'];
@@ -664,12 +714,14 @@ pwField.val('');
 						$('#book-img').empty().append(book_cover);
 						
 						let dia_order_num = data[0]['dia_order_num'];
-// 						console.log("값 넣기 :" + dia_order_num);
-						$('#dia_order_num').text(dia_order_num);
+						$('#dia_order_num').text(dia_order_num);	
+						
+						book_num_review = data[0]['book_num'];
+// 						console.log("얌 작성 : " + book_num_review);
 						
 					}
 				})
-		} else {
+		} else if(buttonval == '리뷰 보기'){
 			// 리뷰 보기일때
 			$('#dialog-view').dialog({
 				 title:'리뷰 상세보기',
@@ -684,7 +736,7 @@ pwField.val('');
 		$.ajax({
 			url: '/dialog_review1',
 			type: 'post',
-			data: { id:c_id, order_num:order_num },
+			data: { id:c_id, orderNum:orderNum },
 			dataType: 'JSON',
 			success: function(data) {
 				let dialog_id = data[0]['id'];
@@ -692,6 +744,10 @@ pwField.val('');
 				
 				let book_name = data[0]['book_name'];
 				$('#view-name').text(book_name);
+				
+				book_num_review = data[0]['book_num'];
+// 				console.log("얌 보기 : " + book_num_review);
+				
 				let o_qty = data[0]['o_qty'];
 				$('#view-qty').text(o_qty);
 				let book_price = data[0]['book_price'];
@@ -700,6 +756,9 @@ pwField.val('');
 				$('#view-img').empty().append(book_cover);
 				let rev_title = data[0]['rev_title'];
 				$('#dialog-text1').val(rev_title);
+				
+				let review_num = data[0]['review_num'];
+				$('#dialog-review_num').val(review_num);
 				
 				let rev_rating = data[0]['rev_rating'];
 				if(rev_rating == 1) {
@@ -721,6 +780,10 @@ pwField.val('');
 
 			}
 		});
+		} else if(buttonval == '문의하기') {
+			document.location = "/board";
+		} else {
+			alert("오류가 발생하였습니다. 잠시후에 다시 시도해주세요.")
 		}
 		
 	}
@@ -785,50 +848,93 @@ pwField.val('');
 // 		$('#summernote').focus();
 // 		return false;
 	}
-	
-// 	// 5. 파일 선택이 없을 시 none-img.png 로 변경
-// 	if(fileName == '' || fileName == null) {
-// 		fileName = '/img/none-img.png';
-// 	}
-// 	console.log(fileName);
 
-	// 6. $.ajax로 전송
+	// 5. $.ajax로 전송
 	// id, rev_title, rev_rating, rev_content, fileName 전송
 	if(id == '' || rev_title == '' || rev_rating == '' || rev_content == '' || id == null|| rev_title == null || rev_rating == null || rev_content == null) {
 		
 	} else {
 		let confirmval = confirm('입력 내용으로 리뷰를 작성합니다.');
 		if(confirmval) {
-			
-// 			console.log(dia_order_num);
-// 			console.log(id);
-// 			console.log(rev_title);
-// 			console.log(rev_rating);
-// 			console.log(rev_content);
-			
+			// 등록 버튼 클릭 시 book에 평점 넣기
+//	 		console.log("등록 : "+book_num_review);
 			$.ajax({
-				url: '/insert_review',
+				url: '/book_rating',
 				type: 'post',
-				data: { order_num:dia_order_num, id:id, rev_title:rev_title, rev_rating:rev_rating, rev_content:rev_content},
+				data: {rev_rating:rev_rating, book_num_review:book_num_review },
 				dataType: 'text',
 				success: function(data) {
 					if(data=="ok") {
-							alert("리뷰 작성이 완료되었습니다. \n자세한 내용은 [마이페이지] - [나의 리뷰] 를 확인해주세요.")
-							document.location="/mypage";
+						$.ajax({
+							url: '/insert_review',
+							type: 'post',
+							data: { order_num:dia_order_num, id:id, rev_title:rev_title, rev_rating:rev_rating, rev_content:rev_content},
+							dataType: 'text',
+							success: function(data) {
+								if(data=="ok") {
+									alert("리뷰 작성이 완료되었습니다. \n자세한 내용은 [마이페이지] - [나의 주문 내역] - [리뷰 보기] 를 확인해주세요.")
+									document.location="/mypage";							
+								} else {
+									console.log("오류2")
+									alert("오류로 인해 잠시후에 다시 시도해주세요.")
+									return false;
+								}
+							}
+						})	
 					} else {
-						console.log("오류2")
-						alert("오류로 인해 잠시후에 다시 시도해주세요.")
-						return false;
+						
 					}
 				}
-			})
+			})					
 		} else {
 			console.log("오류3");
 			return false;
 		}	
 	}
 })
+// 마이페이지에서 리뷰 삭제할 때
+.on('click','#delete-rev1',function(){
+	let review_num = $('#dialog-review_num').val();
+	let confirmval = confirm('리뷰를 삭제하시겠습니까?');
+	if(confirmval) {
+		$.ajax({
+			url: '/delete_review',
+			type: 'post',
+			data: {review_num :review_num},
+			dataType: 'text',
+			success: function(data) {
+				if(data=="ok") {
+					$.ajax({
+						url: '/book_rating2',
+						type: 'post',
+						data: {book_num_review:book_num_review },
+						dataType: 'text',
+						success: function(data) {
+							if(data=="ok") {
+								alert("리뷰가 삭제되었습니다.")
+								document.location="/mypage";
+							} else {
+								
+							}
+						}
+					})
+				} else {
+					console.log("오류2")
+					alert("오류로 인해 잠시후에 다시 시도해주세요.")
+					return false;
+				}
+			}
+		})
+	} else {
+		console.log("오류3");
+		return false;
+	}	
 	
+	
+})
+
+
+
 // 파일 선택 시 이벤트 핸들러
 $('#review_img').on('change', function() {
     fileName = $(this).prop('files')[0].name;
@@ -844,14 +950,14 @@ $('#dialog-text').on('keyup',function(){
 		$('#check_title').attr('color', 'red');
 	}
 })
-
-// 내용 입력 시 font 사라지게
-/* $('#summernote').on('keyup',function(){
-	var contentData = $('#summernote').val()
-	if(contentData!=''){
-		$('#check_content').html('');
+$('#dialog-text1').on('keyup',function(){
+	if($('#dialog-text1').val()!=''){
+		$('#check_text1').html('');
+	} else if ($('#dialog-text1').val()=='') {
+		$('#check_text1').html('제목을 입력하세요.');
+		$('#check_text1').attr('color', 'red');
 	}
-}) */
+})
 
 // 평점 선택시 font 사라지게
 $('input[name="rating"]').on('click', function() {
@@ -868,7 +974,8 @@ $('input[name="rating"]').on('click', function() {
 
 // ---- 나의 주문내역 ---- //
 // 이미지 클릭 시 detail로 연결
-$('.hi8').on('click', '.img-resize', function() {
+$(document)
+.on('click', '.img-resize', function() {
     let imgval = $(this).attr("picname");
 // 	console.log(imgval);
     if(imgval == '' || imgval == null){
@@ -882,132 +989,104 @@ $('.hi8').on('click', '.img-resize', function() {
 })
 
 // ---- 마이페이지 주문내역에서 ReCart in code ---- //
-	
-$('.hi').on('click','#btncartIn',function(){
+$(document)	
+.on('click','#btncartIn',function(){
+	console.log("클릭");
 	var str = $(this).attr('name');
 	ar = str.split(',');
 	let book_num = ar[0];
 	let qty = ar[1];
+	
 // 	console.log(book_num);
 // 	console.log(qty);
 	
 	
 	if('<%=session.getAttribute("id")%>'!=null) {
 		
-		$.ajax({url:'/MyPageAddCart', type:'post', dataType:'text', 
+		$.ajax({url:'/MyPageCartFind', type:'post', dataType:'text', 
 			data:{id:'<%=session.getAttribute("id")%>',
-				book_num : book_num, qty:qty},
+				book_num : book_num},
 			success : function(data) {
+			if (data == "none") {
+				$.ajax({url:'/MyPageAddCart', type:'post', dataType:'text', 
+					data:{id:'<%=session.getAttribute("id")%>',
+						book_num : book_num, qty:qty},
+					success : function(data) {
 
-			if (data == "ok") {
-				var confirmval = confirm('장바구니에 상품을 담았습니다. 장바구니로 이동하시겠습니까?');
-				if(confirmval) {
-					document.location="/cart";
-				} else {
+					if (data == "ok") {
+						var confirmval = confirm('장바구니에 상품을 담았습니다. 장바구니로 이동하시겠습니까?');
+						if(confirmval) {
+							document.location="/cart";
+						} else {
+							
+						}
+					}
+					},
+
+					error : function() {
+						alert('로그인 먼저 해주세요.');
+						return false;
+					}
+					});
+				} else if (data == "ok") {
+					var confirmval = confirm('이미 장바구니에 존재하는 상품입니다. 장바구니로 이동하시겠습니까?');
+					if(confirmval) {
+						document.location="/cart";
+					} else {
+						
+					}
 					
 				}
-			}
-		},
+			},
 
-		error : function() {
-			alert('로그인 먼저 해주세요.');
-			return false;
-		}
-	});
-
-			} else {
-
+			error : function() {
 				alert('로그인 먼저 해주세요.');
 				return false;
-
 			}
+		});
+	} else {
+		alert('로그인 먼저 해주세요.');
+		return false;
 
-		})
+	}
 
-// 			.on('click', '#btnrevIn', function() {
-
-// 				var num = $(this).attr('name');
-
-// 				num = num.split('룸');
-// 				if (num[1] == "") {
-
-// 					$.ajax({
-// 						url : '/showReview1',
-// 						type : 'post',
-// 						dataType : 'text',
-// 						data : {
-// 							prod_num : num[0].replace('상품', '')
-
-// 						},
-// 						success : function(data) {
-
-// 							document.location = "/showReview?token=" + data;
-
-// 						}
-
-// 					});
-// 				} else {
-
-// 					$.ajax({
-// 						url : '/showReview2',
-// 						type : 'post',
-// 						dataType : 'text',
-// 						data : {
-// 							room_num : num[1]
-
-// 						},
-// 						success : function(data) {
-
-// 							document.location = "/showReview3?token=" + data;
-
-// 						}
-
-// 					})
-
-// 				}
-
-// 			})
+})
+		
 
 	// ---- 마이페이지 주문내역에서 ReCart in code ---- //	
 
 	// })
 
-	// ---- 나의 주문내역 ---- //
+// ---- 나의 주문내역 ---- //
 
-	
-	// ---- 나의 게시글 load part ---- //
-	$(document)
 
-	.ready(function() {
-		
-		loadData();
+// ---- 나의 게시글 load part ---- //
+$(document)
 
-	})
+.ready(function() {
 	
-	
-	// ---- 나의 댓글 load part ---- //
-	$(document)
+	loadData();
 
-	.ready(function() {
+})
 
-		showBC();
 
-	})
-	
-	
-	// ---- 나의 기부 load part ---- //
-	$(document)
-	
-	.ready(function() {
-		
-		showDN();
-		
-	})
-	
-	
-	
-	
+// ---- 나의 댓글 load part ---- //
+$(document)
 
+.ready(function() {
+
+	showBC();
+
+})
+
+
+// ---- 나의 기부 load part ---- //
+$(document)
+
+.ready(function() {
+	showDN();
+})
+	
 	$(document)
 	
 	//  게시글 tr 클릭했을때 이벤트 코드
@@ -1016,8 +1095,8 @@ $('.hi').on('click','#btncartIn',function(){
 		let a = $(this).find('td:eq(0)').text();
 		let b = $(this).find('td:eq(2)').text();
 
-		console.log(a);
-		console.log(b);
+// 		console.log(a);
+// 		console.log(b);
 		
 		$.ajax({
 			url : '/doQview',
@@ -1048,8 +1127,8 @@ $('.hi').on('click','#btncartIn',function(){
 		let a = $(this).find('td:eq(0)').text();
 		let b = $(this).find('td:eq(2)').text();
 
-		console.log(a);
-		console.log(b);
+// 		console.log(a);
+// 		console.log(b);
 
 		$.ajax({
 			url : '/doQview2',
@@ -1060,52 +1139,39 @@ $('.hi').on('click','#btncartIn',function(){
 			},
 			dataType : 'text',
 			beforeSend : function() {
-				console.log("시작");
+// 				console.log("시작");
 			},
 			success : function(data) {
 				document.location = "/Qview?token=" + data;
-				console.log("성공");
+// 				console.log("성공");
 			}
 		})
 	})
 	
-	// 기부 tr 클릭했을때 이벤트 코드
-// 	.on('click', '#tblBoard3 tr', function() {
-
-// 		let a = $(this).find('td:eq(0)').text();
-// 		let b = $(this).find('td:eq(2)').text();
-
-// 		console.log(a);
-// 		console.log(b);
-
-// 		$.ajax({
-// 			url : '/doDonaview',
-// 			type : 'get',
-// 			data : {
-// 				name : b,
-// 				num : a
-// 			},
-// 			dataType : 'text',
-// 			beforeSend : function() {
-
-// 			},
-// 			success : function(data) {
-// 				document.location = "/Qview?token=" + data;
-// 			}
-// 		})
-// 	})
-	
-
-
-	
 	
 // ---- 회원정보 변경 ---- //
+	
 	$(document)
-
 	.on('click', '#btncancel', function() {
-
-		document.location = '/main';
-
+		var confirmval = confirm('회원정보 변경을 취소하시겠습니까?');
+		if(confirmval) {
+			$('#j_pwd').val($('#originalpwd').val());
+			$('#j_pwdcf').val("");
+	 		$('#zip_code').val($('#originalcode').val());
+			$('#j_address1').val("${showAdr.address1}");
+			$('#j_address2').val("${showAdr.address2}");
+			$('#j_fisrtphone').val("${showMob.mobile1}");
+			$('#j_midphone').val("${showMob.mobile2}");
+			$('#j_lastphone').val("${showMob.mobile3}");
+			$('#j_email').val($('#originalEmail').val()); // 이메일 원래 값으로 복원
+			$('#j_year').val("${showBir.birth1}");
+			$('#j_month').val("${showBir.birth2}");
+			$('#j_day').val("${showBir.birth3}");
+		} else {
+			
+		}
+		
+	
 	})
 
 	.on('click', '#btnupdate', function() {
@@ -1138,13 +1204,25 @@ $('.hi').on('click','#btncartIn',function(){
               address:address,         
               mobile:mobile,
               birth:birth},
-              
+              beforeSend:function(){
+            	  let ps1 = $('#j_pwd').val();
+            	  if(ps1==''){alert('비밀번호를 입력해주세요');
+            	  return false;
+            	  }
+            	  let ps2 = $('#j_pwdcf').val();
+
+
+            	  if(ps1!=ps2) {
+            		  alert('비밀번호가 일치하지 않습니다');
+            		  return false;
+              	  }
+              },
               success:function(data){
                   
                   
                   if(data=="ok") {
-                 	 
- 					  
+                 	 alert("회원정보가 성공적으로 변경되었습니다."+"\n"+"다시 로그인해주세요.");
+ 					 document.location = '/logout';
                   } else {	
                  	 
  		               alert(data);
@@ -1154,27 +1232,27 @@ $('.hi').on('click','#btncartIn',function(){
           }
               
 	});
-	
-	
-	
-let id = $('#j_id').val();
-
-if(id==''){alert('아이디를 입력해주세요'); return false;}
-
-
-let ps1 = $('#j_pwd').val(); if(ps1==''){alert('비밀번호를 입력해주세요');return false;}
-
-let ps2 = $('#j_pwdcf').val();
-
-
-if(ps1!=ps2){alert('비밀번호가 일치하지 않습니다');return false;}
-
-document.location = '/logout';
-return false;
-
 })
 
-
+// 비밀번호 재확인
+.on('click','#btncheck2',function(){
+	let enteredPassword = $('#pwdcheck2').val();
+	let checkpwd = $('#originalpwd').val();
+// 	console.log(enteredPassword);
+// 	console.log(checkpwd);
+	// 비밀번호 확인 로직 실행
+   	if (enteredPassword === checkpwd) { // 비밀번호가 맞는지 확인 (여기서는 임의로 '올바른비밀번호'라고 가정함)
+//    		$('#divpwdcheck').hide();
+   		$('.divpwdcheck').hide();
+   		$('.divtext').show(); // 회원정보 변경 화면 보이기
+   	} else if(enteredPassword == '' || enteredPassword == null){
+   		alert('비밀번호를 입력해주세요.');
+   	} else {
+   		alert('비밀번호가 일치하지 않습니다.');
+        // 비밀번호가 틀린 경우 알림 메시지 출력
+        $('#pwdcheck2').val("");
+   	}
+})
 
 .on('blur','#j_id',function(){
 
@@ -1225,7 +1303,19 @@ $('#psGuide2').text('비밀번호가 일치하지않습니다'); return false;
 })
 // ---- 회원정보 변경 ---- //
 
-
+// ---- mypage 상단 탭 변경 코드 ---- //
+function changeTab(tab) {
+//     console.log("tab: " + tab);
+  
+    $(".tab-item").removeClass("active");
+    $(".content-container").removeClass("active");
+  
+    $("#" + tab + "-tab").addClass("active");
+    $("#" + tab).addClass("active");
+    
+    $(".content-container").css("display", "none");  
+    $(".content-container.active").css("display", "block");
+}
 
 
 // ---- 게시글 load ajax ---- //
@@ -1248,7 +1338,7 @@ function loadData(){
 			}
 			
 			 rowTotals =$('#tblBoard').find('tr:gt(0)').length;
-			console.log(rowTotals);
+// 			console.log(rowTotals);
 			 $('#setRows').submit();
 		}})
 		return false;
@@ -1273,6 +1363,7 @@ function showBC() {
 				str+='<td>'+data[i]['BC_create']+'</td></tr></tbody>';
 				$('#tblBoard2').append(str);
 				
+				
 			}
 	    }
 	  });
@@ -1289,7 +1380,7 @@ function showDN() {
 	    },
 	    success: function(data) {
 		for(let i=0; i<data.length; i++){
-				
+
 				let str='<tbody><tr>';
 				str+='<td>'+data[i]['dona_num']+'</td>';
 				str+='<td>'+data[i]['dona_name']+'</td>';
@@ -1354,37 +1445,7 @@ function sample6_execDaumPostcode() {
         return false;
     }
     
-    
-// ---- mypage 상단 탭 변경 코드 ---- //
-$("#delivery-tab").click(function () {
-    changeTab("delivery");
-})
-
-$("#posts-tab").click(function () {
-    changeTab("posts");
-})
-
-$("#comments-tab").click(function () {
-    changeTab("comments");
-})
-
-$("#membership-tab").click(function () {
-    changeTab("membership");
-})
-
-$("#donation-tab").click(function () {
-    changeTab("donation");
-})
-
-function changeTab(tab) {
-    $(".tab-item").removeClass("active");
-    $(".content-container").removeClass("active");
-
-    $("#" + tab + "-tab").addClass("active");
-    $("#" + tab).addClass("active");
-}
-
-
+   
 
 // ---- 평점 관련 dialog part ---- //
 
@@ -1427,13 +1488,14 @@ function rev_Selection() {
 // 리뷰 확인하기
 function find_review() {
 	let id = '<%= session.getAttribute("id") %>';
-	
+
 	// 새로고침 시 각 div의 order_num 값 가져오기
-    $('.hi').each(function() {
-        var orderNum = $(this).find('#order_num').val();
-//         console.log(orderNum);
+    $('.tblOrder tbody tr').each(function() {
+    	var orderNum = $(this).find('#openRev_btn').attr('name'); 	
         var openRevBtn = $(this).find('#openRev_btn'); // 현재 hi div 내의 openRev_btn 버튼 선택
         
+//         console.log("num : " + orderNum);
+//         console.log(openRevBtn);
         // 가져온 order_num 값으로 원하는 처리 수행
         $.ajax({
             url: '/check_review',
@@ -1449,10 +1511,165 @@ function find_review() {
                 }
             },
             error: function() {
-                console.log('오류 발생');
+                console.log('review 오류 발생');
             }
         });
     });
 }
+
+//리뷰 확인하기
+function find_status() {
+	let id = '<%= session.getAttribute("id") %>';
+
+	// 새로고침 시 각 div의 order_num 값 가져오기
+    $('.tblOrder tbody tr').each(function() {
+    	var orderNum = $(this).find('#openRev_btn').attr('name'); 	
+        var order_status = $(this).find('#order_status'); // 현재 hi div 내의 openRev_btn 버튼 선택
+        var openRevBtn = $(this).find('#openRev_btn'); // 현재 hi div 내의 openRev_btn 버튼 선택
+        
+//         console.log("num : " + orderNum);
+//         console.log(order_status);
+        // 가져온 order_num 값으로 원하는 처리 수행
+        $.ajax({
+            url:'/check_status',
+            type: 'post',
+            data: { orderNum: orderNum, id: id },
+            dataType: 'text',
+            success: function(data) {
+                if (data === 'ok1') {
+                	order_status.text('주문취소');
+                	openRevBtn.text('문의하기');
+//                 	openRevBtn.hide();
+//                     console.log('리뷰보기');
+                } else if(data === 'ok2'){
+                	order_status.text('배송조회');
+                	openRevBtn.text('문의하기');
+                } else if(data === 'ok3'){
+                	order_status.text('배송조회');
+                	openRevBtn.text('문의하기');
+                } else if(data === 'ok4'){
+                	order_status.text('배송조회');
+                } else {
+                	console.log('상태 조회 오류 발생 code 1');
+                }
+            },
+            error: function() {
+                console.log('상태 조회 오류 발생 code 2');
+            }
+        });
+    });
+}
+
+// 주문목록 불러오기
+function loadOrder(){
+	let id = '<%= session.getAttribute("id") %>';
+// 	console.log(id);
+	
+	$.ajax({
+     url: '/load_order',
+     type: 'post',
+     data: {id: id },
+     dataType: 'JSON',
+     success: function(data) {
+     	if(data=='' || data==null) {
+				
+			} else {
+				 for (let i = 0; i < data.length; i++) {
+						let str = "<tbody><tr><td>" + data[i]['order_num'] + "</td>"
+						str += "<td><img src='" + data[i]['book_cover'] + "' class='img-resize' alt='' picname='"+ data[i]['book_num'] + "'></td>";
+						str += "<td class=tblName><span class='pName'>" + data[i]['book_name'] + "</span><br><span class='pWriter'>" +data[i]['author'] + "</span></td>";
+						str += "<td>" + data[i]['order_date'] + "</td>";
+						str += "<td class=tblMoney><span class='ptotal'>" + data[i]['total'] + "원</span><br><span>" + data[i]['o_qty'] + "권 </span><br><span class=pay_way>" + data[i]['pay_way'] + "</span></td>";
+						str += "<td class = 'tdStatus'><span class='spanStatus'>" + data[i]['status'] +"</span><div><button class='btn btn-outline-primary' id=order_status name=" + data[i]['order_num'] + "></button></div></td>";
+						str += "<td  class = 'tdCart'><button id='btncartIn' class='btn btn-outline-secondary' name='" + data[i]['book_num'] + "," + data[i]['o_qty']
+		 					+ "'>장바구니 담기</button><button class='btn btn-outline-secondary1' id='openRev_btn' name='"
+	 					    + data[i]['order_num'] + "'></button></td></tbody>";
+						
+					    $('.tblOrder').append(str);
+			    
+					  }
+				 find_review();
+				 find_status();
+			}
+     },
+     error: function() {
+         console.log('loadOrder 오류 발생');
+     }
+ });
+}
+/*  페이지네이션  */
+var $setRows = $('#setRows');
+
+$setRows.submit(function (e) {
+	e.preventDefault();
+	var rowPerPage = $('[name="rowPerPage"]').val() * 1;// 1 을  곱하여 문자열을 숫자형로 변환
+
+// 	console.log("rowPerPage : " + rowPerPage);
+
+	var zeroWarning = 'Sorry, but we cat\'t display "0" rows page. + \nPlease try again.'
+	if (!rowPerPage) {
+		alert(zeroWarning);
+		return;
+	}
+	$('#nav1').remove();
+	var $board = $('#tblOrder');
+
+	$('.bSearch').after('  <div id="nav1">');
+
+
+	var $tr = $('.tblOrder tbody tr');
+	var rowTotals = $tr.length;
+// 	console.log("rowTotal : " + rowTotals);
+
+	var pageTotal = Math.ceil(rowTotals/ rowPerPage);
+	var i = 0;
+
+	for (; i < pageTotal; i++) {
+		$('<a href="#"></a>')
+				.attr('rel', i)
+				.html(i + 1)
+				.appendTo('#nav1');
+	}
+
+	$tr.addClass('off-screen')
+			.slice(0, rowPerPage)
+			.removeClass('off-screen');
+
+	var $pagingLink = $('#nav1 a');
+	$pagingLink.on('click', function (evt) {
+		evt.preventDefault();
+		var $this = $(this);
+		if ($this.hasClass('active')) {
+			return;
+		}
+		$pagingLink.removeClass('active');
+		$this.addClass('active');
+
+		// 0 => 0(0*4), 4(0*4+4)
+		// 1 => 4(1*4), 8(1*4+4)
+		// 2 => 8(2*4), 12(2*4+4)
+		// 시작 행 = 페이지 번호 * 페이지당 행수
+		// 끝 행 = 시작 행 + 페이지당 행수
+
+		var currPage = $this.attr('rel');
+		var startItem = currPage * rowPerPage;
+		var endItem = startItem + rowPerPage;
+
+		$tr.css('opacity', '0.0')
+				.addClass('off-screen')
+				.slice(startItem, endItem)
+				.removeClass('off-screen')
+				.animate({opacity: 1}, 300);
+
+	});
+
+	$pagingLink.filter(':first').addClass('active');
+
+});
+
+$setRows.submit();	
+
+
+
 </script>
 </html>
