@@ -133,4 +133,25 @@ public class BoardController {
 		
 		return box;
 	}
+	// 230610 민석 마이페이지 게시판 tr 클릭했을때 게시판 가게 하는 코드 (충돌 조심!)
+    @GetMapping("/Qview")
+    public String showView(HttpServletRequest req,Model model) {
+       
+       HttpSession session = req.getSession();
+       String id=(String) session.getAttribute("id");
+       
+       
+       String[] token=req.getParameter("token").split(",:");
+       
+//       System.out.println(token);
+       model.addAttribute("b_title",token[0]);
+       model.addAttribute("b_content",token[1]);
+       model.addAttribute("id",token[2]);
+       model.addAttribute("b_create_date",token[3]);
+       model.addAttribute("b_update_date",token[4]);
+       model.addAttribute("b_rcount",token[5]);
+       model.addAttribute("board_num",token[6]);
+       
+       return "boardView";
+    }
 }
