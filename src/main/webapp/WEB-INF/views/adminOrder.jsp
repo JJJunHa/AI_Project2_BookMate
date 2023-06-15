@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,12 +10,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
     <title>BookMate</title>
 </head>
 <style>
-
 .main {
     width:100%;
     height:100%;
@@ -141,9 +143,35 @@ a:hover {
 }
 /* ----------------------------------------------*/
 
+#delivery1_btn:hover,
+#delivery2_btn:hover,
+#delivery3_btn:hover,
+#btnDelete:hover{
+   background-color: #97d4f7;
+}
+
+#delivery1_btn,
+#delivery2_btn,
+#delivery3_btn,
+#btnDelete {
+    background-color: fff;
+    border:2px solid #97d4f7;
+
+/*    width:9.7%; */
+ /*  border:2px solid #aaa;*/
+   border-radius:4px;
+/*    margin: 2px 0; */
+   outline: none;
+   padding:5px;
+   box-sizing: border-box;
+   transition:.3s;
+   font-weight: bold;
+}
 
 
-/*board 추가 부분*/
+
+
+/*oboard 추가 부분*/
 .content {
 	width: 100%;
 
@@ -164,7 +192,7 @@ a:hover {
 }
 
 /* 게시판 목록 스타일 */
-.board {
+.oboard {
 	width: 100%;
 	border-collapse: collapse;
 	margin-left: auto;
@@ -172,7 +200,7 @@ a:hover {
 }
 
 /* 테이블 헤더 스타일 */
-.board th {
+.oboard th {
 	padding: 12px;
 	background-color: #ebedf3;
 	border-bottom: 1px solid #c8cfe2;
@@ -181,28 +209,28 @@ a:hover {
 }
 
 /* 테이블 셀 스타일 */
-.board td {
+.oboard td {
 	padding: 12px;
 	border-bottom: 1px solid #c8cfe2;
 	text-align: center;
 }
 
 /* 짝수 번째 행 배경색 지정 */
-.board tr:nth-child(odd) {
+.oboard tr:nth-child(odd) {
 	background-color: #f8f9fa;
 }
 
 /* 마우스 호버 효과 */
-.board tr:hover {
+.oboard tr:hover {
 	background-color: #ebedf3;
 }
 
 /* 제목 링크에 언더라인 및 호버 효과 */
-.board a.title-link {
+.oboard a.title-link {
 	text-decoration: underline;
 }
 
-.board a.title-link:hover {
+.oboard a.title-link:hover {
 	text-decoration: none;
 }
 
@@ -216,9 +244,9 @@ a:hover {
 
 #nav1 {
 	width: 100%;
-	padding-right: 160px;
+	padding-right: 50px;
 	padding-top: 15px;
-
+	padding-bottom: 15px;
 	
 }
 
@@ -285,12 +313,16 @@ a:hover {
 	background-color: #0056b3;
 }
 /* 검색 */
-.pSearch {
+.mSearch {
 	text-align:left;
 	margin-left: 2.5%;
+	float:left;
 /* 	margin-bottom: 20px; /* 추가 */ 
 }
-.pSearch input[type="submit"] {
+.total {
+	float:right;
+}
+.mSearch input[type="submit"] {
 	position: relative;
 
 	background-color: #7ca8c2;
@@ -300,11 +332,11 @@ a:hover {
         color: #fff;
         cursor: pointer;
 }
-   .pSearch input[type="submit"]:hover {
+   .mSearch input[type="submit"]:hover {
 	background-color: #0056b3;
 }
 
-.pSearch select {
+.mSearch select {
  	width: 100px;
     border: 1px solid #bbb;
     border-radius: 15px;
@@ -313,7 +345,7 @@ a:hover {
     margin-top:2%;
 }
 
-.pSearch input[type="text"]
+.mSearch input[type="text"]
  {
 	 width: 200px;
     border: 1px solid #bbb;
@@ -324,11 +356,12 @@ a:hover {
 }
 
 
+
 </style>
 <body>
     <div class="main">
         <div class="logo">
-    	<a href="/main"><img src="/img/logo.png" class="logoImg"></a>
+    <a href="/main"><img src="/img/logo.png" class="logoImg"></a>
     </div>
     <div class="menu">
         <a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
@@ -361,81 +394,242 @@ a:hover {
         <div class="content">
     
             <div class="content_A">
-                <h1>주문목록</h1>
-                <form method="post" action="/book/search">
-					<div class="pSearch">
+                <h1>총 주문목록</h1>
+				<form method="post" action="/order/search">
+					<div class="mSearch">
 						<select name="type" id="searchForm">
-							<option value="book_name||author||book_price||book_genre||emotion||rating">전체검색</option>
-							<option value="book_name">제목</option>
-							<option value="author">작가</option>
-							<option value="book_price">가격</option>
-							<option value="book_genre">장르</option>
-							<option value="emotion">감정</option>
-							<option value="rating">별점</option>
+							<option value="order_num||id||order_date||pay_way||status">전체검색</option>
+							<option value="order_num">order No</option>
+							<option value="id">ID</option>
+							<option value="order_date">주문날짜</option>
+							<option value="pay_way">결제수단</option>
+							<option value="status">배송상태</option>
 						</select> <input type="text" id="keyword" name="keyword"> <input
 							type="submit" id="btnsearch" value=검색>
-						</div>
-					</form>
-						<div class="content2">
-							<table class="board" id="board">
-								<caption>
-									<form action="" id="setRows">
-										<p>
-											<input type="hidden" name="rowPerPage" value="15">
-										</p>
-									</form>
-								</caption>
+					</div>
+				</form>
+				<div class="content2">
+                    
+                    <caption>
+						<form action="" id="setRows">
+							<p><input type="hidden" name="rowPerPage" value="10"></p>
+						</form>
+						</caption>
+						 
+						<div class="total">
+					<%-- total price sum --%>
+                    <c:set var="totalPriceSum" value="0" />
+                    <c:forEach items="${ol}" var="orlist">
+                      <c:set var="totalPriceSum" value="${totalPriceSum + orlist.price}" />
+                    </c:forEach>
+                     <h3>누적 주문금액: ${totalPriceSum} <i class="fa-solid fa-won-sign"></i></h3>
+					</div>
+				<table class="oboard" id="oboard">
+						<thead>
 
+							<tr>
+								<th>order NO</th>
+								<th>cart No</th>
+								<th>ID</th>
+								<th>합계</th>
+								<th>주문날짜</th>
+								<th>결제수단</th>
+								<th>배송상태</th>
+								<th colspan='3'>배송진행변경</th>
+								<th>삭제</th>
+							</tr>
+						</thead>
+						<tbody>
+						
+							<c:forEach items="${ol}" var="orlist">
+								<tr>
+									<td>${orlist.order_num}</td>
+									<td>${orlist.cart_num}</td>
+									<td>${orlist.id}</td>
+									<td>${orlist.price}</td>
+									<td>${orlist.order_date}</td>
+									<td>${orlist.pay_way}</td>
+									<td>${orlist.status}</td>
+									<td colspan='3' >
+										<input type="button" id="delivery1_btn" name="${orlist.order_num}" value="배송준비">
+				                        <input type="button" id="delivery2_btn" name="${orlist.order_num}" value="배송중">
+				                        <input type="button" id="delivery3_btn" name="${orlist.order_num}" value="배송완료"></td>
+                        			<td>
+                        				<input type="button" id="btnDelete" name="${orlist.order_num}" value="삭제"></td>
+								</tr>
+							</c:forEach>
+					
+						</tbody>
+					</table>
+                </div>
+		<!--              	주문 상세 정보                  -->
+				<div id="dialog" title="주문 상세 정보" style="display:none;">
+					.
+					
+					<p>
+						<strong>주문 ID:</strong> <span id="id"></span>
+					</p>
+					<p>
+						<strong>받으시는 분:</strong> <span id="name"></span>
+					</p>
+					<p>
+						<strong>주문 수량:</strong> <span id="o_qty"></span>
+					</p>
+					<p>
+						<strong>도서 이름:</strong> <span id="book_name"></span>
+					</p>
+					<p>
+						<strong>총 가격:</strong> <span id="price"></span>
+					</p>
+					<p>
+						<strong>주문 날짜:</strong> <span id="order_date"></span>
+					</p>
+					<p>
+						<strong>받으실 주소:</strong> <span id="address"></span>
+					</p>
+					<p>
+						<strong>받으실 분 연락처:</strong> <span id="mobile"></span>
+					</p>
+					<p>
+						<strong>배송 메시지:</strong> <span id="deli_message"></span>
+					</p>
+					<p>
+						<strong>주문 상태:</strong> <span id="status"></span>
+					</p>
+					
+				</div>
 
+			</div>
+            
+        </div>
 
-								<thead>
-									<tr>
-										<th>번호</th>
-										<th>제목</th>
-										<th>작가</th>
-										<th>가격</th>
-										<th>장르</th>
-										<th>감정</th>
-										<th>별점</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${pl}" var="plist">
-										<tr>
-											<td>${plist.book_num}</td>
-											<td>${plist.book_name}</td>
-											<td>${plist.author}</td>
-											<td>${plist.book_price}</td>
-											<td>${plist.book_genre}</td>
-											<td>${plist.emotion}</td>
-											<td>${plist.rating}</td>
-										</tr>
-									</c:forEach>
-
-								</tbody>
-							</table>
-						</div>
-
-					</div></div>
-		
-    </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+
 $(document)
-//새글쓰기
-.on('click','#btnNew',function(){
-	document.location='/adminNew';
-	return false;
-})
-//수정페이지로
-.on('click','#board tr:gt(0)',function(){
-	   let a=$(this).find('td:eq(0)').text();
-	   document.location='adminUpdate/'+a;
-	})
-	
+
+.ready(function() {
+  // 다이얼로그 초기화
+  $("#dialog").dialog({
+    autoOpen: false, // 자동으로 열리지 않도록 설정
+    modal: true, // 모달 다이얼로그로 설정
+    width: 700,
+    height: 550,
+    buttons: {
+      Close: function() {
+        $(this).dialog("close");
+      }
+    }
+  });
+
+  $("#oboard tbody tr td:nth-child(-n+7)").click(function() {
+	  var id = $(this).closest('tr').find("td:nth-child(3)").text();
+	  var price = $(this).closest('tr').find("td:nth-child(4)").text();
+
+    $.ajax({
+      url: "/dorder", // 요청을 처리할 서버의 URL
+      type: "GET", // GET 요청 방식
+      data: { // 전달할 파라미터
+        id: id,
+        price: price
+      },
+      success: function(response) {
+        // 서버로부터 받은 응답 처리
+        // 예를 들어, 검색 결과를 화면에 표시하거나 다른 작업을 수행할 수 있습니다.
+        var o_qty = response[0].o_qty;
+        var book_name = response[0].book_name;
+        showDialog(response[0].name, response[0].id, response[0].price, response[0].order_date, response[0].address, response[0].mobile, response[0].deli_message, response[0].status, o_qty, book_name);
+      },
+      error: function(xhr) {
+        // 오류 처리
+      }
+    });
+  });
+
+  function showDialog(name, id, price, order_date, address, mobile, deli_message, status, o_qty, book_name) {
+    // 다이얼로그 내용 업데이트
+    $("#dialog #name").text(name);
+    $("#dialog #id").text(id);
+    $("#dialog #price").text(price);
+    $("#dialog #order_date").text(order_date);
+    $("#dialog #address").text(address);
+    $("#dialog #mobile").text(mobile);
+    $("#dialog #deli_message").text(deli_message);
+    $("#dialog #status").text(status);
+    $("#dialog #o_qty").text(o_qty);
+    $("#dialog #book_name").text(book_name);
+
+    // 다이얼로그 열기
+    $("#dialog").dialog("open");
+  }
+
+  $(document).on('click', '#delivery1_btn, #delivery2_btn, #delivery3_btn', function() {
+    let status = $(this).val();
+    let id = $(this).closest('tr').find("td:nth-child(3)").text();
+    let order_num = $(this).closest('tr').find("td:nth-child(1)").text();
+    console.log(status);
+    console.log(id);
+    console.log(order_num);
+
+    // 여기에서 status, id, order_num 값을 사용하여 필요한 작업을 수행할 수 있습니다.
+    $.ajax({
+      url: '/delivery',
+      type: 'post',
+      data: {
+        status: status,
+        id: id,
+        order_num: order_num
+      },
+      dataType: 'text',
+      beforeSend: function() {
+        // 다이얼로그 닫기
+        $("#dialog").dialog("close");
+      },
+      success: function(data) {
+        alert("배송정보가 변경되었습니다.");
+        location.reload(); // 화면 새로고침
+      },
+      error: function(xhr) {
+        // 오류 처리
+      }
+    });
+  })
+  .on('click', '#btnDelete', function() {
+	    let id = $(this).closest('tr').find("td:nth-child(3)").text();
+	    let order_num = $(this).closest('tr').find("td:nth-child(1)").text();
+
+	    console.log(id);
+	    console.log(order_num);
+
+
+	     $.ajax({
+	       url: '/ordel',
+	       type: 'post',
+	       data: {
+	         id: id,
+	         order_num: order_num
+	       },
+	       dataType: 'text',
+	       beforeSend: function() {
+	         // 다이얼로그 닫기
+	         $("#dialog").dialog("close");
+	       },
+	       success: function(data) {
+	         alert("주문을 삭제했습니다.");
+	         location.reload(); // 화면 새로고침
+	       },
+	       error: function(xhr) {
+	         // 오류 처리
+	       }
+	     });
+	  });
+});
+
 /*  페이지네이션  */
 var $setRows = $('#setRows');
 
@@ -451,9 +645,9 @@ $setRows.submit(function (e) {
 		return;
 	}
 	$('#nav1').remove();
-	var $board = $('#board');
+	var $oboard = $('#oboard');
 
-	$('#board').after('<input type="button" value="상품등록" class="btnNew" id="btnNew">  <div id="nav1">');
+	$('#oboard').after(' <div id="nav1">');
 
 
 	var $tr = $('tbody tr');
@@ -508,7 +702,6 @@ $setRows.submit(function (e) {
 
 
 $setRows.submit();
-
 
 
 </script>

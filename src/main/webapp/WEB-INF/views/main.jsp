@@ -29,7 +29,7 @@
     <div class="menu">
         <a href="/logout">로그아웃</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
     </div>
-   
+ 
    <% } else {%>
    
    <div class="menu">

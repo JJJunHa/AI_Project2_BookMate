@@ -77,6 +77,7 @@ public class BoardController {
 //  게시글 삭제	
 	@GetMapping("/bDelete/{board_num}")
 	public String Qdelete(@PathVariable("board_num") int board_num) {
+		bdao.tbcdel(board_num);
 		bdao.bDelete(board_num);
 		return "redirect:/board";
 	}
@@ -88,7 +89,7 @@ public class BoardController {
 		String id=(String) session.getAttribute("id");
 		String content=req.getParameter("BC_content");
 		int board_num=Integer.parseInt(req.getParameter("board_num"));
-		
+	
 		bdao.bcInsert(content,id,board_num);
 		
 		
@@ -110,9 +111,9 @@ public class BoardController {
 			jo.put("bc_create_date", comment.get(i).getBc_create_date());
 			jo.put("bc_content", comment.get(i).getBc_content());
 			jo.put("bcontent_num", comment.get(i).getBcontent_num());
-			if (id != null && id.equals(comment.get(i).getID())) {
-	               jo.put("check", "check");
-	           }
+			if (id.equals(comment.get(i).getID())||id.equals("bookmate")) {
+	            jo.put("check", "check");
+	        }
 			
 			
 			
@@ -132,28 +133,25 @@ public class BoardController {
 		
 		return box;
 	}
-	
-	
-	
 	// 230610 민석 마이페이지 게시판 tr 클릭했을때 게시판 가게 하는 코드 (충돌 조심!)
-		@GetMapping("/Qview")
-		public String showView(HttpServletRequest req,Model model) {
-			
-			HttpSession session = req.getSession();
-			String id=(String) session.getAttribute("id");
-			
-			
-			String[] token=req.getParameter("token").split(",:");
-			
-//			System.out.println(token);
-			model.addAttribute("b_title",token[0]);
-			model.addAttribute("b_content",token[1]);
-			model.addAttribute("id",token[2]);
-			model.addAttribute("b_create_date",token[3]);
-			model.addAttribute("b_update_date",token[4]);
-			model.addAttribute("b_rcount",token[5]);
-			model.addAttribute("board_num",token[6]);
-			
-			return "boardView";
-		}
+    @GetMapping("/Qview")
+    public String showView(HttpServletRequest req,Model model) {
+       
+       HttpSession session = req.getSession();
+       String id=(String) session.getAttribute("id");
+       
+       
+       String[] token=req.getParameter("token").split(",:");
+       
+//       System.out.println(token);
+       model.addAttribute("b_title",token[0]);
+       model.addAttribute("b_content",token[1]);
+       model.addAttribute("id",token[2]);
+       model.addAttribute("b_create_date",token[3]);
+       model.addAttribute("b_update_date",token[4]);
+       model.addAttribute("b_rcount",token[5]);
+       model.addAttribute("board_num",token[6]);
+       
+       return "boardView";
+    }
 }

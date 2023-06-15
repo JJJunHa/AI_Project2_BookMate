@@ -41,4 +41,10 @@ public interface AdminDAO {
 //-----------------------------------------------------------
 	//주문
 			ArrayList<AdminDTO> orlist();
+			ArrayList<AdminDTO> dorder(String x1, String x2);
+			void delivery(String x1, String x2, int x3);
+			void oreviewDel(int x1, String x2);
+			void ordered_cart(int x1, String x2);
+			void payment(int x1, String x2);
+			ArrayList<AdminDTO> oSearch(String x1, String x2);
 }
