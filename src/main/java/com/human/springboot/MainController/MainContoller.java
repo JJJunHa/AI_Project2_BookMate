@@ -24,6 +24,11 @@ public class MainContoller {
 	    String apiKey = "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";
 	    return ResponseEntity.ok(apiKey);
 	  }
+	@GetMapping("/")
+	public String Main2() {
+		
+		return "redirect:/main";
+    }
 	
 	@GetMapping("/main")
     public String showMain(HttpServletRequest req,Model model) {
@@ -196,7 +201,7 @@ public class MainContoller {
 	
 	
 	
-	@GetMapping("/")
+	@GetMapping("/5")
     public String showchat() {
         return "chat5";
     }

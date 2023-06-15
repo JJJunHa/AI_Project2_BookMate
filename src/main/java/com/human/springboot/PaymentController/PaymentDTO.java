@@ -16,4 +16,9 @@ public class PaymentDTO {
 	String address2;
 	String address3;
 	String name;
+	String book_cover;
+	String book_name;
+	int book_price;
+	int book_num;
+	int qty;
 }

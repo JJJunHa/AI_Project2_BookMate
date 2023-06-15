@@ -169,7 +169,7 @@ function handleClickPaymentButton() {
         let m_id = $('#id').val();
         let qty = 1;
         let book_num = $(this).attr('name');
-
+		
         // 아이디가 있을 때
         if(m_id=='' || m_id==null || m_id=='null') {
             alert('로그인 후 이용해주세요');
@@ -177,7 +177,11 @@ function handleClickPaymentButton() {
         } 
         // 아이디가 없을 때
         else {
-            $.ajax({
+
+			var orderType = confirm("장바구니 상품까지 같이 주문하실건가여??");
+  
+			  if (orderType) {
+			    $.ajax({
                 url: '/confirm_cart',
                 type: 'post',
                 data: { m_id: m_id,  qty:qty, book_num:book_num },
@@ -191,12 +195,9 @@ function handleClickPaymentButton() {
                             dataType: 'text',
                             success: function(data) {
                                 if(data=="ok"){
-                                    var confirmval = confirm('이미 장바구니에 존재하는 상품입니다. 결제페이지로 이동하시겠습니까?');
-                                    if(confirmval) {
+                                    
                                         document.location="/payment";
-                                    } else {
-
-                                    }
+                                    
                                 } else {
                                     alert("오류로 인해 잠시후에 다시 시도해주세요.");
                                 }
@@ -210,12 +211,9 @@ function handleClickPaymentButton() {
                             dataType: 'text',
                             success: function(data) {
                                 if(data=="ok"){
-                                    var confirmval = confirm('장바구니에 상품을 담았습니다. 결제페이지로 이동하시겠습니까?');
-                                    if(confirmval) {
+                                   
                                         document.location="/payment";
-                                    } else {
-
-                                    }
+                                    
                                 } else {
                                     alert("오류로 인해 잠시후에 다시 시도해주세요.");
                                 }
@@ -226,11 +224,35 @@ function handleClickPaymentButton() {
                     }
                 }
             })
+			    
+			  } else {
+                        $.ajax({
+                            url: '/singleInsert_cart',
+                            type: 'post',
+                            data: { m_id: m_id, qty:qty, book_num:book_num },
+                            dataType: 'text',
+                            success: function(data) {
+                                if(data=="ok"){
+                                   
+                                        document.location="/singlePayment";
+                                    
+                                } else {
+                                    alert("오류로 인해 잠시후에 다시 시도해주세요.");
+                                }
+                            }
+                        })
+			    alert("단일 결제로 주문됩니다.");
+			  }
+			
+			}
+			
+			
+           
         
-		}
+		
     });
-}
 
+}
 
 /*---------------------------------------------------------------------------------아작스로 도서 뛰우기*/
 function showBook() {

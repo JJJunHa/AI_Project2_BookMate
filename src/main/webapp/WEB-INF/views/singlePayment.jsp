@@ -199,45 +199,38 @@ $(document)
 //결제하기
 .on('click','#order', function(){
 	if (!$('#check-all').is(":checked")) {
-		  alert('모든 약관에 동의를 해주세요');
-		  $('#check-all')[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
-		  return false;
-		}
+        alert('모든 약관에 동의를 해주세요');
+        return false;
+      } 
 	if($('#name1').val()===null||$('#name1').val()===''){
-		alert('받으실 분을 입력해주세요');
-		$('#name1')[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+		alert('받으실 분을 입력해주세요')
 		return false;
 	}
 	if($('#postcode').val()===null||$('#postcode').val()===''){
-		alert('우편버호를 입력해주세요');
-		$('#postcode')[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+		alert('우편버호를 입력해주세요')
 		return false;
 	}
 	if($('#address').val()===null||$('#address').val()===''){
-		alert('주소를 입력해주세요');
-		$('#address')[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+		alert('주소를 입력해주세요')
 		return false;
 	}
 	if($('#detailAddress').val()===null||$('#detailAddress').val()===''){
 		alert('상세주소를 입력해주세요')
-		$('#detailAddress')[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
 		return false;
 	}
 	if($('#mobile2').val()===null||$('#mobile2').val()===''){
 		alert('받는분 연락처를 입력해주세요')
-		$('#mobile2')[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
 		return false;
 	}
 	if ($('input[name="pay"]:checked').length === 0) {
 	    alert('결제 수단을 선택해주세요.');
-	    $('input[name="pay"]:checked')[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
 	    return false;
 	}
 	coment
 	let id = '<%=session.getAttribute("id")%>';
 		
 		$.ajax({
-			url: '/paymentInsert',
+			url: '/singlePaymentInsert',
 			type: 'post',
 			data: { id: id, coment: $('#coment').val(), payway: $('input[name="pay"]:checked').val(), name: $('#name1').val(), mobile: $('#mobile2').val(), address: $('#address').val()+"@"+$('#detailAddress').val()+"@"+$('#extraAddress').val(), price: $('#price2').val()},
 			dataType: 'text',
@@ -325,7 +318,7 @@ function openPopupWindow(data)
 function loadCart() {
 	let id = '<%=session.getAttribute("id")%>';
 	$.ajax({
-		url: '/load_cart',
+		url: '/load_singleCart',
 		type: 'post',
 		data: { id: id },
 		dataType: 'JSON',
@@ -362,7 +355,12 @@ function loadCart() {
 		    		 str += '<td id="fee">무료</td></tr>';
 		    		 
 		    		 $('#tblPayment').append(str);
+		    		 
 		       	 }
+					str = '총 <b>' + cart['qty'] + '</b>개의 상품 금액 <b>' + (parseInt(cart['qty']) * parseInt(cart['book_price'])) + '원</b>     +  배송비 <b>0</b>원  =   합계 <b>' + (parseInt(cart['qty']) * parseInt(cart['book_price'])) + '원</b>'; // 'price' 변수 오타 수정
+			        $('#countpay').append(str);
+					$('#price').val((parseInt(cart['qty']) * parseInt(cart['book_price'])));
+					$('#price2').val((parseInt(cart['qty']) * parseInt(cart['book_price'])));
 		    		 $(document)
 		    		 .on('click','.tblPayment tr td:nth-child(-n+3)', function(){
 		    			 	let book_num = $(this).attr('id');
@@ -371,7 +369,7 @@ function loadCart() {
 		    				document.location="/detail/"+book_num;
 		    			})
 			}
-			countCart();
+			
 		}
 	})
 }
@@ -384,7 +382,7 @@ function countCart() {
 		dataType: 'text',
 		success: function(data) {
 			if(data=='' || data==null) {
-				let str = '총 <b>'+0+'</b>개의의 상품 금액 <b>0원</b>'
+				let str = '총 <b>'+1+'</b>개의의 상품 금액 <b>0원</b>'
 				$('#countpay').append(str);
 				$('#price').val(0);
 				$('#price2').val(totalPrice);
