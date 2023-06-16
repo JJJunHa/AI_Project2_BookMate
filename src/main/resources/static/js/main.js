@@ -489,7 +489,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatGPT = async (messages, parameters = {}) => {
         const apiKeyResponse = await fetch('/apikey'); // Make an AJAX request to retrieve the API key
   		const apikey = await apiKeyResponse.text(); // Extract the API key from the response
-  		console.log(apikey);
         if (messages[0].constructor === String) return await chatGPT([['user', messages[0]]]);
         messages = messages.map(line => ({ role: line[0],content: line[1].trim() }));
         const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -533,7 +532,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	        userChatBoxElement.textContent = message;
 	        userMessageElement.appendChild(userChatBoxElement);
 	        chatContentElement.appendChild(userMessageElement);
-	        console.log(genre);
+
 	        
 	        if (message.charAt(message.length - 1) === '원') {//평점순
 	        	price=message;
@@ -552,7 +551,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			        },
 			        success: function(data) {
 						addAssistantMessage("맞춤 도서를 추천해드릴게요");
-						console.log(data);
 			        	appendBoxesToGrid(data);
 						var chatContent = document.getElementById('chat-content');
     					chatContent.scrollTop = chatContent.scrollHeight;
@@ -583,7 +581,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			        },
 			        success: function(data) {
 						addAssistantMessage("얼마 이하 가격을 원하시나요?(ex:15000원)");
-						console.log(data);
 			        	appendBoxesToGrid(data);
 						var chatContent = document.getElementById('chat-content');
     					chatContent.scrollTop = chatContent.scrollHeight;
@@ -611,7 +608,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			        },
 			        success: function(data) {
 						addAssistantMessage("몇 점 이상을 원하시나요?(ex:5점 만점)");
-						console.log(data);
 			        	appendBoxesToGrid(data);
 						var chatContent = document.getElementById('chat-content');
     					chatContent.scrollTop = chatContent.scrollHeight;
@@ -690,11 +686,9 @@ document.addEventListener('DOMContentLoaded', function() {
         assistantMessageElement.appendChild(assistantChatBoxElement);
 			chatContentElement.appendChild(assistantMessageElement);
          try {
-			  console.log(emotionbox);
 			  const emotion = JSON.parse(emotionbox);			  
-			  console.log(emotion.emotion);
 			  const heading = document.querySelector('h2');
-			  heading.textContent = emotion.emotion;
+			  heading.textContent = emotion.emotion+"의 색";
 			  const heading2 = document.querySelector('p');
 			  heading2.textContent = emotion.reasonForRecommendation;
 			  for (let i = 0; i < emotion.colorlist.length; i++) {

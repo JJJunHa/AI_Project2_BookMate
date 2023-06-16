@@ -12,7 +12,13 @@
 		  WHERE ROWNUM &lt;= 9
 		</select>
 		<select id="emotionBookList" resultType="com.human.springboot.MainController.MainDTO">
-			select * from book where emotion=#{param1}
+		  SELECT *
+		  FROM (SELECT *
+		        FROM book
+		        WHERE emotion = #{param1}
+		        ORDER BY RATING DESC)
+		  WHERE ROWNUM &lt;= 9
+				
 		</select>
 		<select id="selectWord" resultType="com.human.springboot.MainController.MainDTO">
 			select * from book where book_name=#{parma1}
