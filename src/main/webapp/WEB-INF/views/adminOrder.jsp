@@ -565,7 +565,9 @@ $(document)
 
 	    console.log(id);
 	    console.log(order_num);
-
+	    if(!confirm("정말로 삭제하시겠습니까?")){
+			return false;
+		}
 
 	     $.ajax({
 	       url: '/ordel',
