@@ -32,7 +32,14 @@ public interface AdminDAO {
 	//회원
 			ArrayList<AdminDTO> memlist();
 			///----------------
-
+			void mcdel(String x1);
+			void model(String x1);
+			void mpdel(String x1);
+			void mrdel(String x1);
+			void mbdel(String x1);
+			void mbcdel(String x1);
+			void mdel(String x1);
+			
 			ArrayList<AdminDTO> mSearch(String x1, String x2);
 	//리뷰
 			ArrayList<AdminDTO> revlist();

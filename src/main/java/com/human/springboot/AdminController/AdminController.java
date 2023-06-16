@@ -192,6 +192,27 @@ public class AdminController {
 		    return "adminMember";
 		}
 		//회원삭제
+		@PostMapping("/memberDel")
+		@ResponseBody
+		public String memberDel(HttpServletRequest req) {
+			String val="ok";
+			try {
+				String id=req.getParameter("id");
+				adao.mcdel(id);
+				adao.model(id);
+				adao.mpdel(id);
+				adao.mrdel(id);
+				adao.mbdel(id);
+				adao.mbcdel(id);
+				adao.mdel(id);
+			} catch(Exception e) {
+				val="fail";
+				e.printStackTrace();
+				System.out.println(req.getParameter("id"));
+			}
+			return val;
+		}
+		
 		
 //		리뷰목록
 		@GetMapping("/revlist")
