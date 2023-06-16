@@ -28,7 +28,7 @@ $(document).ready(function() {
   	setInterval(changeText, 1500);
     
 });
-    $(document).on('click', '#search', function() {
+    /*$(document).on('click', '#search', function() {
 		let search_word = $('#word').val();
 		if(search_word==''){
 			alert('검색어를 입력하세요');
@@ -48,7 +48,7 @@ $(document).ready(function() {
 		}
 		
 		
-    })
+    })*/
     
     var textArray = [
     "도서 추천 서비스",
@@ -95,6 +95,31 @@ $(document).ready(function() {
 	$(document).on('mouseleave', '#cartButton', function() {
 	 	$(this).removeClass('finger-cursor');
 	});
+	
+// 검색어 기능 구현
+$(document).on('click','#Submit',function(){
+	let selectVal = $('#searchForm').val();
+// 	console.log(selectVal);
+	let keyword = $('#keyword').val().trim();
+// 	console.log(keyword);
+	if(keyword==='') {
+		alert('검색어를 입력해주세요.');
+		$('#keyword').val('');
+		return false;
+	} else {
+		$('#grid-container').empty();
+		$.ajax({
+			url:"/search",
+			data:{selectVal:selectVal, keyword:keyword},
+			type:"post",
+			dataType:"json",
+			success:function(data){
+				appendSelectBoxesToGrid(data);
+
+			}})
+	}
+	
+})	
 //카트에 넣기 클릭 시
 function handleClickCartButton() {
     $(document).on('click', '#cartButton', function() {
@@ -339,6 +364,62 @@ function appendBoxesToGrid(data) {
  		  $('.container').css('height', gridHeight+'px');
    
 }
+
+function appendSelectBoxesToGrid(data) {
+						if(data==null||data==""){
+								alert("찾으시는 도서가 없습니다.")
+							}	
+							    
+						for (let i = 0; i < data.length; i++) {
+							
+							        let box = `
+							            <div class="grid-cell">
+							                    		
+							                <div class='poster'>
+							                	<div  class = "image_overlay image_overlay_blur">
+																<div class = "image_movieStory"><div class ="summary">${data[i]['book_summary']}</div></div>
+																<div>
+										                            <a class="button cart" id="cartButton" name="${data[i]['book_num']}">장바구니</a>
+										                            <a class="button checkout" id="paymentButton" name="${data[i]['book_num']}">바로결제</a>
+										                            <a class="button dashboard" href="detail/${data[i]['book_num']}">상세보기</a>
+										                        </div>
+												</div>
+							                    <img src="${data[i]['book_cover']}" alt="Main Image" class="main-image">
+							                    
+							                
+							                    <div class="explanation">
+							                    	<div>
+							                            <div class="title">${data[i]['book_price']}원</div>
+							                        </div>
+							                        <br>
+							                        <div>
+							                            <div class="title">${data[i]['book_name']}</div>
+							                        </div>
+							                        <div>
+							                            <div class="subtitle">${data[i]['author']}</div>
+							                        </div>
+							                        
+							                    </div>
+							                </div>
+							            </div>
+							            					
+							        `;
+							        
+									
+							        $('#grid-container').append(box);
+									console.log(box);
+													}		
+        if(data==null||data==""){
+			location.reload();
+		}
+    	if(data==""){
+			 $('.footer').css('margin-top', 1000+'px');
+		}
+        var gridHeight = $('.grid-container').height();
+ 		  $('.container').css('height', gridHeight+'px');
+   
+}
+
 
 /*---------------------------------------------------------------------------------*/
 /*function changeTab(tab) {

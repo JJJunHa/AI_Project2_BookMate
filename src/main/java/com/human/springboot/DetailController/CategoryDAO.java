@@ -30,4 +30,7 @@ public interface CategoryDAO {
 	int confirm_cart(String m_id, int book_num);
 	int confirm_qty(String m_id, int book_num);
 	void update_cart(int total_qty, String m_id, int book_num);
+	
+	/* 검색어 */
+	ArrayList<CategoryDTO> search(String a, String b);
 }

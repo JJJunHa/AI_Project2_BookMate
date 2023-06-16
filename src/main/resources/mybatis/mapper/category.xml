@@ -79,4 +79,11 @@
 		update cart set qty = #{param1}
 		where id=#{param2} and book_num=#{param3}
 	</update>
+	
+	
+	<!-- 검색어 -->
+	<select id="search" resultType="com.human.springboot.DetailController.CategoryDTO">
+	    SELECT * from book
+	    where ${param1} like '%'||#{param2}||'%'
+	</select>
 </mapper>

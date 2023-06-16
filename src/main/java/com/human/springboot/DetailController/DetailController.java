@@ -405,4 +405,32 @@ public class DetailController {
 		}
 		return insertval;
 	}	
+	
+	
+	
+	// 검색어
+	@PostMapping("/search")
+	@ResponseBody
+	public String search(HttpServletRequest req) {
+		String selectVal = req.getParameter("selectVal");
+		String keyword = req.getParameter("keyword");
+		
+		ArrayList<CategoryDTO> searchAr = cdao.search(selectVal, keyword);
+		
+		JSONArray ja = new JSONArray();
+		for(int i=0; i<searchAr.size(); i++) {
+			JSONObject jo = new JSONObject();
+			jo.put("book_cover", searchAr.get(i).getBook_cover());
+			jo.put("book_num", searchAr.get(i).getBook_num());
+			jo.put("book_name", searchAr.get(i).getBook_name());
+			jo.put("author", searchAr.get(i).getAuthor());
+			jo.put("publication", searchAr.get(i).getPublication());
+			jo.put("book_price", searchAr.get(i).getBook_price());
+			jo.put("book_summary", searchAr.get(i).getBOOK_SUMMARY());
+			
+			
+			ja.put(jo);
+		}
+		return ja.toString();
+	}
 }

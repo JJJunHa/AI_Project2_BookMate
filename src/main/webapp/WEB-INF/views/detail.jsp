@@ -91,9 +91,11 @@ a:link {
     width:100%;
     height:60px;
     background-color: white;
+    margin-left:27%;
 }
 .category_ul {
-    float:right;
+/*     float:center; */
+
 }
 .category_li {
     float: left;
@@ -103,22 +105,34 @@ a:hover {
         color: #97d4f7;
 }
 /* 검색창 */
+#searchForm {
+	border:none;
+	height: 30px;
+	outline: none;	
+/* 	border-radius: 8px; */
+	width: 25%;
+	margin-right: 1%;
+	 cursor: pointer;
+}
 .search {
     position: relative;
-    width: 100%;
+    width: 105%;
+    
 }
 .searchBox {
-    width: 250px;
+    width: 220px;
     border: 1px solid #bbb;
     border-radius: 15px;
     padding: 5px 5px;
     font-size: 14px;
+    margin-top:2%;
 }
 .search_img {
     position : absolute;
     width: 17px;
-    top: 5px;
-    right: 10px;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
 }
 /* ----------------------------------------------*/
 .content-main {
@@ -490,6 +504,49 @@ input:focus {outline: none;} /* outline 테두리 없애기 */
 	outline: none;
 	padding-left: 10px;
 }
+
+/* ///드롭다운// */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    font-size: medium;
+    background-color: inherit;
+    color : black;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+}
+.dropbtn:hover {
+    color: #97d4f7;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color : gray;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #97d4f7;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
 </style>
 <body>
 
@@ -500,19 +557,32 @@ input:focus {outline: none;} /* outline 테두리 없애기 */
     	<a href="/main"><img src="/img/logo2.png" class="logoImg"></a>
     </div>
     
-    <% if(session.getAttribute("id")!=null){ %>
-    
-    <div class="menu">
-        <%=session.getAttribute("id")%> 님, <a href="/logout">로그아웃</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
-    </div>
-   
-	<% } else {%>
-	
-	<div class="menu">
-        <a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/login" onclick="alert('로그인 후 이용해주세요')">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
-    </div>
-    
-    <% } %>
+	<% if(session.getAttribute("id") != null && !"".equals(session.getAttribute("id")) && !session.getAttribute("id").equals("bookmate")) { %>
+		
+			<div class="menu">
+				<%= session.getAttribute("id") %> 님, <a href="/logout">로그아웃</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+			</div>
+		
+		<% } else if (session.getAttribute("id") != null && "bookmate".equals(session.getAttribute("id"))) { %>
+		
+			<div class="menu">
+				<%= session.getAttribute("id") %> 님, <a href="/logout">로그아웃</a>&nbsp;|&nbsp;
+				<div class="dropdown">
+					<button class="dropbtn">관리자</button>
+					<div class="dropdown-content">
+						<a href="/memlist">회원관리</a> <a href="/orlist">주문관리</a> <a href="/revlist">리뷰관리</a><a href="/prolist">상품관리</a><a href="/adminNew">상품추가</a>
+					</div>
+				</div>
+				&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+			</div>
+		
+		<% } else { %>
+		
+			<div class="menu">
+				<a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/login" onclick="alert('로그인 후 이용해주세요')">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+			</div>
+		
+		<% } %>
     
     <div class="name">지금 어떤 책을 읽어야 할지 고민하는 사용자의 상태에 맞는 책을 추천해주는 서비스</div>
     <div class="category">
@@ -525,12 +595,17 @@ input:focus {outline: none;} /* outline 테두리 없애기 */
             <li class="category_li"><a href="/donation">기부앤테이크<i class='dropDown'></i></a>
             </li>
              
-            <li class="category_li">
-            	<div class="search">
-                	<input type="text" class="searchBox" placeholder="  검색어를 입력하세요">
-                	<img src="/img/search.png" class="search_img">
-                </div>
-            </li>
+<!--             <li class="category_li"> -->
+<!--             	<div class="search"> -->
+<!--             		<select name="type" id="searchForm"> -->
+<!-- 							<option value="book_name||AUTHOR">전체검색</option> -->
+<!-- 							<option value="book_name">제목</option> -->
+<!-- 							<option value="AUTHOR">저자</option> -->
+<!-- 					</select>  -->
+<!--                 	<input type="text" id="keyword" name="keyword" class="searchBox" placeholder="  검색어를 입력하세요"> -->
+<!--                 	<img src="/img/search.png" class="search_img" id=Submit alt="Submit" type="submit"> -->
+<!--                 </div> -->
+<!--             </li> -->
 		</ul>
 	</div>
         <div class="content-main">
@@ -712,9 +787,10 @@ $(document)
 $('#summernote').summernote('disable')  //써머노트 readonly
 })
 
-.on('click','#tblreview tr', function(){
+
+.on('click','#tblreview tr:not(:first-child)', function(){
 	let review_num=$(this).find('td:eq(0)').text();
-	console.log(review_num);
+// 	console.log(review_num);
 	// dialog 열기
 	$('#dialog-view').dialog({
 			 title:'리뷰 상세보기',

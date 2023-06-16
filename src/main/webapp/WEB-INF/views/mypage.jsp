@@ -1540,7 +1540,7 @@ function find_status() {
                 	order_status.text('주문취소');
                 	openRevBtn.text('문의하기');
 //                 	openRevBtn.hide();
-//                     console.log('리뷰보기');
+//                     console.log('리뷰보기');http://localhost:8080/donation
                 } else if(data === 'ok2'){
                 	order_status.text('배송조회');
                 	openRevBtn.text('문의하기');
@@ -1640,7 +1640,7 @@ $setRows.submit(function (e) {
 		evt.preventDefault();
 		var $this = $(this);
 		if ($this.hasClass('active')) {
-			return;
+			return;ㄴ
 		}
 		$pagingLink.removeClass('active');
 		$this.addClass('active');

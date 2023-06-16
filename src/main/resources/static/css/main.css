@@ -114,12 +114,22 @@ a:hover {
         color: #97d4f7;
 }
 /* 검색창 */
+#searchForm {
+	border:none;
+	height: 30px;
+	outline: none;	
+/* 	border-radius: 8px; */
+	width: 25%;
+	margin-right: 1%;
+	 cursor: pointer;
+}
 .search {
     position: relative;
-    width: 100%;
+    width: 105%;
+    
 }
 .searchBox {
-    width: 250px;
+    width: 220px;
     border: 1px solid #bbb;
     border-radius: 15px;
     padding: 5px 5px;
@@ -130,7 +140,8 @@ a:hover {
     position : absolute;
     width: 17px;
     top: 10px;
-    right: 10px;
+    right: 15px;
+    cursor: pointer;
 }
 /* ----------------------------------------------*/
 
@@ -584,6 +595,46 @@ a:hover {
 	color: #F8F8FF;
 }
   
-  
+/* ///드롭다운// */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    font-size: medium;
+    background-color: inherit;
+    color : black;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+}
+.dropbtn:hover {
+    color: #97d4f7;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color : gray;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #97d4f7;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}  
   
     
