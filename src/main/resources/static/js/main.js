@@ -28,6 +28,19 @@ $(document).ready(function() {
   	setInterval(changeText, 1500);
     
 });
+$(document)
+// footer => dialog
+.on('click','#emaildiv',function(){
+	 $('#divemail').dialog({
+		 title:'이메일 주소 무단 수집 거부',
+	     modal:true,
+	     width:600,
+	     height:400,
+	     resizeable : false,
+	     show : 'slideDown',
+	     hide : 'slideUp'	     
+	 })
+})
     /*$(document).on('click', '#search', function() {
 		let search_word = $('#word').val();
 		if(search_word==''){

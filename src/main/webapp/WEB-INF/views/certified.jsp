@@ -28,6 +28,7 @@
 				class="signin_pass" type="button" value="인증확인" id="phoneChk2">
 		</div>
 	</div>
+	
 </body>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script>
