@@ -53,93 +53,7 @@ a:link {
     text-align : center;
     padding : 20px 0;
 }
-/* 카테고리 */    
-#nav {
-	list-style:none;
-	height: 40px;
-	padding: 5px 1px;
-	margin: 0;
-	
-}
-#nav li {
-	float:left;
-	position:relative;
-	margin-top:0.5%;
-	padding:0;
-}
-#nav li a {
-	display:block;
-	padding:7px 8px;
-	margin:0;
-	text-decoration: none;
-}
-#nav ul {
-	list-style: none;
-	margin:0;
-	padding:0;
-	position: absolute;
-	left:0;
-	top:40px;
-	text-align: center;
-	opacity: 0;
-}
-#nav ul li {
-	float: none;
-	margin:0;
-	padding:0;
-	width: 150px;
-	height:40px;
-	background-color: white;
-}
-#nav li:hover ul {
-	opacity: 1;
-	z-index: 1;
-}
-#nav li:hover ul li {
-	overflow: visible;
-	z-index: 1;
-}
-#nav li ul li:hover > a {
-	background-color: #97d4f7;
-	color:black;
-	margin:0;
-	padding:5px;
-	z-index: 1;
-}
-.category {
-    width:100%;
-    height:60px;
-    background-color: white;
-}
-.category_ul {
-    float:right;
-}
-.category_li {
-    float: left;
-    margin-right: 10px;
-}
-a:hover {
-        color: #97d4f7;
-}
-/* 검색창 */
-.search {
-    position: relative;
-    width: 100%;
-}
-.searchBox {
-    width: 250px;
-    border: 1px solid #bbb;
-    border-radius: 15px;
-    padding: 5px 5px;
-    font-size: 14px;
-    margin-top:2%;
-}
-.search_img {
-    position : absolute;
-    width: 17px;
-    top: 10px;
-    right: 10px;
-}
+
 /* ----------------------------------------------*/
 
 
@@ -217,9 +131,9 @@ a:hover {
 
 #nav1 {
 	width: 100%;
-	padding-right: 160px;
+/* 	padding-right: 160px; */
 	padding-top: 15px;
-
+	padding-bottom: 15px;
 	
 }
 
@@ -257,6 +171,23 @@ a:hover {
 
 
 /* ----------- */
+#btnDel {
+    background-color: fff;
+    border:2px solid #fff;
+
+/*    width:9.7%; */
+ /*  border:2px solid #aaa;*/
+   border-radius:4px;
+/*    margin: 2px 0; */
+   outline: none;
+   padding:5px;
+   box-sizing: border-box;
+   transition:.3s;
+   font-weight: bold;
+}
+#btnDel:hover{
+   background-color: #97d4f7;
+}
 
   /* 뉴 버튼 스타일 */
     .button {
@@ -402,28 +333,6 @@ a:hover {
 		<% } %>
 
 		<div class="name">지금 어떤 책을 읽어야 할지 고민하는 사용자의 상태에 맞는 책을 추천해주는 서비스</div>
-    <div class="category">
-    	<ul class="category_ul"  id="nav">
-			<li class="category_li"><a href="/category1">코미디</a></li>
-			<li class="category_li"><a href="/category2">로맨스</a></li>
-			<li class="category_li"><a href="/category3">판타지</a></li>
-			<li class="category_li"><a href="/category4">공포/스릴러/추리</a></li>
-			<li class="category_li"><a href="/category5">드라마/가족</a></li>
-            <li class="category_li"><a href="/donation">기부앤테이크<i class='dropDown'></i></a>
-            	
-            </li>
-             
-            <li class="category_li">
-            	<div class="search">
-                	<input type="text" class="searchBox" placeholder="  검색어를 입력하세요">
-                	<img src="/img/search.png" class="search_img">
-                </div>
-            </li>
-		</ul>
-	</div>
-
-
-
         
         <div class="content">
     
@@ -504,7 +413,7 @@ $(document)
 	
 	 
    let a = $(this).attr('name');
-   
+
    
    $.ajax({
        url: "/memberDel",
