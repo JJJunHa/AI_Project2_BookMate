@@ -279,6 +279,34 @@ $(document)
 //         e.preventDefault();
 })
 
+// footer => dialog
+.on('click','#emaildiv',function(){
+	 $('#divemail').dialog({
+		 title:'이메일 주소 무단 수집 거부',
+	     modal:true,
+	     width:600,
+	     height:400,
+	     resizeable : false,
+	     show : 'slideDown',
+	     hide : 'slideUp'	     
+	 })
+})
+
+var textArray = [
+    "도서 추천 서비스",
+    "독서 목록 관리",
+    "독서 습관 형성",
+    "추천 도서 리뷰",
+    "지금 어떤 책을 읽어야 할지 고민하는 사용자의 상태에 맞는 책을 추천해주는 서비스"
+  ];
+
+  // 텍스트 변경 함수
+  function changeText() {
+    var nameElement = $('.name');
+    var randomIndex = Math.floor(Math.random() * textArray.length);
+    nameElement.text(textArray[randomIndex]);
+  }
+
 function changeTab(tab) {
     // 탭 전환 처리
     if (tab === 'id') {
