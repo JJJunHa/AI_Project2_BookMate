@@ -13,7 +13,7 @@
 
 <!--  integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">  -->
  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <title>마이페이지 | 북메이트 </title>
+    <title>북메이트 | 마이페이지</title>
 </head>
 <body>
 
@@ -497,6 +497,8 @@ document.getElementById("showPwd").addEventListener("click", function() {
 $(document)
 // by ChatGPT
 .ready(function() {	
+	setInterval(changeText, 1500);
+	
 	// 주문 목록 불러오기 
 	loadOrder();
 	

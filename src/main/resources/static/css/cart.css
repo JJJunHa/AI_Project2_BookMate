@@ -150,6 +150,13 @@ a:hover {
 	height:30px;
 	border:none;
 	font-size: 12px;
+	cursor: pointer;
+	background-color:#E6E6E6;
+	transition: all 0.3s;
+	border-radius: 8px;
+}
+.movecate1:hover{
+	background-color: #D8D8D8;
 }
 #countcart {
 	font-size: 20px;
@@ -169,6 +176,7 @@ a:hover {
 	background-color: lightgray;
 	color:white;
 	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
 }
 .allOrder {
 	width: 150px;
@@ -179,10 +187,12 @@ a:hover {
 	background-color: #97d4f7;
 	color:white;
 	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
 }
 .Delete {
 	border:none;
 	background-color: white;
+	cursor: pointer;
 }
 /* 수량 버튼 */
 .qtybtnplus, .qtybtnminus {
@@ -203,6 +213,8 @@ a:hover {
 	width: 30%;
 	border-radius: 10px;
 	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+	transition: all 0.3s;
 }
 input[name="qtytext"] {
   border: none;

@@ -8,7 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
 	<link rel="stylesheet" href="css/board.css">
-	<title>BookMate</title>
+	<title>북메이트</title>
 </head>
 <style>
 
@@ -177,6 +177,13 @@ footer {
 /*     font: 15px/1.5 'SDNeoL', 'notoR'; */
     color: #222;
     }
+    
+       a {
+	 text-decoration-line: none;
+	 text-align: center;
+ 	 color: inherit; /* 링크의 색상 제거 */
+}
+
 </style>
 <body>
     <input value="<%=session.getAttribute("id")%>" hidden>

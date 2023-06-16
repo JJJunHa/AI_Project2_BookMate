@@ -18,8 +18,6 @@ import jakarta.servlet.http.HttpSession;
 public class MypageController {
 	
 	@Autowired private mypageDAO mypagedao;
-	@Autowired private C_CartDAO c_cartdao;
-	@Autowired private C_CategoryDAO c_categorydao;
 	
 	@GetMapping("/mypage")
     public String showMypage(HttpServletRequest req, Model model) {

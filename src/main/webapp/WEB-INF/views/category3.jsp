@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/category.css">
 <link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
-<title>북메이트 - 판타지</title>
+<title>북메이트 | 판타지</title>
 </head>
 <body>
 
