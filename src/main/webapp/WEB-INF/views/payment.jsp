@@ -9,23 +9,39 @@
 </head>
 <body>
 <div class="main">
-	<div class="logo">
+	<input value="<%=session.getAttribute("id")%>" hidden>
+
+<div class="main">
+<div class="logo">
     	<a href="/main"><img src="/img/logo2.png" class="logoImg"></a>
     </div>
-    <% if(session.getAttribute("id")!=null){ %>
     
-    <div class="menu">
-        <a href="/logout">로그아웃</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
-    </div>
-   
-   <% } else {%>
-   
-   <div class="menu">
-        <a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/login" onclick="alert('로그인 후 이용해주세요')">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
-    </div>
-    
-    <% } %>
-    
+	<% if(session.getAttribute("id") != null && !"".equals(session.getAttribute("id")) && !session.getAttribute("id").equals("bookmate")) { %>
+		
+			<div class="menu">
+				<%= session.getAttribute("id") %> 님, <a href="/logout">로그아웃</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+			</div>
+		
+		<% } else if (session.getAttribute("id") != null && "bookmate".equals(session.getAttribute("id"))) { %>
+		
+			<div class="menu">
+				<%= session.getAttribute("id") %> 님, <a href="/logout">로그아웃</a>&nbsp;|&nbsp;
+				<div class="dropdown">
+					<button class="dropbtn">관리자</button>
+					<div class="dropdown-content">
+						<a href="/memlist">회원관리</a> <a href="/orlist">주문관리</a> <a href="/revlist">리뷰관리</a><a href="/prolist">상품관리</a><a href="/adminNew">상품추가</a>
+					</div>
+				</div>
+				&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+			</div>
+		
+		<% } else { %>
+		
+			<div class="menu">
+				<a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/login" onclick="alert('로그인 후 이용해주세요')">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+			</div>
+		
+		<% } %>
     <div class="name">지금 어떤 책을 읽어야 할지 고민하는 사용자의 상태에 맞는 책을 추천해주는 서비스</div>
     <div class="category">
     	<ul class="category_ul"  id="nav">

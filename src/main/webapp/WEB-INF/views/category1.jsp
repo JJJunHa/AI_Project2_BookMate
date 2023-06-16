@@ -19,19 +19,32 @@
     	<a href="/main"><img src="/img/logo2.png" class="logoImg"></a>
     </div>
     
-	<% if(session.getAttribute("id")!=null){ %>
-    
-    <div class="menu">
-        <%=session.getAttribute("id")%> 님, <a href="/logout">로그아웃</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
-    </div>
-   
-	<% } else {%>
-	
-	<div class="menu">
-        <a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/login" onclick="alert('로그인 후 이용해주세요')">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
-    </div>
-    
-    <% } %>
+	<% if(session.getAttribute("id") != null && !"".equals(session.getAttribute("id")) && !session.getAttribute("id").equals("bookmate")) { %>
+		
+			<div class="menu">
+				<%= session.getAttribute("id") %> 님, <a href="/logout">로그아웃</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+			</div>
+		
+		<% } else if (session.getAttribute("id") != null && "bookmate".equals(session.getAttribute("id"))) { %>
+		
+			<div class="menu">
+				<%= session.getAttribute("id") %> 님, <a href="/logout">로그아웃</a>&nbsp;|&nbsp;
+				<div class="dropdown">
+					<button class="dropbtn">관리자</button>
+					<div class="dropdown-content">
+						<a href="/memlist">회원관리</a> <a href="/orlist">주문관리</a> <a href="/revlist">리뷰관리</a><a href="/prolist">상품관리</a><a href="/adminNew">상품추가</a>
+					</div>
+				</div>
+				&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+			</div>
+		
+		<% } else { %>
+		
+			<div class="menu">
+				<a href="/login">로그인</a>&nbsp;|&nbsp;<a href="/login" onclick="alert('로그인 후 이용해주세요')">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+			</div>
+		
+		<% } %>
     
     <div class="name">지금 어떤 책을 읽어야 할지 고민하는 사용자의 상태에 맞는 책을 추천해주는 서비스</div>
     <div class="category">
@@ -45,10 +58,17 @@
             </li>
              
             <li class="category_li">
+<!--              <form method="get" action="/All/search"> -->
             	<div class="search">
-                	<input type="text" class="searchBox" placeholder="  검색어를 입력하세요">
-                	<img src="/img/search.png" class="search_img">
+            		<select name="type" id="searchForm">
+							<option value="book_name||AUTHOR">전체검색</option>
+							<option value="book_name">제목</option>
+							<option value="AUTHOR">저자</option>
+					</select> 
+                	<input type="text" id="keyword" name="keyword" class="searchBox" placeholder="  검색어를 입력하세요">
+                	<img src="/img/search.png" class="search_img" id=Submit alt="Submit" type="submit">
                 </div>
+<!--              </form> -->
             </li>
 		</ul>
 	</div>
@@ -88,7 +108,37 @@ $(document)
 	document.location='/detail/'+imgval;
 })
 
-
+// 검색어 기능 구현
+.on('click','#Submit',function(){
+	let selectVal = $('#searchForm').val();
+// 	console.log(selectVal);
+	let keyword = $('#keyword').val().trim();
+// 	console.log(keyword);
+	if(keyword==='') {
+		alert('검색어를 입력해주세요.');
+		$('#keyword').val('');
+		return false;
+	} else {
+		$.ajax({
+			url:"/search",
+			data:{selectVal:selectVal, keyword:keyword},
+			type:"post",
+			dataType:"json",
+			success:function(data){
+				$('.divbody_r_footer').empty();
+				$('.book').empty();
+				for(i=0; i<data.length; i++){		
+						let Prod_img = '<img src="'+data[i]['book_cover']+'" class="book_img" alt="" picname="'+data[i]['book_num']+'">'
+						let str = "<p id=name>"+data[i]['book_name']+"</p>" + "<p id=write>"+data[i]['author']+"</p>" + "<p id=date>"+data[i]['publication']+"</p>" + "<p id=price>"+data[i]['book_price']+"</p>"  
+						let div ='<div class="a"><div class="bookImg">'+Prod_img+'</div><div class="bookName">'+str+'</div></div>'
+						$('.book').append(div);
+// 						console.log(div);
+						}
+				
+			}})
+	}
+	
+})
 
 function loaddata(pageNum){
 	$.ajax({
