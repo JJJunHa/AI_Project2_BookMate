@@ -148,6 +148,13 @@ a:hover {
 	height:30px;
 	border:none;
 	font-size: 12px;
+	cursor: pointer;
+	border-radius: 8px;
+	background-color:#E6E6E6;
+	transition: all 0.3s;
+}
+.movecart:hover {
+	background-color: #D8D8D8;
 }
 #countpay {
 	font-size: 20px;
@@ -237,6 +244,7 @@ a:hover {
 	width: 10%;
 	height:25%;
 	border: none;
+	cursor: pointer;
 }
 /* 결제 정보 */
 .payment-price {
@@ -287,6 +295,11 @@ a:hover {
 	border: none;
 	color:white;
 	font-size: 15px;
+	cursor: pointer;
+	transition: all 0.3s;
+}
+.btnOrder:hover {
+	background-color:#2E9AFE;
 }
 
 /* ///드롭다운// */
@@ -382,3 +395,9 @@ footer {
 /*     font: 15px/1.5 'SDNeoL', 'notoR'; */
     color: #222;
     }
+    
+    a {
+ 	 text-decoration-line: none;
+ 	 text-align: center;
+  	 color: inherit; /* 링크의 색상 제거 */
+}

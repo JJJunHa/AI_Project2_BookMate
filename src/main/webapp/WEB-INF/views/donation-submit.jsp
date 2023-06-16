@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="css/donation.css">
 <link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-<title>북메이트 - 기부앤테이크</title>
+<title>북메이트 | 기부앤테이크</title>
 </head>
 <body>
 
@@ -222,7 +222,8 @@ $(document)
 .ready(function(){
 	loadPersonInfo();
 	agreeSelection();
-	dona_waySelection()
+	dona_waySelection();
+	setInterval(changeText, 1500);
 })
 
 // 기부앤테이크 신청하기 버튼 클릭 시

@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/payment.css">
-<title>pay</title>
+<link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
+<title>북메이트 | 결제페이지</title>
 </head>
 <body>
 <div class="main">
@@ -255,6 +256,7 @@
 <script>
 $(document)
 .ready(function(){
+	setInterval(changeText, 1500);
 	loadCart();
 	$('#zipbutton').prop('disabled', true);
 	$('#change-radio').prop('checked', true);
@@ -293,7 +295,7 @@ $(document)
 		return false;
 	}
 	if($('#postcode').val()===null||$('#postcode').val()===''){
-		alert('우편버호를 입력해주세요');
+		alert('우편번호를 입력해주세요');
 		$('#postcode')[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
 		  $('.postcodeBox').css('border', '0.5px solid red');
 		  $(document).on('click', function() {
@@ -495,13 +497,13 @@ function loadCart() {
 		    		 
 		    		 $('#tblPayment').append(str);
 		       	 }
-		    		 $(document)
-		    		 .on('click','.tblPayment tr td:nth-child(-n+3)', function(){
-		    			 	let book_num = $(this).attr('id');
-		    				console.log(book_num);
-		    				console.log('check');
-		    				document.location="/detail/"+book_num;
-		    			})
+// 		    		 $(document)
+// 		    		 .on('click','.tblPayment tr td:nth-child(-n+3)', function(){
+// 		    			 	let book_num = $(this).attr('id');
+// // 		    				console.log(book_num);
+// // 		    				console.log('check');
+// 		    				document.location="/detail/"+book_num;
+// 		    			})
 			}
 			countCart();
 		}
