@@ -218,6 +218,7 @@ a:hover {
 	width: 100%;
 /* 	padding-right: 160px; */
 	padding-top: 15px;
+	padding-bottom: 20px;
 
 	
 }
@@ -460,7 +461,7 @@ footer {
     
             <div class="content_A">
                 <h1>상품목록</h1>
-                <form method="post" action="/book/search">
+                <form method="post" action="/booksearch">
 					<div class="pSearch">
 						<select name="type" id="searchForm">
 							<option value="book_name||author||book_price||book_genre||emotion||rating">전체검색</option>
