@@ -78,27 +78,27 @@
 	</select>
 <!-- 	회원삭제 -->
 	
-<!-- 	<delete id=""> -->
-<!-- 		delete from cart where id= #{param1} -->
-<!-- 	</delete> -->
-<!-- 	<delete id=""> -->
-<!-- 		delete from cart where id= #{param1} -->
-<!-- 	</delete> -->
-<!-- 	<delete id=""> -->
-<!-- 		delete from cart where id= #{param1} -->
-<!-- 	</delete> -->
-<!-- 	<delete id=""> -->
-<!-- 		delete from cart where id= #{param1} -->
-<!-- 	</delete> -->
-<!-- 	<delete id=""> -->
-<!-- 		delete from cart where id= #{param1} -->
-<!-- 	</delete> -->
-<!-- 	<delete id=""> -->
-<!-- 		delete from cart where id= #{param1} -->
-<!-- 	</delete> -->
-<!-- 	<delete id=""> -->
-<!-- 		delete from cart where id= #{param1} -->
-<!-- 	</delete> -->
+	<delete id="mcdel">
+		delete from cart where id= #{param1}
+	</delete>
+	<delete id="model">
+		delete from ordered_cart where o_id= #{param1}
+	</delete>
+	<delete id="mpdel">
+		delete from payment where id= #{param1}
+	</delete>
+	<delete id="mrdel">
+		delete from review where id= #{param1}
+	</delete>
+	<delete id="mbdel">
+		delete from board where id= #{param1}
+	</delete>
+	<delete id="mbcdel">
+		delete from board_comment where id= #{param1}
+	</delete>
+	<delete id="mdel">
+		delete from member where id= #{param1}
+	</delete>
 	<!-- 리뷰 -->
 	<select id="revlist"
 		resultType="com.human.springboot.AdminController.AdminDTO">
