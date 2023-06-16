@@ -122,7 +122,7 @@
 			<div id="modal-container">
     <div id="modal-content">
       <h2>감정블록</h2>
-      <p>나는 감정블록이에요</p>
+      <p>감정 분석이 되지 않았어요. 다시 시도 해주세요.</p>
       <div id="color-list">
         <div class="color-item" style="background-color: #1E90FF;"></div>
         <div class="color-item" style="background-color: #00BFFF;"></div>

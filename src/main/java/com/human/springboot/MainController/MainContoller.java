@@ -21,7 +21,7 @@ public class MainContoller {
 	
 	@GetMapping("/apikey")
 	  public ResponseEntity<String> getApiKey() {
-	    String apiKey = "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";
+	    String apiKey = "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";
 	    return ResponseEntity.ok(apiKey);
 	  }
 	@GetMapping("/")
@@ -100,6 +100,12 @@ public class MainContoller {
 		String emotion=req.getParameter("emotion")+"";
 		if(emotion.equals("우울")||emotion.equals("우울")) {
 			emotion="슬픔";
+		}
+		if(emotion.equals("기쁨")||emotion.equals("즐거움")) {
+			emotion="행복";
+		}
+		if(emotion.equals("스트레스")||emotion.equals("화가남")) {
+			emotion="분노";
 		}
 
     	
