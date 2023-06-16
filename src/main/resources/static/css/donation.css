@@ -232,6 +232,7 @@ hr {
     background-color: raba(0,0,0,0);
     color: gray;
     padding: 5px;
+    cursor: pointer;
 }
 /* 신청 버튼 */
 .submit_btn {
@@ -244,6 +245,7 @@ hr {
     padding: 5px;
     color: white;
     font-size: 15px;
+    cursor: pointer;
 }
 /* ----------------------기부안내 페이지------------------------*/
 #contentBanner {
@@ -323,6 +325,7 @@ a {
     border:none;
     font-size: 12px;
     margin-top:3%;
+    cursor: pointer;
 }
 
 /* ///드롭다운// */

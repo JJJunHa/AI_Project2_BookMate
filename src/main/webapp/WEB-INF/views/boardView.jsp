@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
 
-<title>북메이트 - 게시판</title>
+<title>북메이트</title>
 </head>
 <style>
 .main {
@@ -434,7 +434,12 @@ footer {
     margin: 14px 0 5px;
 /*     font: 15px/1.5 'SDNeoL', 'notoR'; */
     color: #222;
-    }
+}
+   a {
+	 text-decoration-line: none;
+	 text-align: center;
+ 	 color: inherit; /* 링크의 색상 제거 */
+}
 </style>
 <body>
 
@@ -713,9 +718,9 @@ $('#summernote').summernote('disable')  //써머노트 readonly
 //게시글 삭제
 .on('click','#btnDelete',function(){
 	let a=${bView.board_num}
-	if(!confirm("정말로 삭제하시겠습니까?")){
-		return false;
-	}
+// 	if(!confirm("정말로 삭제하시겠습니까?")){
+// 		return false;
+// 	}
 	document.location='/bDelete/'+a;
 })
 //댓글작성

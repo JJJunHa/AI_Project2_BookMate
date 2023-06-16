@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/cart.css">
 <link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
-<title>북메이트 - 장바구니</title>
+<title>북메이트 | 장바구니</title>
 </head>
 <body>
 
@@ -149,7 +149,7 @@
 <script>
 $(document)
 .ready(function(){
-	
+	setInterval(changeText, 1500);
 	loadCart();
 })
 .on('click','.allOrder',function(){

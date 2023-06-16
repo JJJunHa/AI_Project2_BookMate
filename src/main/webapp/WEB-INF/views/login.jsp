@@ -160,7 +160,11 @@
 <script>
 
 $(document)
+.ready(function(){
+	setInterval(changeText, 1500);
+})
 
+$(document)
 .on('submit','#L_fm',function(){
    
    let id = $('#id').val();
@@ -194,10 +198,11 @@ document.getElementById("showPwd").addEventListener("click", function() {
 			passwordInput.type = "password";
 			eyeIcon.src = "/img/free-icon-eye-show.jpg";
 		}
-	});
+	})
 
 
 //footer => dialog
+$(document)
 .on('click','#emaildiv',function(){
 	 $('#divemail').dialog({
 		 title:'이메일 주소 무단 수집 거부',
@@ -224,29 +229,5 @@ var textArray = [
     var randomIndex = Math.floor(Math.random() * textArray.length);
     nameElement.text(textArray[randomIndex]);
   }
-// .ready(function() {
-
-//   $('#showPwd').on('click', function() {
-
-//     var passwordField = $('#pwd');
-
-//     var passwordFieldType = passwordField.attr('type');
-
-//     if(passwordFieldType == 'password') {
-
-//         passwordField.attr('type', 'text');
-
-//         $(this).val('Hide');
-        
-//     } else {
-
-//         passwordField.attr('type', 'password');
-
-//         $(this).val('Show');
-//     }
-    
-//   });
-// })
-
 </script>
 </html>
