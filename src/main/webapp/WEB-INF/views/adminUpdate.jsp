@@ -532,6 +532,9 @@ $(document)
 		})
 	.on('click','#btnDelete',function(){
 		let a=$(book_num).val();
+		if(!confirm("정말로 삭제하시겠습니까?")){
+		      return false;
+		   }
 		document.location='/productDelete/'+a;
 	})
 	 .on('click', '#btnModify', function(){
@@ -588,7 +591,7 @@ $(document)
 	                });
 	            }
 	        });
-	    });
+	    })
 
 //footer => dialog
 .on('click','#emaildiv',function(){

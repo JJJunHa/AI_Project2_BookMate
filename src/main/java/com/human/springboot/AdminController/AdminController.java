@@ -169,7 +169,7 @@ public class AdminController {
 			return "redirect:/prolist";
 		}
 //    상품검색
-		@PostMapping("/book/search")
+		@PostMapping("/booksearch")
 		public String bSearch(Model model, @RequestParam("type") String type, @RequestParam("keyword") String keyword) {
 		    ArrayList<AdminDTO> pSearch = adao.pSearch(type, keyword);
 		    model.addAttribute("pl", pSearch);
