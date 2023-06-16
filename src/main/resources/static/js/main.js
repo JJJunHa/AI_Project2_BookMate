@@ -338,7 +338,7 @@ function appendBoxesToGrid(data) {
 	}	
 
     for (let i = 0; i < data.length; i++) {
-
+		
         let box = `
             <div class="grid-cell">
                     		
@@ -372,7 +372,7 @@ function appendBoxesToGrid(data) {
             					
         `;
         
-
+		console.log(box);
         $('#grid-container').append(box);
     	
     }	

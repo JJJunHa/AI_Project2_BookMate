@@ -121,7 +121,7 @@ public class MainContoller {
             jo.put("BOOK_COVER", emotionBookList.get(i).getBOOK_COVER());
             jo.put("BOOK_CONTENT", emotionBookList.get(i).getBOOK_CONTENT());
             jo.put("PUBLICATION", emotionBookList.get(i).getPUBLICATION());
-            
+            jo.put("BOOK_SUMMARY", emotionBookList.get(i).getBOOK_SUMMARY());
             ja.put(jo);
         }
         return ja.toString();
@@ -148,6 +148,8 @@ public class MainContoller {
             jo.put("BOOK_COVER", priceBookList.get(i).getBOOK_COVER());
             jo.put("BOOK_CONTENT", priceBookList.get(i).getBOOK_CONTENT());
             jo.put("PUBLICATION", priceBookList.get(i).getPUBLICATION());
+            jo.put("BOOK_SUMMARY", priceBookList.get(i).getBOOK_SUMMARY());
+
             
             ja.put(jo);
         }
@@ -174,7 +176,7 @@ public class MainContoller {
             jo.put("BOOK_COVER", genrenBookList.get(i).getBOOK_COVER());
             jo.put("BOOK_CONTENT", genrenBookList.get(i).getBOOK_CONTENT());
             jo.put("PUBLICATION", genrenBookList.get(i).getPUBLICATION());
-            
+            jo.put("BOOK_SUMMARY", genrenBookList.get(i).getBOOK_SUMMARY());
             ja.put(jo);
         }
         return ja.toString();
@@ -199,7 +201,7 @@ public class MainContoller {
             jo.put("BOOK_COVER", gradeBookList.get(i).getBOOK_COVER());
             jo.put("BOOK_CONTENT", gradeBookList.get(i).getBOOK_CONTENT());
             jo.put("PUBLICATION", gradeBookList.get(i).getPUBLICATION());
-            
+            jo.put("BOOK_SUMMARY", gradeBookList.get(i).getBOOK_SUMMARY());
             ja.put(jo);
         }
         return ja.toString();
