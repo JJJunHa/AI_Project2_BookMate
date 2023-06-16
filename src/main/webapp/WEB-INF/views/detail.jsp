@@ -55,10 +55,12 @@ a:link {
 	list-style:none;
 	height: 40px;
 	padding: 5px 1px;
-	margin: 0;
+	margin: 0 auto;
+	text-align: center; /* 가운데 정렬을 위해 추가 */
 }
 #nav li {
-	float:left;
+ 	display: inline-block; /* 가로로 나열하기 위해 수정 */
+/* 	float:left; */
 	position:relative;
 	margin-top:0.5%;
 	padding:0;
@@ -79,26 +81,21 @@ a:link {
 	text-align: center;
 	opacity: 0;
 }
-#nav ul li {
-	float: none;
-	margin:0;
-	padding:0;
-	width: 150px;
-	height:40px;
-	background-color: white;
-}
+
 .category {
     width:100%;
     height:60px;
     background-color: white;
-    margin-left:27%;
+    text-align: center; /* 가운데 정렬을 위해 추가 */
+/*     margin-left:27%; */
 }
 .category_ul {
 /*     float:center; */
-
+ 	display: inline-block; /* 가로로 나열하기 위해 수정 */
 }
 .category_li {
-    float: left;
+/*     float: left; */
+	display: inline-block; /* 가로로 나열하기 위해 수정 */
     margin-right: 10px;
 }
 a:hover {
@@ -597,6 +594,17 @@ footer {
 /*     font: 15px/1.5 'SDNeoL', 'notoR'; */
     color: #222;
     }
+    
+/* 상세페이지에 detetail img */
+.book_detail {
+	width: 100%;
+	margin-top: 3%;
+	margin-bottom: 1%;
+}    
+.detail_img {
+	width: 900px;
+}
+    
 </style>
 <body>
 
@@ -644,18 +652,6 @@ footer {
 			<li class="category_li"><a href="/category5">드라마/가족</a></li>
             <li class="category_li"><a href="/donation">기부앤테이크<i class='dropDown'></i></a>
             </li>
-             
-<!--             <li class="category_li"> -->
-<!--             	<div class="search"> -->
-<!--             		<select name="type" id="searchForm"> -->
-<!-- 							<option value="book_name||AUTHOR">전체검색</option> -->
-<!-- 							<option value="book_name">제목</option> -->
-<!-- 							<option value="AUTHOR">저자</option> -->
-<!-- 					</select>  -->
-<!--                 	<input type="text" id="keyword" name="keyword" class="searchBox" placeholder="  검색어를 입력하세요"> -->
-<!--                 	<img src="/img/search.png" class="search_img" id=Submit alt="Submit" type="submit"> -->
-<!--                 </div> -->
-<!--             </li> -->
 		</ul>
 	</div>
         <div class="content-main">
@@ -716,6 +712,7 @@ footer {
         		<div class=info-coment id=info-coment>
         			<p id="info-content1">책 소개</p><br>
         			<p id="info-content2"></p>
+        			<div class="book_detail" id=book_detail></div>
         		</div>
         		<div class="divReview" id="divReview">
         			<p id="info-review">책 리뷰</p><br>
@@ -1268,6 +1265,19 @@ function loadData() {
 
 			let book_content = data[0]['book_content'];
 			$('#info-content2').text(book_content);
+			
+			
+			console.log(data[0]['book_detail']);
+			if(typeof data[0]['book_detail'] === 'undefined' || data[0]['book_detail'] === '' || data[0]['book_detail'] === null) {
+				console.log(data[0]['book_detail']);
+				let book_detail = '';
+// 				console.log(book_detail);
+				$('#book_detail').empty().append(book_detail);
+			} else {
+				let book_detail = '<img src="' + data[0]['book_detail'] + '" class="detail_img" id="detail_img">';
+				$('#book_detail').empty().append(book_detail);
+			}
+			
 		}
 	});
 }
