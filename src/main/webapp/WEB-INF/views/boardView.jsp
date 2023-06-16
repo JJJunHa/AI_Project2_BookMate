@@ -601,6 +601,9 @@ $('#summernote').summernote('disable')  //써머노트 readonly
 //게시글 삭제
 .on('click','#btnDelete',function(){
 	let a=${bView.board_num}
+	if(!confirm("정말로 삭제하시겠습니까?")){
+		return false;
+	}
 	document.location='/bDelete/'+a;
 })
 //댓글작성
