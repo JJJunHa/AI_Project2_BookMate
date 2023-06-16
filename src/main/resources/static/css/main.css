@@ -273,10 +273,10 @@ a:hover {
   width: 100%;
   display: flex;
   flex-wrap: wrap; 
-  margin-left: 10px;
+  margin-left: 0px;
 }
 .main-image{
-	margin-left: 33.33%;
+	margin-left: 21%;
 	width:200px; 
 	height:280px; 
 }
@@ -316,7 +316,7 @@ a:hover {
 		position: absolute;
 		bottom: 0px;
 		width:100%; 
-  		margin-left: 33.33%;
+  		margin-left: 21%;
   		/* margin-bottom: 0px; */ 
   		opacity: 1;
   		transform: translateY(0);
@@ -488,7 +488,7 @@ a:hover {
   
   /*이미지호버*/
   .image_overlay
-{	margin-left: 25px;
+{	margin-left: 0px;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -653,6 +653,7 @@ footer {
     display: block;
     margin-bottom:10px;
 	padding:10px;
+	margin-top: 200px;
 }
 .footer-layer2 {
 	display: flex;

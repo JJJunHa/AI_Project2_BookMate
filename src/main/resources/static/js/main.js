@@ -1,4 +1,12 @@
 $(document).ready(function() {
+	
+	$('#keyword').on('keyup', function(event) {
+	  if (event.keyCode === 13) {
+	    event.preventDefault();
+	    $('#Submit').click();
+	  }
+	});
+	
 	$('#loading').hide();
 	showBook();//도서 호출
 	$('#grid-container').empty();
@@ -328,6 +336,7 @@ function appendBoxesToGrid(data) {
 	if(data==null||data==""){
 		alert("찾으시는 도서가 없습니다.")
 	}	
+
     for (let i = 0; i < data.length; i++) {
 
         let box = `
@@ -373,8 +382,14 @@ function appendBoxesToGrid(data) {
     	if(data==""){
 			 $('.footer').css('margin-top', 1000+'px');
 		}
-        var gridHeight = $('.grid-container').height();
- 		  $('.container').css('height', gridHeight+'px');
+
+		if($('.grid-container').height()===430){
+
+			$('.container').css('height', 770+'px');
+		}else{
+       	  	var gridHeight = $('.grid-container').height();
+ 		  	$('.container').css('height', gridHeight+'px');							
+			 }	
    
 }
 
@@ -382,7 +397,8 @@ function appendSelectBoxesToGrid(data) {
 						if(data==null||data==""){
 								alert("찾으시는 도서가 없습니다.")
 							}	
-							    
+
+   
 						for (let i = 0; i < data.length; i++) {
 							
 							        let box = `
@@ -420,16 +436,23 @@ function appendSelectBoxesToGrid(data) {
 							        
 									
 							        $('#grid-container').append(box);
-									console.log(box);
-													}		
+									
+													}
+ 
+		if($('.grid-container').height()===430){
+
+			$('.container').css('height', 770+'px');
+		}else{
+       	  	var gridHeight = $('.grid-container').height();
+ 		  	$('.container').css('height', gridHeight+'px');							
+			 }	 		
         if(data==null||data==""){
 			location.reload();
 		}
     	if(data==""){
-			 $('.footer').css('margin-top', 1000+'px');
+			 $('.footer').css('margin-top', 0+'px');
 		}
-        var gridHeight = $('.grid-container').height();
- 		  $('.container').css('height', gridHeight+'px');
+
    
 }
 
