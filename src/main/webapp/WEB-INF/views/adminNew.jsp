@@ -385,7 +385,8 @@ footer {
                
                
                   <label for="book_name">제목:</label>
-                  <input type="text" class="form-control form-control-lg" id="book_name" name="book_name"><br>
+                  <input type="text" class="form-control form-control-lg" id="book_name" name="book_name">
+                  <br><font id="bnGuide" for="bnGuide"  style="font-size: 10px; font-weight:bold;">도서명을 입력하시오</font>
                    <br>
                    
                   <label for="book_price">가격:</label>
@@ -522,6 +523,27 @@ footer {
 $(document)
 .ready(function(){
 	setInterval(changeText, 1500);
+})
+/* 도서명 입력 */
+.on('keyup','#book_name',function(){
+	var inputVal = $(this).val();
+	if (inputVal !== '') {
+   $.ajax({url:'/book_nameCheck',
+          type:'post', 
+          dataType:'text', 
+         data:{book_name:$('#book_name').val()},
+         
+         success:function(data){ 
+        	if(data === "등록 가능한 도서입니다") {
+                $('#bnGuide').text(data);
+        	} else {
+        		$('#bnGuide').text(data);
+        		$('#book_name').val('');
+        	}
+        	
+         }
+   })
+	}
 })
 .on('click','#btnInsert',function(){
      var formData = new FormData();   // 자바스크립트에서 폼 데이터를 다루는 객체

@@ -387,11 +387,11 @@ a {
                    <br>
                
                   <label for="book_name">제목</label>
-                  <input type="text" class="form-control form-control-lg" id="book_name" name="book_name" value="${pro.book_name}"><br>
+                  <input type="text" class="form-control form-control-lg" id="book_name" name="book_name" value="${pro.book_name}" readonly><br>
                    <br>
                    
                   <label for="book_price">가격</label>
-                  <input type="text" class="form-control form-control-lg" id="book_price" name="book_price" value="${pro.book_price}"><br>
+                  <input type="text" class="form-control form-control-lg" id="book_price" name="book_price" value="${pro.book_price}" ><br>
                   <br>
                   
                   <label for="book_genre">장르</label> 
@@ -425,7 +425,7 @@ a {
                   <br>
                    
                   <label for="author">작가</label>
-                  <input type="text" id="author" name="author"   value="${pro.author}"><br>
+                  <input type="text" id="author" name="author"   value="${pro.author}" readonly><br>
                   <br>
                   
                   <label for="publication">출판일</label>
