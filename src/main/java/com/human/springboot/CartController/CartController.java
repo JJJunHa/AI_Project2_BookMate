@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 
 @Controller
@@ -23,7 +24,14 @@ public class CartController {
    private CartDAO cartdao;
    
    @GetMapping("/cart")
-   public String showCart() {
+   public String showCart(HttpServletRequest req) {
+	   
+	HttpSession session = req.getSession();
+   	
+   	if (session == null || session.getAttribute("id") == null) {
+           // 아이디 세션이 만료되었을 때 로그인 페이지로 리다이렉트
+           return "redirect:/login";
+    }
        return "cart";
    }
 
