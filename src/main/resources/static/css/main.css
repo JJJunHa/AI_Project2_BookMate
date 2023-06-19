@@ -425,6 +425,11 @@ a {
   	text-align: center;
     font-size: 15px;
     font-weight: normal;
+    /* 0619 main에서 글자 넘어가면 ... 표시하기 추가 */
+    width:200px;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+	overflow:hidden;    
   }
   .button {
    display: inline-block;
