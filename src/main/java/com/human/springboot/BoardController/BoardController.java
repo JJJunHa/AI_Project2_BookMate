@@ -105,19 +105,15 @@ public class BoardController {
 		ArrayList<boardDTO> comment = bdao.comment(Integer.parseInt(board_num));
 		JSONArray ja = new JSONArray();
 		for(int i=0; i<comment.size(); i++) {
-			
 			JSONObject jo = new JSONObject();
 			jo.put("id", comment.get(i).getID());
 			jo.put("bc_create_date", comment.get(i).getBc_create_date());
 			jo.put("bc_content", comment.get(i).getBc_content());
 			jo.put("bcontent_num", comment.get(i).getBcontent_num());
-			if (id.equals(comment.get(i).getID())||id.equals("bookmate")) {
-	            jo.put("check", "check");
-	        }
-			
-			
-			
-			ja.put(jo);
+			 if (id != null && (id.equals(comment.get(i).getID()) || id.equals("bookmate"))) {
+		            jo.put("check", "check");
+		        }
+		        ja.put(jo);
 		}
 		return ja.toString();
 	}

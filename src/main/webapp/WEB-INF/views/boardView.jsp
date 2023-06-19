@@ -848,7 +848,7 @@ function showBC() {
 					      	let box4='';
 							if (data[i]['check'] == 'check') {
 								box4 = box + box2 + box3;
-							} else {
+							} else  {
 								box4 = box + box3;
 								
 							}
