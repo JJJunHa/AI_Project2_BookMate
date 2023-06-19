@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
-    <title>BookMate</title>
+    <title>북메이트</title>
 </head>
 <style>
 .main {
@@ -449,6 +449,12 @@ footer {
 /*     font: 15px/1.5 'SDNeoL', 'notoR'; */
     color: #222;
     }
+    
+       a {
+	 text-decoration-line: none;
+	 text-align: center;
+ 	 color: inherit; /* 링크의 색상 제거 */
+}
 </style>
 <body>
     <div class="main">
@@ -605,7 +611,7 @@ footer {
           <div class="footer-layer2">
               <div class="footer-1">
                       상호명 및 호스팅 서비스 제공 : BookMATE<br>
-                      대표이사 : 김준하짱<br>
+                      대표이사 : 김준하<br>
                       충남 천안시 동남구 대흥로 215 7층, 8층 <br>
                       사업자 등록번호 : 422-4212-421    
               </div>

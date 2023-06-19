@@ -23,6 +23,12 @@ public class MypageController {
     public String showMypage(HttpServletRequest req, Model model) {
     	
     	HttpSession session = req.getSession();
+    	
+    	if (session == null || session.getAttribute("id") == null) {
+            // 아이디 세션이 만료되었을 때 로그인 페이지로 리다이렉트
+            return "redirect:/login";
+        }
+    	
 		String id=(String)session.getAttribute("id");
 //		System.out.println(id);
 		
@@ -244,7 +250,7 @@ public class MypageController {
 		
 		POSTDTO qo=mypagedao.QviewList(BordNum.getBoard_num());
 
-		String pstr=qo.getB_title()+",:"+qo.getBcontent_num()+",:"+qo.getId()+
+		String pstr=qo.getB_title()+",:"+qo.getB_content()+",:"+qo.getId()+
 				",:"+qo.getB_create_date()+",:"+qo.getB_update_date()+",:"+qo.getB_rcount()+",:"+qo.getBoard_num();
 	
 		return pstr;

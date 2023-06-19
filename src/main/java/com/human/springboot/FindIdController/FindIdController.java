@@ -69,6 +69,8 @@ public class FindIdController {
 		return val;
 	}
 	
+	
+	// 이메일로 임시비밀번호 보내주는 컨트롤러 코드
 	@PostMapping("/sendEmail")
     @ResponseBody
     public String sendEmail(HttpServletRequest req) {

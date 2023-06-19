@@ -30,6 +30,11 @@ public class PaymentController {
 	@GetMapping("/payment")
 	public String dopayment(HttpServletRequest req, Model model) {
 	HttpSession session = req.getSession();
+	if (session == null || session.getAttribute("id") == null) {
+        // 아이디 세션이 만료되었을 때 로그인 페이지로 리다이렉트
+        return "redirect:/login";
+	}
+	
 	String id=(String)session.getAttribute("id");
 	PaymentDTO ship=pdao.selectShip(id);
 	String cut[]=ship.getAddress().split("@");
@@ -44,9 +49,15 @@ public class PaymentController {
     
 	return "payment";
 	}
+	
 	@GetMapping("/singlePayment")
 	public String dosinglePayment(HttpServletRequest req, Model model) {
 	HttpSession session = req.getSession();
+	if (session == null || session.getAttribute("id") == null) {
+        // 아이디 세션이 만료되었을 때 로그인 페이지로 리다이렉트
+        return "redirect:/login";
+	}
+	
 	String id=(String)session.getAttribute("id");
 	PaymentDTO ship=pdao.selectShip(id);
 	String cut[]=ship.getAddress().split("@");
@@ -61,6 +72,7 @@ public class PaymentController {
     
 	return "singlePayment";
 	}
+	
 	@PostMapping("/singleInsert_cart")
 	@ResponseBody
 	public String insert_cart(HttpServletRequest req) {

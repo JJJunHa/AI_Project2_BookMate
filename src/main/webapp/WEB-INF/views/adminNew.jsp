@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
-    <title>BookMate</title>
+    <title>북메이트</title>
 </head>
 <style>
 .main {
@@ -329,6 +329,12 @@ footer {
 /*     font: 15px/1.5 'SDNeoL', 'notoR'; */
     color: #222;
     }
+    
+       a {
+	 text-decoration-line: none;
+	 text-align: center;
+ 	 color: inherit; /* 링크의 색상 제거 */
+}
 </style>
 <body>
     <div class="main">
@@ -455,7 +461,7 @@ footer {
               <div class="footer-1">
 <!--                   <address> -->
                       상호명 및 호스팅 서비스 제공 : BookMATE<br>
-                      대표이사 : 김준하짱<br>
+                      대표이사 : 김준하<br>
                       충남 천안시 동남구 대흥로 215 7층, 8층 <br>
                       사업자 등록번호 : 422-4212-421    
 <!--                       고객 서비스 센터 이용안내<br> -->
