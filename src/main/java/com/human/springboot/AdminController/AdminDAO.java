@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface AdminDAO {
 	///상품
 	ArrayList<AdminDTO> prolist();
+	ArrayList<AdminDTO> book_nameCheck();
 	void newProduct(String x1, int x2, String x3, String x4, String x5, String x6, int x7, String x8, String x9);
 	//---
 		void newUrl(String x1,String x2);

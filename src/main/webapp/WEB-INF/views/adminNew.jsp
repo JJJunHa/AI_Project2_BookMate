@@ -379,7 +379,8 @@ footer {
                
                
                   <label for="book_name">제목:</label>
-                  <input type="text" class="form-control form-control-lg" id="book_name" name="book_name"><br>
+                  <input type="text" class="form-control form-control-lg" id="book_name" name="book_name">
+                  <br><font id="bnGuide" for="bnGuide"  style="font-size: 10px; font-weight:bold;">도서명을 입력하시오</font>
                    <br>
                    
                   <label for="book_price">가격:</label>
@@ -455,7 +456,7 @@ footer {
               <div class="footer-1">
 <!--                   <address> -->
                       상호명 및 호스팅 서비스 제공 : BookMATE<br>
-                      대표이사 : 김준하짱<br>
+                      대표이사 : 김준하<br>
                       충남 천안시 동남구 대흥로 215 7층, 8층 <br>
                       사업자 등록번호 : 422-4212-421    
 <!--                       고객 서비스 센터 이용안내<br> -->
@@ -516,6 +517,27 @@ footer {
 $(document)
 .ready(function(){
 	setInterval(changeText, 1500);
+})
+/* 도서명 입력 */
+.on('keyup','#book_name',function(){
+	var inputVal = $(this).val();
+	if (inputVal !== '') {
+   $.ajax({url:'/book_nameCheck',
+          type:'post', 
+          dataType:'text', 
+         data:{book_name:$('#book_name').val()},
+         
+         success:function(data){ 
+        	if(data === "등록 가능한 도서입니다") {
+                $('#bnGuide').text(data);
+        	} else {
+        		$('#bnGuide').text(data);
+        		$('#book_name').val('');
+        	}
+        	
+         }
+   })
+	}
 })
 .on('click','#btnInsert',function(){
      var formData = new FormData();   // 자바스크립트에서 폼 데이터를 다루는 객체

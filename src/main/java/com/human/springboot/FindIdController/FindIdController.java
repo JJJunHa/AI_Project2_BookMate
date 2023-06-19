@@ -68,7 +68,6 @@ public class FindIdController {
 		
 		return val;
 	}
-	
 	@PostMapping("/sendEmail")
     @ResponseBody
     public String sendEmail(HttpServletRequest req) {
@@ -89,7 +88,7 @@ public class FindIdController {
        }
        return response;
     }
-	
+
 	@PostMapping("/findPw")
     @ResponseBody
     public String findPw(HttpServletRequest req) {

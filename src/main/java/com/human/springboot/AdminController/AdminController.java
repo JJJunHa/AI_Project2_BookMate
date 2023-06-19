@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.human.springboot.SigninController.signinDTO;
+
 import jakarta.servlet.http.HttpServletRequest;
 
 
@@ -41,6 +43,23 @@ public class AdminController {
 		public String adminNew(Model model) {
 			return "adminNew";
 		}
+		//도서 중복 체크
+		@PostMapping("/book_nameCheck")
+		@ResponseBody
+		public String book_nameCheck(HttpServletRequest req) {
+			
+			String book_name= req.getParameter("book_name");
+						
+			ArrayList<AdminDTO> book_nameCheck = adao.book_nameCheck();
+			for(int i=0;i<book_nameCheck.size();i++) {
+				if(book_name.equals(book_nameCheck.get(i).getBook_name())) {
+					return "이미 존재하는 도서입니다";
+				}
+			}
+			
+			return "등록 가능한 도서입니다";
+		}
+		
 		//상품등록-상품명, 가격, 장르, 책소개, 작가, 출판일, 별점, 감정, 책요약
 		@PostMapping("/newProduct")
 		@ResponseBody
