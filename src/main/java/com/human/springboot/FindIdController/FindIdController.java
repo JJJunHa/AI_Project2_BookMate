@@ -16,8 +16,9 @@ public class FindIdController {
 	
 	@Autowired
 	private findIdDAO findIddao;
-	@Autowired
-	private EmailService emailservice;
+	/*
+	 * @Autowired private EmailService emailservice;
+	 */
 	
 	@GetMapping("/findId")
 	public String findid() {
@@ -44,36 +45,29 @@ public class FindIdController {
 		return val;
 	}
 	
-	@PostMapping("/using_phone")
-	@ResponseBody
-	public String using_phone(HttpServletRequest req, Model model) {
-		String val="";
-		
-		System.out.println(req.getParameter("name"));
-		System.out.println(req.getParameter("phone"));
-		
-		String name = req.getParameter("name");
-		String mobile = req.getParameter("phone");
-		String mobile1 = mobile.substring(0, 3);
-		String mobile2 = mobile.substring(3,7);
-		String mobile3 = mobile.substring(7);
-		mobile=mobile1+" "+mobile2+" "+mobile3;
-		ArrayList<String> findid = findIddao.usephone(name,mobile);
-		
-		if(findid.isEmpty()) {
-			val = "해당하는 정보가 없습니다.";
-		} else {			
-			val = findid.toString();
-		}
-		
-		return val;
-	}
-<<<<<<< HEAD
-=======
-	
-	
-	// 이메일로 임시비밀번호 보내주는 컨트롤러 코드
->>>>>>> BookMate/master
+	/*
+	 * @PostMapping("/using_phone")
+	 * 
+	 * @ResponseBody public String using_phone(HttpServletRequest req, Model model)
+	 * { String val="";
+	 * 
+	 * System.out.println(req.getParameter("name"));
+	 * System.out.println(req.getParameter("phone"));
+	 * 
+	 * String name = req.getParameter("name"); String mobile =
+	 * req.getParameter("phone"); String mobile1 = mobile.substring(0, 3); String
+	 * mobile2 = mobile.substring(3,7); String mobile3 = mobile.substring(7);
+	 * mobile=mobile1+" "+mobile2+" "+mobile3; ArrayList<String> findid =
+	 * findIddao.usephone(name,mobile);
+	 * 
+	 * if(findid.isEmpty()) { val = "해당하는 정보가 없습니다."; } else { val =
+	 * findid.toString(); }
+	 * 
+	 * return val; } <<<<<<< HEAD =======
+	 * 
+	 * 
+	 * // 이메일로 임시비밀번호 보내주는 컨트롤러 코드 >>>>>>> BookMate/master
+	 */
 	@PostMapping("/sendEmail")
     @ResponseBody
     public String sendEmail(HttpServletRequest req) {
@@ -86,7 +80,7 @@ public class FindIdController {
           String subject = req.getParameter("subject");
           String content = req.getParameter("content");
 
-		emailservice.sendEmail(recipient, subject, content);
+			/* emailservice.sendEmail(recipient, subject, content); */
           response = "입력하신 이메일로 임시 비밀번호가 전송되었습니다.";
        } catch (Exception e) {
           response = "전송 실패.";
