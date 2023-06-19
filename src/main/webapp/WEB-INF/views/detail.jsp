@@ -192,6 +192,12 @@ a:hover {
 	color: gray;
 	margin-left: 20%;
 }
+#info-rating {
+	font-size: 20px;
+	margin-left: 20%;
+	color: red;
+	font-weight: bold;
+}
 /* .info { */
 /* 	border: 0.5px solid lightgray; */
 /* 	width:80%; */
@@ -524,9 +530,11 @@ input:focus {outline: none;} /* outline 테두리 없애기 */
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
+    min-width: 150px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    text-align: center;
+     transform: translateX(-50%); /* Adjust for centering */
 }
 
 .dropdown-content a {
@@ -542,6 +550,7 @@ input:focus {outline: none;} /* outline 테두리 없애기 */
 
 .dropdown:hover .dropdown-content {
     display: block;
+    
 }
 /* 저작권 */
 .footer_img {
@@ -631,7 +640,7 @@ footer {
 						<a href="/memlist">회원관리</a> <a href="/orlist">주문관리</a> <a href="/revlist">리뷰관리</a><a href="/prolist">상품관리</a><a href="/adminNew">상품추가</a>
 					</div>
 				</div>
-				&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+				&nbsp;|&nbsp;<a href="/board">고객센터</a>
 			</div>
 		
 		<% } else { %>
@@ -665,10 +674,9 @@ footer {
         			<input type=hidden id=book_num name=book_num value="${num}">
         				<p id="info-write"></p>
         				<p id="info-date"></p>
-<!--         				<div class=info></div> -->
+        				<p id="info-rating"></p>
         			</div>
         			
-<!--         			<div class=info2 id= info2 onmouseover="mouseover()" onmouseleave="mouseleave()"> -->
 					<div class=info2 id= info2>
         			</div>
         			
@@ -808,7 +816,7 @@ footer {
               <div class="footer-1">
 <!--                   <address> -->
                       상호명 및 호스팅 서비스 제공 : BookMATE<br>
-                      대표이사 : 김준하짱<br>
+                      대표이사 : 김준하<br>
                       충남 천안시 동남구 대흥로 215 7층, 8층 <br>
                       사업자 등록번호 : 422-4212-421    
 <!--                       고객 서비스 센터 이용안내<br> -->
@@ -1255,6 +1263,23 @@ function loadData() {
 
 			let publication = data[0]['publication'];
 			$('#info-date').text(publication);
+			
+			let rating = data[0]['rating'];
+			if(rating == 0) {
+				rating = '';
+			} else if(rating == 1) {
+				rating = '★';
+			} else if(rating == 2) {
+				rating = '★★';
+			} else if(rating == 3) {
+				rating = '★★★';
+			} else if(rating == 4) {
+				rating = '★★★★';
+			} else if(rating == 5) {
+				rating = '★★★★★';
+			}
+			
+			$('#info-rating').text(rating);
 
 			let book_cover = '<img src="' + data[0]['book_cover'] + '" class="book_img" id="book_img">';
 			$('#info2').empty().append(book_cover);

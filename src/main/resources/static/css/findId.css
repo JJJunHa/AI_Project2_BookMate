@@ -51,15 +51,18 @@
     justify-content: center;
 }
 
-#findidDialog {
-    display:none;
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #ccc;
-  }
-  
+/* #findidDialog { */
+/*     display:none; */
+/*     padding: 20px; */
+/*     background-color: #fff; */
+/*     border: 1px solid #ccc; */
+/*     border-radius: 5px; */
+/*     box-shadow: 0 0 5px #ccc; */
+/*   } */
+ #dialogID {
+  text-align: center;
+  margin-top: 12%;
+ }
   .findidTitle {
     font-size: 20px;
     font-weight: bold;
@@ -78,69 +81,6 @@
  .off-screen {
 	display: none;
 }
-
-/*  .content5 { */
-/*     display: flex; */
-/*     justify-content: center; */
-/*     align-items: center; */
-/*     padding: 5px; */
-/* } */
-
-/* .content5 #writer { */
-/*     background-color: gray; */
-/*     color: white; */
-/*     border: none; */
-/*     cursor: pointer; */
-/*     padding: 8px 20px; */
-/*     font-size: 13px; */
-/*     font-weight: bold; */
-/*     border-radius: 5px; */
-/*     text-transform: uppercase; */
-/*     transition: 0.3s; */
-/* } */
-
-/* .content5 #writer:hover { */
-/*     background-color: #45a049; */
-/* } */
-
-/*  .loginInput{  */
-/* /*  	background-color:orange;  */
-/* border:none; */
- 	
-/*  }  */
- 
-/*  .minsuk{ */
-/*  	padding-top:100px; */
-/*  } */
- 
-/*  .hello1{ */
-/*  	width:640px; */
-/* /*  	background-color:red; */ 
-/*  	display:flex; */
-/*  	justify-content: space-evenly; */
-/*  } */
- 
-/*  .container { */
-/*     max-width: 300px; */
-/*     margin: 0 auto; */
-/*     padding-top: 100px; */
-/*     text-align: center; */
-/* } */
-
-/* input[type="email"] { */
-/*     width: 100%; */
-/*     padding: 10px; */
-/*     margin-bottom: 10px; */
-/* } */
-
-/* button[type="submit"] { */
-/*     width: 100%; */
-/*     padding: 10px; */
-/*     margin-top: 20px; */
-/* } */
-
-
-
 
 /* New 아이디/비번 찾기 css 코드 */
 body {

@@ -303,6 +303,11 @@ a:hover {
   
 	
 }
+a {
+ 	 text-decoration-line: none;
+ 	 text-align: center;
+  	 color: inherit; /* 링크의 색상 제거 */
+	}
 .poster {
 	position: relative;
 	
@@ -617,9 +622,11 @@ a:hover {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
+    min-width: 150px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    text-align: center;
+     transform: translateX(-50%); /* Adjust for centering */
 }
 
 .dropdown-content a {
@@ -635,14 +642,8 @@ a:hover {
 
 .dropdown:hover .dropdown-content {
     display: block;
-}  
-
-   a {
-	 text-decoration-line: none;
-	 text-align: center;
- 	 color: inherit; /* 링크의 색상 제거 */
+    
 }
-
 /* 저작권 */
 .footer_img {
 	width: 15%;

@@ -55,22 +55,15 @@
 
 		<div class="name">지금 어떤 책을 읽어야 할지 고민하는 사용자의 상태에 맞는 책을 추천해주는 서비스</div>
 		<div class="category">
-			<ul class="category_ul" id="nav">
-				<li class="category_li"><a href="/category1">코미디</a></li>
-				<li class="category_li"><a href="/category2">로맨스</a></li>
-				<li class="category_li"><a href="/category3">판타지</a></li>
-				<li class="category_li"><a href="/category4">공포/스릴러/추리</a></li>
-				<li class="category_li"><a href="/category5">드라마/가족</a></li>
-				<li class="category_li"><a href="/donation">기부앤테이크<i
-						class='dropDown'></i></a></li>
-
-				<li class="category_li">
-					<div class="search">
-						<input type="text" class="searchBox" placeholder="  검색어를 입력하세요">
-						<img src="/img/search.png" class="search_img">
-					</div>
-				</li>
-			</ul>
+			<ul class="category_ul"  id="nav">
+			<li class="category_li"><a href="/category1">코미디</a></li>
+			<li class="category_li"><a href="/category2">로맨스</a></li>
+			<li class="category_li"><a href="/category3">판타지</a></li>
+			<li class="category_li"><a href="/category4">공포/스릴러/추리</a></li>
+			<li class="category_li"><a href="/category5">드라마/가족</a></li>
+            <li class="category_li"><a href="/donation">기부앤테이크</a>
+            </li>
+		</ul>
 		</div>
 		
 		<!-- Content -->
@@ -402,7 +395,7 @@
               <div class="footer-1">
 <!--                   <address> -->
                       상호명 및 호스팅 서비스 제공 : BookMATE<br>
-                      대표이사 : 김준하짱<br>
+                      대표이사 : 김준하<br>
                       충남 천안시 동남구 대흥로 215 7층, 8층 <br>
                       사업자 등록번호 : 422-4212-421    
 <!--                       고객 서비스 센터 이용안내<br> -->
@@ -732,8 +725,11 @@ $(document)
 				dataType: 'text',
 				success: function(data) {
 					if(data=="ok") {
-						alert("주문을 취소하였습니다.");
-						document.location = '/mypage';
+						alert("주문 취소를 요청하였습니다.");
+						setTimeout(function() {
+						    alert("주문이 취소되었습니다.");
+						    document.location = '/mypage';
+						  }, 3000);
 					} else {
 						alert("오류가 발생하였습니다. 잠시후에 다시 시도해주세요. code 1");
 						return false;
@@ -1659,7 +1655,7 @@ function find_status() {
                 	order_status.text('배송조회');
                 	openRevBtn.text('문의하기');
                 } else if(data === 'ok4'){
-                	order_status.text('배송조회');
+                	order_status.hide();
                 } else {
                 	console.log('상태 조회 오류 발생 code 1');
                 }
