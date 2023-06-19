@@ -8,6 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon" sizes="16x16">
 	<link rel="stylesheet" href="css/board.css">
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 	<title>북메이트</title>
 </head>
 <style>
@@ -284,7 +285,7 @@ footer {
               <div class="footer-2">
                       이메일 주소 info@korea.com<br>
                       비즈니스제휴/입점문의 BookMATEBusiness@korea.com<br>
-                      <span id=emaildiv class=emaildiv>이메일 주소 무단 수집 거부 | </span> <span> 개인정보 보호책임자 정구화 |</span><span> 호스팅 서비스 제공자 ㈜BookMATE <br></span>
+                      <span id=emaildiv class=emaildiv>이메일 주소 무단 수집 거부 | </span> <span> 개인정보 보호책임자 정규화 |</span><span> 호스팅 서비스 제공자 ㈜BookMATE <br></span>
                       <span style="opacity: 0.7;">고객님은 안전거래를 위해 결제시 저희 쇼핑몰에게 가입한 KCP 에스그로 구매안전 서비스를 이용할수있습니다.</span>
                 <span style="opacity: 0.7;"><button id=submit>서비스가입 사실확인</button> </span><br> 
                       Copyright © 2023 BookMATE. All Rights Reserved.
@@ -324,12 +325,14 @@ footer {
    </div>
 </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="/summernote/summernote-lite.js"></script>
 <script src="/summernote/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="summernote/summernote-lite.css">
+
 <script>
 $(document)
 .ready(function() {
