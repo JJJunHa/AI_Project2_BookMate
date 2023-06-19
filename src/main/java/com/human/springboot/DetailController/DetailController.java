@@ -30,6 +30,7 @@ public class DetailController {
 	@PostMapping("/load_category1")
 	@ResponseBody
 	public String load_category1(HttpServletRequest req) {
+		
 		int page_num = Integer.parseInt(req.getParameter("pageNum"));
 		ArrayList<CategoryDTO> comedy_list = cdao.comedy_list();
 		int howmanyProd = comedy_list.size();
@@ -251,6 +252,7 @@ public class DetailController {
 			jo.put("book_name", alBook.get(i).getBook_name());
 			jo.put("author", alBook.get(i).getAuthor());
 			jo.put("publication", alBook.get(i).getPublication());
+			jo.put("rating",alBook.get(i).getRating());
 			jo.put("book_cover", alBook.get(i).getBook_cover());
 			jo.put("book_price", alBook.get(i).getBook_price());
 			jo.put("book_content", alBook.get(i).getBook_content());

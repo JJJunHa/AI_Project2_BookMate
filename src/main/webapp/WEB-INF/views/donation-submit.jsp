@@ -18,7 +18,7 @@
     	<a href="/main"><img src="/img/logo2.png" class="logoImg"></a>
     </div>
     
-	<% if(session.getAttribute("id") != null && !"".equals(session.getAttribute("id")) && !session.getAttribute("id").equals("bookmate")) { %>
+<% if(session.getAttribute("id") != null && !"".equals(session.getAttribute("id")) && !session.getAttribute("id").equals("bookmate")) { %>
 		
 			<div class="menu">
 				<%= session.getAttribute("id") %> 님, <a href="/logout">로그아웃</a>&nbsp;|&nbsp;<a href="/cart">장바구니</a>&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
@@ -34,7 +34,7 @@
 						<a href="/memlist">회원관리</a> <a href="/orlist">주문관리</a> <a href="/revlist">리뷰관리</a><a href="/prolist">상품관리</a><a href="/adminNew">상품추가</a>
 					</div>
 				</div>
-				&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+				&nbsp;|&nbsp;<a href="/board">고객센터</a>
 			</div>
 		
 		<% } else { %>
@@ -157,7 +157,7 @@
               <div class="footer-1">
 <!--                   <address> -->
                       상호명 및 호스팅 서비스 제공 : BookMATE<br>
-                      대표이사 : 김준하짱<br>
+                      대표이사 : 김준하<br>
                       충남 천안시 동남구 대흥로 215 7층, 8층 <br>
                       사업자 등록번호 : 422-4212-421    
 <!--                       고객 서비스 센터 이용안내<br> -->

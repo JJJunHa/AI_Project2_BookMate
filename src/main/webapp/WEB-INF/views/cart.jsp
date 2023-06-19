@@ -33,7 +33,7 @@
 						<a href="/memlist">회원관리</a> <a href="/orlist">주문관리</a> <a href="/revlist">리뷰관리</a><a href="/prolist">상품관리</a><a href="/adminNew">상품추가</a>
 					</div>
 				</div>
-				&nbsp;|&nbsp;<a href="/mypage">마이페이지</a>&nbsp;|&nbsp;<a href="/board">고객센터</a>
+				&nbsp;|&nbsp;<a href="/board">고객센터</a>
 			</div>
 		
 		<% } else { %>
@@ -52,14 +52,7 @@
 			<li class="category_li"><a href="/category3">판타지</a></li>
 			<li class="category_li"><a href="/category4">공포/스릴러/추리</a></li>
 			<li class="category_li"><a href="/category5">드라마/가족</a></li>
-            <li class="category_li"><a href="/donation">기부앤테이크<i class='dropDown'></i></a>
-            </li>
-             
-            <li class="category_li">
-            	<div class="search">
-                	<input type="text" class="searchBox" placeholder="  검색어를 입력하세요">
-                	<img src="/img/search.png" class="search_img">
-                </div>
+            <li class="category_li"><a href="/donation">기부앤테이크</a>
             </li>
 		</ul>
 	</div>
@@ -92,7 +85,7 @@
               <div class="footer-1">
 <!--                   <address> -->
                       상호명 및 호스팅 서비스 제공 : BookMATE<br>
-                      대표이사 : 김준하짱<br>
+                      대표이사 : 김준하<br>
                       충남 천안시 동남구 대흥로 215 7층, 8층 <br>
                       사업자 등록번호 : 422-4212-421    
 <!--                       고객 서비스 센터 이용안내<br> -->

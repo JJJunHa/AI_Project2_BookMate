@@ -17,6 +17,7 @@
 <link rel="icon" href="/img/favicon-16x16.png" type="image/x-icon"
 	sizes="16x16">
 <link rel="stylesheet" href="css/findId.css">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 <title>북메이트</title>
 </head>
 <body>
@@ -38,9 +39,9 @@
 				<div class="form-wrapper" id="idFormWrapper">
 					<div align=center class="radio-wrap minsuk">
 						<label><input type="radio" name="find_id_type"
-							id="use_email" value="email" checked="checked" /> 이메일</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							id="use_email" value="email" checked="checked" /> 이메일로 찾기</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<label><input type="radio" name="find_id_type"
-							id="use_phone" value="mobile" /> 휴대폰</label>
+							id="use_phone" value="mobile" /> 휴대폰 번호로 찾기</label>
 					</div>
 					<input type="text" id="name" name="name" placeholder="이름을 입력해주세요."><br>
 					<div class="div-idtype" id="find_id_email_wrap">
@@ -69,14 +70,16 @@
 
 		</div>
 
-	<div class="findidDialog" id="findidDialog"></div>
+	<div class="findidDialog" id="findidDialog" style="display: none;">
+		<p id=dialogID></p>
+	</div>
 </div>
 
 </body>
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="script.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<!-- <script src="script.js"></script> -->
 <script>
 
 $(document)
@@ -109,12 +112,15 @@ $(document)
     }
     
 	if($('#use_email').prop('checked')==true){
+		
+		
+		
 		$.ajax({
 			url:'/using_email',
 			data:{name:$('#name').val(), mail:$('#email').val()},
 			type:'post',
 			dataType:'text',
-			beforesend:function(data) {
+			beforeSend:function(data) {
 				$('#findid').val('')
 			},
 			success:function(data) {
@@ -127,35 +133,39 @@ $(document)
 						return false;
 					}
 					
-				alert("회원님의 아이디는 "+data+"입니다.");
+					$('#findidDialog').dialog({
+			            title:'아이디 찾기 결과',
+			            modal:true,
+			            width:450,
+			            height:250,
+			            resizable:false,
+			            show : 'slideDown',
+					    hide : 'slideUp',
+			            buttons: {
+			                '닫기': function() {
+			                    $(this).dialog('close');
+			                }
+			            }
+			        });
+										
+// 				alert("회원님의 아이디는 "+data+"입니다.");
 				$('#findid').val('회원님의 아이디는 '+data+'입니다.');	
+				$('#dialogID').text('회원님의 아이디는 '+data+'입니다.');
 				$('#name').val('');
 			    $('#email').val('');
-// 				alert($('#findid').val());
-				$('#findidDialog').dialog({
-//                     title:'아이디 찾기 결과',
-                    modal:true,
-                    width:450,
-                    height:350,
-                    resizable:false,
-                    buttons: {
-                        '닫기': function() {
-                            $(this).dialog('close');
-                        }
-                    },
-                    open:function(){
-                        $(this).html('<p>아이디 찾기 결과 </p><p>아이디: '+data+'</p>');
-                    }
-                });
-				}else{
+
+				} else{
 					alert('입력하신 정보에 해당하는 아이디가 없습니다.');
 					$('#name').val('');
 				    $('#email').val('');
 				}
 			}
-		});
-	}else if($('#use_phone').prop('checked')==true){
-		console.log('using phone')
+		})	
+		
+		
+		
+	} else if($('#use_phone').prop('checked')==true){
+// 		console.log('using phone');
 		var mobile = $('#mobile').val();
 		
 		if (mobile.length !== 11) {
@@ -181,26 +191,27 @@ $(document)
 					    $('#mobile').val('');
 						return false;
 					}
-					
-					alert("회원님의 아이디는 "+data+"입니다.");
-					$('#findid').val("회원님의 아이디는 "+data+"입니다.");
+				    
+				    $('#findidDialog').dialog({
+			            title:'아이디 찾기 결과',
+			            modal:true,
+			            width:450,
+			            height:250,
+			            resizable:false,
+			            show : 'slideDown',
+					    hide : 'slideUp',
+			            buttons: {
+			                '닫기': function() {
+			                    $(this).dialog('close');
+			                }
+			            }
+			        });
+				    
+					$('#findid').val('회원님의 아이디는 '+data+'입니다.');	
+					$('#dialogID').text('회원님의 아이디는 '+data+'입니다.');
 					$('#name').val('');
 				    $('#mobile').val('');
-					  $('#findidDialog').dialog({
-// 	                        title:'아이디 찾기 결과',
-	                        modal:true,
-	                        width:500,
-	                        height:380,
-	                        resizable:false,
-	                        buttons: {
-	                            '닫기': function() {
-	                                $(this).dialog('close');
-	                            }
-	                        },
-	                        open:function(){
-	                        	 $(this).html('<p>아이디 찾기 결과 </p><p>아이디: '+data+'</p>');
-	                        }
-	                    });
+				    
 				}else{
 					alert('입력하신 정보에 해당하는 아이디가 없습니다.');
 					$('#name').val('');

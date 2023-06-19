@@ -25,7 +25,7 @@ a {
     text-decoration-line: none;
 }
 a:link {
-  color : gray;
+    color : gray;
 }
 /* 색상상자 */
 .name{
@@ -36,15 +36,17 @@ a:link {
     text-align : center;
     padding : 20px 0;
 }
-/* 카테고리 */    
+/* 카테고리 */
 #nav {
 	list-style:none;
 	height: 40px;
 	padding: 5px 1px;
-	margin: 0;
+	margin: 0 auto;
+	text-align: center; /* 가운데 정렬을 위해 추가 */
 }
 #nav li {
-	float:left;
+ 	display: inline-block; /* 가로로 나열하기 위해 수정 */
+/* 	float:left; */
 	position:relative;
 	margin-top:0.5%;
 	padding:0;
@@ -65,24 +67,21 @@ a:link {
 	text-align: center;
 	opacity: 0;
 }
-#nav ul li {
-	float: none;
-	margin:0;
-	padding:0;
-	width: 150px;
-	height:40px;
-	background-color: white;
-}
+
 .category {
     width:100%;
     height:60px;
     background-color: white;
+    text-align: center; /* 가운데 정렬을 위해 추가 */
+/*     margin-left:27%; */
 }
 .category_ul {
-    float:right;
+/*     float:center; */
+ 	display: inline-block; /* 가로로 나열하기 위해 수정 */
 }
 .category_li {
-    float: left;
+/*     float: left; */
+	display: inline-block; /* 가로로 나열하기 위해 수정 */
     margin-right: 10px;
 }
 a:hover {
@@ -251,9 +250,11 @@ a {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
+    min-width: 150px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    text-align: center;
+     transform: translateX(-50%); /* Adjust for centering */
 }
 
 .dropdown-content a {
@@ -269,6 +270,7 @@ a {
 
 .dropdown:hover .dropdown-content {
     display: block;
+    
 }
 
 /* 저작권 */
