@@ -16,15 +16,16 @@ public class FindIdController {
 	
 	@Autowired
 	private findIdDAO findIddao;
-	@Autowired
-	private EmailService emailservice;
-	
+
+	/*
+	 * @Autowired private EmailService emailservice;
+	 */
 	@GetMapping("/findId")
 	public String findid() {
 		return "findId";
 	}
 
-	@PostMapping("/using_email")
+	/*@PostMapping("/using_email")
 	@ResponseBody
 	public String using_email(HttpServletRequest req) {
 		String val="";
@@ -42,7 +43,7 @@ public class FindIdController {
 		}
 		
 		return val;
-	}
+	}*/
 	
 	@PostMapping("/using_phone")
 	@ResponseBody
@@ -69,26 +70,20 @@ public class FindIdController {
 		return val;
 	}
 	
-	@PostMapping("/sendEmail")
-    @ResponseBody
-    public String sendEmail(HttpServletRequest req) {
-       String response = "";
-       System.out.println(req.getParameter("recipient"));
-       System.out.println(req.getParameter("subject"));
-       System.out.println(req.getParameter("content"));
-       try {
-          String recipient = req.getParameter("recipient");
-          String subject = req.getParameter("subject");
-          String content = req.getParameter("content");
-
-		emailservice.sendEmail(recipient, subject, content);
-          response = "입력하신 이메일로 임시 비밀번호가 전송되었습니다.";
-       } catch (Exception e) {
-          response = "전송 실패.";
-          e.printStackTrace();
-       }
-       return response;
-    }
+	/*
+	 * @PostMapping("/sendEmail")
+	 * 
+	 * @ResponseBody public String sendEmail(HttpServletRequest req) { String
+	 * response = ""; System.out.println(req.getParameter("recipient"));
+	 * System.out.println(req.getParameter("subject"));
+	 * System.out.println(req.getParameter("content")); try { String recipient =
+	 * req.getParameter("recipient"); String subject = req.getParameter("subject");
+	 * String content = req.getParameter("content");
+	 * 
+	 * emailservice.sendEmail(recipient, subject, content); response =
+	 * "입력하신 이메일로 임시 비밀번호가 전송되었습니다."; } catch (Exception e) { response = "전송 실패.";
+	 * e.printStackTrace(); } return response; }
+	 */
 	
 	@PostMapping("/findPw")
     @ResponseBody
