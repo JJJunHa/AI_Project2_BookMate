@@ -219,6 +219,7 @@ a:hover {
 	width: 100%;
 /* 	padding-right: 160px; */
 	padding-top: 15px;
+	padding-bottom: 15px;
 
 	
 }
