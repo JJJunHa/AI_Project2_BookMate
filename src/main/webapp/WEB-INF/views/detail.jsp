@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -872,8 +873,194 @@ footer {
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src="/summernote/summernote-lite.js"></script>
 <script src="/summernote/lang/summernote-ko-KR.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.4.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis"></script>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<c:set var="fruits" value="${prod2}" />
+<c:set var="rat" value="${rating}" />
 <script>
+/* var jsFruits = ["apple", "banana", "orange", "grape", "kiwi", "melon", "strawberry"];
+
+for (var i = 0; i < jsFruits.length; i += 3) {
+  slicedArray.push(jsFruits.slice(i, i + 3));
+}
+
+console.log(slicedArray[0]); */
+
+var jsFruits = [];
+<c:forEach items="${fruits}" var="fruit">
+jsFruits.push('${fruit}');
+
+</c:forEach>
+// jsFruits는 JavaScript 배열이며, 서버 측의 fruits 값을 가집니다.
+// 이 배열을 이용하여 JavaScript 코드를 작성하고 사용할 수 있습니다.
+console.log(jsFruits); // 'apple'을 출력
+var jsFruits = jsFruits.map(function(fruit) {
+	  return parseFloat(fruit);
+	});
+	
+	
+var jsR = [];
+<c:forEach items="${rat}" var="ra">
+jsR.push('${ra}');
+
+</c:forEach>
+// jsFruits는 JavaScript 배열이며, 서버 측의 fruits 값을 가집니다.
+// 이 배열을 이용하여 JavaScript 코드를 작성하고 사용할 수 있습니다.
+console.log(jsR); // 'apple'을 출력
+var jsR = jsR.map(function(ra) {
+	  return parseFloat(ra);
+	});
+var slicedArray = [];
+for (var i = 0; i < jsFruits.length; i += 3) {
+	  slicedArray.push(jsFruits.slice(i, i + 3));
+	}
+	console.log(slicedArray[0]);
+//기존 사용자의 나이와 구매시간을 확인해서 구매한 책과 평점을 확인해서
+//유저의 신간에 대한 예상평점을 얻어 4점이상 이면 해당책을 추천해주는 기능구현
+//기존유저 (나이)
+//책(장르,감정)
+
+const 보스톤_원인 = Array.from({ length: 20 }, () => slicedArray[0]);
+ for(var i = 1; i< jsR.length; i++ ){
+	보스톤_원인.push(...Array(5).fill([10,1,1]));
+	보스톤_원인.push(...Array(5).fill([20,1,1]));
+	보스톤_원인.push(...Array(5).fill([30,1,1]));
+	보스톤_원인.push(...Array(5).fill([40,1,1]));
+	보스톤_원인.push(...Array(5).fill([50,1,1]));
+} 
+for(var i = 1; i< jsR.length; i++ ){
+	보스톤_원인.push(...Array(20).fill(slicedArray[i]));
+	보스톤_원인.push(...Array(10).fill([10,1,1]));
+	보스톤_원인.push(...Array(20).fill(slicedArray[i]));
+	보스톤_원인.push(...Array(10).fill([20,1,1]));
+	보스톤_원인.push(...Array(20).fill(slicedArray[i]));
+	보스톤_원인.push(...Array(10).fill([30,1,1]));
+	보스톤_원인.push(...Array(20).fill(slicedArray[i]));
+	보스톤_원인.push(...Array(10).fill([40,1,1]));
+	보스톤_원인.push(...Array(20).fill(slicedArray[i]));
+	보스톤_원인.push(...Array(10).fill([50,1,1]));
+	보스톤_원인.push(...Array(20).fill(slicedArray[i]));
+}
+  for(var i = 1; i< jsR.length; i++ ){
+	보스톤_원인.push(...Array(5).fill([10,1,1]));
+	보스톤_원인.push(...Array(5).fill([20,1,1]));
+	보스톤_원인.push(...Array(5).fill([30,1,1]));
+	보스톤_원인.push(...Array(5).fill([40,1,1]));
+	보스톤_원인.push(...Array(5).fill([50,1,1]));
+}  
+
+      
+
+//유저가 방문방의 별점
+console.log(보스톤_원인);
+
+const 보스톤_결과 = Array.from({ length: 20 }, () => jsR[0]);
+for(var i = 1; i< jsR.length; i++ ){
+	보스톤_결과.push(...Array(5).fill(0));
+	보스톤_결과.push(...Array(5).fill(0));
+	보스톤_결과.push(...Array(5).fill(0));
+	보스톤_결과.push(...Array(5).fill(0));
+	보스톤_결과.push(...Array(5).fill(0));
+}
+for(var i = 1; i< jsR.length; i++ ){
+	보스톤_결과.push(...Array(20).fill(jsR[i]));
+	보스톤_결과.push(...Array(10).fill(0));
+	보스톤_결과.push(...Array(20).fill(jsR[i]));
+	보스톤_결과.push(...Array(10).fill(0));
+	보스톤_결과.push(...Array(20).fill(jsR[i]));
+	보스톤_결과.push(...Array(10).fill(0));
+	보스톤_결과.push(...Array(20).fill(jsR[i]));
+	보스톤_결과.push(...Array(10).fill(0));
+	보스톤_결과.push(...Array(20).fill(jsR[i]));
+	보스톤_결과.push(...Array(10).fill(0));
+	보스톤_결과.push(...Array(20).fill(jsR[i]));
+}
+ for(var i = 1; i< jsR.length; i++ ){
+	보스톤_결과.push(...Array(5).fill(0));
+	보스톤_결과.push(...Array(5).fill(0));
+	보스톤_결과.push(...Array(5).fill(0));
+	보스톤_결과.push(...Array(5).fill(0));
+	보스톤_결과.push(...Array(5).fill(0));
+}  
+
+      
+
+//유저가 구해한 책의 별점
+console.log(보스톤_결과);
+
+//도서의 연령별 평점을 구해주세요.
+const 질의데이터=[
+[10,1,1],
+[20,1,1],
+[30,1,1],
+[40,1,1],
+[50,1,1],
+];
+
+//제시한 연령 중 추천순위가 된다.     
+       
+  
+       // 1. 과거의 데이터를 준비합니다. 
+       var 원인 = tf.tensor(보스톤_원인);
+       var 결과 = tf.tensor(보스톤_결과);
+	var 질의 =tf.tensor(질의데이터);
+
+       // 2. 모델의 모양을 만듭니다. 
+       var X = tf.input({ shape: 3 });
+       var H1 = tf.layers.dense({ units: 4, activation:'relu' }).apply(X);
+       var H2 = tf.layers.dense({ units:4, activation:'relu' }).apply(H1);
+       var Y = tf.layers.dense({ units: 1 }).apply(H2);
+       var model = tf.model({ inputs: X, outputs: Y });
+       var compileParam = { optimizer: tf.train.adam(), loss: tf.losses.meanSquaredError }
+       model.compile(compileParam);
+       tfvis.show.modelSummary({name:'요약', tab:'모델'}, model);
+
+       // 3. 데이터로 모델을 학습시킵니다. 
+//        var fitParam = {epochs:500}
+       var _history = [];
+       var fitParam = { 
+         epochs: 200, 
+         callbacks:{
+           onEpochEnd:
+             function(epoch, logs){
+               console.log('epoch', epoch, logs, 'RMSE=>', Math.sqrt(logs.loss));
+               _history.push(logs);
+               tfvis.show.history({name:'loss', tab:'역사'}, _history, ['loss']);
+             }
+         }
+       } // loss 추가 예제
+       model.fit(원인, 결과, fitParam).then(function (result) {
+            
+           // 4. 모델을 이용합니다. 
+           // 4.1 기존의 데이터를 이용
+           var 예측한결과 = model.predict(질의);
+           예측한결과.print();
+                 var myArray= 예측한결과.dataSync();
+                 console.log(myArray);
+                 console.log(myArray[0]);
+                 var max = Math.max.apply(null, myArray);
+                 console.log(max);
+                 if (max === myArray[0]) {
+                	  alert("10대가 선호하는 도서입니다.");
+                	}
+                 if (max === myArray[1]) {
+                	  alert("20대가 선호하는 도서입니다.");
+                	}
+                 if (max === myArray[2]) {
+                	  alert("30대가 선호하는 도서입니다.");
+                	}
+                 
+                 if (max === myArray[3]) {
+                	  alert("40대가 선호하는 도서입니다.");
+                	}
+                 if (max === myArray[4]) {
+               	  alert("50대가 선호하는 도서입니다.");
+               	}
+       });  
+
+
+
 $(document)
 .ready(function(){
 	loadData();

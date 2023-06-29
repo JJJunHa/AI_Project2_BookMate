@@ -1,6 +1,7 @@
 package com.human.springboot.DetailController;
 
 import java.util.ArrayList;
+import java.time.LocalDate;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -12,12 +13,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.human.springboot.MainController.MainDAO;
+import com.human.springboot.MainController.MainDTO;
+
 import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class DetailController {
 	@Autowired
 	private CategoryDAO cdao;
+	@Autowired
+	private MainDAO maindao;
 	
 	/* category1 코미디 */
 	@GetMapping("/category1")
@@ -237,6 +243,89 @@ public class DetailController {
 	@GetMapping("/detail/{seq}")
 	public String dodetail(@PathVariable("seq") int seq, Model model) {
 	model.addAttribute("num", seq);
+	ArrayList<MainDTO> ageBookList = maindao.ageBookList(seq);
+	/* int[] numbers = {10, 1, 1}; */
+	ArrayList<Integer> numbers = new ArrayList<>();
+	ArrayList<Integer> rating = new ArrayList<>();
+
+	String bookname="";
+	String bookimage="";
+	String A_bookname;
+	String A_birth;
+	String A_emotion;
+	String A_genre;
+	String A_rating;
+	for(int i=0; i<ageBookList.size(); i++) {
+		
+		A_bookname=ageBookList.get(i).getBOOK_NAME();
+		A_birth=ageBookList.get(i).getBIRTH();
+		A_emotion=ageBookList.get(i).getEMOTION();
+		A_genre=ageBookList.get(i).getBOOK_GENRE();
+		A_rating=ageBookList.get(i).getREV_RATING();
+		LocalDate birthDate = LocalDate.parse(A_birth.substring(0, 10));
+        if (birthDate.isAfter(LocalDate.of(1993, 12, 31)) && birthDate.isBefore(LocalDate.of(2004, 1, 1))) {
+            numbers.add(20);
+        } else if (birthDate.isAfter(LocalDate.of(2003, 12, 31)) && birthDate.isBefore(LocalDate.of(2014, 1, 1))) {
+            numbers.add(10);
+        } else if (birthDate.isAfter(LocalDate.of(1983, 12, 31)) && birthDate.isBefore(LocalDate.of(1993, 1, 1))) {
+            numbers.add(30);
+        } else if (birthDate.isAfter(LocalDate.of(1973, 12, 31)) && birthDate.isBefore(LocalDate.of(1983, 1, 1))) {
+            numbers.add(40);
+        } else if (birthDate.isAfter(LocalDate.of(1963, 12, 31)) && birthDate.isBefore(LocalDate.of(1973, 1, 1))) {
+            numbers.add(50);
+        }
+        if(A_emotion.equals("슬픔")) {
+        	numbers.add(1);       	
+        } else if(A_emotion.equals("사랑")) {
+        	numbers.add(1);
+        	
+        } else if(A_emotion.equals("불안")) {
+        	numbers.add(1);
+        	
+        } else if(A_emotion.equals("분노")) {
+        	numbers.add(1);
+        	
+        } else if(A_emotion.equals("행복")) {
+        	numbers.add(1);
+        	
+        }
+        if(A_genre.equals("코미디")) {
+        	numbers.add(1);       	
+        } else if(A_genre.equals("로맨스")) {
+        	numbers.add(1);
+        	
+        } else if(A_genre.equals("판타지")) {
+        	numbers.add(1);
+        	
+        } else if(A_genre.equals("공포/스릴러/추리")) {
+        	numbers.add(1);
+        	
+        } else if(A_genre.equals("드라마")) {
+        	numbers.add(1);
+        	
+        }
+        if(A_rating.equals("5")) {
+        	rating.add(50);
+        } else if(A_rating.equals("4")) {
+        	rating.add(40);
+        } else if(A_rating.equals("3")) {
+        	rating.add(30);
+        } else if(A_rating.equals("2")) {
+        	rating.add(20);
+        } else if(A_rating.equals("1")) {
+        	rating.add(10);
+        }
+		System.out.println(A_bookname);
+		System.out.println(A_birth);
+		System.out.println(A_emotion);
+		System.out.println(A_genre);
+		
+	}
+    for (int i = 0; i < numbers.size(); i++) {
+        System.out.println(numbers.get(i));
+    }
+	model.addAttribute("prod2",numbers);
+	model.addAttribute("rating",rating);
 	return "detail";
 	}
 	// 상세페이지 제품 load하기

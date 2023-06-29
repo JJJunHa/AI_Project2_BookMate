@@ -16,8 +16,9 @@ public class FindIdController {
 	
 	@Autowired
 	private findIdDAO findIddao;
-	@Autowired
-	private EmailService emailservice;
+	/*
+	 * @Autowired private EmailService emailservice;
+	 */
 	
 	@GetMapping("/findId")
 	public String findid() {
@@ -83,7 +84,7 @@ public class FindIdController {
           String subject = req.getParameter("subject");
           String content = req.getParameter("content");
 
-		emailservice.sendEmail(recipient, subject, content);
+			/* emailservice.sendEmail(recipient, subject, content); */
           response = "입력하신 이메일로 임시 비밀번호가 전송되었습니다.";
        } catch (Exception e) {
           response = "전송 실패.";

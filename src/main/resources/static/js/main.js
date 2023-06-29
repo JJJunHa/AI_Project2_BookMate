@@ -372,7 +372,7 @@ function appendBoxesToGrid(data) {
             					
         `;
         
-		console.log(box);
+		
         $('#grid-container').append(box);
     	
     }	
@@ -438,7 +438,7 @@ function appendSelectBoxesToGrid(data) {
 							        $('#grid-container').append(box);
 									
 													}
- 
+ 		console.log($('.grid-container').height());
 		if($('.grid-container').height()===430){
 
 			$('.container').css('height', 770+'px');

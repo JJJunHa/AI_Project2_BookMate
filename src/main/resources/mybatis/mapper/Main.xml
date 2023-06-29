@@ -20,8 +20,17 @@
 		  WHERE ROWNUM &lt;= 9
 				
 		</select>
+		
+		<select id="ageBookList" resultType="com.human.springboot.MainController.MainDTO">
+			SELECT b.book_name, b.book_num, b.book_genre, b.emotion, r.rev_rating, m.id, m.birth
+			FROM book b
+			JOIN review r ON b.book_num = r.book_num
+			JOIN member m ON m.id = r.id
+			where b.book_num=#{param1}
+		</select>
+		
 		<select id="selectWord" resultType="com.human.springboot.MainController.MainDTO">
-			select * from book where book_name=#{parma1}
+			select * from book where book_name=#{param1}
 		</select>
 		<select id="genreBookList" resultType="com.human.springboot.MainController.MainDTO">
 			select * from book where book_genre=#{param1}

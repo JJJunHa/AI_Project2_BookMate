@@ -21,7 +21,7 @@ public class MainContoller {
 	
 	@GetMapping("/apikey")
 	  public ResponseEntity<String> getApiKey() {
-	    String apiKey = "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";
+	    String apiKey = "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";
 	    return ResponseEntity.ok(apiKey);
 	  }
 	@GetMapping("/")
@@ -35,10 +35,24 @@ public class MainContoller {
 		ArrayList<MainDTO> bookList = maindao.bookList();
 		String bookname="";
 		String bookimage="";
+		/*
+		 * String A_bookname; String A_birth; String A_emotion; String A_genre; int[]
+		 * numbers = {10, 1, 1};
+		 */
+		
+		/*
+		 * for(int i=0; i<ageBookList.size(); i++) {
+		 * A_bookname=ageBookList.get(i).BOOK_NAME; A_birth=ageBookList.get(i).BIRTH;
+		 * A_emotion=ageBookList.get(i).EMOTION; A_genre=ageBookList.get(i).BOOK_GENRE;
+		 * 
+		 * }
+		 */
+		
 		for(int i=0; i<bookList.size(); i++) {
 			bookname=bookList.get(i).BOOK_NAME;
 			bookimage=bookList.get(i).BOOK_COVER;
 		}
+		/* model.addAttribute("prod2",numbers); */
 		model.addAttribute("prod",bookimage);
         return "main";
     }

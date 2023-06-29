@@ -156,7 +156,7 @@
 			</div>
 			
 			<div class="payment-pay payBox">
-				<p><b>결제수간 선택 / 결제</b></p>
+				<p><b>결제수단 선택 / 결제</b></p>
 				<table class=tbl-info>
 					<tr>
 						<td colspan="2"><input type="radio" name="pay" value="무통장입금" name="payway" id="normal-radio">&nbsp;무통장입금&nbsp;</td>
@@ -366,7 +366,6 @@ $(document)
 					}else if(data.includes('무통장')){
 						alert("3520637887353 김준하 입금후 확인이 되면 배송진행합니다.")
 						document.location="/main";
-						
 					}
 				}	
 			}

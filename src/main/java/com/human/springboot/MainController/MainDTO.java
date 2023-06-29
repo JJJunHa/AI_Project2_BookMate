@@ -14,4 +14,8 @@ public class MainDTO {
 	String AUTHOR;
 	String PUBLICATION;
 	String RATING;
+	String EMOTION;
+	String REV_RATING;
+	String ID;
+	String BIRTH;
 }

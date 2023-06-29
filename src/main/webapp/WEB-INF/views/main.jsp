@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ 
 
 
 <!DOCTYPE html>
@@ -16,6 +17,8 @@
     <script src="js/main.js" type="text/javascript"></script>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.4.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis"></script>
     <title>북메이트</title>
 </head>
 
@@ -192,7 +195,11 @@
 		</ul>
    </div>
 </div>
-
+<c:set var="fruits" value="${prod2}" />
+ <script>
+ 
+ 
+         </script>
 </body>
 
 </html>
